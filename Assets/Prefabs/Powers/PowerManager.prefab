@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1394417839096400497}
+  - component: {fileID: 3059140216847769146}
   m_Layer: 0
   m_Name: "Cr\xE9er un sol de pierre"
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148415593687727117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3059140216847769146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86431528417241083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &690860878360739873
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,6 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8225845533999597270}
+  - component: {fileID: 7070088974084324837}
   m_Layer: 0
   m_Name: "Cr\xE9er des arbres"
   m_TagString: Untagged
@@ -62,6 +77,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7070088974084324837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690860878360739873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &1657155739780777473
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a98f46982a4f36b8af4cd340530c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCategory
+  <categoryIcon>k__BackingField: {fileID: 0}
 --- !u!1 &1832100028179106572
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1108124269164928802}
+  - component: {fileID: 8817782302019362313}
   m_Layer: 0
   m_Name: Sort de rage
   m_TagString: Untagged
@@ -141,6 +171,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6240284082935981684}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8817782302019362313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832100028179106572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &2750874842964857837
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4834749233745342667}
+  - component: {fileID: 4550407518726394526}
   m_Layer: 0
   m_Name: "Moyenne M\xE9t\xE9orite"
   m_TagString: Untagged
@@ -172,6 +216,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4550407518726394526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750874842964857837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &3134971587976476508
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6628211762310620858}
-  - component: {fileID: 4823412293202776505}
+  - component: {fileID: 2347462194128912731}
   m_Layer: 0
   m_Name: PowerManager
   m_TagString: Untagged
@@ -209,7 +266,7 @@ Transform:
   - {fileID: 6240284082935981684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4823412293202776505
+--- !u!114 &2347462194128912731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,9 +275,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3134971587976476508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b071afab1694fa99c00385fc85f49f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 94b48c2e06be7e9e08184c0ba48ba5a2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputManager
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerManager
 --- !u!1 &3569314833829841097
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3006998527158255918}
+  - component: {fileID: 8138358515186607595}
   m_Layer: 0
   m_Name: "Grande M\xE9t\xE9orite"
   m_TagString: Untagged
@@ -252,6 +310,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8138358515186607595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3569314833829841097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &3610807610792269683
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1985112720350817323}
+  - component: {fileID: 8441658385432167723}
   m_Layer: 0
   m_Name: "Cr\xE9er des minerai de Glorp"
   m_TagString: Untagged
@@ -283,6 +355,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8441658385432167723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3610807610792269683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &3783839208736725786
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 922635859904218667}
+  - component: {fileID: 1912432518732739034}
   m_Layer: 0
   m_Name: Sort d'engrais
   m_TagString: Untagged
@@ -314,6 +400,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912432518732739034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783839208736725786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &3963866588075503766
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a98f46982a4f36b8af4cd340530c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCategory
+  <categoryIcon>k__BackingField: {fileID: 0}
 --- !u!1 &4161371456233932988
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7294688052602914818}
+  - component: {fileID: 3519854754981135915}
   m_Layer: 0
   m_Name: "Cr\xE9er des minerai de fer"
   m_TagString: Untagged
@@ -395,6 +496,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3519854754981135915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4161371456233932988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &4383354476088119107
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a98f46982a4f36b8af4cd340530c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCategory
+  <categoryIcon>k__BackingField: {fileID: 0}
 --- !u!1 &4407967528452708840
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4048129603286651101}
+  - component: {fileID: 342643992886052299}
   m_Layer: 0
   m_Name: "Cr\xE9er des animaux"
   m_TagString: Untagged
@@ -472,6 +588,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &342643992886052299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407967528452708840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &4913164743679277192
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3099757612564270458}
+  - component: {fileID: 3027616465563898612}
   m_Layer: 0
   m_Name: "Petite M\xE9t\xE9orite"
   m_TagString: Untagged
@@ -503,6 +633,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3027616465563898612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913164743679277192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &6210347989287798240
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6103205462572621446}
+  - component: {fileID: 5742826549444197425}
   m_Layer: 0
   m_Name: "Poss\xE9der une entit\xE9"
   m_TagString: Untagged
@@ -534,6 +678,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6240284082935981684}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5742826549444197425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210347989287798240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &7416759798192138084
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9159178517064249669}
+  - component: {fileID: 656483249937758248}
   m_Layer: 0
   m_Name: "Cr\xE9er une plaine"
   m_TagString: Untagged
@@ -565,6 +723,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148415593687727117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &656483249937758248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416759798192138084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &8018553049544447527
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,6 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a98f46982a4f36b8af4cd340530c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCategory
+  <categoryIcon>k__BackingField: {fileID: 0}
 --- !u!1 &8222052912637855855
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7964352769323851497}
+  - component: {fileID: 3065140996200823130}
   m_Layer: 0
   m_Name: "Cr\xE9er un trou"
   m_TagString: Untagged
@@ -643,6 +816,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148415593687727117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3065140996200823130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222052912637855855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &8283944714982217277
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905199433282660239}
+  - component: {fileID: 2359525952084278070}
   m_Layer: 0
   m_Name: "Cr\xE9er une caserne"
   m_TagString: Untagged
@@ -674,6 +861,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8821052185204664721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2359525952084278070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283944714982217277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &8943074761570259926
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 786844984210711130}
+  - component: {fileID: 7858253655948308429}
   m_Layer: 0
   m_Name: Enflammer
   m_TagString: Untagged
@@ -705,6 +906,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7858253655948308429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8943074761570259926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
 --- !u!1 &8947771796620502910
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a98f46982a4f36b8af4cd340530c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCategory
+  <categoryIcon>k__BackingField: {fileID: 0}
 --- !u!1 &9050392945308179188
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8378489304267884233}
+  - component: {fileID: 6978264012573552844}
   m_Layer: 0
   m_Name: "Cr\xE9er des pierres"
   m_TagString: Untagged
@@ -781,3 +997,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6978264012573552844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050392945308179188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  <powerIcon>k__BackingField: {fileID: 0}
