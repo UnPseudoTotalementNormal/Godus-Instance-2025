@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TileSystem : MonoBehaviour
 {
@@ -12,10 +13,10 @@ public class TileSystem : MonoBehaviour
     
     List<Tile> tiles = new();
 
-
+    
     [Header("Island")] 
-    [SerializeField] int yCentre = 25;
-    [SerializeField] int xCentre = 25;
+    [SerializeField] int yCenter = 25;
+    [SerializeField] int xCenter = 25;
     [SerializeField] int radius = 20;
     List<int> edgePoints = new();
     
@@ -28,18 +29,18 @@ public class TileSystem : MonoBehaviour
         
         for (int i = 0; i < 360; i++) //  Generates a circle as an island
         {
-            float angle = i * Mathf.Deg2Rad;
-            float x1 = xCentre + radius * Mathf.Cos(angle);
-            float y1 = yCentre + radius * Mathf.Sin(angle);
-            int calcIndex = Mathf.RoundToInt(y1) * xSize + Mathf.RoundToInt(x1);
-            edgePoints.Add(calcIndex);
+            float _angle = i * Mathf.Deg2Rad;
+            float _x1 = xCenter + radius * Mathf.Cos(_angle);
+            float _y1 = yCenter + radius * Mathf.Sin(_angle);
+            int _calcIndex = Mathf.RoundToInt(_y1) * xSize + Mathf.RoundToInt(_x1);
+            edgePoints.Add(_calcIndex);
         }
         
         for (int x = 0; x < xSize * ySize; x++)
         {
             
-            float dx = GetPositionFromIndex(x).x- xCentre;
-            float dy = GetPositionFromIndex(x).y- yCentre;
+            float dx = GetPositionFromIndex(x).x- xCenter;
+            float dy = GetPositionFromIndex(x).y- yCenter;
             
             if (edgePoints.Contains(x))
                 tiles.Add(new Tile(1));
@@ -61,8 +62,8 @@ public class TileSystem : MonoBehaviour
     
     public Tile GetTile(Vector2Int tilePos)
     {
-        int calcIndex = tilePos.y * xSize + tilePos.x;
-        return tiles.ElementAtOrDefault(calcIndex);
+        int _calcIndex = tilePos.y * xSize + tilePos.x;
+        return tiles.ElementAtOrDefault(_calcIndex);
     }
 
     public Vector2Int GetPositionFromIndex(int index)
@@ -82,9 +83,9 @@ public class TileSystem : MonoBehaviour
             if (tiles[i].level == 3)
                 Gizmos.color = Color.brown;
             
-            Vector2Int tilePos = GetPositionFromIndex(i);
+            Vector2Int _tilePos = GetPositionFromIndex(i);
             
-            Gizmos.DrawCube(new Vector3(tilePos.x, 0, tilePos.y), Vector3.one);
+            Gizmos.DrawCube(new Vector3(_tilePos.x, 0, _tilePos.y), Vector3.one);
         }  
     }
 }

@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Pathfinding : MonoBehaviour
 {
-   [Header("Debug")]
-   public bool debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
+   [FormerlySerializedAs("debug")] [Header("Debug")]
+   public bool _debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
    
    Cell[,] grid;
    List<Cell> openSet;
@@ -18,11 +19,11 @@ public class Pathfinding : MonoBehaviour
    void Awake()
    {
       grid = new Cell[50, 50];
-      for (int x = 0; x < 50; x++)
+      for (int _x = 0; _x < 50; _x++)
       {
-         for (int y = 0; y < 50; y++)
+         for (int _y = 0; _y < 50; _y++)
          {
-            grid[x, y] = new Cell(new Vector2Int(x, y));
+            grid[_x, _y] = new Cell(new Vector2Int(_x, _y));
          }
       }
    }
@@ -39,56 +40,56 @@ public class Pathfinding : MonoBehaviour
 
    IEnumerator CellIterator(Vector2Int startPos, Vector2Int endPos, int step = 1)
    {
-      Cell currentCell = openSet[0];
+      Cell _currentCell = openSet[0];
       while (openSet.Count != 0)
       {
-         int lowestCost = int.MaxValue;
-         foreach (Cell cell in openSet)
+         int _lowestCost = int.MaxValue;
+         foreach (Cell _cell in openSet)
          {
-            if (cell.fCost <= lowestCost)
+            if (_cell.fCost <= _lowestCost)
             {
-               if (cell.fCost == lowestCost && cell.hCost < currentCell.hCost){
-                  currentCell = cell;
-                  lowestCost = cell.fCost;
+               if (_cell.fCost == _lowestCost && _cell.hCost < _currentCell.hCost){
+                  _currentCell = _cell;
+                  _lowestCost = _cell.fCost;
                   continue;
                }
-               currentCell = cell;
-               lowestCost = cell.fCost;
+               _currentCell = _cell;
+               _lowestCost = _cell.fCost;
             }
          }
          
-         if (currentCell.position == endPos)
+         if (_currentCell.position == endPos)
          {
             Debug.Log("Path found");
-            PathConstructor(currentCell);
+            PathConstructor(_currentCell);
             yield break;
          }
-         openSet.Remove(currentCell);
-         closedSet.Add(currentCell);
+         openSet.Remove(_currentCell);
+         closedSet.Add(_currentCell);
 
-         foreach (Cell neighbor in GetNeighbours(currentCell.position, step))
+         foreach (Cell _neighbor in GetNeighbours(_currentCell.position, step))
          {
-            if (closedSet.Contains(neighbor))
+            if (closedSet.Contains(_neighbor))
                continue;
 
-            int tentativeGCost = currentCell.gCost + 1;
+            int _tentativeGCost = _currentCell.gCost + 1;
             
-            if (!openSet.Contains(neighbor) || tentativeGCost < neighbor.gCost)
+            if (!openSet.Contains(_neighbor) || _tentativeGCost < _neighbor.gCost)
             {
-               neighbor.cameFrom = currentCell;
-               neighbor.gCost = tentativeGCost;
-               neighbor.CalcHeuristic(endPos);
+               _neighbor.cameFrom = _currentCell;
+               _neighbor.gCost = _tentativeGCost;
+               _neighbor.CalcHeuristic(endPos);
 
-               if (!openSet.Contains(neighbor))
+               if (!openSet.Contains(_neighbor))
                {
-                  openSet.Add(neighbor);
+                  openSet.Add(_neighbor);
                }
             }
          }
 
-         if (debug)
+         if (_debug)
          {
-            PathConstructor(currentCell);
+            PathConstructor(_currentCell);
             yield return new WaitForSeconds(0.1f);
          }
          else
@@ -107,49 +108,49 @@ public class Pathfinding : MonoBehaviour
 
    IEnumerator ReconstructPath(Cell current)
    {
-      List<Cell> path = new List<Cell>();
-      path.Add(current);
+      List<Cell> _path = new List<Cell>();
+      _path.Add(current);
       while (current.cameFrom != null)
       {
          current = current.cameFrom;
-         path.Add(current);
+         _path.Add(current);
          yield return null;
       }
-      path.Reverse();
-      callback.Invoke(path);
+      _path.Reverse();
+      callback.Invoke(_path);
    }
 
    List<Cell> GetNeighbours(Vector2Int pos, int step)
    {
-      Tile currentTile = TileSystem.Instance.GetTile(pos);
-      List<Cell> neighbours = new List<Cell>();
-      for (int x = -1; x <= 1; x++)
+      Tile _currentTile = TileSystem.Instance.GetTile(pos);
+      List<Cell> _neighbours = new List<Cell>();
+      for (int _x = -1; _x <= 1; _x++)
       {
-         for (int y = -1; y <= 1; y++)
+         for (int _y = -1; _y <= 1; _y++)
          {
-            if (y == 0 && x == 0)
+            if (_y == 0 && _x == 0)
             {
                continue;
             }
             
-            int checkX = pos.x + x;
-            int checkY = pos.y + y;
+            int _checkX = pos.x + _x;
+            int _checkY = pos.y + _y;
             
-            if (checkX < 0 || checkY < 0 || checkX >= grid.GetLength(0) || checkY >= grid.GetLength(1))
+            if (_checkX < 0 || _checkY < 0 || _checkX >= grid.GetLength(0) || _checkY >= grid.GetLength(1))
                continue;
             
-            Tile neighboringTile = TileSystem.Instance.GetTile(pos+(new Vector2Int(x, y)));
-            if (neighboringTile != null)
+            Tile _neighboringTile = TileSystem.Instance.GetTile(pos+(new Vector2Int(_x, _y)));
+            if (_neighboringTile != null)
             {
-               if (Mathf.Abs(neighboringTile.level - currentTile.level) > step)
+               if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > step)
                   continue;
                
-               neighbours.Add(grid[pos.x + x, pos.y + y]);
+               _neighbours.Add(grid[pos.x + _x, pos.y + _y]);
             }
          }
       }
 
-      return neighbours;
+      return _neighbours;
    }
 }
 
@@ -173,10 +174,10 @@ public class Cell
    }
    public void CalcHeuristic(Vector2Int endPos)
    {
-      int dx = Mathf.Abs(position.x - endPos.x);
-      int dy = Mathf.Abs(position.y - endPos.y);
+      int _dx = Mathf.Abs(position.x - endPos.x);
+      int _dy = Mathf.Abs(position.y - endPos.y);
       
-      hCost = 14 * Mathf.Min(dx, dy) + 10 * Mathf.Abs(dx - dy);
+      hCost = 14 * Mathf.Min(_dx, _dy) + 10 * Mathf.Abs(_dx - _dy);
       
       fCost = gCost + hCost;
    }
