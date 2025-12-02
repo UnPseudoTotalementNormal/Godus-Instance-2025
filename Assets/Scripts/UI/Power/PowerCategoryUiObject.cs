@@ -8,20 +8,25 @@ namespace UI.Power
 {
     public class PowerCategoryUiObject : MonoBehaviour
     {
+        private PowersUI powersUI;
+        
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text nameText;
         
         public PowerCategory powerCategory { get; private set; }
         public CanvasGroup canvasGroup { get; private set; }
         
+        private ISelectionFeedback[] selectionFeedbacks;
+        
         public event Action<PowerCategoryUiObject> onClicked;
 
         private void Awake()
         {
             GetComponent<Button>().onClick.AddListener(OnClicked);
+            selectionFeedbacks = GetComponents<ISelectionFeedback>();
         }
 
-        public void SetPowerCategory(PowerCategory _powerCategory, CanvasGroup _canvasGroup)
+        public void SetPowerCategory(PowerCategory _powerCategory, CanvasGroup _canvasGroup, PowersUI _powersUi)
         {
             powerCategory = _powerCategory;
             canvasGroup = _canvasGroup;
@@ -30,11 +35,30 @@ namespace UI.Power
             nameText.text = _powerCategory.categoryName;
 
             iconImage.enabled = _powerCategory.categoryIcon != null;
+            
+            powersUI = _powersUi;
+            
+            powersUI.onPowerCategoryChanged += OnPowerCategoryChanged;
         }
         
         public void OnClicked()
         {
             onClicked?.Invoke(this);
+        }
+        
+        private void OnPowerCategoryChanged(PowerCategory _setCategory)
+        {
+            bool _show = _setCategory == powerCategory;
+
+            foreach (var _selectionFeedback in selectionFeedbacks)
+            {
+                if (_show)
+                {
+                    _selectionFeedback.ShowSelectionFeedback();
+                    continue;
+                }
+                _selectionFeedback.HideSelectionFeedback();
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace UI.Power
         
         private PowerCategoryUiObject currentPowerCategory;
         
-        public event Action onPowerCategoryChanged;
+        public event Action<PowerCategory> onPowerCategoryChanged;
         
         public void ShowPowerCategory(PowerCategoryUiObject _powerCategoryUiObject)
         {
@@ -36,12 +36,12 @@ namespace UI.Power
             
             currentPowerCategory = _powerCategoryUiObject;
             currentPowerCategory.canvasGroup.DoShowGroup();
-            onPowerCategoryChanged?.Invoke();
+            onPowerCategoryChanged?.Invoke(currentPowerCategory.powerCategory);
         }
         
         private void Start()
         {
-            onPowerCategoryChanged += () =>
+            onPowerCategoryChanged += (_) =>
             {
                 PowerManager.instance.EquipPower(null);
             };
@@ -56,11 +56,18 @@ namespace UI.Power
                 
                 PowerUiObject _powerUiObject = Instantiate(powerUiObjectPrefab, _powerCategoryUiObject.canvasGroup.transform);
                 _powerUiObject.SetPower(_power);
+
+                _powerUiObject.onClicked += OnPowerClicked;
             }
             
             ShowPowerCategory(powerCategoryUiObjects[0]);
         }
-        
+
+        private void OnPowerClicked(PowerUiObject _clickedPower)
+        {
+            PowerManager.instance.EquipPower(_clickedPower.power);
+        }
+
         private PowerCategoryUiObject GetOrCreatePowerCategoryUiObject(PowerCategory _powerCategory)
         {
             foreach (var _existingCategoryUiObject in powerCategoryUiObjects)
@@ -77,7 +84,7 @@ namespace UI.Power
             _canvasGroup.blocksRaycasts = false;
 
             PowerCategoryUiObject _newCategoryUiObject = Instantiate(powerCategoryUiObjectPrefab, powerCategoryLayout.transform);
-            _newCategoryUiObject.SetPowerCategory(_powerCategory, _canvasGroup);
+            _newCategoryUiObject.SetPowerCategory(_powerCategory, _canvasGroup, this);
             powerCategoryUiObjects.Add(_newCategoryUiObject);
             _newCategoryUiObject.onClicked += ShowPowerCategory;
             

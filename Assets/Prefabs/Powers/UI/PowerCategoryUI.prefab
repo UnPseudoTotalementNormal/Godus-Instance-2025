@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2289259473903229518}
   - component: {fileID: 1496886388263991822}
   - component: {fileID: 1188634645934289131}
+  - component: {fileID: 4227140286946996851}
   m_Layer: 5
   m_Name: PowerCategoryUI
   m_TagString: Untagged
@@ -98,6 +99,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4227140286946996851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850748095454778901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412184dc27fa4cf5898c42b07fe2cc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.GraphicColorSelectionFeedback
+  graphicsData:
+  - graphic: {fileID: 8215935357450622473}
+    originalColor: {r: 0, g: 0, b: 0, a: 0}
+    feedbackColor: {r: 0.6431373, g: 0.5686275, b: 0.11372549, a: 1}
+    setOriginalColorAsFirstValue: 1
+    hasSetOriginalColor: 0
+    fadeColorDuration: 0.25
+    fadeColorEase: 15
 --- !u!1 &5176279164661474953
 GameObject:
   m_ObjectHideFlags: 0
