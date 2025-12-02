@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
+    public static InputManager instance { get; private set; }
 
     public event Action onMiddleMouseButtonPressStarted;
     public event Action onMiddleMouseButtonPressCanceled;
@@ -22,61 +22,61 @@ public class InputManager : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
     }
     
-    public void OnMiddleMouseButtonPressed(InputAction.CallbackContext context)
+    public void OnMiddleMouseButtonPressed(InputAction.CallbackContext _context)
     {
-        if (context.started)
+        if (_context.started)
         {
             onMiddleMouseButtonPressStarted?.Invoke();
         }
-        else if (context.canceled)
+        else if (_context.canceled)
         {
             onMiddleMouseButtonPressCanceled?.Invoke();
         }
     }
     
-    public void OnMiddleMouseScroll(InputAction.CallbackContext context)
+    public void OnMiddleMouseScroll(InputAction.CallbackContext _context)
     {
-        float scrollValue = context.ReadValue<float>();
+        float scrollValue = _context.ReadValue<float>();
         onMiddleMousseScroll?.Invoke(scrollValue);
     }
     
-    public void OnLeftMouseButtonPressed(InputAction.CallbackContext context)
+    public void OnLeftMouseButtonPressed(InputAction.CallbackContext _context)
     {
-        if (context.started)
+        if (_context.started)
         {
             onLeftMouseButtonPressStarted?.Invoke();
         }
-        else if (context.canceled)
+        else if (_context.canceled)
         {
             onLeftMouseButtonPressCanceled?.Invoke();
         }
     }
     
-    public void OnRightMouseButtonPressed(InputAction.CallbackContext context)
+    public void OnRightMouseButtonPressed(InputAction.CallbackContext _context)
     {
-        if (context.started)
+        if (_context.started)
         {
             onRightMouseButtonPressStarted?.Invoke();
         }
-        else if (context.canceled)
+        else if (_context.canceled)
         {
             onRightMouseButtonPressCanceled?.Invoke();
         }
     }
     
-    public void OnEscapeButtonPressed(InputAction.CallbackContext context)
+    public void OnEscapeButtonPressed(InputAction.CallbackContext _context)
     {
-        if (context.started)
+        if (_context.started)
         {
             onEscapeButtonPressStarted?.Invoke();
         }
