@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TileSystem : MonoBehaviour
 {
@@ -11,10 +13,10 @@ public class TileSystem : MonoBehaviour
     
     List<Tile> tiles = new();
 
-
+    
     [Header("Island")] 
-    [SerializeField] int yCentre = 25;
-    [SerializeField] int xCentre = 25;
+    [SerializeField] int yCenter = 25;
+    [SerializeField] int xCenter = 25;
     [SerializeField] int radius = 20;
     List<int> edgePoints = new();
     
@@ -25,26 +27,26 @@ public class TileSystem : MonoBehaviour
             Instance = this;
         }
         
-        for (int i = 0; i < 360; i++) //  Generates a circle as an island
+        for (int _i = 0; _i < 360; _i++) //  Generates a circle as an island
         {
-            float angle = i * Mathf.Deg2Rad;
-            float x1 = xCentre + radius * Mathf.Cos(angle);
-            float y1 = yCentre + radius * Mathf.Sin(angle);
-            int calcIndex = Mathf.RoundToInt(y1) * xSize + Mathf.RoundToInt(x1);
-            edgePoints.Add(calcIndex);
+            float _angle = _i * Mathf.Deg2Rad;
+            float _x1 = xCenter + radius * Mathf.Cos(_angle);
+            float _y1 = yCenter + radius * Mathf.Sin(_angle);
+            int _calcIndex = Mathf.RoundToInt(_y1) * xSize + Mathf.RoundToInt(_x1);
+            edgePoints.Add(_calcIndex);
         }
         
-        for (int x = 0; x < xSize * ySize; x++)
+        for (int _x = 0; _x < xSize * ySize; _x++)
         {
             
-            float dx = GetPositionFromIndex(x).x- xCentre;
-            float dy = GetPositionFromIndex(x).y- yCentre;
+            float _dx = GetPositionFromIndex(_x).x- xCenter;
+            float _dy = GetPositionFromIndex(_x).y- yCenter;
             
-            if (edgePoints.Contains(x))
-                tiles.Add(new Tile(3));
-            else if (dx * dx + dy * dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
+            if (edgePoints.Contains(_x))
+                tiles.Add(new Tile(1));
+            else if (_dx * _dx + _dy * _dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
             {
-                tiles.Add(new Tile(3));
+                tiles.Add(new Tile(Random.Range(1,4)));
             }
             else
                 tiles.Add(new Tile());
@@ -58,28 +60,32 @@ public class TileSystem : MonoBehaviour
         Debug.Log(GetTile(new Vector2Int(10, 15)).level);
     }
     
-    Tile GetTile(Vector2Int tilePos)
+    public Tile GetTile(Vector2Int _tilePos)
     {
-        int calcIndex = tilePos.y * xSize + tilePos.x;
-        return tiles[calcIndex];
+        int _calcIndex = _tilePos.y * xSize + _tilePos.x;
+        return tiles.ElementAtOrDefault(_calcIndex);
     }
 
-    Vector2Int GetPositionFromIndex(int index)
+    public Vector2Int GetPositionFromIndex(int _index)
     {
-        return new Vector2Int(index % xSize, index / xSize);
+        return new Vector2Int(_index % xSize, _index / xSize);
     }
 
     void OnDrawGizmos() // Full debug to see what the generated map looks like even without any assets
     {
-        for (int i = 0; i < tiles.Count; i++)
+        for (int _i = 0; _i < tiles.Count; _i++)
         {
-            Gizmos.color = Color.yellow;
-            if (tiles[i].level == 3)
-                Gizmos.color = Color.red;
+            Gizmos.color = Color.lightBlue;
+            if (tiles[_i].level == 1)
+                Gizmos.color = Color.yellow;
+            if (tiles[_i].level == 2)
+                Gizmos.color = Color.green;
+            if (tiles[_i].level == 3)
+                Gizmos.color = Color.brown;
             
-            Vector2Int tilePos = GetPositionFromIndex(i);
+            Vector2Int _tilePos = GetPositionFromIndex(_i);
             
-            Gizmos.DrawCube(new Vector3(tilePos.x, 0, tilePos.y), Vector3.one);
+            Gizmos.DrawCube(new Vector3(_tilePos.x, 0, _tilePos.y), Vector3.one);
         }  
     }
 }
@@ -89,9 +95,9 @@ public class Tile
 {
     public int level = 0;
 
-    public Tile( int level=0)
+    public Tile( int _level=0)
     {
-        this.level = level;
+        this.level = _level;
     }
     
 }
