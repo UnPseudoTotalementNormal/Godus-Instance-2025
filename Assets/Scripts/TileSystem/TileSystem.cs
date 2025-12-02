@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TileSystem : MonoBehaviour
@@ -41,10 +42,10 @@ public class TileSystem : MonoBehaviour
             float dy = GetPositionFromIndex(x).y- yCentre;
             
             if (edgePoints.Contains(x))
-                tiles.Add(new Tile(3));
+                tiles.Add(new Tile(1));
             else if (dx * dx + dy * dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
             {
-                tiles.Add(new Tile(3));
+                tiles.Add(new Tile(Random.Range(1,4)));
             }
             else
                 tiles.Add(new Tile());
@@ -58,13 +59,13 @@ public class TileSystem : MonoBehaviour
         Debug.Log(GetTile(new Vector2Int(10, 15)).level);
     }
     
-    Tile GetTile(Vector2Int tilePos)
+    public Tile GetTile(Vector2Int tilePos)
     {
         int calcIndex = tilePos.y * xSize + tilePos.x;
-        return tiles[calcIndex];
+        return tiles.ElementAtOrDefault(calcIndex);
     }
 
-    Vector2Int GetPositionFromIndex(int index)
+    public Vector2Int GetPositionFromIndex(int index)
     {
         return new Vector2Int(index % xSize, index / xSize);
     }
@@ -74,6 +75,10 @@ public class TileSystem : MonoBehaviour
         for (int i = 0; i < tiles.Count; i++)
         {
             Gizmos.color = Color.yellow;
+            if (tiles[i].level == 1)
+                Gizmos.color = Color.brown;
+            if (tiles[i].level == 2)
+                Gizmos.color = Color.blue;
             if (tiles[i].level == 3)
                 Gizmos.color = Color.red;
             
