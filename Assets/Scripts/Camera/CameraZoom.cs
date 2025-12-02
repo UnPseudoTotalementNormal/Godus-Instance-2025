@@ -49,7 +49,7 @@ namespace Camera
         
         public void Zoom(float _zoomDelta)
         {
-            Debug.Log("Zoom Delta: " + _zoomDelta);
+            //Debug.Log("Zoom Delta: " + _zoomDelta);
             targetOrthographicSize -= _zoomDelta * zoomSpeed;
             targetOrthographicSize = Mathf.Clamp(targetOrthographicSize, minZoom, maxZoom);
         }

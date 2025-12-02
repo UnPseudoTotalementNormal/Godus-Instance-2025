@@ -19,6 +19,10 @@ public class InputManager : MonoBehaviour
     public event Action onRightMouseButtonPressCanceled;
     
     public event Action onEscapeButtonPressStarted;
+
+    public event Action<Vector2> onMouseDelta;
+    
+    public event Action<Vector2> onMousePosition;
     
     private void Awake()
     {
@@ -80,5 +84,15 @@ public class InputManager : MonoBehaviour
         {
             onEscapeButtonPressStarted?.Invoke();
         }
+    }
+    
+    public void OnMouseDelta(InputAction.CallbackContext _context)
+    {
+        onMouseDelta?.Invoke(_context.ReadValue<Vector2>());
+    }
+    
+    public void OnMousePosition(InputAction.CallbackContext _context)
+    {
+        onMousePosition?.Invoke(_context.ReadValue<Vector2>());
     }
 }
