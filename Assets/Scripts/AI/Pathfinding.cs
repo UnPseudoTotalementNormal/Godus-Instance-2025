@@ -7,8 +7,8 @@ using UnityEngine.Serialization;
 
 public class Pathfinding : MonoBehaviour
 {
-   [FormerlySerializedAs("debug")] [Header("Debug")]
-   public bool _debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
+   [FormerlySerializedAs("_debug")] [Header("Debug")]
+   public bool debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
    
    Cell[,] grid;
    List<Cell> openSet;
@@ -27,18 +27,18 @@ public class Pathfinding : MonoBehaviour
          }
       }
    }
-   public void FindPath(Vector2Int startPos, Vector2Int endPos, int step = 1)
+   public void FindPath(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
       Debug.Log(name + "has requested to find path");
       openSet = new List<Cell>();
       closedSet = new List<Cell>();
-      Cell _startCell = grid[startPos.x, startPos.y];
-      _startCell.CalcHeuristic(endPos);
+      Cell _startCell = grid[_startPos.x, _startPos.y];
+      _startCell.CalcHeuristic(_endPos);
       openSet.Add(_startCell);
-      StartCoroutine(CellIterator(startPos, endPos, step));
+      StartCoroutine(CellIterator(_startPos, _endPos, _step));
    }
 
-   IEnumerator CellIterator(Vector2Int startPos, Vector2Int endPos, int step = 1)
+   IEnumerator CellIterator(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
       Cell _currentCell = openSet[0];
       while (openSet.Count != 0)
@@ -58,7 +58,7 @@ public class Pathfinding : MonoBehaviour
             }
          }
          
-         if (_currentCell.position == endPos)
+         if (_currentCell.position == _endPos)
          {
             Debug.Log("Path found");
             PathConstructor(_currentCell);
@@ -67,7 +67,7 @@ public class Pathfinding : MonoBehaviour
          openSet.Remove(_currentCell);
          closedSet.Add(_currentCell);
 
-         foreach (Cell _neighbor in GetNeighbours(_currentCell.position, step))
+         foreach (Cell _neighbor in GetNeighbours(_currentCell.position, _step))
          {
             if (closedSet.Contains(_neighbor))
                continue;
@@ -78,7 +78,7 @@ public class Pathfinding : MonoBehaviour
             {
                _neighbor.cameFrom = _currentCell;
                _neighbor.gCost = _tentativeGCost;
-               _neighbor.CalcHeuristic(endPos);
+               _neighbor.CalcHeuristic(_endPos);
 
                if (!openSet.Contains(_neighbor))
                {
@@ -87,7 +87,7 @@ public class Pathfinding : MonoBehaviour
             }
          }
 
-         if (_debug)
+         if (debug)
          {
             PathConstructor(_currentCell);
             yield return new WaitForSeconds(0.1f);
@@ -101,28 +101,28 @@ public class Pathfinding : MonoBehaviour
       throw new Exception("Path not found");
    }
 
-   void PathConstructor(Cell current)
+   void PathConstructor(Cell _current)
    {
-      StartCoroutine(ReconstructPath(current));
+      StartCoroutine(ReconstructPath(_current));
    }
 
-   IEnumerator ReconstructPath(Cell current)
+   IEnumerator ReconstructPath(Cell _current)
    {
       List<Cell> _path = new List<Cell>();
-      _path.Add(current);
-      while (current.cameFrom != null)
+      _path.Add(_current);
+      while (_current.cameFrom != null)
       {
-         current = current.cameFrom;
-         _path.Add(current);
+         _current = _current.cameFrom;
+         _path.Add(_current);
          yield return null;
       }
       _path.Reverse();
       callback.Invoke(_path);
    }
 
-   List<Cell> GetNeighbours(Vector2Int pos, int step)
+   List<Cell> GetNeighbours(Vector2Int _pos, int _step)
    {
-      Tile _currentTile = TileSystem.Instance.GetTile(pos);
+      Tile _currentTile = TileSystem.Instance.GetTile(_pos);
       List<Cell> _neighbours = new List<Cell>();
       for (int _x = -1; _x <= 1; _x++)
       {
@@ -133,19 +133,19 @@ public class Pathfinding : MonoBehaviour
                continue;
             }
             
-            int _checkX = pos.x + _x;
-            int _checkY = pos.y + _y;
+            int _checkX = _pos.x + _x;
+            int _checkY = _pos.y + _y;
             
             if (_checkX < 0 || _checkY < 0 || _checkX >= grid.GetLength(0) || _checkY >= grid.GetLength(1))
                continue;
             
-            Tile _neighboringTile = TileSystem.Instance.GetTile(pos+(new Vector2Int(_x, _y)));
+            Tile _neighboringTile = TileSystem.Instance.GetTile(_pos+(new Vector2Int(_x, _y)));
             if (_neighboringTile != null)
             {
-               if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > step)
+               if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > _step)
                   continue;
                
-               _neighbours.Add(grid[pos.x + _x, pos.y + _y]);
+               _neighbours.Add(grid[_pos.x + _x, _pos.y + _y]);
             }
          }
       }
@@ -163,19 +163,19 @@ public class Cell
    public int fCost;
    public Cell cameFrom;
    
-   public Cell(Vector2Int pos, Cell parent = null)
+   public Cell(Vector2Int _pos, Cell _parent = null)
    {
-     position = pos;
+     position = _pos;
      gCost = 0;
      hCost = 0;
      fCost = 0;
-     cameFrom = parent;
+     cameFrom = _parent;
      
    }
-   public void CalcHeuristic(Vector2Int endPos)
+   public void CalcHeuristic(Vector2Int _endPos)
    {
-      int _dx = Mathf.Abs(position.x - endPos.x);
-      int _dy = Mathf.Abs(position.y - endPos.y);
+      int _dx = Mathf.Abs(position.x - _endPos.x);
+      int _dy = Mathf.Abs(position.y - _endPos.y);
       
       hCost = 14 * Mathf.Min(_dx, _dy) + 10 * Mathf.Abs(_dx - _dy);
       
