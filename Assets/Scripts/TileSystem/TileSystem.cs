@@ -7,18 +7,18 @@ public class TileSystem : MonoBehaviour
     [SerializeField] int xSize = 50;
     [SerializeField] int ySize = 50;
     
-    [SerializeField]List<Tile> tiles = new();
+    List<Tile> tiles = new();
 
 
     [Header("Island")] 
     [SerializeField] int yCentre = 25;
     [SerializeField] int xCentre = 25;
     [SerializeField] int radius = 20;
-    [SerializeField] List<int> edgePoints = new();
+    List<int> edgePoints = new();
     
     void Awake()
     {
-        for (int i = 0; i < 360; i++)
+        for (int i = 0; i < 360; i++) //  Generates a circle as an island
         {
             float angle = i * Mathf.Deg2Rad;
             float x1 = xCentre + radius * Mathf.Cos(angle);
@@ -29,8 +29,16 @@ public class TileSystem : MonoBehaviour
         
         for (int x = 0; x < xSize * ySize; x++)
         {
+            
+            float dx = GetPositionFromIndex(x).x- xCentre;
+            float dy = GetPositionFromIndex(x).y- yCentre;
+            
             if (edgePoints.Contains(x))
                 tiles.Add(new Tile(3));
+            else if (dx * dx + dy * dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
+            {
+                tiles.Add(new Tile(3));
+            }
             else
                 tiles.Add(new Tile());
         }
@@ -41,7 +49,6 @@ public class TileSystem : MonoBehaviour
     void Start()
     {
         Debug.Log(GetTile(new Vector2Int(10, 15)).level);
-        Debug.Log(Mathf.PerlinNoise(GetPositionFromIndex(760).x, GetPositionFromIndex(760).y)*10);
     }
     
     Tile GetTile(Vector2Int tilePos)
@@ -55,7 +62,7 @@ public class TileSystem : MonoBehaviour
         return new Vector2Int(index % xSize, index / xSize);
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmos() // Full debug to see what the generated map looks like even without any assets
     {
         for (int i = 0; i < tiles.Count; i++)
         {
