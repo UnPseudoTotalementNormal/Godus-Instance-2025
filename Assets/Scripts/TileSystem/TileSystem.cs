@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TileSystem : MonoBehaviour
 {
+     public static TileSystem Instance;    
+    
     [Header("Map size")]
     [SerializeField] int xSize = 50;
     [SerializeField] int ySize = 50;
@@ -18,6 +20,11 @@ public class TileSystem : MonoBehaviour
     
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        
         for (int i = 0; i < 360; i++) //  Generates a circle as an island
         {
             float angle = i * Mathf.Deg2Rad;
