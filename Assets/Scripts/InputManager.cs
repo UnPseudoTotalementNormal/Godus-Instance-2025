@@ -19,6 +19,10 @@ public class InputManager : MonoBehaviour
     public event Action onRightMouseButtonPressCanceled;
     
     public event Action onEscapeButtonPressStarted;
+
+    public event Action<Vector2> onMouseDelta;
+    
+    public event Action<Vector2> onMousePosition;
     
     private void Awake()
     {
@@ -46,8 +50,8 @@ public class InputManager : MonoBehaviour
     
     public void OnMiddleMouseScroll(InputAction.CallbackContext _context)
     {
-        float scrollValue = _context.ReadValue<float>();
-        onMiddleMousseScroll?.Invoke(scrollValue);
+        float _scrollValue = _context.ReadValue<Vector2>().y;
+        onMiddleMousseScroll?.Invoke(_scrollValue);
     }
     
     public void OnLeftMouseButtonPressed(InputAction.CallbackContext _context)
@@ -80,5 +84,15 @@ public class InputManager : MonoBehaviour
         {
             onEscapeButtonPressStarted?.Invoke();
         }
+    }
+    
+    public void OnMouseDelta(InputAction.CallbackContext _context)
+    {
+        onMouseDelta?.Invoke(_context.ReadValue<Vector2>());
+    }
+    
+    public void OnMousePosition(InputAction.CallbackContext _context)
+    {
+        onMousePosition?.Invoke(_context.ReadValue<Vector2>());
     }
 }
