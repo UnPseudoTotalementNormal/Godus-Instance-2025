@@ -46,8 +46,8 @@ public class InputManager : MonoBehaviour
     
     public void OnMiddleMouseScroll(InputAction.CallbackContext _context)
     {
-        float scrollValue = _context.ReadValue<float>();
-        onMiddleMousseScroll?.Invoke(scrollValue);
+        float _scrollValue = _context.ReadValue<Vector2>().y;
+        onMiddleMousseScroll?.Invoke(_scrollValue);
     }
     
     public void OnLeftMouseButtonPressed(InputAction.CallbackContext _context)

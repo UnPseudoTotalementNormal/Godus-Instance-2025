@@ -10,7 +10,7 @@
                     "name": "Scroll",
                     "type": "Value",
                     "id": "b6794474-82c7-4fa2-a47e-6e271b359654",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
