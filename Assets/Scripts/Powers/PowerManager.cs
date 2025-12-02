@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Powers
@@ -6,7 +8,12 @@ namespace Powers
     {
         public static PowerManager instance { get; private set; }
 
+        public readonly List<Power> availablePowers = new();
+        
         private Power currentPower;
+        
+        public event Action<Power> onPowerUnSelected;
+        public event Action<Power> onPowerSelected;
 
         private void Awake()
         {
@@ -17,6 +24,18 @@ namespace Powers
             else
             {
                 instance = this;
+            }
+            
+            RetrieveAndSetPowers();
+        }
+
+        private void RetrieveAndSetPowers()
+        {
+            var _powers = GetComponentsInChildren<Power>();
+            availablePowers.Clear();
+            foreach (var _power in _powers)
+            {
+                availablePowers.Add(_power);
             }
         }
 
@@ -30,6 +49,7 @@ namespace Powers
             if (currentPower != null)
             {
                 currentPower.Deactivate();
+                onPowerUnSelected?.Invoke(currentPower);
             }
 
             currentPower = _newPower;
@@ -37,15 +57,18 @@ namespace Powers
             if (currentPower != null)
             {
                 currentPower.Activate();
+                onPowerSelected?.Invoke(currentPower);
             }
         }
 
         public void UnequipCurrentPower()
         {
-            if (currentPower != null)
+            var _power = currentPower;
+            if (_power != null)
             {
-                currentPower.Deactivate();
+                _power.Deactivate();
                 currentPower = null;
+                onPowerUnSelected?.Invoke(_power);
             }
         }
 
