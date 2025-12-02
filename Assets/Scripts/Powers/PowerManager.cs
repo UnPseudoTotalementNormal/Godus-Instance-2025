@@ -41,7 +41,7 @@ namespace Powers
 
         public void EquipPower(Power _newPower)
         {
-            if (currentPower == _newPower || !CanUsePower(_newPower))
+            if (currentPower == _newPower)
             {
                 return;
             }
@@ -74,6 +74,10 @@ namespace Powers
 
         public bool CanUsePower(Power _power)
         {
+            if (_power == null)
+            {
+                return false;
+            }
             return !_power.isOnCooldown && !_power.powerCategory.isOnCooldown;
         }
     }
