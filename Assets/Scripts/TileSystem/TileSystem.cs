@@ -51,13 +51,6 @@ public class TileSystem : MonoBehaviour
             else
                 tiles.Add(new Tile());
         }
-
-        GetTile(new Vector2Int(10, 15)).level = 3;
-    }
-
-    void Start()
-    {
-        Debug.Log(GetTile(new Vector2Int(10, 15)).level);
     }
     
     public Tile GetTile(Vector2Int _tilePos)
