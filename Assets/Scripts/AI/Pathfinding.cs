@@ -7,7 +7,7 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
    [Header("Debug")]
-   public bool debug= false;
+   public bool debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
    
    Cell[,] grid;
    List<Cell> openSet;

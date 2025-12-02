@@ -74,13 +74,13 @@ public class TileSystem : MonoBehaviour
     {
         for (int i = 0; i < tiles.Count; i++)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.lightBlue;
             if (tiles[i].level == 1)
-                Gizmos.color = Color.brown;
+                Gizmos.color = Color.yellow;
             if (tiles[i].level == 2)
-                Gizmos.color = Color.blue;
+                Gizmos.color = Color.green;
             if (tiles[i].level == 3)
-                Gizmos.color = Color.red;
+                Gizmos.color = Color.brown;
             
             Vector2Int tilePos = GetPositionFromIndex(i);
             
