@@ -71,6 +71,11 @@ public class TileSystem : MonoBehaviour
         return new Vector2Int(_index % xSize, _index / xSize);
     }
 
+    public Vector2Int GetGridSize()
+    {
+        return new Vector2Int(xSize, ySize);
+    }
+
     void OnDrawGizmos() // Full debug to see what the generated map looks like even without any assets
     {
         for (int _i = 0; _i < tiles.Count; _i++)
@@ -88,6 +93,8 @@ public class TileSystem : MonoBehaviour
             Gizmos.DrawCube(new Vector3(_tilePos.x, 0, _tilePos.y), Vector3.one);
         }  
     }
+    
+    
 }
 
 [System.Serializable]
