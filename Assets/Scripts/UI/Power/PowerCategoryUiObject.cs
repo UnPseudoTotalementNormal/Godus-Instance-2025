@@ -36,6 +36,11 @@ namespace UI.Power
 
             iconImage.enabled = _powerCategory.categoryIcon != null;
             
+            if (selectionFeedbacks == null || selectionFeedbacks.Length == 0)
+            {
+                selectionFeedbacks = GetComponents<ISelectionFeedback>();
+            }
+            
             powersUI = _powersUi;
             
             powersUI.onPowerCategoryChanged += OnPowerCategoryChanged;

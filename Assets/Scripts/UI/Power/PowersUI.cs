@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Extensions;
 using Powers;
 using UnityEngine;
@@ -50,6 +51,7 @@ namespace UI.Power
 
         private void SetupPowersUI(List<Powers.Power> _availablePowers)
         {
+            powerCategoryUiObjects.Clear();
             foreach (var _power in _availablePowers)
             {
                 PowerCategoryUiObject _powerCategoryUiObject = GetOrCreatePowerCategoryUiObject(_power.powerCategory);

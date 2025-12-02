@@ -15,6 +15,7 @@ namespace UI
             foreach (var _data in graphicsData)
             {
                 CheckForOriginalColor(_data);
+                _data.graphic.DOKill();
                 _data.graphic.DOColor(_data.feedbackColor, _data.fadeColorDuration).SetEase(_data.fadeColorEase);
             }
         }
@@ -24,6 +25,7 @@ namespace UI
             foreach (var _data in graphicsData)
             {
                 CheckForOriginalColor(_data);
+                _data.graphic.DOKill();
                 _data.graphic.DOColor(_data.originalColor, _data.fadeColorDuration).SetEase(_data.fadeColorEase);
             }
         }
