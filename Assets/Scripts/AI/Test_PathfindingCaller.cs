@@ -10,7 +10,7 @@ public class Test_PathfindingCaller : MonoBehaviour
 
     void Start()
     {
-        pathfinder = gameObject.AddComponent<Pathfinding>();
+        pathfinder = new Pathfinding();
         pathfinder.callback += SetNewPath;
         pathfinder.FindPath(startPos, endPos);
     }

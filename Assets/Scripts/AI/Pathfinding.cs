@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Pathfinding : MonoBehaviour
+public class Pathfinding
 {
    [FormerlySerializedAs("_debug")] [Header("Debug")]
    public bool debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
@@ -16,12 +16,12 @@ public class Pathfinding : MonoBehaviour
 
    public Action<List<Cell>> callback; // I found this for now, but there may be a better way to send the path back to the caller
 
-   void Awake()
+   public Pathfinding()
    {
-      grid = new Cell[50, 50];
-      for (int _x = 0; _x < 50; _x++)
+      grid = new Cell[TileSystem.Instance.GetGridSize().x, TileSystem.Instance.GetGridSize().y];
+      for (int _x = 0; _x < TileSystem.Instance.GetGridSize().x; _x++)
       {
-         for (int _y = 0; _y < 50; _y++)
+         for (int _y = 0; _y < TileSystem.Instance.GetGridSize().y; _y++)
          {
             grid[_x, _y] = new Cell(new Vector2Int(_x, _y));
          }
@@ -29,16 +29,16 @@ public class Pathfinding : MonoBehaviour
    }
    public void FindPath(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
-      Debug.Log(name + "has requested to find path");
+      Debug.Log("has requested to find path");
       openSet = new List<Cell>();
       closedSet = new List<Cell>();
       Cell _startCell = grid[_startPos.x, _startPos.y];
       _startCell.CalcHeuristic(_endPos);
       openSet.Add(_startCell);
-      StartCoroutine(CellIterator(_startPos, _endPos, _step));
+      CellIterator(_startPos, _endPos, _step);
    }
 
-   IEnumerator CellIterator(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
+   void CellIterator(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
       Cell _currentCell = openSet[0];
       while (openSet.Count != 0)
@@ -62,7 +62,7 @@ public class Pathfinding : MonoBehaviour
          {
             Debug.Log("Path found");
             PathConstructor(_currentCell);
-            yield break;
+            return;
          }
          openSet.Remove(_currentCell);
          closedSet.Add(_currentCell);
@@ -86,27 +86,16 @@ public class Pathfinding : MonoBehaviour
                }
             }
          }
-
-         if (debug)
-         {
-            PathConstructor(_currentCell);
-            yield return new WaitForSeconds(0.1f);
-         }
-         else
-         {
-            yield return null;
-         }
-         
       }
       throw new Exception("Path not found");
    }
 
    void PathConstructor(Cell _current)
    {
-      StartCoroutine(ReconstructPath(_current));
+      ReconstructPath(_current);
    }
 
-   IEnumerator ReconstructPath(Cell _current)
+   void ReconstructPath(Cell _current)
    {
       List<Cell> _path = new List<Cell>();
       _path.Add(_current);
@@ -114,7 +103,6 @@ public class Pathfinding : MonoBehaviour
       {
          _current = _current.cameFrom;
          _path.Add(_current);
-         yield return null;
       }
       _path.Reverse();
       callback.Invoke(_path);
