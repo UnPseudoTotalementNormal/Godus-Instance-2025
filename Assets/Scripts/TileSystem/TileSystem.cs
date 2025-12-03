@@ -62,8 +62,12 @@ public class TileSystem : MonoBehaviour
                 _newTile = new Tile();
                 tiles.Add(_newTile);
             }
-            
-            onAnyTileChanged?.Invoke(_newTile, GetPositionFromIndex(_x));
+
+            var _x1 = _x;
+            _newTile.onTileChanged += () =>
+            {
+                onAnyTileChanged?.Invoke(_newTile, GetPositionFromIndex(_x1));
+            };
         }
     }
     
