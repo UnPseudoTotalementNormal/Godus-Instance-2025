@@ -864,7 +864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1df659f758429d84ac641b0017044b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileSystemSpace.Tilemap.TilemapVisualizer
-  _newTileTest: {fileID: 11400000, guid: b025fb16128f599ba9291ab4a2cb6a11, type: 2}
+  tileTypeToRuleTileMap:
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: b025fb16128f599ba9291ab4a2cb6a11, type: 2}
 --- !u!156049354 &1494854485
 Grid:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Tilemaps;
 
 namespace TileSystemSpace.Tilemap
 {
@@ -10,8 +12,8 @@ namespace TileSystemSpace.Tilemap
         private UnityEngine.Tilemaps.Tilemap tilemap;
 
         private TileSystem tileSystem;
-        [SerializeField] private CustomRuleTile _newTileTest;
-        private Dictionary<RuleTile, Dictionary<int, RuleTile>> ruleTiles;
+        private Dictionary<RuleTile, Dictionary<int, CustomRuleTile>> ruleTiles;
+        [SerializeField] private SerializedDictionary<TileType, CustomRuleTile> tileTypeToRuleTileMap;
         
         
         private void Awake()
@@ -24,18 +26,23 @@ namespace TileSystemSpace.Tilemap
 
         private void SetupRuleTiles()
         {
-            ruleTiles = new Dictionary<RuleTile, Dictionary<int, RuleTile>>();
+            ruleTiles = new Dictionary<RuleTile, Dictionary<int, CustomRuleTile>>();
             
-            for (int i = 0; i < GameValues.MAX_TILE_HEIGHT; i++)
+            foreach (TileType tileType in tileTypeToRuleTileMap.Keys)
             {
-                if (!ruleTiles.ContainsKey(_newTileTest))
-                {
-                    ruleTiles[_newTileTest] = new Dictionary<int, RuleTile>();
-                }
+                CustomRuleTile _customRuleTile = tileTypeToRuleTileMap[tileType];
                 
-                CustomRuleTile _tileVariant = Instantiate(_newTileTest);
-                _tileVariant.heightLevel = i;
-                ruleTiles[_newTileTest][i] = _tileVariant;
+                for (int i = 0; i < GameValues.MAX_TILE_HEIGHT; i++)
+                {
+                    if (!ruleTiles.ContainsKey(_customRuleTile))
+                    {
+                        ruleTiles[_customRuleTile] = new Dictionary<int, CustomRuleTile>();
+                    }
+                    
+                    CustomRuleTile _tileVariant = Instantiate(_customRuleTile);
+                    _tileVariant.heightLevel = i;
+                    ruleTiles[_customRuleTile][i] = _tileVariant;
+                }
             }
         }
 
@@ -56,7 +63,7 @@ namespace TileSystemSpace.Tilemap
         private void AnyTileChanged(Tile _tile, Vector2Int _newPosition)
         {
             Vector3Int _targetPos = new Vector3Int(_newPosition.x, _newPosition.y, 0);
-            tilemap.SetTile(_targetPos, ruleTiles[_newTileTest][_tile.level]);
+            tilemap.SetTile(_targetPos, ruleTiles[tileTypeToRuleTileMap[_tile.tileType]][_tile.level]);
         }
     }
 }
