@@ -90,7 +90,7 @@ public class Pathfinding
       throw new Exception("Path not found");
    }
 
-   void PathConstructor(Cell _current)
+   void PathConstructor(Cell _current) //This can be safely removed as it's legacy code from the old versions, just call directly ReconstructPath
    {
       ReconstructPath(_current);
    }

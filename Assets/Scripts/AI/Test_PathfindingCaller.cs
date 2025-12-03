@@ -31,7 +31,7 @@ public class Test_PathfindingCaller : MonoBehaviour
         foreach (Cell cell in newPath)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(new Vector3(cell.position.x, 2, cell.position.y), new Vector3(1, 1, 1));
+            Gizmos.DrawWireCube(new Vector3(cell.position.x,cell.position.y, 2), new Vector3(1, 1, 1));
         }
     }
 }

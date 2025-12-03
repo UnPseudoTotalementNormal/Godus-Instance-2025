@@ -83,7 +83,7 @@ public class TileSystem : MonoBehaviour
             
             Vector2Int _tilePos = GetPositionFromIndex(_i);
             
-            Gizmos.DrawCube(new Vector3(_tilePos.x, 0, _tilePos.y), Vector3.one);
+            Gizmos.DrawCube(new Vector3(_tilePos.x,_tilePos.y,0), Vector3.one);
         }  
     }
     
