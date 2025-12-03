@@ -21,20 +21,20 @@ namespace TileSystemSpace.Tilemap
                 return true;
             }
             
-            if (excludeNeighbourTiles.Contains(_otherTile.tileType))
-            {
-                switch (neighbor)
-                {
-                    case TilingRuleOutput.Neighbor.This: return other == this;
-                    case TilingRuleOutput.Neighbor.NotThis: return other != this;
-                    default: return true;
-                }
-            }
             
             if (heightLevel == _otherTile.heightLevel)
             {
-                return true;
+                if (excludeNeighbourTiles.Contains(_otherTile.tileType))
+                {
+                    switch (neighbor)
+                    {
+                        case TilingRuleOutput.Neighbor.This: return other == this;
+                        case TilingRuleOutput.Neighbor.NotThis: return other != this;
+                        default: return true;
+                    }
+                }
             }
+            
             
             if (heightLevel > _otherTile.heightLevel)
             {
