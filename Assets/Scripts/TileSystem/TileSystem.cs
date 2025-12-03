@@ -60,15 +60,16 @@ namespace TileSystemSpace
                 }
                 else if (_dx * _dx + _dy * _dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
                 {
-                    _newTile = new Tile(Random.Range(1, 4));
+                    var range = Random.Range(1, 4);
+                    _newTile = new Tile(range);
                     tiles.Add(_newTile);
                 }
                 else
                 {
-                    _newTile = new Tile();
+                    _newTile = new Tile(0, TileType.Water);
                     tiles.Add(_newTile);
                 }
-
+                
                 var _x1 = _x;
                 _newTile.onTileChanged += () =>
                 {
