@@ -13,8 +13,7 @@ public partial class MoveToAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<List<Vector2Int>> Path;
-    [SerializeReference] public BlackboardVariable<int> Speed;
-    
+    [SerializeReference] public BlackboardVariable<float> Speed;
     bool arrived = false;
     
     protected override Status OnStart()
@@ -40,10 +39,11 @@ public partial class MoveToAction : Action
     {
         foreach (Vector2Int _p in Path.Value)
         {
+            Vector3 _startPos = Self.Value.transform.position;
             float elapsedTime = 0f;
             while (elapsedTime < Speed.Value)
             {
-                Self.Value.transform.position = Vector3.Lerp(Self.Value.transform.position, new Vector3(_p.x,_p.y,-2), elapsedTime / (Speed.Value));
+                Self.Value.transform.position = Vector3.Lerp(_startPos, new Vector3(_p.x,_p.y,-2), elapsedTime / (Speed.Value));
                 elapsedTime += Time.deltaTime;
                 await Awaitable.NextFrameAsync();
             }
