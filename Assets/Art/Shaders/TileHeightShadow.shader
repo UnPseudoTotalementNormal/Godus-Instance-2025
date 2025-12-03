@@ -5,8 +5,10 @@ Shader "Unlit/TileHeightShadow"
         _MainTex ("Sprite Texture", 2D) = "white" {}
         _HeightTex ("Height Map", 2D) = "gray" {}
         _TileCount ("Tile Count", Vector) = (16,16,0,0)
-        _LightDir ("Light Direction", Vector) = (-1,1,0,0)
-        _ShadowStrength ("Shadow Strength", Range(0,5)) = 1
+        _PixelsPerTile ("Pixels Per Tile", Float) = 4
+        _LightDir ("Light Direction", Vector) = (1,-1,0,0)
+        _ShadowStrength ("Shadow Strength", Range(0,10)) = 1.5
+        [KeywordEnum(None, HeightMap, ShadowOnly, UVCoords)] _DebugMode ("Debug Mode", Float) = 0
     }
     SubShader
     {
@@ -35,8 +37,10 @@ Shader "Unlit/TileHeightShadow"
 
             sampler2D _HeightTex;
             float4 _TileCount;      // x = width, y = height
+            float _PixelsPerTile;   // Résolution de la heightmap
             float4 _LightDir;       // xy = direction
             float _ShadowStrength;
+            float _DebugMode;
 
             struct appdata
             {
@@ -48,7 +52,7 @@ Shader "Unlit/TileHeightShadow"
             {
                 float2 uv      : TEXCOORD0;
                 float4 vertex  : SV_POSITION;
-                float3 worldPos : TEXCOORD1;
+                float2 worldPos : TEXCOORD1; // Position monde précise (pas arrondie)
             };
 
             v2f vert (appdata v)
@@ -56,40 +60,74 @@ Shader "Unlit/TileHeightShadow"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                
+                // Obtenir la position monde sans arrondir
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                o.worldPos = worldPos.xy;
+                
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // Couleur de base de la tuile
                 fixed4 col = tex2D(_MainTex, i.uv);
                 if (col.a <= 0) return col;
 
                 float2 tileCount = _TileCount.xy;
+                float2 tilePos = i.worldPos; // Position monde précise (pas arrondie)
+                float2 uvHeight = tilePos / tileCount;
+                
+                float hCurrent = tex2D(_HeightTex, uvHeight).r * 255.0;
 
-                // Hypothèse simple : 1 unité monde = 1 tile,
-                // et ta grille commence en (0,0).
-                float2 tileCoord = floor(i.worldPos.xy);
+                // DEBUG MODES
+                if (_DebugMode > 0.5 && _DebugMode < 1.5) // HeightMap
+                {
+                    col.rgb = hCurrent / 10.0;
+                    return col;
+                }
+                if (_DebugMode > 2.5 && _DebugMode < 3.5) // UVCoords
+                {
+                    col.rgb = float3(uvHeight.x, uvHeight.y, 0);
+                    return col;
+                }
 
-                // UV vers la heightmap : 1 pixel = 1 tile
-                float2 uvHeight = (tileCoord + 0.5) / tileCount;
-                fixed4 hCurrentColor = tex2D(_HeightTex, uvHeight);
-                float hCurrent = hCurrentColor.r * 255.0;
-
-                // Direction de la lumière → on projette l'ombre dans la direction opposée
+                // Direction de la lumière normalisée
                 float2 lightDir = normalize(_LightDir.xy);
-                float2 casterTileCoord = tileCoord - lightDir;
-                float2 casterUvHeight = (casterTileCoord + 0.5) / tileCount;
-                fixed4 hCasterColor = tex2D(_HeightTex, casterUvHeight);
-                float hCaster = hCasterColor.r * 255.0;
+                
+                // Calcul des ombres
+                float shadowFactor = 0.0;
+                
+                for (int s = 1; s <= 12; s++)
+                {
+                    float dist = float(s) * 0.4;
+                    float2 casterUV = (tilePos - lightDir * dist) / tileCount;
+                    
+                    if (casterUV.x < 0 || casterUV.x > 1 || casterUV.y < 0 || casterUV.y > 1)
+                        continue;
+                    
+                    float hCaster = tex2D(_HeightTex, casterUV).r * 255.0;
+                    float heightDiff = hCaster - hCurrent;
+                    
+                    if (heightDiff > 0.1)
+                    {
+                        // Calcul simplifié : plus la différence de hauteur est grande, plus l'ombre est forte
+                        float shadow = heightDiff * 0.1; // Conversion niveau -> intensité d'ombre
+                        shadowFactor = max(shadowFactor, shadow);
+                    }
+                }
 
-                // Différence de hauteur : si > 0 → ombre
-                float delta = max(0.0, hCaster - hCurrent);
-                float shadowFactor = saturate(delta * _ShadowStrength);
+                // Appliquer la force d'ombre contrôlable
+                shadowFactor = shadowFactor * _ShadowStrength * 5;
 
-                // Assombrissement (tu peux ajuster le 0.5)
-                col.rgb *= (1.0 - shadowFactor * 0.5);
+                // DEBUG MODE 2 : Shadow Only
+                if (_DebugMode > 1.5 && _DebugMode < 2.5)
+                {
+                    col.rgb = shadowFactor;
+                    return col;
+                }
+
+                // Application de l'ombre - ici on peut aller jusqu'à noir complet
+                col.rgb = lerp(col.rgb, float3(0, 0, 0), shadowFactor);
 
                 return col;
             }

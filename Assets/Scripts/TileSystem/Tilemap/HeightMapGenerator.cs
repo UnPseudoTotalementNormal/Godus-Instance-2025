@@ -7,6 +7,7 @@ namespace TileSystemSpace.Tilemap
     {
         [SerializeField] private Material tilemapMaterial; // le material utilisé par ta Tilemap
         [SerializeField] private string heightTexPropertyName = "_HeightTex";
+        [SerializeField] private int pixelsPerTile = 4; // Résolution : nombre de pixels par tuile (4 = 4x4 pixels par tuile)
 
         private TileSystem tileSystem;
         private Texture2D heightTex;
@@ -38,26 +39,39 @@ namespace TileSystemSpace.Tilemap
         private void GenerateHeightMapTexture()
         {
             Vector2Int size = tileSystem.GetSize();
-            int width = size.x;
-            int height = size.y;
+            int tileWidth = size.x;
+            int tileHeight = size.y;
+            
+            // La texture aura pixelsPerTile fois plus de pixels
+            int texWidth = tileWidth * pixelsPerTile;
+            int texHeight = tileHeight * pixelsPerTile;
 
-            if (heightTex == null || heightTex.width != width || heightTex.height != height)
+            if (heightTex == null || heightTex.width != texWidth || heightTex.height != texHeight)
             {
-                heightTex = new Texture2D(width, height, TextureFormat.R8, false);
-                heightTex.filterMode = FilterMode.Point;
+                heightTex = new Texture2D(texWidth, texHeight, TextureFormat.R8, false);
+                heightTex.filterMode = FilterMode.Bilinear; // Bilinear pour des ombres diagonales lisses
                 heightTex.wrapMode = TextureWrapMode.Clamp;
             }
 
-            for (int x = 0; x < width; x++)
+            // Remplir chaque pixel de la texture
+            for (int px = 0; px < texWidth; px++)
             {
-                for (int y = 0; y < height; y++)
+                for (int py = 0; py < texHeight; py++)
                 {
-                    Tile t = tileSystem.GetTile(x, y);
+                    // Position dans l'espace des tuiles (avec décimales)
+                    float tileFX = (px + 0.5f) / pixelsPerTile;
+                    float tileFY = (py + 0.5f) / pixelsPerTile;
+                    
+                    // Récupérer la tuile correspondante
+                    int tileX = Mathf.FloorToInt(tileFX);
+                    int tileY = Mathf.FloorToInt(tileFY);
+                    
+                    Tile t = tileSystem.GetTile(tileX, tileY);
                     int level = t != null ? t.level : 0;
 
                     byte h = (byte)Mathf.Clamp(level, 0, 255);
                     Color32 c = new Color32(h, 0, 0, 255);
-                    heightTex.SetPixel(x, y, c);
+                    heightTex.SetPixel(px, py, c);
                 }
             }
 
@@ -68,7 +82,10 @@ namespace TileSystemSpace.Tilemap
         {
             if (tilemapMaterial != null && heightTex != null)
             {
+                Vector2Int size = tileSystem.GetSize();
                 tilemapMaterial.SetTexture(heightTexPropertyName, heightTex);
+                tilemapMaterial.SetFloat("_PixelsPerTile", pixelsPerTile);
+                tilemapMaterial.SetVector("_TileCount", new Vector4(size.x, size.y, 0, 0));
             }
         }
     }
