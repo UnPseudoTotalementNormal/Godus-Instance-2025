@@ -7,6 +7,8 @@ namespace TileSystemSpace
     {
         public event Action onTileChanged;
         private int levelField;
+        
+        
 
         public int level
         {
