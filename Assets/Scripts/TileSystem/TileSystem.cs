@@ -22,6 +22,7 @@ namespace TileSystemSpace
         [SerializeField] int xCenter = 25;
         [SerializeField] int radius = 20;
         List<int> edgePoints = new();
+        public Vector2Int GetSize() => new(xSize, ySize);
         
         public event Action<Tile, Vector2Int> onAnyTileChanged;
         
@@ -30,6 +31,10 @@ namespace TileSystemSpace
             if (instance == null)
             {
                 instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
             }
             
             for (int _i = 0; _i < 360; _i++) //  Generates a circle as an island
@@ -55,15 +60,16 @@ namespace TileSystemSpace
                 }
                 else if (_dx * _dx + _dy * _dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
                 {
-                    _newTile = new Tile(Random.Range(1, 4));
+                    var range = Random.Range(1, 4);
+                    _newTile = new Tile(range);
                     tiles.Add(_newTile);
                 }
                 else
                 {
-                    _newTile = new Tile();
+                    _newTile = new Tile(0, TileType.Water);
                     tiles.Add(_newTile);
                 }
-
+                
                 var _x1 = _x;
                 _newTile.onTileChanged += () =>
                 {
@@ -104,6 +110,11 @@ namespace TileSystemSpace
                 
                 Gizmos.DrawCube(new Vector3(_tilePos.x, _tilePos.y), Vector3.one);
             }  
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            return GetTile(new Vector2Int(x, y));
         }
     }
 }
