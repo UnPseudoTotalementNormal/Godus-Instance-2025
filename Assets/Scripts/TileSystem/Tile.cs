@@ -7,6 +7,8 @@ namespace TileSystemSpace
     {
         public event Action onTileChanged;
         private int levelField;
+        private TileType tileTypeField;
+        
 
         public int level
         {
@@ -14,9 +16,16 @@ namespace TileSystemSpace
             set { levelField = value; onTileChanged?.Invoke(); }
         }
 
-        public Tile( int _level=0)
+        public TileType tileType
+        {
+            get => tileTypeField;
+            set { tileTypeField = value; onTileChanged?.Invoke(); }
+        }
+
+        public Tile(int _level = 0, TileType _tileType = TileType.Grass)
         {
             levelField = _level;
+            tileTypeField = _tileType;
         }
     }
 }
