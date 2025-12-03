@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TileSystemSpace;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -18,10 +19,10 @@ public class Pathfinding
 
    public Pathfinding()
    {
-      grid = new Cell[TileSystem.Instance.GetGridSize().x, TileSystem.Instance.GetGridSize().y];
-      for (int _x = 0; _x < TileSystem.Instance.GetGridSize().x; _x++)
+      grid = new Cell[TileSystem.instance.GetGridSize().x, TileSystem.instance.GetGridSize().y];
+      for (int _x = 0; _x < TileSystem.instance.GetGridSize().x; _x++)
       {
-         for (int _y = 0; _y < TileSystem.Instance.GetGridSize().y; _y++)
+         for (int _y = 0; _y < TileSystem.instance.GetGridSize().y; _y++)
          {
             grid[_x, _y] = new Cell(new Vector2Int(_x, _y));
          }
@@ -110,7 +111,7 @@ public class Pathfinding
 
    List<Cell> GetNeighbours(Vector2Int _pos, int _step)
    {
-      Tile _currentTile = TileSystem.Instance.GetTile(_pos);
+      Tile _currentTile = TileSystem.instance.GetTile(_pos);
       List<Cell> _neighbours = new List<Cell>();
       for (int _x = -1; _x <= 1; _x++)
       {
@@ -127,7 +128,7 @@ public class Pathfinding
             if (_checkX < 0 || _checkY < 0 || _checkX >= grid.GetLength(0) || _checkY >= grid.GetLength(1))
                continue;
             
-            Tile _neighboringTile = TileSystem.Instance.GetTile(_pos+(new Vector2Int(_x, _y)));
+            Tile _neighboringTile = TileSystem.instance.GetTile(_pos+(new Vector2Int(_x, _y)));
             if (_neighboringTile != null)
             {
                if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > _step)
