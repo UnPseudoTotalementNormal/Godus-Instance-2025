@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class TileSystem : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class TileSystem : MonoBehaviour
     [SerializeField] int xCenter = 25;
     [SerializeField] int radius = 20;
     List<int> edgePoints = new();
+    
+    public event Action<Tile, Vector2Int> onAnyTileChanged;
     
     void Awake()
     {
@@ -41,15 +45,25 @@ public class TileSystem : MonoBehaviour
             
             float _dx = GetPositionFromIndex(_x).x- xCenter;
             float _dy = GetPositionFromIndex(_x).y- yCenter;
-            
+
+            Tile _newTile;
             if (edgePoints.Contains(_x))
-                tiles.Add(new Tile(1));
+            {
+                _newTile = new Tile(1);
+                tiles.Add(_newTile);
+            }
             else if (_dx * _dx + _dy * _dy <= radius * radius) // Tries to see if current tile is in the generated circle to fill the island
             {
-                tiles.Add(new Tile(Random.Range(1,4)));
+                _newTile = new Tile(Random.Range(1, 4));
+                tiles.Add(_newTile);
             }
             else
-                tiles.Add(new Tile());
+            {
+                _newTile = new Tile();
+                tiles.Add(_newTile);
+            }
+            
+            onAnyTileChanged?.Invoke(_newTile, GetPositionFromIndex(_x));
         }
     }
     
@@ -93,11 +107,18 @@ public class TileSystem : MonoBehaviour
 [System.Serializable]
 public class Tile
 {
-    public int level = 0;
+    public event Action onTileChanged;
+    private int levelField;
+
+    public int level
+    {
+        get => levelField;
+        set { levelField = value; onTileChanged?.Invoke(); }
+    }
 
     public Tile( int _level=0)
     {
-        this.level = _level;
+        levelField = _level;
     }
     
 }
