@@ -10,7 +10,6 @@ Shader "Unlit/TileHeightShadow"
 
         _LightDir ("Light Direction (XY)", Vector) = (-1,1,0,0)
         _ShadowStrength ("Shadow Strength", Range(0,10)) = 1
-        _HeightFalloff ("Height Falloff per tile", Range(0,2)) = 0.2
         _LightMarchStepSize("Light March Step Size", Float) = 0.1
         _TileHeightPerLevelHeight ("Shadow Distance Per Height Level", Range(0,50)) = 1.0
     }
@@ -46,7 +45,6 @@ Shader "Unlit/TileHeightShadow"
             float4 _LightDir;       // xy = direction lumière
             float  _LightMarchStepSize;
             float  _ShadowStrength;
-            float  _HeightFalloff;
             float  _TileHeightPerLevelHeight;
 
             struct appdata
@@ -123,8 +121,8 @@ Shader "Unlit/TileHeightShadow"
                     float2 samplePos = worldPos + stepDir * dist;
                     float hCaster = SampleHeight(samplePos);
                     
-                    // Hauteur attendue à cette distance (avec falloff)
-                    float expectedHeight = hCurrent + dist * _HeightFalloff;
+                    // Hauteur attendue à cette distance
+                    float expectedHeight = hCurrent + dist * (1.0 / _TileHeightPerLevelHeight);
                     float heightDiff = hCaster - expectedHeight;
                     
                     if (heightDiff > 0.0)
