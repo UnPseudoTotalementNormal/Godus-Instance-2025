@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Unity.Behavior;
 using UnityEngine;
@@ -24,15 +25,22 @@ public partial class MoveToAction : Action
     
     protected override Status OnUpdate()
     {
-        if (arrived)
-            return Status.Success;
-        else 
+        if (Path.Value.Count == 0)
             return Status.Running;
+        
+        if (Vector2.Distance(Self.Value.gameObject.transform.position, Path.Value.Last()) <= 0.5f)
+        {
+            return Status.Success;
+        }
+        else
+        {
+            return Status.Running;
+        }
     }
 
     protected override void OnEnd()
     {
-        
+        Debug.Log("Arrived");
     }
 
     async Awaitable FollowPath()
@@ -48,7 +56,9 @@ public partial class MoveToAction : Action
                 await Awaitable.NextFrameAsync();
             }
         }
+
         arrived = true;
+        return;
     }
 }
 
