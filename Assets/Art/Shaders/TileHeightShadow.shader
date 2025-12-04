@@ -120,7 +120,7 @@ Shader "Unlit/TileHeightShadow"
                 */
                 
                 float hAbsDir = abs(lightDir.x) + abs(lightDir.y);
-                int maxSteps = 500;
+                int maxSteps = 350;
                 float stepInterp = lerp(64.0, maxSteps, saturate(hAbsDir));
 
                 //--------------------------------------------------------------
@@ -133,9 +133,10 @@ Shader "Unlit/TileHeightShadow"
                 
                 for (int s = 1; s <= stepInterp; s++)
                 {
-                    float currentStepSize = lerp(_MinLightMarchStepSize, _MaxLightMarchStepSize , (s - 1) / (float)maxSteps);
-                    
+                    float distFactor = saturate(s * stepSize / 30);
+                    float currentStepSize = lerp(_MinLightMarchStepSize, _MaxLightMarchStepSize, distFactor * distFactor);
                     float dist = s * currentStepSize;
+                    
                     float2 samplePos = worldPos + stepDir * dist;
 
                     float hCaster = SampleHeight(samplePos);
