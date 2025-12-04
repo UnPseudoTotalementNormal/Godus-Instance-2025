@@ -80,6 +80,10 @@ namespace TileSystemSpace
         
         public Tile GetTile(Vector2Int _tilePos)
         {
+            if(_tilePos.x <0 || _tilePos.y < 0)
+            {
+                return null;
+            }
             int _calcIndex = _tilePos.y * xSize + _tilePos.x;
             return tiles.ElementAtOrDefault(_calcIndex);
         }
