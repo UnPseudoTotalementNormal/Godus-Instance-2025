@@ -43,7 +43,7 @@ public class Pathfinding
          _cell.cameFrom = null;
       }
       
-      _endPos = new Vector2Int(Mathf.Clamp(_endPos.x,0,grid.GetLength(0)),Mathf.Clamp(_endPos.y,0,grid.GetLength(1)));
+      _endPos = new Vector2Int(Mathf.Clamp(_endPos.x,0,grid.GetLength(0)-1),Mathf.Clamp(_endPos.y,0,grid.GetLength(1)-1));
       //Debug.Log("has requested to find path");
       openSet = new List<Cell>();
       closedSet = new List<Cell>();
@@ -102,7 +102,7 @@ public class Pathfinding
             }
          }
       }
-      throw new Exception("Path not found");
+      Debug.LogWarning(_endPos + " is not a valid target");
    }
 
    void PathConstructor(Cell _current) //This can be safely removed as it's legacy code from the old versions, just call directly ReconstructPath
