@@ -1,8 +1,8 @@
 using AI;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, ITeamComponent
 {
-    public EntityTeam entityTeam;
+    [field:SerializeField] public EntityTeam team { get; private set; }
 }
 
