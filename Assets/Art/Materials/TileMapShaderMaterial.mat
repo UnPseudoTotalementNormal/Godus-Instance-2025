@@ -154,7 +154,7 @@ Material:
     - _LightDir: {r: 0.6, g: -1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TileCount: {r: 50, g: 50, b: 0, a: 0}
+    - _TileCount: {r: 200, g: 200, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &9051032506189242102
