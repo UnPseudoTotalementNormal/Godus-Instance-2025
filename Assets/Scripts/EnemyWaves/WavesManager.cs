@@ -41,6 +41,7 @@ public class WavesManager : MonoBehaviour
     private float timeBetweenWaves;
     
     private int currentWave = 0;
+    public int GetCurrentWave => currentWave;
 
     private void Start()
     {
