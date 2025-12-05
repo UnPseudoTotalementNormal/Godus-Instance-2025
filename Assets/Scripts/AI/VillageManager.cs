@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ public class VillageManager : MonoBehaviour
         villageBlackboard.SetVariableValue("RollCallActive", villageUnderAttack);
     }
 
-    public TaskType GetNewTask(out GameObject _target)
+    public TaskType GetNewTask(Transform _caller, out GameObject _target)
     {
         _target = null; // Remove when all functions have been created
         if ((100 * (wood / maxWood)) >= 95)
@@ -44,7 +45,9 @@ public class VillageManager : MonoBehaviour
         
         if ((100 * (meat / maxMeat)) <= 80)
         {
-            return TaskType.Hunting;
+            _target = DetectResourceInRange(_caller, ResourceType.Meat);
+            if (_target != null)
+                return TaskType.Hunting;
         }
 
         if ((100 * (wood / maxWood)) <= 80)
@@ -69,6 +72,20 @@ public class VillageManager : MonoBehaviour
 
         return TaskType.Wandering;
     }
+
+    GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
+    {
+
+        foreach (Collider resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
+        {
+            if (resource.gameObject.TryGetComponent(out Resource resourceComponent))
+            {
+                resource.GetComponent<Collider>().enabled = false;
+                return resource.gameObject;
+            }
+        }
+        return null;
+    }
 }
 
 [BlackboardEnum]
@@ -78,4 +95,13 @@ public enum TaskType
     Building,
     Hunting,
     Wandering,
+}
+
+public enum ResourceType
+{
+    Wood,
+    Stone,
+    Iron,
+    Glorp,
+    Meat,
 }

@@ -40,7 +40,7 @@ public partial class MoveToAction : Action
 
     protected override void OnEnd()
     {
-        Debug.Log("Arrived");
+        
     }
 
     async Awaitable FollowPath()

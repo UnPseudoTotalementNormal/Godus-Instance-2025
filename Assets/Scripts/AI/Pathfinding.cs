@@ -75,7 +75,7 @@ public class Pathfinding
          
          if (_currentCell.position == _endPos)
          {
-            Debug.Log("Path found");
+            //Debug.Log("Path found");
             PathConstructor(_currentCell);
             return;
          }
