@@ -17,8 +17,11 @@ public class PowerRangeFeedback : MonoBehaviour
     
     private List<GameObject> activeLines = new();
 
+    private UnityEngine.Camera mainCamera;
+    
     private void Start()
     {
+        mainCamera = UnityEngine.Camera.main;
         InputManager.instance.onMousePosition += GetMousePos;
     }
 
@@ -38,18 +41,15 @@ public class PowerRangeFeedback : MonoBehaviour
         ClearLines();
         
         Vector2Int _newMousePosInt = Vector2Int.RoundToInt(mousePosition);
-        UnityEngine.Camera _camera = UnityEngine.Camera.main;
         
-        if (!_camera)
+        if (!mainCamera)
         {
             return;
         }
         
-        Vector3 _posMouse = _camera
+        Vector3 _posMouse = mainCamera
             .ScreenToWorldPoint(new Vector3(_newMousePosInt.x, _newMousePosInt.y));
         _posMouse += Vector3.one * 0.5f;
-        
-        Debug.Log($"mouse position x : {(int)_posMouse.x}  -  mouse position y : {(int)_posMouse.y}");
         
         Dictionary<Tile, Vector2Int> _tilesInRange = TileSystem.instance.GetAllTilesAtPointWithRadius(
             new Vector2Int ((int)_posMouse.x,(int)_posMouse.y),
