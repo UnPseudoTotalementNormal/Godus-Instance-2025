@@ -65,16 +65,16 @@ MonoBehaviour:
         BlackboardReference:
           rid: 7988512847930851471
         BlackboardGroupReferences:
-        - rid: 7988512847930851889
+        - rid: 7988512851785679805
         Root:
-          rid: 7988512847930851890
+          rid: 7988512851785679806
         m_ActiveNodes: []
         m_NodesToTick: []
         m_NodesToEnd:
           rid: 7988512847930851473
         m_EndedNodes:
           rid: 7988512847930851474
-        m_VersionTimestamp: 639005279399779288
+        m_VersionTimestamp: 639005420010511793
     - rid: 7988512847930851471
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -91,14 +91,14 @@ MonoBehaviour:
       type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         m_Variables:
-        - rid: 7988512847930851892
-    - rid: 7988512847930851889
+        - rid: 7988512851785679808
+    - rid: 7988512851785679805
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         m_Blackboard:
-          rid: 7988512847930851891
+          rid: 7988512851785679807
         m_Source: {fileID: 1837287610689256295, guid: 3a270aad760820c44b5fae2ff286bd81, type: 2}
-    - rid: 7988512847930851890
+    - rid: 7988512851785679806
       type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -110,16 +110,16 @@ MonoBehaviour:
           rid: -2
         m_Child:
           rid: -2
-        Repeat: 1
+        Repeat: 0
         AllowMultipleRepeatsPerTick: 0
-    - rid: 7988512847930851891
+    - rid: 7988512851785679807
       type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         m_Variables:
-        - rid: 7988512847930851893
-        - rid: 7988512847930851894
-        - rid: 7988512847930851895
-    - rid: 7988512847930851892
+        - rid: 7988512851785679809
+        - rid: 7988512851785679810
+        - rid: 7988512851785679811
+    - rid: 7988512851785679808
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -127,7 +127,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 0}
-    - rid: 7988512847930851893
+    - rid: 7988512851785679809
       type: {class: 'SharedBlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -136,7 +136,7 @@ MonoBehaviour:
         Name: RollCallActive
         m_Value: 0
         m_SharedVariablesRuntimeAsset: {fileID: 1837287610689256295, guid: 3a270aad760820c44b5fae2ff286bd81, type: 2}
-    - rid: 7988512847930851894
+    - rid: 7988512851785679810
       type: {class: 'SharedBlackboardVariable`1[[UnityEngine.Vector2Int, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -145,7 +145,7 @@ MonoBehaviour:
         Name: VillageCenter
         m_Value: {x: 0, y: 0}
         m_SharedVariablesRuntimeAsset: {fileID: 1837287610689256295, guid: 3a270aad760820c44b5fae2ff286bd81, type: 2}
-    - rid: 7988512847930851895
+    - rid: 7988512851785679811
       type: {class: 'SharedBlackboardVariable`1[[VillageManager, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Description: 
   m_Nodes:
   - rid: 7988512847930851477
-  m_VersionTimestamp: 639005279399779288
+  m_VersionTimestamp: 639005420010511793
   m_SerializedVersion: 1
   m_DebugInfo: {fileID: -1090106441556450524}
   m_RuntimeGraph: {fileID: -1213494212466571349}
@@ -234,7 +234,7 @@ MonoBehaviour:
           m_Value0: 3335272451348827663
           m_Value1: 11549843281177505721
         m_FieldValues: []
-        Repeat: 1
+        Repeat: 0
         AllowMultipleRepeatsPerTick: 0
     - rid: 7988512847930851478
       type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
