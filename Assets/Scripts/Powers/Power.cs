@@ -7,6 +7,9 @@ namespace Powers
     {
         public string powerName => gameObject.name;
         [field:SerializeField] public Sprite powerIcon { get; private set; }
+        
+        public int tileRadius = 0;
+        
         public PowerCategory powerCategory => GetComponentInParent<PowerCategory>();
         
         public float currentCooldownTime { get; protected set; }
