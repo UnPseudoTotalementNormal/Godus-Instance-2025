@@ -17,6 +17,7 @@ public class Pathfinding
 
    public Action<List<Cell>> callback; // I found this for now, but there may be a better way to send the path back to the caller
 
+   bool searchingForPath = false;
    public Pathfinding()
    {
       grid = new Cell[TileSystem.instance.GetGridSize().x, TileSystem.instance.GetGridSize().y];
@@ -30,7 +31,20 @@ public class Pathfinding
    }
    public void FindPath(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
-      Debug.Log("has requested to find path");
+      if (searchingForPath)
+         return;
+      searchingForPath = true;
+      
+      foreach (Cell _cell in grid)
+      {
+         _cell.gCost = 0;
+         _cell.hCost = 0;
+         _cell.fCost = 0;
+         _cell.cameFrom = null;
+      }
+      
+      _endPos = new Vector2Int(Mathf.Clamp(_endPos.x,0,grid.GetLength(0)-1),Mathf.Clamp(_endPos.y,0,grid.GetLength(1)-1));
+      //Debug.Log("has requested to find path");
       openSet = new List<Cell>();
       closedSet = new List<Cell>();
       Cell _startCell = grid[_startPos.x, _startPos.y];
@@ -61,7 +75,7 @@ public class Pathfinding
          
          if (_currentCell.position == _endPos)
          {
-            Debug.Log("Path found");
+            //Debug.Log("Path found");
             PathConstructor(_currentCell);
             return;
          }
@@ -88,10 +102,10 @@ public class Pathfinding
             }
          }
       }
-      throw new Exception("Path not found");
+      Debug.LogWarning(_endPos + " is not a valid target");
    }
 
-   void PathConstructor(Cell _current)
+   void PathConstructor(Cell _current) //This can be safely removed as it's legacy code from the old versions, just call directly ReconstructPath
    {
       ReconstructPath(_current);
    }
@@ -106,6 +120,7 @@ public class Pathfinding
          _path.Add(_current);
       }
       _path.Reverse();
+      searchingForPath = false;
       callback.Invoke(_path);
    }
 
