@@ -7,6 +7,8 @@ Shader "Unlit/TileHeightShadow"
 
         _TileCount ("Tile Count", Vector) = (16,16,0,0)
         _PixelsPerTile ("Pixels Per Tile", Float) = 4
+        
+        _ShadowsOffset ("_ShadowsOffset (XY)", Vector) = (-0.5,-0.5,0,0)
 
         _LightDir ("Light Direction (XY)", Vector) = (-1,1,0,0)
         _ShadowStrength ("Shadow Strength", Range(0,200)) = 1
@@ -43,6 +45,8 @@ Shader "Unlit/TileHeightShadow"
             sampler2D _HeightTex;
             float4 _TileCount;
             float  _PixelsPerTile;
+            
+            float4 _ShadowsOffset;
 
             float4 _LightDir;
             float  _MinLightMarchStepSize;
@@ -86,7 +90,8 @@ Shader "Unlit/TileHeightShadow"
                 if (col.a <= 0) return col;
 
                 float2 worldPos = i.worldPos.xy;
-                float hCurrent = SampleHeight(worldPos);
+                float2 shadowSamplePos = worldPos + _ShadowsOffset.xy;
+                float hCurrent = SampleHeight(shadowSamplePos);
 
                 float2 lightDir = _LightDir.xy;
                 float len = length(lightDir);
@@ -137,7 +142,7 @@ Shader "Unlit/TileHeightShadow"
                     float currentStepSize = lerp(_MinLightMarchStepSize, _MaxLightMarchStepSize, distFactor * distFactor);
                     float dist = s * currentStepSize;
                     
-                    float2 samplePos = worldPos + stepDir * dist;
+                    float2 samplePos = shadowSamplePos + stepDir * dist;
 
                     float hCaster = SampleHeight(samplePos);
                     float heightDiff = hCaster - hCurrent;

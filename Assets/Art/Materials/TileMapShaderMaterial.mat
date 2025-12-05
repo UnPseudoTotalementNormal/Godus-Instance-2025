@@ -153,8 +153,9 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LightDir: {r: 0.6, g: -1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowsOffset: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TileCount: {r: 200, g: 200, b: 0, a: 0}
+    - _TileCount: {r: 100, g: 100, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &9051032506189242102
