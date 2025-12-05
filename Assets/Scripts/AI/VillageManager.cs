@@ -71,6 +71,7 @@ public class VillageManager : MonoBehaviour
     }
 }
 
+[BlackboardEnum]
 public enum TaskType
 {
     Gathering,
