@@ -56,6 +56,8 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private float otherTimeBetweenWaves = 60f;
     private float timeBetweenWaves;
 
+    public int GetCurrentWave => waveInfo.currentWave;
+
     [Header("For Endless Waves")]
     [SerializeField] private int wavePowerLevel = 10;
     [SerializeField] private float wavePowerLevelMultiplier = 1.1f;
