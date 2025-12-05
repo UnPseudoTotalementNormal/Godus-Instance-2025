@@ -5,26 +5,25 @@ using System.Collections.Generic;
 public class HungerSystem : MonoBehaviour
 {
 
-    float hunger = 100;
-    int starve = 1;
-    int FoodGain = 1;
+    [SerializeField] private float maxHunger = 100;
+    private float hunger = 100;
+    [SerializeField] private float starvePerSecond = 1;
 
-
-    float EatingFood(float hunger)
+    public float EatingFood(float _regainHunger)
     {
-        if (hunger< 50)
-        hunger += FoodGain;
+        hunger += _regainHunger;
+        if (hunger > maxHunger)
+        {
+            hunger = maxHunger;
+        }
         return hunger;
     }
     
     void Update()
     {
-        if (hunger >= 1)
+        if (hunger > 0)
         {
-            hunger -= starve * Time.deltaTime;
-            Mathf.Round(hunger);
-            Debug.Log(Mathf.Round(hunger));
+            hunger -= starvePerSecond * Time.deltaTime;
         }
-        hunger = EatingFood(hunger);
     }
 }
