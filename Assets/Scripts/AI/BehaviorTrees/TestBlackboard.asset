@@ -18,7 +18,8 @@ MonoBehaviour:
   m_Variables:
   - rid: 6137580658645795419
   - rid: 6137580658645795420
-  m_VersionTimestamp: 639005267482038331
+  - rid: 7988512847930851756
+  m_VersionTimestamp: 639005279107422602
   m_CommandBuffer:
     m_Commands: []
   m_RuntimeBlackboardAsset: {fileID: 1837287610689256295}
@@ -45,6 +46,16 @@ MonoBehaviour:
         IsExposed: 1
         m_IsShared: 1
         m_Value: {x: 0, y: 0}
+    - rid: 7988512847930851756
+      type: {class: 'TypedVariableModel`1[[VillageManager, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6450418406925918262
+          m_Value1: 14222642004488366050
+        Name: VillageManager
+        IsExposed: 1
+        m_IsShared: 1
+        m_Value: {fileID: 0}
 --- !u!114 &1837287610689256295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
   m_Name: TestBlackboard
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.RuntimeBlackboardAsset
-  VersionTimestamp: 639005267482038331
+  VersionTimestamp: 639005279107422602
   AssetID:
     m_Value0: 14132304936490903354
     m_Value1: 9348776776231182155
@@ -65,11 +76,14 @@ MonoBehaviour:
     m_Variables:
     - rid: 6137580658645795421
     - rid: 6137580658645795422
+    - rid: 7988512847930851757
   m_SharedBlackboardVariableGuids:
   - m_Value0: 17083184396087771952
     m_Value1: 5767378323775695241
   - m_Value0: 2956927852111826811
     m_Value1: 18319371485863616902
+  - m_Value0: 6450418406925918262
+    m_Value1: 14222642004488366050
   references:
     version: 2
     RefIds:
@@ -89,3 +103,11 @@ MonoBehaviour:
           m_Value1: 18319371485863616902
         Name: VillageCenter
         m_Value: {x: 0, y: 0}
+    - rid: 7988512847930851757
+      type: {class: 'BlackboardVariable`1[[VillageManager, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6450418406925918262
+          m_Value1: 14222642004488366050
+        Name: VillageManager
+        m_Value: {fileID: 0}
