@@ -21,9 +21,8 @@ public class VillageManager : MonoBehaviour
     int meat;
     int maxMeat = 50;
 
-    void Start()
+    void Awake()
     {
-        Debug.Log(villageBlackboard.GetVariable("RollCallActive", out var active));
         villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
         villageBlackboard.SetVariableValue("VillageManager", this);
     }
@@ -37,9 +36,9 @@ public class VillageManager : MonoBehaviour
 
     public TaskType GetNewTask(Transform _caller, out GameObject _target)
     {
-        _target = null; // Remove when all functions have been created
         if ((100 * (wood / maxWood)) >= 95)
         {
+            _target = null;
             return TaskType.Building;
         }
         
@@ -52,24 +51,32 @@ public class VillageManager : MonoBehaviour
 
         if ((100 * (wood / maxWood)) <= 80)
         {
-            return TaskType.Gathering;
+            _target = DetectResourceInRange(_caller, ResourceType.Wood);
+            if (_target != null)
+                return TaskType.Gathering;
         }
 
         if ((100 * (stone / maxStone)) <= 50)
         {
-            return TaskType.Gathering;
+            _target = DetectResourceInRange(_caller, ResourceType.Stone);
+            if (_target != null)
+                return TaskType.Gathering;
         }
 
         if ((100 * (iron / maxIron)) <= 50)
         {
-            return TaskType.Gathering;
+            _target = DetectResourceInRange(_caller, ResourceType.Iron);
+            if (_target != null)
+                return TaskType.Gathering;
         }
 
         if ((100 * (glorp / maxGlorp)) <= 50)
         {
-            return TaskType.Gathering;
+            _target = DetectResourceInRange(_caller, ResourceType.Glorp);
+            if (_target != null)
+                return TaskType.Gathering;
         }
-
+        _target = null;
         return TaskType.Wandering;
     }
 
@@ -78,7 +85,7 @@ public class VillageManager : MonoBehaviour
 
         foreach (Collider resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
-            if (resource.gameObject.TryGetComponent(out Resource resourceComponent))
+            if (resource.gameObject.TryGetComponent(out ResourceComponent resourceComponent))
             {
                 resource.GetComponent<Collider>().enabled = false;
                 return resource.gameObject;

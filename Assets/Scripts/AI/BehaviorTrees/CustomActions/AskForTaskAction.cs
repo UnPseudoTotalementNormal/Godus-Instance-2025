@@ -14,13 +14,13 @@ public partial class AskForTaskAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     protected override Status OnStart()
     {
-        Task.Value = VillageManager.Value.GetNewTask(Self.Value.transform, out GameObject _target);
-        Target.Value = _target;
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
+        Task.Value = VillageManager.Value.GetNewTask(Self.Value.transform, out GameObject _target);
+        Target.Value = _target;
         return Status.Success;
     }
 
