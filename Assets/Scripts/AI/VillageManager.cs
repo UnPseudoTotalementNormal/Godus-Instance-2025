@@ -83,13 +83,11 @@ public class VillageManager : MonoBehaviour
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
     {
 
-        foreach (Collider resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
+        foreach (Collider _resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
-            if (resource.gameObject.TryGetComponent(out ResourceComponent resourceComponent))
-            {
-                resource.GetComponent<Collider>().enabled = false;
-                return resource.gameObject;
-            }
+            if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
+            _resource.GetComponent<Collider>().enabled = false;
+            return _resource.gameObject;
         }
         return null;
     }
