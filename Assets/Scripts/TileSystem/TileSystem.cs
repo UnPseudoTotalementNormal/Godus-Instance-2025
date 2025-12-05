@@ -88,6 +88,61 @@ namespace TileSystemSpace
             return tiles.ElementAtOrDefault(_calcIndex);
         }
 
+        public enum RadiusMode
+        {
+            Square, 
+            Diamond, 
+            Circle
+        }
+
+        public Dictionary<Tile, Vector2Int> GetAllTilesAtPointWithRadius(Vector2Int _position, int _radius, RadiusMode _mode = RadiusMode.Circle)
+        {
+            Dictionary<Tile, Vector2Int> _tilesInRadius = new Dictionary<Tile, Vector2Int>();
+            for (int _x = -_radius; _x <= _radius; _x++)
+            {
+                for (int _y = -_radius; _y <= _radius; _y++)
+                {
+                    switch (_mode)
+                    {
+                        case RadiusMode.Square:
+                        {
+                            if (!(Mathf.Max(Mathf.Abs(_x), Mathf.Abs(_y)) <= _radius))
+                            {
+                                continue;
+                            }
+                            break;
+                        }
+                        case RadiusMode.Diamond:
+                        {
+                            if (!(Mathf.Abs(_x) + Mathf.Abs(_y) <= _radius))
+                            {
+                                continue;
+                            }
+                            break;
+                        }
+                        case RadiusMode.Circle:
+                        {
+                            if (!(_x * _x + _y * _y <= (_radius + 0.5f) * (_radius + 0.5f)))
+                            {
+                                continue;
+                            }
+                            break;
+                        }
+                    }
+                    if (_x * _x + _y * _y <= (_radius + 0.5f) * (_radius + 0.5f))
+                    {
+                        Vector2Int _checkPos = new Vector2Int(_position.x + _x, _position.y + _y);
+                        Tile _tile = GetTile(_checkPos);
+                        if (_tile != null)
+                        {
+                            _tilesInRadius[_tile] = _checkPos;
+                        }
+                    }
+                }
+            }
+            return _tilesInRadius;
+        }
+
         public Vector2Int GetPositionFromIndex(int _index)
         {
             return new Vector2Int(_index % xSize, _index / xSize);
