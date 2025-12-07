@@ -91,8 +91,7 @@ public class WavesManager : MonoBehaviour
         StopCoroutine(WaveTimerCoroutine(timeBetweenWaves));
         waveInfo.currentWave++;
         SetWaveSpawnPoint();
-        GameEvents.onEnabledSlideBarRemainingEnemy?.Invoke(true);
-        GameEvents.onWaveStarted?.Invoke();
+        GameEvents.onWaveStarted?.Invoke(waveInfo.currentWave);
         GameEvents.onWaveInfo?.Invoke(waveInfo);
 
         waveInfo.maxEnemiesInWave = 0;
@@ -274,7 +273,6 @@ public class WavesManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(WaveTimerCoroutine(timeBetweenWaves));
         GameEvents.onWaveEnded?.Invoke();
-        GameEvents.onEnabledSlideBarRemainingEnemy?.Invoke(false);
     }
 
     private bool IsEnemyNextTo()
