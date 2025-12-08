@@ -10,7 +10,7 @@ public class VillageManager : MonoBehaviour
     bool villageUnderAttack;
     
     //Resources
-    int wood;
+    [SerializeField] int wood;
     int maxWood = 50;
     int stone;
     int maxStone = 50;
@@ -36,41 +36,41 @@ public class VillageManager : MonoBehaviour
 
     public TaskType GetNewTask(Transform _caller, out GameObject _target)
     {
-        if ((100 * (wood / maxWood)) >= 95)
+        if ((100 * ((float)wood / maxWood)) >= 95)
         {
             _target = null;
             return TaskType.Building;
         }
         
-        if ((100 * (meat / maxMeat)) <= 80)
+        if ((100 * ((float)meat / maxMeat)) <= 80)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Meat);
             if (_target != null)
                 return TaskType.Hunting;
         }
 
-        if ((100 * (wood / maxWood)) <= 80)
+        if ((100 * ((float)wood / maxWood)) <= 80)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Wood);
             if (_target != null)
                 return TaskType.Gathering;
         }
 
-        if ((100 * (stone / maxStone)) <= 50)
+        if ((100 * ((float)stone / maxStone)) <= 50)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Stone);
             if (_target != null)
                 return TaskType.Gathering;
         }
 
-        if ((100 * (iron / maxIron)) <= 50)
+        if ((100 * ((float)iron / maxIron)) <= 50)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Iron);
             if (_target != null)
                 return TaskType.Gathering;
         }
 
-        if ((100 * (glorp / maxGlorp)) <= 50)
+        if ((100 * ((float)glorp / maxGlorp)) <= 50)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Glorp);
             if (_target != null)
@@ -86,10 +86,52 @@ public class VillageManager : MonoBehaviour
         foreach (Collider _resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
             if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
+            if (_resourceComponent.resourceType != _resourceType) continue;
             _resource.GetComponent<Collider>().enabled = false;
             return _resource.gameObject;
         }
         return null;
+    }
+
+    public void AddResource(ResourceType _resource, int _amount)
+    {
+        switch (_resource)
+        {
+            case ResourceType.Wood:
+                wood += _amount;
+                break;
+            case ResourceType.Stone:
+                stone += _amount;
+                break;
+            case ResourceType.Iron:
+                iron += _amount;
+                break;
+            case ResourceType.Glorp:
+                glorp += _amount;
+                break;
+            case ResourceType.Meat:
+                meat += _amount;
+                break;
+        }
+    }
+
+    public int GetResourceAmount(ResourceType _resource)
+    {
+        switch (_resource)
+        {
+            case ResourceType.Wood:
+                return wood;
+            case ResourceType.Stone:
+                return stone;
+            case ResourceType.Iron:
+                return iron;
+            case ResourceType.Glorp:
+                return glorp;
+            case ResourceType.Meat:
+                return meat;
+            default:
+                return -1;
+        }
     }
 }
 
