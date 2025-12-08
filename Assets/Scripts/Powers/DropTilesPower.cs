@@ -42,10 +42,10 @@ namespace Powers
                 return;
             }
             
-            bool _hasDroppedTiles = TryDropTileAtMousePosition();
-            if (_hasDroppedTiles)
+            int _tilesDropped = TryDropTileAtMousePosition();
+            if (_tilesDropped > 0)
             {
-                tilesLeftToDrop--;
+                tilesLeftToDrop -= _tilesDropped;
                 if (tilesLeftToDrop <= 0)
                 {
                     Deactivate();
@@ -82,7 +82,7 @@ namespace Powers
             InputManager.instance.onMousePosition -= GetMousePos;
         }
 
-        private bool TryDropTileAtMousePosition()
+        private int TryDropTileAtMousePosition()
         {
             Vector2 _mouseWorldPosition = Vector2Int.RoundToInt(mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y))) 
                                           + GameValues.GRID_OFFSET;
@@ -91,13 +91,14 @@ namespace Powers
             
             if (_mouseWorldPositionInt == lastDroppedTilePosition)
             {
-                return false;
+                return 0;
             }
             
             lastDroppedTilePosition = _mouseWorldPositionInt;
             
             Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(_mouseWorldPositionInt, tileRadius, radiusMode);
             
+            int _tilesDroppedCount = 0;
             foreach (KeyValuePair<Tile, Vector2Int> _tileEntry in _tilesInRadius)
             {
                 Tile _tile = _tileEntry.Key;
@@ -106,11 +107,17 @@ namespace Powers
                 _tile.tileType = tileTypeToDrop;
                 if (_currentHeight < GameValues.MAX_TILE_HEIGHT - 1)
                 {
+                    _tilesDroppedCount++;
                     _tile.level += 1;
+                }
+                
+                if (tilesLeftToDrop - _tilesDroppedCount <= 0)
+                {
+                    break;
                 }
             }
 
-            return true;
+            return _tilesDroppedCount;
         }
     }
 }
