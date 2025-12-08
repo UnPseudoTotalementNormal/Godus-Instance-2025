@@ -1,6 +1,7 @@
 using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
+using Powers;
 using TileSystemSpace;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -18,19 +19,36 @@ public class PowerRangeFeedback : MonoBehaviour
     private List<GameObject> activeLines = new();
 
     private UnityEngine.Camera mainCamera;
+    private Power powerComponent;
     
     private void Start()
     {
         mainCamera = UnityEngine.Camera.main;
         InputManager.instance.onMousePosition += GetMousePos;
+        powerComponent = GetComponent<Power>();
+        powerComponent.onPowerActivated += Activate;
+        powerComponent.onPowerDeactivated += Deactivate;
+    }
+    
+    private void Activate()
+    {
+        isPowerActivated = true;
+    }
+    
+    private void Deactivate()
+    {
+        isPowerActivated = false;
+        ClearLines();
     }
 
     private void LateUpdate()
     {
-        DrawPowerEdges();
+        if (isPowerActivated)
+        {
+            DrawPowerEdges();
+        }
     }
-
-
+    
     private void GetMousePos(Vector2 _mousePosition)
     {
         mousePosition = _mousePosition;
@@ -53,7 +71,7 @@ public class PowerRangeFeedback : MonoBehaviour
         
         Dictionary<Tile, Vector2Int> _tilesInRange = TileSystem.instance.GetAllTilesAtPointWithRadius(
             new Vector2Int ((int)_posMouse.x,(int)_posMouse.y),
-            2, TileSystem.RadiusMode.Circle);
+            powerComponent.tileRadius, powerComponent.radiusMode);
         
         foreach (KeyValuePair<Tile, Vector2Int> _tile in _tilesInRange)
         {

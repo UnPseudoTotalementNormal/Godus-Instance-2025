@@ -96,7 +96,7 @@ namespace Powers
             
             lastDroppedTilePosition = _mouseWorldPositionInt;
             
-            Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(_mouseWorldPositionInt, tileRadius, TileSystem.RadiusMode.Circle);
+            Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(_mouseWorldPositionInt, tileRadius, radiusMode);
             
             foreach (KeyValuePair<Tile, Vector2Int> _tileEntry in _tilesInRadius)
             {

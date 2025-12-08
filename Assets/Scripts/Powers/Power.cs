@@ -1,4 +1,5 @@
 using System;
+using TileSystemSpace;
 using UnityEngine;
 
 namespace Powers
@@ -9,6 +10,7 @@ namespace Powers
         [field:SerializeField] public Sprite powerIcon { get; private set; }
         
         public int tileRadius = 0;
+        public TileSystem.RadiusMode radiusMode = TileSystem.RadiusMode.Diamond;
         
         public PowerCategory powerCategory => GetComponentInParent<PowerCategory>();
         
