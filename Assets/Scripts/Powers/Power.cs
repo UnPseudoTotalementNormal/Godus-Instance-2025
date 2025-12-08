@@ -22,6 +22,8 @@ namespace Powers
         
         public event Action onCooldownStarted;
         public event Action onCooldownEnded;
+        
+        public bool isPowerActive { get; protected set; } = false;
 
         public virtual void Update()
         {
@@ -39,11 +41,13 @@ namespace Powers
         public virtual void Activate()
         {
             onPowerActivated?.Invoke();
+            isPowerActive = true;
         }
 
         public virtual void Deactivate()
         {
             onPowerDeactivated?.Invoke();
+            isPowerActive = false;
         }
         
         public void StartCooldown(float _cooldownDuration)

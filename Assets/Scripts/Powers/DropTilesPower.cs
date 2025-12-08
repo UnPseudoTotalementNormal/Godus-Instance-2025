@@ -23,6 +23,7 @@ namespace Powers
         private void Start()
         {
             mainCamera = UnityEngine.Camera.main;
+            InputManager.instance.onMousePosition += GetMousePos;
         }
 
         public override void Activate()
@@ -30,13 +31,34 @@ namespace Powers
             base.Activate();
             InputManager.instance.onLeftMouseButtonPressStarted += TryStartDroppingTiles;
             InputManager.instance.onLeftMouseButtonPressCanceled += StopDroppingTiles;
-            InputManager.instance.onMousePosition += GetMousePos;
             tilesLeftToDrop = maxTilesToDrop;
+        }
+
+        private void OnGUI()
+        {
+            if (!isPowerActive)
+            {
+                return;
+            }
+            Vector2 _offset = new Vector2(Screen.width * 0.01f, Screen.height * 0.02f);
+            Vector2 _textPosition = new Vector2(mouseScreenPosition.x + _offset.x, (Screen.height - mouseScreenPosition.y) + _offset.y);
+            GUIStyle _style = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = 24,
+                normal = { textColor = Color.white }
+            };
+            GUI.Label(new Rect(_textPosition, new Vector2(Screen.width * 0.3f, Screen.height * 0.03f)), tilesLeftToDrop.ToString(), _style);
         }
 
         public override void Update()
         {
             base.Update();
+
+            if (!isPowerActive)
+            {
+                return;
+            }
+            
             if (!isDroppingTiles)
             {
                 return;
@@ -79,7 +101,6 @@ namespace Powers
             StopDroppingTiles();
             InputManager.instance.onLeftMouseButtonPressStarted -= TryStartDroppingTiles;
             InputManager.instance.onLeftMouseButtonPressCanceled -= StopDroppingTiles;
-            InputManager.instance.onMousePosition -= GetMousePos;
         }
 
         private int TryDropTileAtMousePosition()
