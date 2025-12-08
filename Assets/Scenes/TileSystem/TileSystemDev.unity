@@ -266,9 +266,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 31619618}
-  - component: {fileID: 31619617}
   - component: {fileID: 31619619}
   - component: {fileID: 31619620}
+  - component: {fileID: 31619621}
   m_Layer: 6
   m_Name: Meat
   m_TagString: Untagged
@@ -276,19 +276,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &31619617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31619616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96736188fc90aa145bd3b8204e22d543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceComponent
-  resourceType: 4
 --- !u!4 &31619618
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +360,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4339623, g: 0.25077054, b: 0.12896049, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -383,6 +370,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &31619621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31619616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f21f5e52b11e54e8c1b5d011f02ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TreeResource
+  resourceType: 0
+  collectionDelay: 1
+  collectionQuantity: 10
+  collectionsLeft: 10
 --- !u!1 &36814810
 GameObject:
   m_ObjectHideFlags: 0
@@ -13278,6 +13281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VillageManager
   villageBlackboard: {fileID: 945112935}
   villageCenter: {x: 25, y: 25}
+  wood: 0
 --- !u!4 &945112937
 Transform:
   m_ObjectHideFlags: 0
