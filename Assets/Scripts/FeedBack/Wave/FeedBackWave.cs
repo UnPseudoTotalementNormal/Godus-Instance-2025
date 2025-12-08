@@ -149,6 +149,10 @@ namespace Feedback.Wave
             canvasGroup.DOFade(1f, sliderAnimCanvasDuration)
                 .SetEase(Ease.InBack);
 
+            rectTransform.localScale = new Vector3(0f, 1f, 1f);
+            rectTransform.DOScaleX(1f, sliderAnimTranslateDuration)
+                .SetEase(Ease.InOutBack);
+            
             rectTransform.anchoredPosition = new Vector2(sliderInitialPosition.x, sliderInitialPosition.y + offsetY);
             rectTransform.DOAnchorPos(sliderInitialPosition, sliderAnimTranslateDuration)
                 .SetEase(Ease.InOutBack);
@@ -163,6 +167,10 @@ namespace Feedback.Wave
             canvasGroup.DOFade(0f, sliderAnimCanvasDuration)
                 .SetEase(Ease.InBack);
 
+            rectTransform.localScale = new Vector3(1f, 1f, 1f);
+            rectTransform.DOScaleX(0f, sliderAnimTranslateDuration)
+                .SetEase(Ease.InBack);
+            
             rectTransform.DOAnchorPosY(sliderInitialPosition.y + offsetY, sliderAnimTranslateDuration)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
