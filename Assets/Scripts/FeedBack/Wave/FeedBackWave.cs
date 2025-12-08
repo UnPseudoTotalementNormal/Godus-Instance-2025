@@ -2,6 +2,7 @@ using AudioSystem;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Utils;
 
 namespace Feedback.Wave
@@ -15,6 +16,8 @@ namespace Feedback.Wave
         
         [Header("Slider Settings")]
         [SerializeField] private GameObject sliderArea;
+        [SerializeField] private float sliderAnimTranslateDuration = 1f;
+        [SerializeField] private float sliderAnimCanvasDuration = 1f;
         
         //private WaveInfo waveInfo ;
         private int currentWave = 0;
@@ -24,18 +27,21 @@ namespace Feedback.Wave
         private bool isSliderAreaActive = false;
         private Vector2 sliderInitialPosition;
         
+        private RectTransform rectTransform;
+        private CanvasGroup canvasGroup;
+        private float offsetY;
         
         private void Start()
         {
             waveText.enabled = false;
             sliderArea.SetActive(false);
             
+            rectTransform = sliderArea.GetComponent<RectTransform>();
+            canvasGroup = sliderArea.GetComponent<CanvasGroup>();
+            Assert.IsNotNull(rectTransform, $"<b>[FeedBackWave]</b> RectTransform component is missing on {sliderArea.name} GameObject.");
+            Assert.IsNotNull(canvasGroup, $"<b>[FeedBackWave]</b> CanvasGroup component is missing on {sliderArea.name} GameObject.");
             
-            RectTransform rectTransform = sliderArea.GetComponent<RectTransform>();
-            
-            if (rectTransform == null)
-                return;
-            
+            offsetY = rectTransform.rect.height;
             sliderInitialPosition = rectTransform.anchoredPosition;
         }
 
@@ -134,45 +140,35 @@ namespace Feedback.Wave
         [ContextMenu("Enable Slide Bar Remaining Enemy")]
         private void EnableSlideBarRemainingEnemy()
         {
+            if (!rectTransform || !canvasGroup)
+                return;
+         
             isSliderAreaActive = true;
             sliderArea.SetActive(true);
             
-            RectTransform _rectTransform = sliderArea.GetComponent<RectTransform>();
-            CanvasGroup _canvasGroup = sliderArea.GetComponent<CanvasGroup>();
-            
-            if (!_rectTransform || !_canvasGroup)
-                return;
-            
-            _canvasGroup.DOFade(1f, feedBackData.textDuration)
+            canvasGroup.DOFade(1f, sliderAnimCanvasDuration)
                 .SetEase(Ease.InBack);
 
-            float _offsetY = _rectTransform.rect.height;
-
-            _rectTransform.anchoredPosition = new Vector2(sliderInitialPosition.x, sliderInitialPosition.y + _offsetY);
-            _rectTransform.DOAnchorPos(sliderInitialPosition, feedBackData.textDuration)
+            rectTransform.anchoredPosition = new Vector2(sliderInitialPosition.x, sliderInitialPosition.y + offsetY);
+            rectTransform.DOAnchorPos(sliderInitialPosition, sliderAnimTranslateDuration)
                 .SetEase(Ease.InOutBack);
         }
         
         [ContextMenu("Disable Slide Bar Remaining Enemy")]
         private void DisableSlideBarRemainingEnemy()
         {
-            RectTransform _rectTransform = sliderArea.GetComponent<RectTransform>();
-            CanvasGroup _canvasGroup = sliderArea.GetComponent<CanvasGroup>();
-            
-            if (!_rectTransform || !_canvasGroup)
+            if (!rectTransform || !canvasGroup)
                 return;
             
-            _canvasGroup.DOFade(0f, feedBackData.textDuration)
+            canvasGroup.DOFade(0f, sliderAnimCanvasDuration)
                 .SetEase(Ease.InBack);
-            
-            float _offsetY = _rectTransform.rect.height;
 
-            _rectTransform.DOAnchorPosY(sliderInitialPosition.y + _offsetY, feedBackData.textDuration)
+            rectTransform.DOAnchorPosY(sliderInitialPosition.y + offsetY, sliderAnimTranslateDuration)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
                 {
-                    _canvasGroup.alpha = 1f;
-                    _rectTransform.anchoredPosition = sliderInitialPosition;
+                    canvasGroup.alpha = 1f;
+                    rectTransform.anchoredPosition = sliderInitialPosition;
                     
                     sliderArea.SetActive(false);
                     isSliderAreaActive = false;
