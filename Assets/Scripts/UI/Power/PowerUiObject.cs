@@ -12,6 +12,7 @@ namespace UI.Power
         
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private Image iconImage;
+        [SerializeField] private Image imageCooldown;
         
         private ISelectionFeedback[] selectionFeedbacks;
         
@@ -23,6 +24,13 @@ namespace UI.Power
             selectionFeedbacks = GetComponents<ISelectionFeedback>();
             PowerManager.instance.onPowerSelected += OnPowerSelected;
             PowerManager.instance.onPowerUnSelected += OnPowerUnSelected;
+        }
+
+        private void Update()
+        {
+            imageCooldown.fillAmount = power && power.isOnCooldown
+                ? power.currentCooldownTime / power.powerCooldownDuration
+                : 0f;
         }
 
         public void SetPower(Powers.Power _power)
