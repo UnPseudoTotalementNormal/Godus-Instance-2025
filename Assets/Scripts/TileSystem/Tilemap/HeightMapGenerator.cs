@@ -28,48 +28,66 @@ namespace TileSystemSpace.Tilemap
                 tileSystem.onAnyTileChanged -= OnAnyTileChanged;
         }
 
-        private void OnAnyTileChanged(Tile tile, Vector2Int pos)
+        private void OnAnyTileChanged(Tile _tile, Vector2Int _pos)
         {
-            GenerateHeightMapTexture();
+            Color32 _c = GetHeightColor(_pos.x, _pos.y);
+            int _startX = _pos.x * pixelsPerTile;
+            int _startY = _pos.y * pixelsPerTile;
+
+            for (int _px = 0; _px < pixelsPerTile; _px++)
+            {
+                for (int _py = 0; _py < pixelsPerTile; _py++)
+                {
+                    heightTex.SetPixel(_startX + _px, _startY + _py, _c);
+                }
+            }
+
+            heightTex.Apply();
             UpdateMaterial();
         }
 
         private void GenerateHeightMapTexture()
         {
-            Vector2Int size = tileSystem.GetSize();
-            int tileWidth = size.x;
-            int tileHeight = size.y;
+            Vector2Int _size = tileSystem.GetSize();
+            int _tileWidth = _size.x;
+            int _tileHeight = _size.y;
 
-            int texWidth = tileWidth * pixelsPerTile;
-            int texHeight = tileHeight * pixelsPerTile;
+            int _texWidth = _tileWidth * pixelsPerTile;
+            int _texHeight = _tileHeight * pixelsPerTile;
 
-            if (heightTex == null || heightTex.width != texWidth || heightTex.height != texHeight)
+            if (heightTex == null || heightTex.width != _texWidth || heightTex.height != _texHeight)
             {
-                heightTex = new Texture2D(texWidth, texHeight, TextureFormat.R8, false);
+                heightTex = new Texture2D(_texWidth, _texHeight, TextureFormat.R8, false);
                 heightTex.filterMode = FilterMode.Bilinear;
                 heightTex.wrapMode = TextureWrapMode.Clamp;
             }
 
-            for (int px = 0; px < texWidth; px++)
+            for (int _px = 0; _px < _texWidth; _px++)
             {
-                for (int py = 0; py < texHeight; py++)
+                for (int _py = 0; _py < _texHeight; _py++)
                 {
-                    float tileFX = (px + 0.5f) / pixelsPerTile;
-                    float tileFY = (py + 0.5f) / pixelsPerTile;
+                    float _tileFX = (_px + 0.5f) / pixelsPerTile;
+                    float _tileFy = (_py + 0.5f) / pixelsPerTile;
 
-                    int tileX = Mathf.FloorToInt(tileFX);
-                    int tileY = Mathf.FloorToInt(tileFY);
+                    int _tileX = Mathf.FloorToInt(_tileFX);
+                    int _tileY = Mathf.FloorToInt(_tileFy);
 
-                    Tile t = tileSystem.GetTile(tileX, tileY);
-                    int level = t != null ? t.level : 0;
-
-                    byte h = (byte)Mathf.Clamp(level, 0, 255);
-                    Color32 c = new Color32(h, 0, 0, 255);
-                    heightTex.SetPixel(px, py, c);
+                    var _c = GetHeightColor(_tileX, _tileY);
+                    heightTex.SetPixel(_px, _py, _c);
                 }
             }
 
             heightTex.Apply();
+        }
+
+        private Color32 GetHeightColor(int _tileX, int _tileY)
+        {
+            Tile _t = tileSystem.GetTile(_tileX, _tileY);
+            int _level = _t?.level ?? 0;
+
+            byte _h = (byte)Mathf.Clamp(_level, 0, 255);
+            Color32 _c = new Color32(_h, 0, 0, 255);
+            return _c;
         }
 
         private void UpdateMaterial()
