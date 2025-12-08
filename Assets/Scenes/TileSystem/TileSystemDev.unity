@@ -20581,7 +20581,7 @@ GameObject:
   - component: {fileID: 1517661890}
   - component: {fileID: 1517661889}
   m_Layer: 0
-  m_Name: Test_AI (220)
+  m_Name: Test_Animal_AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20634,7 +20634,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 536cfff765563da4db246e447f19bab3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 656de7d3a84ed464dbffef930d408444, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20657,11 +20657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
-  m_Graph: {fileID: 8155338299066883138, guid: fcfe5bd8ce5b38c4ab8de4740d4c3421, type: 2}
+  m_Graph: {fileID: -2981718511170505336, guid: 628e55bf16f49c44a9f4771d519a59b0, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 7988512802650718435
-  - rid: 7988512802650718437
-  - rid: 7988512802650719004
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -20676,22 +20674,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1517661888}
-    - rid: 7988512802650718437
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 17656092562535072474
-          m_Value1: 11857587398240516383
-        Name: PathTarget
-        m_Value: {fileID: 1041082673}
-    - rid: 7988512802650719004
-      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4523579032446210139
-          m_Value1: 13023251688601076406
-        Name: AlternativePathing
-        m_Value: 1
 --- !u!4 &1517661891
 Transform:
   m_ObjectHideFlags: 0
@@ -20701,7 +20683,7 @@ Transform:
   m_GameObject: {fileID: 1517661888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.02, y: 29.87, z: 0}
+  m_LocalPosition: {x: 9.99, y: 25.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
