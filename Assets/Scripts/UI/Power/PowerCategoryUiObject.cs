@@ -12,6 +12,7 @@ namespace UI.Power
         
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text nameText;
+        [SerializeField] private Image imageCooldown;
         
         public PowerCategory powerCategory { get; private set; }
         public CanvasGroup canvasGroup { get; private set; }
@@ -20,10 +21,19 @@ namespace UI.Power
         
         public event Action<PowerCategoryUiObject> onClicked;
 
+        private float currentCooldownDuration;
+
         private void Awake()
         {
             GetComponent<Button>().onClick.AddListener(OnClicked);
             selectionFeedbacks = GetComponents<ISelectionFeedback>();
+        }
+
+        private void Update()
+        {
+            imageCooldown.fillAmount = powerCategory && powerCategory.isOnCooldown
+                ? powerCategory.currentCooldownTime / currentCooldownDuration
+                : 0f;
         }
 
         public void SetPowerCategory(PowerCategory _powerCategory, CanvasGroup _canvasGroup, PowersUI _powersUi)
@@ -44,6 +54,11 @@ namespace UI.Power
             powersUI = _powersUi;
             
             powersUI.onPowerCategoryChanged += OnPowerCategoryChanged;
+            
+            powerCategory.onCooldownStarted += (_cooldownDuration) =>
+            {
+                currentCooldownDuration = _cooldownDuration;
+            };
         }
         
         public void OnClicked()
