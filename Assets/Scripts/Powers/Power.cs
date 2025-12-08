@@ -42,13 +42,22 @@ namespace Powers
 
         public virtual void Activate()
         {
-            onPowerActivated?.Invoke();
+            if (isPowerActive)
+            {
+                return;
+            }
+            
             isPowerActive = true;
+            onPowerActivated?.Invoke();
         }
 
         public virtual void Deactivate()
         {
-            onPowerDeactivated?.Invoke();
+            if (!isPowerActive)
+            {
+                return;
+            }
+            
             isPowerActive = false;
             
             if (ShouldStartCooldownOnDeactivate())
@@ -56,6 +65,7 @@ namespace Powers
                 StartPowerCooldown(powerCooldownDuration);
                 powerCategory.StartCooldown(categoryCooldownDuration);
             }
+            onPowerDeactivated?.Invoke();
         }
         
         public abstract bool ShouldStartCooldownOnDeactivate();
