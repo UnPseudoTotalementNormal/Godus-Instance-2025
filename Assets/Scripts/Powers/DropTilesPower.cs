@@ -17,6 +17,9 @@ namespace Powers
         
         private Vector2Int lastDroppedTilePosition = new(int.MinValue, int.MinValue);
         
+        private int tilesLeftToDrop = 0;
+        [SerializeField] private int maxTilesToDrop = 30;
+        
         private void Start()
         {
             mainCamera = UnityEngine.Camera.main;
@@ -28,14 +31,25 @@ namespace Powers
             InputManager.instance.onLeftMouseButtonPressStarted += TryStartDroppingTiles;
             InputManager.instance.onLeftMouseButtonPressCanceled += StopDroppingTiles;
             InputManager.instance.onMousePosition += GetMousePos;
+            tilesLeftToDrop = maxTilesToDrop;
         }
 
         public override void Update()
         {
             base.Update();
-            if (isDroppingTiles)
+            if (!isDroppingTiles)
             {
-                DropTileAtMousePosition();
+                return;
+            }
+            
+            bool _hasDroppedTiles = TryDropTileAtMousePosition();
+            if (_hasDroppedTiles)
+            {
+                tilesLeftToDrop--;
+                if (tilesLeftToDrop <= 0)
+                {
+                    Deactivate();
+                }
             }
         }
 
@@ -63,10 +77,12 @@ namespace Powers
         {
             base.Deactivate();
             StopDroppingTiles();
-            InputManager.instance.onLeftMouseButtonPressStarted -= DropTileAtMousePosition;
+            InputManager.instance.onLeftMouseButtonPressStarted -= TryStartDroppingTiles;
+            InputManager.instance.onLeftMouseButtonPressCanceled -= StopDroppingTiles;
+            InputManager.instance.onMousePosition -= GetMousePos;
         }
 
-        private void DropTileAtMousePosition()
+        private bool TryDropTileAtMousePosition()
         {
             Vector2 _mouseWorldPosition = Vector2Int.RoundToInt(mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y))) 
                                           + GameValues.GRID_OFFSET;
@@ -75,7 +91,7 @@ namespace Powers
             
             if (_mouseWorldPositionInt == lastDroppedTilePosition)
             {
-                return;
+                return false;
             }
             
             lastDroppedTilePosition = _mouseWorldPositionInt;
@@ -93,6 +109,8 @@ namespace Powers
                     _tile.level += 1;
                 }
             }
+
+            return true;
         }
     }
 }
