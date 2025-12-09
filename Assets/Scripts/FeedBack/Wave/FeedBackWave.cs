@@ -45,6 +45,7 @@ namespace Feedback.Wave
             sliderInitialPosition = rectTransform.anchoredPosition;
         }
 
+        /*
         private void OnEnable()
         {
             InitializeEvent();
@@ -79,7 +80,7 @@ namespace Feedback.Wave
             GameEvents.onUpdateSlideBarRemainingEnemy -= UpdateSlideBarRemainingEnemy;
             GameEvents.onEnableSlideBarRemainingEnemy -= EnableSlideBarRemainingEnemy;
             GameEvents.onDisableSlideBarRemainingEnemy -= DisableSlideBarRemainingEnemy;
-        }
+        }*/
         
         public void StartFX(int _currentWave = 0)
         {
@@ -91,7 +92,7 @@ namespace Feedback.Wave
             StartShaderEffect();
             StartText();
         }
-        #endregion
+        //#endregion
                  
         #region Interface IFX
         public void StartVFX()
