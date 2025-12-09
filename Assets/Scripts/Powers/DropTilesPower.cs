@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TileSystemSpace;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 namespace Powers
 {
@@ -40,14 +41,8 @@ namespace Powers
             {
                 return;
             }
-            Vector2 _offset = new Vector2(Screen.width * 0.01f, Screen.height * 0.02f);
-            Vector2 _textPosition = new Vector2(mouseScreenPosition.x + _offset.x, (Screen.height - mouseScreenPosition.y) + _offset.y);
-            GUIStyle _style = new GUIStyle(GUI.skin.label)
-            {
-                fontSize = 24,
-                normal = { textColor = Color.white }
-            };
-            GUI.Label(new Rect(_textPosition, new Vector2(Screen.width * 0.3f, Screen.height * 0.03f)), tilesLeftToDrop.ToString(), _style);
+
+            GUIUtils.DisplayTextUnderMouse(mouseScreenPosition, tilesLeftToDrop.ToString());
         }
 
         public override void Update()

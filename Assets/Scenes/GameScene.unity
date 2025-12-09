@@ -139,6 +139,28 @@ MonoBehaviour:
   lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   lineWidth: 0.05
   lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &16283313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16283309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1619723bb8f561f5db570377d024d3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.MeteoritePower
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 9
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 40
+  <categoryCooldownDuration>k__BackingField: 30
+  meteoritePrefab: {fileID: 1649230141344992189, guid: 7d2efbf52001aaedaaf12bfeab850c1d, type: 3}
+  maxMeteorites: 1
+  damageAmount: 1000
+  minTileDigLevel: 2
+  maxTileDigLevel: 5
 --- !u!1 &34781362
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +929,28 @@ MonoBehaviour:
   lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   lineWidth: 0.05
   lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1071642715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071642711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1619723bb8f561f5db570377d024d3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.MeteoritePower
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 2
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 10
+  <categoryCooldownDuration>k__BackingField: 5
+  meteoritePrefab: {fileID: 1649230141344992189, guid: 7d2efbf52001aaedaaf12bfeab850c1d, type: 3}
+  maxMeteorites: 1
+  damageAmount: 200
+  minTileDigLevel: 1
+  maxTileDigLevel: 2
 --- !u!1001 &1224380946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1687,6 +1731,8 @@ MonoBehaviour:
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
   maxTilesToDig: 30
 --- !u!1001 &1729487797
 PrefabInstance:
@@ -2013,6 +2059,28 @@ MonoBehaviour:
   lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   lineWidth: 0.05
   lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1751257817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751257813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1619723bb8f561f5db570377d024d3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.MeteoritePower
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 5
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 20
+  <categoryCooldownDuration>k__BackingField: 30
+  meteoritePrefab: {fileID: 1649230141344992189, guid: 7d2efbf52001aaedaaf12bfeab850c1d, type: 3}
+  maxMeteorites: 1
+  damageAmount: 400
+  minTileDigLevel: 1
+  maxTileDigLevel: 3
 --- !u!1001 &1794610660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2206,6 +2274,9 @@ PrefabInstance:
     - {fileID: 656483249937758248, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
     - {fileID: 3059140216847769146, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
     - {fileID: 3065140996200823130, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+    - {fileID: 8138358515186607595, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+    - {fileID: 3027616465563898612, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+    - {fileID: 4550407518726394526, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2250,10 +2321,19 @@ PrefabInstance:
       addedObject: {fileID: 1453300671}
     - targetCorrespondingSourceObject: {fileID: 4913164743679277192, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1071642715}
+    - targetCorrespondingSourceObject: {fileID: 4913164743679277192, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1071642713}
     - targetCorrespondingSourceObject: {fileID: 2750874842964857837, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1751257817}
+    - targetCorrespondingSourceObject: {fileID: 2750874842964857837, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1751257815}
+    - targetCorrespondingSourceObject: {fileID: 3569314833829841097, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 16283313}
     - targetCorrespondingSourceObject: {fileID: 3569314833829841097, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       insertIndex: -1
       addedObject: {fileID: 16283311}
@@ -2292,6 +2372,8 @@ MonoBehaviour:
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 2
   radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
   tileTypeToDrop: 10
   maxTilesToDrop: 30
 --- !u!114 &7697605199212569337
@@ -2309,6 +2391,8 @@ MonoBehaviour:
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
   tileTypeToDrop: 10
   maxTilesToDrop: 30
 --- !u!114 &7697605199212569339
