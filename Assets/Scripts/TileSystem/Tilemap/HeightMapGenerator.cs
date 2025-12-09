@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TileSystemSpace.Tilemap
@@ -11,6 +13,8 @@ namespace TileSystemSpace.Tilemap
 
         private TileSystem tileSystem;
         private Texture2D heightTex;
+
+        private bool hasUpdatedTexture = false;
 
         private void Start()
         {
@@ -28,6 +32,16 @@ namespace TileSystemSpace.Tilemap
                 tileSystem.onAnyTileChanged -= OnAnyTileChanged;
         }
 
+        private void LateUpdate()
+        {
+            if (hasUpdatedTexture)
+            {
+                heightTex.Apply();
+                UpdateMaterial();
+                hasUpdatedTexture = false;
+            }
+        }
+
         private void OnAnyTileChanged(Tile _tile, Vector2Int _pos)
         {
             Color32 _c = GetHeightColor(_pos.x, _pos.y);
@@ -41,9 +55,8 @@ namespace TileSystemSpace.Tilemap
                     heightTex.SetPixel(_startX + _px, _startY + _py, _c);
                 }
             }
-
-            heightTex.Apply();
-            UpdateMaterial();
+            
+            hasUpdatedTexture = true;
         }
 
         private void GenerateHeightMapTexture()
