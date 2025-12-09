@@ -48,8 +48,6 @@ namespace TileSystemSpace.Environnement
     
             int _totalSpawns = _guaranteedSpawns + (UnityEngine.Random.value < _fractionalPart ? 1 : 0);
     
-            Debug.Log($"Expected tree spawns: {_expectedSpawns:F2}, Actual spawns: {_totalSpawns}");
-    
             List<Tile> _tileList = new List<Tile>(grassTiles.Keys);
             for (int i = 0; i < _totalSpawns && _tileList.Count > 0; i++)
             {
@@ -57,7 +55,6 @@ namespace TileSystemSpace.Environnement
                 Tile _selectedTile = _tileList[_randomIndex];
                 Vector2Int _tilePosition = grassTiles[_selectedTile];
                 
-                Debug.Log("Spawning tree at: " + _tilePosition);
                 Instantiate(treePrefab, 
                     new Vector3(_tilePosition.x, _tilePosition.y), 
                     Quaternion.identity);
