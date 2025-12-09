@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using AI;
 using AYellowpaper.SerializedCollections;
 using TileSystemSpace;
+using Unity.VisualScripting;
 using UnityEngine.Serialization;
+using Utils.TimerSystem;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -68,6 +70,8 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private float lowPowerChanceMultiplier = 0.9f;
 
     private bool waveIsRunning = false;
+
+    private TimerSystem waveTimer;
     
     private void Start()
     {
@@ -75,24 +79,13 @@ public class WavesManager : MonoBehaviour
         StartWave();
     }
 
-    public void WavesCanStart()
-    {
-        StartCoroutine(WaveTimerCoroutine(timeBetweenWaves));
-    }
-
-    private IEnumerator WaveTimerCoroutine(float _timer)
-    {
-        yield return new WaitForSeconds(_timer);
-        StartWave();
-    }
-
     private void StartWave()
     {
-        StopCoroutine(WaveTimerCoroutine(timeBetweenWaves));
+        waveTimer?.Stop();
+        
         waveInfo.currentWave++;
         SetWaveSpawnPoint();
         GameEvents.onWaveStarted?.Invoke(waveInfo.currentWave);
-        GameEvents.onWaveInfo?.Invoke(waveInfo);
 
         waveInfo.maxEnemiesInWave = 0;
 
@@ -100,12 +93,14 @@ public class WavesManager : MonoBehaviour
         {
             timeBetweenWaves = otherTimeBetweenWaves;
             CountEnemiesInManualWave();
+            GameEvents.onWaveInfo?.Invoke(waveInfo);
             WavesSpawner();
             return;
         }
 
         timeBetweenWaves = otherTimeBetweenWaves;
         RandomWavesSpawner();
+        GameEvents.onWaveInfo?.Invoke(waveInfo);
     }
 
     private void CountEnemiesInManualWave()
@@ -244,16 +239,20 @@ public class WavesManager : MonoBehaviour
     private void SpawnEnemy(GameObject _enemy)
     {
         GameObject _new = Instantiate(_enemy, waveSpawnPoint, Quaternion.identity);
+        _new.transform.SetParent(transform);
         currentEnemyAlive.Add(_new);
 
         TestEnemy _comp = _new.GetComponent<TestEnemy>();
-        if (_comp != null)
+
+        if (!_comp)
         {
-            _comp.onDeath += () =>
-            {
-                HandleEnemyDeath(_new);
-            };
+            _comp = _new.AddComponent<TestEnemy>();
         }
+        
+        _comp.onDeath += () =>
+        {
+            HandleEnemyDeath(_new);
+        };
     }
 
     private void HandleEnemyDeath(GameObject _enemy)
@@ -271,7 +270,10 @@ public class WavesManager : MonoBehaviour
     {
         waveIsRunning = false;
         StopAllCoroutines();
-        StartCoroutine(WaveTimerCoroutine(timeBetweenWaves));
+        waveTimer = TimerSystem.NewTimer(timeBetweenWaves);
+        waveTimer.onTimerComplete += StartWave;
+        
+        GameEvents.onStartTimerBetweenWave?.Invoke(waveTimer);
         GameEvents.onWaveEnded?.Invoke();
     }
 
