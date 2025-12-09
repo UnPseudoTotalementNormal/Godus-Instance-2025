@@ -140,5 +140,10 @@ namespace Powers
 
             return _tilesDroppedCount;
         }
+        
+        public override bool ShouldStartCooldownOnDeactivate()
+        {
+            return tilesLeftToDrop != maxTilesToDrop;
+        }
     }
 }

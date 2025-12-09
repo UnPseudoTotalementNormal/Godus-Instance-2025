@@ -14,6 +14,8 @@ namespace Powers
         
         public PowerCategory powerCategory => GetComponentInParent<PowerCategory>();
         
+        public float powerCooldownDuration { get; protected set; }  = 5f;
+        public float categoryCooldownDuration { get; protected set; }  = 2f;
         public float currentCooldownTime { get; protected set; }
         public bool isOnCooldown => currentCooldownTime > 0f;
         
@@ -40,17 +42,35 @@ namespace Powers
 
         public virtual void Activate()
         {
-            onPowerActivated?.Invoke();
+            if (isPowerActive)
+            {
+                return;
+            }
+            
             isPowerActive = true;
+            onPowerActivated?.Invoke();
         }
 
         public virtual void Deactivate()
         {
-            onPowerDeactivated?.Invoke();
+            if (!isPowerActive)
+            {
+                return;
+            }
+            
             isPowerActive = false;
+            
+            if (ShouldStartCooldownOnDeactivate())
+            {
+                StartPowerCooldown(powerCooldownDuration);
+                powerCategory.StartCooldown(categoryCooldownDuration);
+            }
+            onPowerDeactivated?.Invoke();
         }
         
-        public void StartCooldown(float _cooldownDuration)
+        public abstract bool ShouldStartCooldownOnDeactivate();
+        
+        public void StartPowerCooldown(float _cooldownDuration)
         {
             currentCooldownTime = _cooldownDuration;
             onCooldownStarted?.Invoke();

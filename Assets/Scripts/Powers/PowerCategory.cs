@@ -11,7 +11,7 @@ namespace Powers
         public float currentCooldownTime { get; private set; }
         public bool isOnCooldown => currentCooldownTime > 0f;
         
-        public event Action onCooldownStarted;
+        public event Action<float> onCooldownStarted;
         public event Action onCooldownEnded;
 
         private void Update()
@@ -30,7 +30,7 @@ namespace Powers
         public void StartCooldown(float _cooldownDuration)
         {
             currentCooldownTime = _cooldownDuration;
-            onCooldownStarted?.Invoke();
+            onCooldownStarted?.Invoke(_cooldownDuration);
         }
     }
 }

@@ -43,19 +43,25 @@ namespace Powers
         {
             if (currentPower == _newPower)
             {
+                UnequipCurrentPower();
                 return;
             }
             
             if (currentPower != null)
             {
-                currentPower.Deactivate();
-                onPowerUnSelected?.Invoke(currentPower);
+                UnequipCurrentPower();
+            }
+
+            if (!CanUsePower(_newPower))
+            {
+                return;
             }
 
             currentPower = _newPower;
 
             if (currentPower != null)
             {
+                currentPower.onPowerDeactivated += UnequipCurrentPower;
                 currentPower.Activate();
                 onPowerSelected?.Invoke(currentPower);
             }
@@ -67,6 +73,7 @@ namespace Powers
             if (_power != null)
             {
                 _power.Deactivate();
+                currentPower.onPowerDeactivated -= UnequipCurrentPower;
                 currentPower = null;
                 onPowerUnSelected?.Invoke(_power);
             }
