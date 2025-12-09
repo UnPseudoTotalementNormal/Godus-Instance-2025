@@ -44,7 +44,7 @@ namespace AI
             lastAttackTime = -Mathf.Infinity;
         }
         
-        private void Attack(HealthComponent _targetHealth)
+        protected virtual void Attack(HealthComponent _targetHealth)
         {
             _targetHealth.TakeDamage(attackDamage);
             lastAttackTime = Time.time;
