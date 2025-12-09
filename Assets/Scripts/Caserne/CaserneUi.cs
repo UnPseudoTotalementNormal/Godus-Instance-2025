@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public class CaserneUi : MonoBehaviour
@@ -15,7 +11,6 @@ public class CaserneUi : MonoBehaviour
     public TMP_Text textInfo3;
 
     private Vector2 mousePosition;
-    public UnityEngine.Camera mainCamera;
     private bool uIDisplay = false;
 
     void Start()
@@ -32,25 +27,14 @@ public class CaserneUi : MonoBehaviour
 
     void OncaserneClick(Caserne _caserne)
     {
-        Vector3 _posMouse = GetMousePosOnGame();
-        {
-            caserneUiPanel.transform.position = _caserne.transform.position;
-            caserneUiPanel.SetActive(true);
-            uIDisplay = true;
-        }
+        caserneUiPanel.transform.position = _caserne.transform.position;
+        caserneUiPanel.SetActive(true);
+        uIDisplay = true;
     }
 
     private void GetMousePos(Vector2 _mousePosition)
     {
         mousePosition = _mousePosition;
-    }
-    private Vector3 GetMousePosOnGame()
-    {
-        Vector2Int _newMousePosInt = Vector2Int.RoundToInt(mousePosition);
-        Vector3 _posMouse = mainCamera
-            .ScreenToWorldPoint(new Vector3(_newMousePosInt.x, _newMousePosInt.y));
-        _posMouse += Vector3.one * 0.5f;
-        return _posMouse;
     }
 
     public void Unit1()
