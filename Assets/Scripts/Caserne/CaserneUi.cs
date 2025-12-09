@@ -4,38 +4,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class CaserneUi : MonoBehaviour
 {
 
-    public GameObject CaserneUiPanel;
+    [FormerlySerializedAs("CaserneUiPanel")] public GameObject caserneUiPanel;
     public TMP_Text textInfo1;
     public TMP_Text textInfo2;
     public TMP_Text textInfo3;
 
     private Vector2 mousePosition;
     public UnityEngine.Camera mainCamera;
-    private bool UIDisplay = false;
+    private bool uIDisplay = false;
 
     void Start()
     {
-        CaserneUiPanel.SetActive(false);
+        caserneUiPanel.SetActive(false);
         InputManager.instance.onMousePosition += GetMousePos;
-        Caserne.OnCaserneClick += OncaserneClick;
+        Caserne.onCaserneClick += OncaserneClick;
     }
 
     void OnDestroy()
     {
-        Caserne.OnCaserneClick -= OncaserneClick;
+        Caserne.onCaserneClick -= OncaserneClick;
     }
 
     void OncaserneClick(Caserne _caserne)
     {
         Vector3 _posMouse = GetMousePosOnGame();
         {
-            CaserneUiPanel.transform.position = _caserne.transform.position;
-            CaserneUiPanel.SetActive(true);
-            UIDisplay = true;
+            caserneUiPanel.transform.position = _caserne.transform.position;
+            caserneUiPanel.SetActive(true);
+            uIDisplay = true;
         }
     }
 
@@ -84,8 +85,8 @@ public class CaserneUi : MonoBehaviour
     }
     public void Cross() 
     {
-        UIDisplay = false;
-        CaserneUiPanel.SetActive(false);
+        uIDisplay = false;
+        caserneUiPanel.SetActive(false);
     }
 }
 
