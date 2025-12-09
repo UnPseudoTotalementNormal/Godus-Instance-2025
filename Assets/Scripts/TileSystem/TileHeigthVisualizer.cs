@@ -9,8 +9,8 @@ namespace TileSystemSpace
 {
     public class TileHeigthVisualizer : MonoBehaviour
     {
-        private bool HeigthShow = false;
-        Dictionary<Vector2Int, TextMeshPro> _tileHeightVisualizers = new();
+        private bool heightShow = false;
+        Dictionary<Vector2Int, TextMeshPro> tileHeightVisualizersDictionary = new();
         [SerializeField] private Transform transformParentToInstantiate;
 
 
@@ -24,7 +24,7 @@ namespace TileSystemSpace
 
         private void OnAnyTileChanged(Tile arg1, Vector2Int arg2)
         {
-            _tileHeightVisualizers[arg2].text = TileSystem.instance.GetTile(arg2).level.ToString();
+            tileHeightVisualizersDictionary[arg2].text = TileSystem.instance.GetTile(arg2).level.ToString();
         }
         private void GetTileHeight()
         {
@@ -34,30 +34,30 @@ namespace TileSystemSpace
                 for (int y = 0; y < TileSystem.instance.GetSize().y; y++)
                 {
                     TileSystem.instance.GetTile(x,y);
-                    GameObject go = new GameObject("test");
-                    TextMeshPro _testText = go.AddComponent<TextMeshPro>();
+                    GameObject go = new GameObject("LevelText");
+                    TextMeshPro tileLevelText = go.AddComponent<TextMeshPro>();
                     go.transform.SetParent(transformParentToInstantiate);
-                    _testText.transform.position = new Vector2(x+9.9f, y-2.2f);
-                    _testText.fontSize = 6;
-                    _testText.text = TileSystem.instance.GetTile(x,y).level.ToString();
-                    _tileHeightVisualizers[new Vector2Int(x, y)] = _testText;
+                    tileLevelText.transform.position = new Vector2(x+9.9f, y-2.2f);
+                    tileLevelText.fontSize = 6;
+                    tileLevelText.text = TileSystem.instance.GetTile(x,y).level.ToString();
+                    tileHeightVisualizersDictionary[new Vector2Int(x, y)] = tileLevelText;
 
                 }
             }
         }
         void ToggleShowTileHeight()
         {
-            if (HeigthShow == false)
+            if (heightShow == false)
             {
                 transformParentToInstantiate.position = new Vector3(-100000, -100000);
                 //transformParentToInstantiate.gameObject.SetActive(true);
-                HeigthShow = true;
+                heightShow = true;
             }
-            else if (HeigthShow == true)
+            else if (heightShow == true)
             {
                 transformParentToInstantiate.position = new Vector3(0, 0);
                 //transformParentToInstantiate.gameObject.SetActive(false);
-                HeigthShow = false;
+                heightShow = false;
             }
         }
         
