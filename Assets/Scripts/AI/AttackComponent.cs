@@ -22,6 +22,11 @@ namespace AI
         }
         public bool IsInAttackRange(HealthComponent _target) => IsInAttackRange(_target.transform.position);
         public bool IsInAttackRange(Transform _target) => IsInAttackRange(_target.transform.position);
+        
+        public bool IsCooldownReady()
+        {
+            return Time.time >= lastAttackTime + attackCooldown;
+        }
 
         public bool TryAttack(HealthComponent _targetHealth)
         {
@@ -30,7 +35,7 @@ namespace AI
                 return false;
             }
             
-            if (Time.time < lastAttackTime + attackCooldown)
+            if (!IsCooldownReady())
             {
                 return false;
             }
