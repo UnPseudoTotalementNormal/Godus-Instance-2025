@@ -3,7 +3,9 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 using Utils;
+using Utils.TimerSystem;
 
 namespace Feedback.Wave
 {
@@ -15,14 +17,13 @@ namespace Feedback.Wave
         [SerializeField] private TMP_Text waveText;
         
         [Header("Slider Settings")]
-        [SerializeField] private GameObject sliderArea;
+        [SerializeField] private GameObject sliderObj;
+        private Slider sliderComponent;
         [SerializeField] private float sliderAnimTranslateDuration = 1f;
         [SerializeField] private float sliderAnimCanvasDuration = 1f;
         
-        //private WaveInfo waveInfo ;
-        private int currentWave = 0;
+        private WaveInfo waveInfo = new();
         
-        private int totalEnemy = 0;
         private int remainingEnemy = 0;
         private bool isSliderAreaActive = false;
         private Vector2 sliderInitialPosition;
@@ -31,15 +32,22 @@ namespace Feedback.Wave
         private CanvasGroup canvasGroup;
         private float offsetY;
         
+        private TimerSystem currentTimer;
+
         private void Start()
         {
+            Assert.IsNotNull(sliderObj, $"<b>[FeedBackWave]</b> Slider GameObject is not assigned in the inspector.");
+            sliderComponent = sliderObj.GetComponent<Slider>();
+            Assert.IsNotNull(sliderComponent, $"<b>[FeedBackWave]</b> Slider component is missing on {sliderObj.name} GameObject.");
+
+            waveText.text = "";
             waveText.enabled = false;
-            sliderArea.SetActive(false);
+            sliderObj.SetActive(false);
             
-            rectTransform = sliderArea.GetComponent<RectTransform>();
-            canvasGroup = sliderArea.GetComponent<CanvasGroup>();
-            Assert.IsNotNull(rectTransform, $"<b>[FeedBackWave]</b> RectTransform component is missing on {sliderArea.name} GameObject.");
-            Assert.IsNotNull(canvasGroup, $"<b>[FeedBackWave]</b> CanvasGroup component is missing on {sliderArea.name} GameObject.");
+            rectTransform = sliderObj.GetComponent<RectTransform>();
+            canvasGroup = sliderObj.GetComponent<CanvasGroup>();
+            Assert.IsNotNull(rectTransform, $"<b>[FeedBackWave]</b> RectTransform component is missing on {sliderObj.name} GameObject.");
+            Assert.IsNotNull(canvasGroup, $"<b>[FeedBackWave]</b> CanvasGroup component is missing on {sliderObj.name} GameObject.");
             
             offsetY = rectTransform.rect.height;
             sliderInitialPosition = rectTransform.anchoredPosition;
@@ -64,41 +72,47 @@ namespace Feedback.Wave
         #region InitializeEvent
         private void InitializeEvent()
         {
-            GameEvents.onWaveStarted += StartFX;
-            
-            /*
-            GameEvents.onEnabledSlideBarRemainingEnemy += EnabledSlideBarRemainingEnemy;
-            GameEvents.onUpdateSlideBarRemainingEnemy += UpdateSlideBarRemainingEnemy;
-            GameEvents.onEnableSlideBarRemainingEnemy += EnableSlideBarRemainingEnemy;
-            GameEvents.onDisableSlideBarRemainingEnemy += DisableSlideBarRemainingEnemy;
-            */
+            GameEvents.onWaveStarted += StartWave;
+            GameEvents.onWaveEnded += EndWave;
+            GameEvents.onWaveInfo += GetWaveInfo;
+            GameEvents.onEnemyDeath += OnEnemyDeath;
+            GameEvents.onStartTimerBetweenWave += StartTimer;
         }
         
         private void CleanupEvent()
         {
-            GameEvents.onWaveStarted -= StartFX;
-            
-            /*
-            GameEvents.onEnabledSlideBarRemainingEnemy -= EnabledSlideBarRemainingEnemy;
-            GameEvents.onUpdateSlideBarRemainingEnemy -= UpdateSlideBarRemainingEnemy;
-            GameEvents.onEnableSlideBarRemainingEnemy -= EnableSlideBarRemainingEnemy;
-            GameEvents.onDisableSlideBarRemainingEnemy -= DisableSlideBarRemainingEnemy;
-            */
+            GameEvents.onWaveStarted -= StartWave;
+            GameEvents.onWaveEnded -= EndWave;
+            GameEvents.onWaveInfo -= GetWaveInfo;
+            GameEvents.onEnemyDeath -= OnEnemyDeath;
+            GameEvents.onStartTimerBetweenWave -= StartTimer;
         }
         
-        public void StartFX(int _currentWave = 0)
-        {
-            currentWave = _currentWave;
+        private void StartWave(int _currentWave = 0)
+        { 
+            waveInfo.currentWave = _currentWave;
             
-            StartVFX();
-            StartSFX();
-            StartTimer();
-            StartShaderEffect();
-            StartText();
+            //StartFX();
+            EnabledSlideBarRemainingEnemy(true);
+            StartText($"Wave {waveInfo.currentWave}");
         }
+        
+        private void EndWave()
+        {
+            // Mettre le timer.
+            EnabledSlideBarRemainingEnemy(false);
+        }
+        
         #endregion
                  
         #region Interface IFX
+        public void StartFX()
+        {
+            StartVFX();
+            StartSFX();
+            StartShaderEffect();
+        }
+
         public void StartVFX()
         {
             
@@ -109,10 +123,6 @@ namespace Feedback.Wave
             GameAudioManager.instance.PlayOneShot(feedBackData.startSFX);
         }
         
-        public void StartTimer()
-        {
-            
-        }
         
         public void StartShaderEffect()
         {
@@ -120,16 +130,38 @@ namespace Feedback.Wave
         }
         #endregion
 
-        private void StartText(int _currentWave = 0)
+        
+        #region Calling by Events
+        private void GetWaveInfo(WaveInfo _newInfo)
         {
-            waveText.enabled = true;
-            waveText.text = "";
-
-            string _fullText = $"Wave {_currentWave}";
-
-            TextAnimationUtils.ChangeText(waveText, _fullText, feedBackData.textDuration);
+            waveInfo = _newInfo;
+            remainingEnemy = waveInfo.maxEnemiesInWave;
+            SetMaxSliderRemainingEnemy(waveInfo.maxEnemiesInWave);
         }
 
+        private void StartText(string _newInfo)
+        {
+            waveText.enabled = true;
+            TextAnimationUtils.ChangeText(waveText, _newInfo, feedBackData.textDuration);
+        }
+
+        private void StartTimer(TimerSystem _timer)
+        {
+            Debug.Log($"{_timer} & {waveText}");
+            waveText.enabled = true;
+            currentTimer = TextAnimationUtils.StartTimerText(waveText, _timer, "Timer", "0.00");
+        }
+        
+        private void OnEnemyDeath()
+        {
+            if (remainingEnemy <= 0)
+                return;
+            
+            remainingEnemy--;
+            UpdateSlideBarRemainingEnemy();
+        }
+        #endregion
+        
         
         #region SlideBarRemainingEnemy
         private void EnabledSlideBarRemainingEnemy(bool _isEnable = false)
@@ -149,7 +181,7 @@ namespace Feedback.Wave
                 return;
          
             isSliderAreaActive = true;
-            sliderArea.SetActive(true);
+            sliderObj.SetActive(true);
             
             canvasGroup.DOFade(1f, sliderAnimCanvasDuration)
                 .SetEase(Ease.InBack);
@@ -183,21 +215,25 @@ namespace Feedback.Wave
                     canvasGroup.alpha = 1f;
                     rectTransform.anchoredPosition = sliderInitialPosition;
                     
-                    sliderArea.SetActive(false);
+                    sliderObj.SetActive(false);
                     isSliderAreaActive = false;
                 });
         }
 
         private void SetMaxSliderRemainingEnemy(float _value)
         {
-            
+            sliderComponent.maxValue = _value;
+            sliderComponent.value = _value;
         }
         
         private void UpdateSlideBarRemainingEnemy()
         {
-            // Mettre a jour la variable `remainingEnemy`
-            // remainingEnemy = waveInfo.currentEnemyCount;
+            sliderComponent.value = remainingEnemy;
+            // DOTween could be used here for smooth transition if needed on this slider update.
+            
+            
         }
+        
         #endregion
     }
 }
