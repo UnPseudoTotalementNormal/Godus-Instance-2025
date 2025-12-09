@@ -72,8 +72,8 @@ namespace Powers
             var _power = currentPower;
             if (_power != null)
             {
-                _power.Deactivate();
                 currentPower.onPowerDeactivated -= UnequipCurrentPower;
+                _power.Deactivate();
                 currentPower = null;
                 onPowerUnSelected?.Invoke(_power);
             }
