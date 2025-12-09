@@ -56,6 +56,8 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private float otherTimeBetweenWaves = 60f;
     private float timeBetweenWaves;
 
+    public int GetCurrentWave => waveInfo.currentWave;
+
     [Header("For Endless Waves")]
     [SerializeField] private int wavePowerLevel = 10;
     [SerializeField] private float wavePowerLevelMultiplier = 1.1f;
@@ -89,8 +91,7 @@ public class WavesManager : MonoBehaviour
         StopCoroutine(WaveTimerCoroutine(timeBetweenWaves));
         waveInfo.currentWave++;
         SetWaveSpawnPoint();
-        GameEvents.onEnabledSlideBarRemainingEnemy?.Invoke(true);
-        GameEvents.onWaveStarted?.Invoke();
+        GameEvents.onWaveStarted?.Invoke(waveInfo.currentWave);
         GameEvents.onWaveInfo?.Invoke(waveInfo);
 
         waveInfo.maxEnemiesInWave = 0;
@@ -272,7 +273,6 @@ public class WavesManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(WaveTimerCoroutine(timeBetweenWaves));
         GameEvents.onWaveEnded?.Invoke();
-        GameEvents.onEnabledSlideBarRemainingEnemy?.Invoke(false);
     }
 
     private bool IsEnemyNextTo()
