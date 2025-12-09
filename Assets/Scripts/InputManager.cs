@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
     public event Action onRightMouseButtonPressCanceled;
     
     public event Action onEscapeButtonPressStarted;
+    
+    public event Action onShowCoordinatePressStarted;
 
     public event Action<Vector2> onMouseDelta;
     
@@ -83,6 +85,14 @@ public class InputManager : MonoBehaviour
         if (_context.started)
         {
             onEscapeButtonPressStarted?.Invoke();
+        }
+    }
+    
+    public void OnShowCoordinate(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            onShowCoordinatePressStarted?.Invoke();
         }
     }
     
