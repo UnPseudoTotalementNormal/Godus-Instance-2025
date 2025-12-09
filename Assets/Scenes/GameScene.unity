@@ -1204,6 +1204,7 @@ GameObject:
   - component: {fileID: 1494854485}
   - component: {fileID: 1494854484}
   - component: {fileID: 1494854486}
+  - component: {fileID: 1494854487}
   m_Layer: 0
   m_Name: Tilemap Visualizer
   m_TagString: Untagged
@@ -1540,6 +1541,21 @@ MonoBehaviour:
   tilemapMaterial: {fileID: 2100000, guid: c24c2de1e6a724870a57b902fa12e836, type: 2}
   heightTexPropertyName: _HeightTex
   pixelsPerTile: 32
+--- !u!114 &1494854487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494854479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f213eeff7a4274b33ae27f31068402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileSystemSpace.Environnement.TreeSpawner
+  treePrefab: {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  tileTreeSpawnChancePerTick: 0.1
+  tickTimeInterval: 10
 --- !u!1 &1551855891
 GameObject:
   m_ObjectHideFlags: 0
