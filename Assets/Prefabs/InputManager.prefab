@@ -210,6 +210,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a1f3e8cd-4f75-490d-9b09-f91e604b8c7d
     m_ActionName: Player/MousePosition
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4537015942968288749}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnShowCoordinate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c75227e9-98b9-4d8c-a666-228478979a03
+    m_ActionName: 'Player/F3[/Keyboard/f3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
