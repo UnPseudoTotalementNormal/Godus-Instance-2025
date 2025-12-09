@@ -10,6 +10,6 @@ public class TreeResource : ResourceComponent
     protected override void OnExhaustedFeedback()
     {
         Debug.Log("Tree down !");
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

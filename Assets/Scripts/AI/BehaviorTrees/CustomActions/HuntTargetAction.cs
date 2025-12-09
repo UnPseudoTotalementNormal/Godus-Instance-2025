@@ -11,18 +11,40 @@ public partial class HuntTargetAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<GameObject> PathTarget;
     [SerializeReference] public BlackboardVariable<float> Range;
+    
+    ResourceComponent targetRC;
+    float gatheringTimer;
+    bool resourceExhausted;
+    
     protected override Status OnStart()
     {
+        targetRC = PathTarget.Value.GetComponent<ResourceComponent>();
+        targetRC.callback += CallbackReceiver;
+        PathTarget.Value.GetComponent<BehaviorGraphAgent>().SetVariableValue("attacked", true);
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        return Status.Success;
+        if (gatheringTimer >= targetRC.collectionDelay)
+        {
+            targetRC.OnCollect();
+            gatheringTimer = 0f;
+        }
+
+        if (resourceExhausted)
+            return Status.Success;
+        gatheringTimer += Time.deltaTime;
+        return Status.Running;
     }
 
     protected override void OnEnd()
     {
+    }
+
+    void CallbackReceiver()
+    {
+        resourceExhausted = true;
     }
 }
 

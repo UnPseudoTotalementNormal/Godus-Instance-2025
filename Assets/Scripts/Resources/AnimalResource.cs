@@ -10,5 +10,6 @@ public class AnimalResource : ResourceComponent
     protected override void OnExhaustedFeedback()
     {
         Debug.Log("Animal Feedback");
+        Destroy(gameObject);
     }
 }
