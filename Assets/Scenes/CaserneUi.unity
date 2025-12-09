@@ -1027,7 +1027,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6228693343656372911, guid: 0696dc54f8738f1458ebfbbe70e91b8f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1484113591}
   m_SourcePrefab: {fileID: 100100000, guid: 0696dc54f8738f1458ebfbbe70e91b8f, type: 3}
 --- !u!1 &396379772
 GameObject:
@@ -1471,10 +1474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CaserneUi
   CaserneUiPanel: {fileID: 1996216463}
-  Caserne: {fileID: 1484113586}
-  TextInfo1: {fileID: 1321464992}
-  TextInfo2: {fileID: 1080997831}
-  TextInfo3: {fileID: 14914335}
+  textInfo1: {fileID: 0}
+  textInfo2: {fileID: 0}
+  textInfo3: {fileID: 0}
   mainCamera: {fileID: 42406505}
 --- !u!1001 &493396769
 PrefabInstance:
@@ -3402,6 +3404,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6228693343656372911, guid: 0696dc54f8738f1458ebfbbe70e91b8f, type: 3}
   m_PrefabInstance: {fileID: 371260046}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1484113591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484113586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede19c107b1340f44a24b5b4fb3f844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caserne
 --- !u!1 &1489083203
 GameObject:
   m_ObjectHideFlags: 0
