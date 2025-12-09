@@ -445,18 +445,21 @@ MonoBehaviour:
     - Key: 1
       Value:
         enemyTypePrefab:
-        - enemyTypePrefab: {fileID: 0}
-          numberOfEnemies: 0
+        - enemyTypePrefab: {fileID: 5929674309729235807, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
+          numberOfEnemies: 10
+          chanceToSpawn: 0
+          enemyPowerLevel: 0
+        - enemyTypePrefab: {fileID: 6943104481354564431, guid: 1c937bc6f25bc824d82e8bf99cef11b9, type: 3}
+          numberOfEnemies: 5
           chanceToSpawn: 0
           enemyPowerLevel: 0
     - Key: 2
       Value:
         enemyTypePrefab: []
-  enemySpawnInterval: 0.5
-  wavePowerLevel: 20
-  wavePowerLevelMultiplier: 1.1
   firstTimeBetweenWaves: 180
   otherTimeBetweenWaves: 60
+  wavePowerLevel: 20
+  wavePowerLevelMultiplier: 1.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
