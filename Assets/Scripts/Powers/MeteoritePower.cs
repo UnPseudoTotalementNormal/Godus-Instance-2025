@@ -19,6 +19,9 @@ namespace Powers
         [SerializeField] private int minTileDigLevel = 1;
         [SerializeField] private int maxTileDigLevel = 2;
         
+        [SerializeField] private float screenShakeForce = 2;
+        [SerializeField] private float screenShakeDuration = 2;
+        
         private int meteoriteLeft = 1;
         
         private Vector2 mouseScreenPosition;
@@ -74,6 +77,8 @@ namespace Powers
             _newMeteorite.damageAmount = damageAmount;
             _newMeteorite.minTileDigLevel = minTileDigLevel;
             _newMeteorite.maxTileDigLevel = maxTileDigLevel;
+            _newMeteorite.impulseForce = screenShakeForce;
+            _newMeteorite.impulseDuration = screenShakeDuration;
             
             _newMeteorite.LandAtPosition(_mouseWorldPositionInt);
             

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TileSystemSpace;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Powers
@@ -25,6 +26,10 @@ namespace Powers
         public int maxTileDigLevel = 2;
         
         private UnityEngine.Camera mainCamera;
+        
+        [SerializeField] private CinemachineImpulseSource impulseSource;
+        public float impulseForce = 2;
+        public float impulseDuration = 2;
 
         public event Action onExplode;
 
@@ -99,6 +104,9 @@ namespace Powers
             {
                 _entity.TakeDamage(damageAmount);
             }
+            
+            impulseSource.ImpulseDefinition.ImpulseDuration = impulseDuration;
+            impulseSource.GenerateImpulseWithForce(impulseForce);
         }
     }
 }
