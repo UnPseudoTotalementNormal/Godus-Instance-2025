@@ -14,8 +14,8 @@ namespace Powers
         
         public PowerCategory powerCategory => GetComponentInParent<PowerCategory>();
         
-        public float powerCooldownDuration { get; protected set; }  = 5f;
-        public float categoryCooldownDuration { get; protected set; }  = 2f;
+        [field:SerializeField] public float powerCooldownDuration { get; protected set; }  = 5f;
+        [field:SerializeField] public float categoryCooldownDuration { get; protected set; }  = 2f;
         public float currentCooldownTime { get; protected set; }
         public bool isOnCooldown => currentCooldownTime > 0f;
         
