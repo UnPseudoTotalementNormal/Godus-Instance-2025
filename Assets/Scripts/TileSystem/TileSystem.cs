@@ -66,7 +66,7 @@ namespace TileSystemSpace
                 }
                 else
                 {
-                    _newTile = new Tile(0, TileType.Water);
+                    _newTile = new Tile(1, TileType.Water);
                     tiles.Add(_newTile);
                 }
                 

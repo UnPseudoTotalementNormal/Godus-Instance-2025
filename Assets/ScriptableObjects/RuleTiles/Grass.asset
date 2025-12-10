@@ -306,5 +306,5 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     m_RuleTransform: 0
   heightLevel: 0
-  excludeNeighbourTiles: 
+  excludeNeighbourTiles: 00000000
   tileType: 10

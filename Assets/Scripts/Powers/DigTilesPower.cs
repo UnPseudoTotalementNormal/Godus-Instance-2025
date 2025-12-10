@@ -119,8 +119,8 @@ namespace Powers
                 int _currentHeight = _tile.level;
                 if (_currentHeight > 0)
                 {
+                    _tile.RemoveTileOnTop();
                     _tilesDiggedCount++;
-                    _tile.level -= 1;
                 }
                 
                 if (tilesLeftToDig - _tilesDiggedCount <= 0)
