@@ -11,7 +11,7 @@ namespace Feedback.Health
         [Header("    Health Feedback Settings")]
         [SerializeField] [Range(1, 5)] private float flashDuration = 1f;
         private Color defaultFlashColor = Color.white;
-        [SerializeField] private Color damageFlashColor = Color.white;
+        [SerializeField] private Color damageFlashColor = Color.red;
         [SerializeField] private Color healFlashColor = Color.green;
 
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -24,16 +24,16 @@ namespace Feedback.Health
         [Space(10)] [Header("    Text Feedback Settings")]
         [SerializeField] private float damageTextDuration = 2f;
         [SerializeField] private float healTextDuration = 2f;
-        [SerializeField] private float textFontSize = 3f;
+        [SerializeField] private float textFontSize = 12f;
         [SerializeField] private Color damageColor = Color.red;
         [SerializeField] private Color healColor = Color.green;
         [SerializeField] private float endScaleValue = 0.6f;
         
         [Tooltip("Distance de déplacement vers le haut")]
-        [SerializeField] private float textMoveDistance = 0.5f;
+        [SerializeField] private float textMoveDistance = 2f;
         
         [Tooltip("Offset de spawn du texte par rapport au coin supérieur droit du sprite")]
-        [SerializeField] private Vector3 textSpawnOffset = new(0f, -0.25f, 0f); 
+        [SerializeField] private Vector3 textSpawnOffset = new(0f, 0f, 0f); 
         
         private string damageTextPrefix = "-";
         private string healTextPrefix = "+";
@@ -172,9 +172,6 @@ namespace Feedback.Health
         [ContextMenu("Test Damage Flash Effect")]
         private void PlayDamageFlash()
         {
-            PlayDamageScaleAnimation();
-            PlayTakeDamageTextAnimation(Random.Range(5, 20));
-            
             material.SetColor(flashColorID, damageFlashColor);
             material.SetFloat(hitTimeID, Time.time);
         }
@@ -182,8 +179,6 @@ namespace Feedback.Health
         [ContextMenu("Test Heal Flash Effect")]
         private void PlayHealFlash()
         {
-            PlayHealTextAnimation(Random.Range(5, 20));
-            
             material.SetColor(flashColorID, healFlashColor);
             material.SetFloat(hitTimeID, Time.time);
         }
