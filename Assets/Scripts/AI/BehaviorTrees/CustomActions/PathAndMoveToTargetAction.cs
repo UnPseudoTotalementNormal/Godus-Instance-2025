@@ -19,6 +19,7 @@ public partial class PathAndMoveToTargetAction : Action
     int stepIndex = 0;
     float stepTime = 0.5f;
     bool canStep = false;
+    bool hasToPath = false;
     protected override Status OnStart()
     {
         targetPosition = new Vector2Int((int)PathTarget.Value.transform.position.x, (int)PathTarget.Value.transform.position.y);
@@ -40,6 +41,7 @@ public partial class PathAndMoveToTargetAction : Action
             if (HasTargetMoved())
             {
                 targetPosition = new Vector2Int((int)PathTarget.Value.transform.position.x, (int)PathTarget.Value.transform.position.y);
+                hasToPath = true;
                 GetNewPath();
                 stepIndex = 1;
                 return Status.Running;
@@ -111,6 +113,8 @@ public partial class PathAndMoveToTargetAction : Action
         {
             Self.Value.transform.position = Vector3.Lerp(_startPos, new Vector3(PathToTarget[stepIndex].position.x,PathToTarget[stepIndex].position.y,-2), elapsedTime / (stepTime));
             elapsedTime += Time.deltaTime;
+            if (hasToPath)
+                break;
             await Awaitable.NextFrameAsync();
         }
         canStep = true;

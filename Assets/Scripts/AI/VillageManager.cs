@@ -38,6 +38,7 @@ public class VillageManager : MonoBehaviour
     {
         if ((100 * ((float)wood / maxWood)) >= 95)
         {
+            wood -=wood*((wood / maxWood));
             _target = null;
             return TaskType.Building;
         }
@@ -83,11 +84,11 @@ public class VillageManager : MonoBehaviour
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
     {
 
-        foreach (Collider _resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
+        foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
             if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
             if (_resourceComponent.resourceType != _resourceType) continue;
-            _resource.GetComponent<Collider>().enabled = false;
+            _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
         return null;
@@ -142,6 +143,20 @@ public enum TaskType
     Building,
     Hunting,
     Wandering,
+}
+
+[BlackboardEnum]
+public enum AiState
+{
+    Free,
+    Attacking,
+}
+
+[BlackboardEnum]
+public enum Factions
+{
+    Villager,
+    Enemy
 }
 
 public enum ResourceType

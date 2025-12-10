@@ -15,6 +15,8 @@ public partial class MoveToAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<List<Vector2Int>> Path;
     [SerializeReference] public BlackboardVariable<float> Speed;
+    [SerializeReference] public BlackboardVariable<GameObject> Target;
+    [SerializeReference] public BlackboardVariable<bool> CheckForTarget;
     bool arrived = false;
     
     protected override Status OnStart()
@@ -25,6 +27,8 @@ public partial class MoveToAction : Action
     
     protected override Status OnUpdate()
     {
+        if (Target.Value == null && CheckForTarget.Value)
+            return Status.Success;
         if (Path.Value.Count == 0)
             return Status.Running;
         
@@ -53,6 +57,8 @@ public partial class MoveToAction : Action
             {
                 Self.Value.transform.position = Vector3.Lerp(_startPos, new Vector3(_p.x,_p.y,-2), elapsedTime / (Speed.Value));
                 elapsedTime += Time.deltaTime;
+                if (Target.Value == null && CheckForTarget.Value)
+                    return;
                 await Awaitable.NextFrameAsync();
             }
         }

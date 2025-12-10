@@ -33,7 +33,7 @@ public partial class CallPathfindingAction : Action
 
     protected override void OnEnd()
     {
-        Debug.Log("Path found for" + Agent.Value.name);
+        //Debug.Log("Path found for" + Agent.Value.name);
     }
 
     void PathfindingCallback(List<Cell> _path)
