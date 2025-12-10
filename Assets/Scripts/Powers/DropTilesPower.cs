@@ -120,11 +120,10 @@ namespace Powers
                 Tile _tile = _tileEntry.Key;
                 
                 int _currentHeight = _tile.level;
-                _tile.tileType = tileTypeToDrop;
-                if (_currentHeight < GameValues.MAX_TILE_HEIGHT - 1)
+                if (_currentHeight < GameValues.MAX_TILE_HEIGHT)
                 {
+                    _tile.AddTileOnTop(tileTypeToDrop);
                     _tilesDroppedCount++;
-                    _tile.level += 1;
                 }
                 
                 if (tilesLeftToDrop - _tilesDroppedCount <= 0)

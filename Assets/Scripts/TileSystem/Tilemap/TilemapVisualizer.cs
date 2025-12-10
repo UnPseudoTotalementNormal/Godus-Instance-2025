@@ -32,7 +32,7 @@ namespace TileSystemSpace.Tilemap
             {
                 CustomRuleTile _customRuleTile = tileTypeToRuleTileMap[tileType];
                 
-                for (int i = 0; i < GameValues.MAX_TILE_HEIGHT; i++)
+                for (int i = 0; i <= GameValues.MAX_TILE_HEIGHT; i++)
                 {
                     if (!ruleTiles.ContainsKey(_customRuleTile))
                     {
