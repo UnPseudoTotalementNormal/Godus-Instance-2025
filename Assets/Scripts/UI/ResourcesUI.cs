@@ -35,54 +35,54 @@ public class ResourcesUI : MonoBehaviour
         GameEvents.onResourceMaxValueRefreshed  -= OnResourceMaxValueRefreshed;
     }
 
-    private void OnResourceValueRefreshed(ResourceType type, int value)
+    private void OnResourceValueRefreshed(ResourceType _type, int _value)
     {
-        switch (type)
+        switch (_type)
         {
             case ResourceType.Meat:
-                meatValueText.text = value + " /";
+                meatValueText.text = _value + " /";
                 break;
             
             case ResourceType.Wood:
-                woodValueText.text = value + " /";
+                woodValueText.text = _value + " /";
                 break;
             
             case ResourceType.Stone:
-                stoneValueText.text = value + " /";
+                stoneValueText.text = _value + " /";
                 break;
             
             case ResourceType.Iron:
-                ironValueText.text = value + " /";
+                ironValueText.text = _value + " /";
                 break;
             
             case ResourceType.Glorp:
-                glorpValueText.text = value + " /";
+                glorpValueText.text = _value + " /";
                 break;
         }
     }
 
-    private void OnResourceMaxValueRefreshed(ResourceType type, int maxValue)
+    private void OnResourceMaxValueRefreshed(ResourceType _type, int _maxValue)
     {
-        switch (type)
+        switch (_type)
         {
             case ResourceType.Meat:
-                meatMaxText.text = maxValue.ToString();
+                meatMaxText.text = _maxValue.ToString();
                 break;
             
             case ResourceType.Wood:
-                woodMaxText.text = maxValue.ToString();
+                woodMaxText.text = _maxValue.ToString();
                 break;
             
             case ResourceType.Stone:
-                stoneMaxText.text = maxValue.ToString();
+                stoneMaxText.text = _maxValue.ToString();
                 break;
             
             case ResourceType.Iron:
-                ironMaxText.text = maxValue.ToString();
+                ironMaxText.text = _maxValue.ToString();
                 break;
             
             case ResourceType.Glorp:
-                glorpMaxText.text = maxValue.ToString();
+                glorpMaxText.text = _maxValue.ToString();
                 break;
         }
     }
