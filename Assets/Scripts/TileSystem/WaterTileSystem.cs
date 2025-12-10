@@ -40,15 +40,12 @@ public class WaterTileSystem : MonoBehaviour
 
     private void OnTick()
     {
-        List<WaterTileInfo> _oldActiveTiles = activeTiles.ToList();
-        activeTiles.Clear();
-        foreach (WaterTileInfo _currentWaterTileInfo in _oldActiveTiles)
+        activeTiles.RemoveWhere(_info => _info.tile.tileType != TileType.Water);
+        HashSet<WaterTileInfo> _newActiveTiles = new();
+        
+        foreach (WaterTileInfo _currentWaterTileInfo in activeTiles.ToList())
         {
             Tile _currentWaterTile = _currentWaterTileInfo.tile;
-            if (_currentWaterTile.tileType != TileType.Water)
-            {
-                continue;
-            }
 
             foreach (Vector2Int _offset in tileNeighborsOffset)
             {
@@ -70,9 +67,11 @@ public class WaterTileSystem : MonoBehaviour
                 }
                 
                 _neighbourTile.AddTileOnTop(TileType.Water);
-                activeTiles.Add(new WaterTileInfo(_neighbourPosition, _neighbourTile));
+                _newActiveTiles.Add(new WaterTileInfo(_neighbourPosition, _neighbourTile));
             }
         }
+        
+        activeTiles = _newActiveTiles;
     }
 
     private void OnAnyTileChanged(Tile _tile, Vector2Int _tilePos)
