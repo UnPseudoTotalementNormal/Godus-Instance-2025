@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TileSystemSpace.Tilemap
 {
+    [DefaultExecutionOrder(-10000)]
     [RequireComponent(typeof(UnityEngine.Tilemaps.Tilemap))]
     public class HeightMapGenerator : MonoBehaviour
     {
