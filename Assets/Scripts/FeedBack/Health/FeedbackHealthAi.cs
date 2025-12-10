@@ -10,7 +10,9 @@ namespace Feedback.Health
     {
         [Header("    Health Feedback Settings")]
         [SerializeField] [Range(1, 5)] private float flashDuration = 1f;
-        [SerializeField] private Color flashColor = Color.white;
+        private Color defaultFlashColor = Color.white;
+        [SerializeField] private Color damageFlashColor = Color.white;
+        [SerializeField] private Color healFlashColor = Color.green;
 
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Material material;
@@ -18,14 +20,26 @@ namespace Feedback.Health
         private int flashDurationID;
         private int flashColorID;
 
-        [Space(10)]
         
-        [Header("    Text Feedback Settings")]
-        [SerializeField] private TextMeshPro healthText;
+        [Space(10)] [Header("    Text Feedback Settings")]
+        [SerializeField] private float damageTextDuration = 2f;
+        [SerializeField] private float healTextDuration = 2f;
+        [SerializeField] private float textFontSize = 3f;
+        [SerializeField] private Color damageColor = Color.red;
+        [SerializeField] private Color healColor = Color.green;
+        [SerializeField] private float endScaleValue = 0.6f;
         
-        [Space(10)]
+        [Tooltip("Distance de déplacement vers le haut")]
+        [SerializeField] private float textMoveDistance = 0.5f;
         
-        [Header("    Scale Animation Settings")]
+        [Tooltip("Offset de spawn du texte par rapport au coin supérieur droit du sprite")]
+        [SerializeField] private Vector3 textSpawnOffset = new(0f, -0.25f, 0f); 
+        
+        private string damageTextPrefix = "-";
+        private string healTextPrefix = "+";
+        
+        
+        [Space(10)] [Header("    Scale Animation Settings")]
         [SerializeField] private float damagePunchScaleDuration = 1f;
         [SerializeField] private float damagePunchScaleStrength = 1.2f;
         [SerializeField] private int damagePunchScaleVibrato = 5;
@@ -47,24 +61,28 @@ namespace Feedback.Health
 
         private void OnEnable()
         {
+            healthComponent.onHealed += HandleHealed;
             healthComponent.onDamaged += HandleDamaged;
         }
 
         private void OnDisable()
         {
+            healthComponent.onHealed -= HandleHealed;
             healthComponent.onDamaged -= HandleDamaged;
         }
 
         #region EventHandlers
         private void HandleDamaged(float damage)
         {
-            PlayFlash();
-            PlayDamageAnimation();
+            PlayDamageFlash();
+            PlayDamageScaleAnimation();
+            PlayTakeDamageTextAnimation(damage);
         }
 
         private void HandleHealed(float healAmount)
         {
-
+            PlayHealFlash();
+            PlayHealTextAnimation(healAmount);
         }
 
         private void HandleDeath()
@@ -75,16 +93,63 @@ namespace Feedback.Health
         
         #region Animations
         
-        private void PlayDamageAnimation()
+        private void PlayDamageScaleAnimation()
         {
+            transform.DOKill(true);
             Debug.Log("Playing damage animation");
             transform.DOPunchScale(Vector3.one * damagePunchScaleStrength, damagePunchScaleDuration, damagePunchScaleVibrato, damagePunchScaleElasticity);
         }
         
-        private void PlayHealTextAnimation()
+        private void PlayTakeDamageTextAnimation(float damage)
         {
-            // TODO : implement heal text animation
-            // Style cookieClicker text a instantier sur la position de l'ennemi en world space, pour ensuite faire une translation vers le haut avec un fade out
+            Bounds bounds = spriteRenderer.bounds;
+            Vector3 spawnPosition = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z) + textSpawnOffset;
+
+            TextMeshPro damageText = new GameObject("DamageText Feedback").AddComponent<TextMeshPro>();
+            damageText.transform.position = spawnPosition;
+            
+            damageText.text = $"{damageTextPrefix}{damage:F0}";
+            damageText.color = damageColor;
+            damageText.fontSize = textFontSize;
+            damageText.alignment = TextAlignmentOptions.Center;
+            damageText.sortingOrder = 100;
+
+            Vector3 endPosition = spawnPosition + Vector3.up * textMoveDistance;
+            
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(damageText.transform.DOMoveY(endPosition.y, damageTextDuration).SetEase(Ease.OutQuad));
+
+            // Start Half Way
+            sequence.Join(damageText.transform.DOScale(endScaleValue, damageTextDuration));
+            sequence.Join(damageText.DOFade(0f, damageTextDuration * 0.5f).SetDelay(damageTextDuration * 0.5f));
+
+            sequence.OnComplete(() => Destroy(damageText));
+        }
+        
+        private void PlayHealTextAnimation(float healAmount)
+        {
+            Bounds bounds = spriteRenderer.bounds;
+            Vector3 spawnPosition = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z) + textSpawnOffset;
+            
+            TextMeshPro healText = new GameObject("HealthText Feedback").AddComponent<TextMeshPro>();
+            healText.transform.position = spawnPosition;
+            
+            healText.text = $"{healTextPrefix}{healAmount:F0}";
+            healText.color = healColor;
+            healText.fontSize = textFontSize; 
+            healText.alignment = TextAlignmentOptions.Center;
+            healText.sortingOrder = 100;
+            
+            Vector3 endPosition = spawnPosition + Vector3.up * textMoveDistance;
+            
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(healText.transform.DOMoveY(endPosition.y, damageTextDuration).SetEase(Ease.OutQuad));
+
+            // Start Half Way
+            sequence.Join(healText.transform.DOScale(endScaleValue, damageTextDuration));
+            sequence.Join(healText.DOFade(0f, healTextDuration * 0.5f).SetDelay(healTextDuration * 0.5f));
+
+            sequence.OnComplete(() => Destroy(healText.gameObject));
         }
         
         #endregion
@@ -101,14 +166,25 @@ namespace Feedback.Health
             flashColorID = Shader.PropertyToID("_FlashColor");
 
             material.SetFloat(flashDurationID, flashDuration);
-            material.SetColor(flashColorID, flashColor);
+            material.SetColor(flashColorID, defaultFlashColor);
         }
         
-        [ContextMenu("Test Flash Effect")]
-        private void PlayFlash()
+        [ContextMenu("Test Damage Flash Effect")]
+        private void PlayDamageFlash()
         {
-            PlayDamageAnimation();
-            Debug.Log($"<b>[FeedbackHealthAi]</b> Playing flash effect at time: {Time.time}");
+            PlayDamageScaleAnimation();
+            PlayTakeDamageTextAnimation(Random.Range(5, 20));
+            
+            material.SetColor(flashColorID, damageFlashColor);
+            material.SetFloat(hitTimeID, Time.time);
+        }
+        
+        [ContextMenu("Test Heal Flash Effect")]
+        private void PlayHealFlash()
+        {
+            PlayHealTextAnimation(Random.Range(5, 20));
+            
+            material.SetColor(flashColorID, healFlashColor);
             material.SetFloat(hitTimeID, Time.time);
         }
         #endregion

@@ -357,9 +357,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Feedback.Health.FeedbackHealthAi
   flashDuration: 2
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  damageFlashColor: {r: 0.7075472, g: 0.1702118, b: 0.1702118, a: 1}
+  healFlashColor: {r: 0, g: 1, b: 0, a: 1}
   spriteRenderer: {fileID: 217088065}
-  healthText: {fileID: 0}
+  damageTextDuration: 2
+  healTextDuration: 2
+  textFontSize: 3
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
+  endScaleValue: 0.5
+  textMoveDistance: 0.5
+  textSpawnOffset: {x: 0, y: -0.25, z: 0}
   damagePunchScaleDuration: 1
   damagePunchScaleStrength: 1.2
   damagePunchScaleVibrato: 5
@@ -1102,23 +1110,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2089087640329034485, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.5267
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2089087640329034485, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.5267
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2089087640329034485, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.5267
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2089087640329034485, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4033
+      value: -1.57
       objectReference: {fileID: 0}
     - target: {fileID: 2089087640329034485, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5254
+      value: 1.3627
       objectReference: {fileID: 0}
     - target: {fileID: 2089087640329034485, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1158,15 +1166,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8307218797619891974, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_Color.b
-      value: 0.6506237
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 8307218797619891974, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_Color.g
-      value: 0.09825563
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 8307218797619891974, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_Color.r
-      value: 0.9056604
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 8307218797619891974, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
       propertyPath: m_SortingOrder
@@ -1270,7 +1278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 2.593, y: -108.36}
+  m_AnchoredPosition: {x: 2.593, y: -108.36011}
   m_SizeDelta: {x: 400, y: 25}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1219823781
