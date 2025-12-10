@@ -95,9 +95,9 @@ namespace Feedback.Health
         
         private void PlayDamageScaleAnimation()
         {
-            transform.DOKill(true);
+            spriteRenderer.transform.DOKill(true);
             Debug.Log("Playing damage animation");
-            transform.DOPunchScale(Vector3.one * damagePunchScaleStrength, damagePunchScaleDuration, damagePunchScaleVibrato, damagePunchScaleElasticity);
+            spriteRenderer.transform.DOPunchScale(Vector3.one * damagePunchScaleStrength, damagePunchScaleDuration, damagePunchScaleVibrato, damagePunchScaleElasticity);
         }
         
         private void PlayTakeDamageTextAnimation(float _damage)
@@ -157,10 +157,7 @@ namespace Feedback.Health
         #region ShaderProperties
         private void InitializeShaderProperties()
         {
-            // IMPORTANT : instancier le material pour ne pas partager l'effet entre tous les ennemis
-            material = Instantiate(spriteRenderer.material);
-            spriteRenderer.material = material;
-
+            material = spriteRenderer.material;
             hitTimeID = Shader.PropertyToID("_HitTime");
             flashDurationID = Shader.PropertyToID("_FlashDuration");
             flashColorID = Shader.PropertyToID("_FlashColor");

@@ -1844,7 +1844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472bde1fc8e941d893d729cb605be3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camera.CameraDrag
-  dragSpeed: 0.00153
+  dragSpeed: 0.00173
   momentumMultiplier: 20
   decelerationRate: 0.86
   minimumVelocity: 0.001

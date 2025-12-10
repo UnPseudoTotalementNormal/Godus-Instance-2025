@@ -17,7 +17,8 @@ namespace Feedback
             {
                 spriteRenderer = GetComponent<SpriteRenderer>();
             }
-            _materialInstance = spriteRenderer.material = Instantiate(spriteRenderer.material);
+
+            _materialInstance = spriteRenderer.material;
         }
 
         private void Update()

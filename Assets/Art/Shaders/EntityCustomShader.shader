@@ -21,6 +21,11 @@ Shader "Custom/EntityCustomShader"
         _TileHeightPerLevelHeight ("Shadow Distance Per Height Level", Range(0,50)) = 1.0
         
         _CurrentHeightLevel ("Current Height Level", Float) = 1
+        
+        // Propriétés du flash
+        _FlashColor ("Flash Color", Color) = (1,1,1,1)
+        _FlashDuration ("Flash Duration", Float) = 0.1
+        _HitTime ("Hit Time", Float) = -9999
     }
 
     SubShader
@@ -45,6 +50,7 @@ Shader "Custom/EntityCustomShader"
             #pragma fragment frag
             #include "UnityCG.cginc"
             #include "HLSL/TileHeightVisuals.hlsl"
+            #include "HLSL/SpriteHitFlashFunction.hlsl"
 
             // Propriétés du Sprite
             sampler2D _MainTex;
@@ -66,6 +72,11 @@ Shader "Custom/EntityCustomShader"
             float  _TileHeightPerLevelHeight;
             
             float _CurrentHeightLevel;
+            
+            // Propriétés du flash
+            fixed4 _FlashColor;
+            float _FlashDuration;
+            float _HitTime;
             
             // Structures
             struct appdata
@@ -94,7 +105,8 @@ Shader "Custom/EntityCustomShader"
             // Fragment Shader
             fixed4 frag (v2f i) : SV_Target
             {
-                return ApplyTileHeightVisuals(
+                // Appliquer d'abord les effets de hauteur et d'ombre
+                fixed4 col = ApplyTileHeightVisuals(
                     _MainTex,
                     _HeightTex,
                     i.uv,
@@ -111,6 +123,10 @@ Shader "Custom/EntityCustomShader"
                     _TileHeightPerLevelHeight,
                     _CurrentHeightLevel
                 );
+                
+                col = ApplySpriteHitFlashAuto(col, _FlashColor.rgb, _HitTime, _FlashDuration);
+                
+                return col;
             }
             ENDCG
         }

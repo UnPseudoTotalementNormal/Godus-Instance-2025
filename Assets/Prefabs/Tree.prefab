@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1086337542115328957}
   - component: {fileID: 3483990015831709205}
   - component: {fileID: 8524013325825989998}
+  - component: {fileID: 5408201598718775354}
+  - component: {fileID: 5133879628338348893}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -51,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TreeGrowth
   growthDuration: 90
   finalScale: {x: 1, y: 1}
+  growthSpeedMultiplier: 1
 --- !u!114 &1714333393580343305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 100
+  maxHealth: 1000
 --- !u!114 &1086337542115328957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,10 +131,10 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -143,6 +146,48 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -0.80901694}
       - {x: 0.9510565, y: 0.30901712}
   m_UseDelaunayMesh: 0
+--- !u!114 &5408201598718775354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa921cad46bc4d2a82bd5caaa2ff1941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Feedback.Health.FeedbackHealthAi
+  flashDuration: 2
+  damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  healFlashColor: {r: 0, g: 1, b: 0, a: 1}
+  spriteRenderer: {fileID: 580390576103589226}
+  damageTextDuration: 2
+  healTextDuration: 2
+  textFontSize: 12
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
+  endScaleValue: 0.6
+  textMoveDistance: 2
+  textSpawnOffset: {x: 0, y: 0, z: 0}
+  damagePunchScaleDuration: 2
+  damagePunchScaleStrength: 1.2
+  damagePunchScaleVibrato: 5
+  damagePunchScaleElasticity: 1
+--- !u!114 &5133879628338348893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6916d5a4ce322be70a9bb412f8b4075e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
+  rendererToInstance:
+  - {fileID: 580390576103589226}
 --- !u!1 &1647814771126434785
 GameObject:
   m_ObjectHideFlags: 0
