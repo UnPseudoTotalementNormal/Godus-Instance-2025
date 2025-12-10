@@ -8,7 +8,13 @@ namespace TileSystemSpace
         public event Action onTileChanged;
         private int levelField;
         private TileType tileTypeField;
-        
+
+        public void AddTileOnTop(TileType _tileType)
+        {
+            levelField++;
+            tileTypeField = _tileType;
+            onTileChanged?.Invoke();
+        }
 
         public int level
         {
