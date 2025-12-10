@@ -1,25 +1,21 @@
-using System;
 using System.Collections.Generic;
+using Powers;
 using TileSystemSpace;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
 
-namespace Powers
+public class PowerIgniteFire : Power
 {
-    public class DropTilesPower : Power
-    {
-        [SerializeField] private TileType tileTypeToDrop;
-        
-        private Vector2 mouseScreenPosition;
+    private Vector2 mouseScreenPosition;
         private UnityEngine.Camera mainCamera;
         
-        private bool isDroppingTiles = false;
+        private bool isIgnitingTiles = false;
         
-        private Vector2Int lastDroppedTilePosition = new(int.MinValue, int.MinValue);
+        private Vector2Int lastIgnitedTilePosition = new(int.MinValue, int.MinValue);
         
-        private int tilesLeftToDrop = 0;
-        [SerializeField] private int maxTilesToDrop = 30;
+        private int tilesLeftToIgnite = 0;
+        [SerializeField] private int maxTilesToIgnite = 30;
         
         private void Start()
         {
@@ -30,9 +26,9 @@ namespace Powers
         public override void Activate()
         {
             base.Activate();
-            InputManager.instance.onLeftMouseButtonPressStarted += TryStartDroppingTiles;
-            InputManager.instance.onLeftMouseButtonPressCanceled += StopDroppingTiles;
-            tilesLeftToDrop = maxTilesToDrop;
+            InputManager.instance.onLeftMouseButtonPressStarted += TryStartIgnitingTiles;
+            InputManager.instance.onLeftMouseButtonPressCanceled += StopIgnitingTiles;
+            tilesLeftToIgnite = maxTilesToIgnite;
         }
 
         private void OnGUI()
@@ -42,7 +38,7 @@ namespace Powers
                 return;
             }
 
-            GUIUtils.DisplayTextUnderMouse(mouseScreenPosition, tilesLeftToDrop.ToString());
+            GUIUtils.DisplayTextUnderMouse(mouseScreenPosition, tilesLeftToIgnite.ToString());
         }
 
         public override void Update()
@@ -54,35 +50,35 @@ namespace Powers
                 return;
             }
             
-            if (!isDroppingTiles)
+            if (!isIgnitingTiles)
             {
                 return;
             }
             
-            int _tilesDropped = TryDropTileAtMousePosition();
-            if (_tilesDropped > 0)
+            int _tilesIgnited = TryIgniteTileAtMousePosition();
+            if (_tilesIgnited > 0)
             {
-                tilesLeftToDrop -= _tilesDropped;
-                if (tilesLeftToDrop <= 0)
+                tilesLeftToIgnite -= _tilesIgnited;
+                if (tilesLeftToIgnite <= 0)
                 {
                     Deactivate();
                 }
             }
         }
 
-        private void TryStartDroppingTiles()
+        private void TryStartIgnitingTiles()
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }
-            isDroppingTiles = true;
+            isIgnitingTiles = true;
         }
 
-        private void StopDroppingTiles()
+        private void StopIgnitingTiles()
         {
-            isDroppingTiles = false;
-            lastDroppedTilePosition = new Vector2Int(int.MinValue, int.MinValue);
+            isIgnitingTiles = false;
+            lastIgnitedTilePosition = new Vector2Int(int.MinValue, int.MinValue);
         }
 
         private void GetMousePos(Vector2 _position)
@@ -93,52 +89,49 @@ namespace Powers
         public override void Deactivate()
         {
             base.Deactivate();
-            StopDroppingTiles();
-            InputManager.instance.onLeftMouseButtonPressStarted -= TryStartDroppingTiles;
-            InputManager.instance.onLeftMouseButtonPressCanceled -= StopDroppingTiles;
+            StopIgnitingTiles();
+            InputManager.instance.onLeftMouseButtonPressStarted -= TryStartIgnitingTiles;
+            InputManager.instance.onLeftMouseButtonPressCanceled -= StopIgnitingTiles;
         }
 
-        private int TryDropTileAtMousePosition()
+        private int TryIgniteTileAtMousePosition()
         {
             Vector2 _mouseWorldPosition = Vector2Int.RoundToInt(mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y))) 
                                           + GameValues.GRID_OFFSET;
             
             Vector2Int _mouseWorldPositionInt = new Vector2Int((int)_mouseWorldPosition.x, (int)_mouseWorldPosition.y);
             
-            if (_mouseWorldPositionInt == lastDroppedTilePosition)
+            if (_mouseWorldPositionInt == lastIgnitedTilePosition)
             {
                 return 0;
             }
             
-            lastDroppedTilePosition = _mouseWorldPositionInt;
+            lastIgnitedTilePosition = _mouseWorldPositionInt;
             
             Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(_mouseWorldPositionInt, tileRadius, radiusMode);
             
-            int _tilesDroppedCount = 0;
+            int _tilesIgnitedCount = 0;
             foreach (KeyValuePair<Tile, Vector2Int> _tileEntry in _tilesInRadius)
             {
-                Tile _tile = _tileEntry.Key;
-                
-                int _currentHeight = _tile.level;
-                _tile.tileType = tileTypeToDrop;
-                if (_currentHeight < GameValues.MAX_TILE_HEIGHT - 1)
+                if (FireSystem.FireManager.instance.IsTileOnFire(_tileEntry.Value))
                 {
-                    _tilesDroppedCount++;
-                    _tile.level += 1;
+                    continue;
                 }
                 
-                if (tilesLeftToDrop - _tilesDroppedCount <= 0)
+                FireSystem.FireManager.instance.IgniteTile(_tileEntry.Value);
+                _tilesIgnitedCount++;
+                
+                if (tilesLeftToIgnite - _tilesIgnitedCount <= 0)
                 {
                     break;
                 }
             }
 
-            return _tilesDroppedCount;
+            return _tilesIgnitedCount;
         }
         
         public override bool ShouldStartCooldownOnDeactivate()
         {
-            return tilesLeftToDrop != maxTilesToDrop;
+            return tilesLeftToIgnite != maxTilesToIgnite;
         }
-    }
 }
