@@ -100,56 +100,56 @@ namespace Feedback.Health
             transform.DOPunchScale(Vector3.one * damagePunchScaleStrength, damagePunchScaleDuration, damagePunchScaleVibrato, damagePunchScaleElasticity);
         }
         
-        private void PlayTakeDamageTextAnimation(float damage)
+        private void PlayTakeDamageTextAnimation(float _damage)
         {
-            Bounds bounds = spriteRenderer.bounds;
-            Vector3 spawnPosition = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z) + textSpawnOffset;
+            Bounds _bounds = spriteRenderer.bounds;
+            Vector3 _spawnPosition = new Vector3(_bounds.max.x, _bounds.max.y, _bounds.center.z) + textSpawnOffset;
 
-            TextMeshPro damageText = new GameObject("DamageText Feedback").AddComponent<TextMeshPro>();
-            damageText.transform.position = spawnPosition;
+            TextMeshPro _damageText = new GameObject("DamageText Feedback").AddComponent<TextMeshPro>();
+            _damageText.transform.position = _spawnPosition;
             
-            damageText.text = $"{damageTextPrefix}{damage:F0}";
-            damageText.color = damageColor;
-            damageText.fontSize = textFontSize;
-            damageText.alignment = TextAlignmentOptions.Center;
-            damageText.sortingOrder = 100;
+            _damageText.text = $"{damageTextPrefix}{_damage:F0}";
+            _damageText.color = damageColor;
+            _damageText.fontSize = textFontSize;
+            _damageText.alignment = TextAlignmentOptions.Center;
+            _damageText.sortingOrder = 100;
 
-            Vector3 endPosition = spawnPosition + Vector3.up * textMoveDistance;
+            Vector3 _endPosition = _spawnPosition + Vector3.up * textMoveDistance;
             
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(damageText.transform.DOMoveY(endPosition.y, damageTextDuration).SetEase(Ease.OutQuad));
+            Sequence _sequence = DOTween.Sequence();
+            _sequence.Append(_damageText.transform.DOMoveY(_endPosition.y, damageTextDuration).SetEase(Ease.OutQuad));
 
             // Start Half Way
-            sequence.Join(damageText.transform.DOScale(endScaleValue, damageTextDuration));
-            sequence.Join(damageText.DOFade(0f, damageTextDuration * 0.5f).SetDelay(damageTextDuration * 0.5f));
+            _sequence.Join(_damageText.transform.DOScale(endScaleValue, damageTextDuration));
+            _sequence.Join(_damageText.DOFade(0f, damageTextDuration * 0.5f).SetDelay(damageTextDuration * 0.5f));
 
-            sequence.OnComplete(() => Destroy(damageText));
+            _sequence.OnComplete(() => Destroy(_damageText));
         }
         
-        private void PlayHealTextAnimation(float healAmount)
+        private void PlayHealTextAnimation(float _healAmount)
         {
-            Bounds bounds = spriteRenderer.bounds;
-            Vector3 spawnPosition = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z) + textSpawnOffset;
+            Bounds _bounds = spriteRenderer.bounds;
+            Vector3 _spawnPosition = new Vector3(_bounds.max.x, _bounds.max.y, _bounds.center.z) + textSpawnOffset;
             
-            TextMeshPro healText = new GameObject("HealthText Feedback").AddComponent<TextMeshPro>();
-            healText.transform.position = spawnPosition;
+            TextMeshPro _healText = new GameObject("HealthText Feedback").AddComponent<TextMeshPro>();
+            _healText.transform.position = _spawnPosition;
             
-            healText.text = $"{healTextPrefix}{healAmount:F0}";
-            healText.color = healColor;
-            healText.fontSize = textFontSize; 
-            healText.alignment = TextAlignmentOptions.Center;
-            healText.sortingOrder = 100;
+            _healText.text = $"{healTextPrefix}{_healAmount:F0}";
+            _healText.color = healColor;
+            _healText.fontSize = textFontSize; 
+            _healText.alignment = TextAlignmentOptions.Center;
+            _healText.sortingOrder = 100;
             
-            Vector3 endPosition = spawnPosition + Vector3.up * textMoveDistance;
+            Vector3 _endPosition = _spawnPosition + Vector3.up * textMoveDistance;
             
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(healText.transform.DOMoveY(endPosition.y, damageTextDuration).SetEase(Ease.OutQuad));
+            Sequence _sequence = DOTween.Sequence();
+            _sequence.Append(_healText.transform.DOMoveY(_endPosition.y, damageTextDuration).SetEase(Ease.OutQuad));
 
             // Start Half Way
-            sequence.Join(healText.transform.DOScale(endScaleValue, damageTextDuration));
-            sequence.Join(healText.DOFade(0f, healTextDuration * 0.5f).SetDelay(healTextDuration * 0.5f));
+            _sequence.Join(_healText.transform.DOScale(endScaleValue, damageTextDuration));
+            _sequence.Join(_healText.DOFade(0f, healTextDuration * 0.5f).SetDelay(healTextDuration * 0.5f));
 
-            sequence.OnComplete(() => Destroy(healText.gameObject));
+            _sequence.OnComplete(() => Destroy(_healText.gameObject));
         }
         
         #endregion
