@@ -4,14 +4,15 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
+    
     private float currentHealth;
     
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;
 
-    private event Action<float> onDamaged;
-    private event Action<float> onHealed;
-    private event Action onDeath;
+    public event Action<float> onDamaged;
+    public event Action<float> onHealed;
+    public event Action onDeath;
     
     private void Awake()
     {
