@@ -72,17 +72,17 @@ namespace Feedback.Health
         }
 
         #region EventHandlers
-        private void HandleDamaged(float damage)
+        private void HandleDamaged(float _damage)
         {
             PlayDamageFlash();
             PlayDamageScaleAnimation();
-            PlayTakeDamageTextAnimation(damage);
+            PlayTakeDamageTextAnimation(_damage);
         }
 
-        private void HandleHealed(float healAmount)
+        private void HandleHealed(float _healAmount)
         {
             PlayHealFlash();
-            PlayHealTextAnimation(healAmount);
+            PlayHealTextAnimation(_healAmount);
         }
 
         private void HandleDeath()
