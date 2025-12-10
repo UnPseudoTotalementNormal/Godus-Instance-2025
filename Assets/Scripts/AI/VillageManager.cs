@@ -45,6 +45,7 @@ public class VillageManager : MonoBehaviour
     {
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
+            villageData.Add(ResourceType.Wood,villageData.wood / villageData.maxWood);
             _target = null;
             return TaskType.Building;
         }
@@ -89,15 +90,39 @@ public class VillageManager : MonoBehaviour
 
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
     {
-        foreach (Collider _resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
+
+        foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
-            if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent))
-                continue;
-            
-            _resource.GetComponent<Collider>().enabled = false;
+            if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
+            if (_resourceComponent.resourceType != _resourceType) continue;
+            _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
         return null;
+    }
+
+    public void AddResource(ResourceType _resource, int _amount)
+    {
+        villageData.Add(_resource, _amount);
+    }
+
+    public int GetResourceAmount(ResourceType _resource)
+    {
+        switch (_resource)
+        {
+            case ResourceType.Wood:
+                return villageData.wood;
+            case ResourceType.Stone:
+                return villageData.stone;
+            case ResourceType.Iron:
+                return villageData.iron;
+            case ResourceType.Glorp:
+                return villageData.glorp;
+            case ResourceType.Meat:
+                return villageData.meat;
+            default:
+                return -1;
+        }
     }
 }
 
@@ -108,6 +133,20 @@ public enum TaskType
     Building,
     Hunting,
     Wandering,
+}
+
+[BlackboardEnum]
+public enum AiState
+{
+    Free,
+    Attacking,
+}
+
+[BlackboardEnum]
+public enum Factions
+{
+    Villager,
+    Enemy
 }
 
 public enum ResourceType

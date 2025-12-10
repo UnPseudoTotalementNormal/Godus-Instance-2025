@@ -1,22 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "MoveTo", story: "[Self] follows [Path] with a speed of [speed]", category: "Action", id: "c4edd160b20236211db2a4a1acbb704e")]
-public partial class MoveToAction : Action
+[NodeDescription(name: "AnimalMoveTo", story: "[Self] follow [path] with speed of [speed] and stops if [attacked]", category: "Action", id: "2223409a7f7a2801dd8f7a4c52d6281f")]
+public partial class AnimalMoveToAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<List<Vector2Int>> Path;
     [SerializeReference] public BlackboardVariable<float> Speed;
-    [SerializeReference] public BlackboardVariable<GameObject> Target;
-    [SerializeReference] public BlackboardVariable<bool> CheckForTarget;
+    [SerializeReference] public BlackboardVariable<bool> Attacked;
     bool arrived = false;
     
     protected override Status OnStart()
@@ -27,8 +24,9 @@ public partial class MoveToAction : Action
     
     protected override Status OnUpdate()
     {
-        if (Target.Value == null && CheckForTarget.Value)
+        if (Attacked.Value)
             return Status.Success;
+       
         if (Path.Value.Count == 0)
             return Status.Running;
         
@@ -52,13 +50,11 @@ public partial class MoveToAction : Action
         foreach (Vector2Int _p in Path.Value)
         {
             Vector3 _startPos = Self.Value.transform.position;
-            float elapsedTime = 0f;
-            while (elapsedTime < Speed.Value)
+            float _elapsedTime = 0f;
+            while (_elapsedTime < Speed.Value)
             {
-                Self.Value.transform.position = Vector3.Lerp(_startPos, new Vector3(_p.x,_p.y,-2), elapsedTime / (Speed.Value));
-                elapsedTime += Time.deltaTime;
-                if (Target.Value == null && CheckForTarget.Value)
-                    return;
+                Self.Value.transform.position = Vector3.Lerp(_startPos, new Vector3(_p.x,_p.y,-2), _elapsedTime / (Speed.Value));
+                _elapsedTime += Time.deltaTime;
                 await Awaitable.NextFrameAsync();
             }
         }
