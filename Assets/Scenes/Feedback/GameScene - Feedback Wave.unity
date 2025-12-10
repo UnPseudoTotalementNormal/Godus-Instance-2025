@@ -907,7 +907,9 @@ MonoBehaviour:
     waveEndVFX: {fileID: 0}
     endShaderEffectDuration: 2
   waveText: {fileID: 1940662011}
-  sliderArea: {fileID: 312740491}
+  sliderObj: {fileID: 312740491}
+  sliderAnimTranslateDuration: 1
+  sliderAnimCanvasDuration: 1
 --- !u!4 &640350425
 Transform:
   m_ObjectHideFlags: 0
@@ -1224,6 +1226,109 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcf0ccde10083879aaedbe5ce5ebe93, type: 3}
+--- !u!1 &1384842867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384842869}
+  - component: {fileID: 1384842868}
+  m_Layer: 0
+  m_Name: Waves Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1384842868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384842867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7819f2ae2616ab042956a7fa8a919305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WavesManager
+  waveInfo:
+    maxEnemiesInWave: 0
+    currentWave: 0
+  enemyType:
+  - enemyTypePrefab: {fileID: 5929674309729235807, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
+    numberOfEnemies: 0
+    firstInterval: 0
+    spawnInterval: 0
+    chanceToSpawn: 0
+    enemyPowerLevel: 1
+    firstIntervalRange: {x: 1, y: 5}
+    spawnIntervalRange: {x: 1, y: 3}
+  - enemyTypePrefab: {fileID: 6943104481354564431, guid: 1c937bc6f25bc824d82e8bf99cef11b9, type: 3}
+    numberOfEnemies: 1
+    firstInterval: 0
+    spawnInterval: 0
+    chanceToSpawn: 0.2
+    enemyPowerLevel: 2
+    firstIntervalRange: {x: 1, y: 5}
+    spawnIntervalRange: {x: 1, y: 3}
+  - enemyTypePrefab: {fileID: 6943104481354564431, guid: 55c66585b8f919b42b5e247349253b41, type: 3}
+    numberOfEnemies: 1
+    firstInterval: 0
+    spawnInterval: 0
+    chanceToSpawn: 0.996
+    enemyPowerLevel: 11
+    firstIntervalRange: {x: 1, y: 5}
+    spawnIntervalRange: {x: 1, y: 3}
+  waves:
+    _serializedList:
+    - Key: 1
+      Value:
+        enemyTypePrefab:
+        - enemyTypePrefab: {fileID: 5929674309729235807, guid: 83c503534606db0448ea3df41f8634f3, type: 3}
+          numberOfEnemies: 6
+          firstInterval: 2
+          spawnInterval: 1
+          chanceToSpawn: 0
+          enemyPowerLevel: 0
+          firstIntervalRange: {x: 0, y: 0}
+          spawnIntervalRange: {x: 1, y: 3}
+        - enemyTypePrefab: {fileID: 6943104481354564431, guid: 1c937bc6f25bc824d82e8bf99cef11b9, type: 3}
+          numberOfEnemies: 2
+          firstInterval: 2
+          spawnInterval: 1
+          chanceToSpawn: 0
+          enemyPowerLevel: 0
+          firstIntervalRange: {x: 0, y: 0}
+          spawnIntervalRange: {x: 1, y: 3}
+  tileSystem: {fileID: 921564919}
+  safeSpawnRadius: 5
+  waveSpawnPoint: {x: 0, y: 0, z: 0}
+  currentEnemyAlive: []
+  firstTimeBetweenWaves: 180
+  otherTimeBetweenWaves: 60
+  wavePowerLevel: 20
+  wavePowerLevelMultiplier: 1.1
+  highPowerChanceMultiplier: 1.2
+  lowPowerChanceMultiplier: 0.9
+--- !u!4 &1384842869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384842867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1489083203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,3 +2312,4 @@ SceneRoots:
   - {fileID: 1551855895}
   - {fileID: 539001011}
   - {fileID: 640350425}
+  - {fileID: 1384842869}

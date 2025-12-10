@@ -1,4 +1,5 @@
 using System;
+using Utils.TimerSystem;
 
 public static class GameEvents
 {
@@ -7,6 +8,8 @@ public static class GameEvents
     
     public static Action onEnemyDeath;
     public static Action<WaveInfo> onWaveInfo;
+  
+    public static Action<TimerSystem> onStartTimerBetweenWave;
     
     public static Action<ResourceType, int> onResourceValueRefreshed;
     public static Action<ResourceType, int> onResourceMaxValueRefreshed;

@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace TileSystemSpace.Tilemap
 {
+    [DefaultExecutionOrder(-10000)]
     [RequireComponent(typeof(UnityEngine.Tilemaps.Tilemap))]
     public class HeightMapGenerator : MonoBehaviour
     {
         [SerializeField] private Material tilemapMaterial;
+        [SerializeField] private Material entityMaterial;
         [SerializeField] private string heightTexPropertyName = "_HeightTex";
         [SerializeField] private int pixelsPerTile = 4;
 
@@ -71,7 +73,7 @@ namespace TileSystemSpace.Tilemap
             if (heightTex == null || heightTex.width != _texWidth || heightTex.height != _texHeight)
             {
                 heightTex = new Texture2D(_texWidth, _texHeight, TextureFormat.R8, false);
-                heightTex.filterMode = FilterMode.Bilinear;
+                heightTex.filterMode = FilterMode.Point;
                 heightTex.wrapMode = TextureWrapMode.Clamp;
             }
 
@@ -112,6 +114,22 @@ namespace TileSystemSpace.Tilemap
                 tilemapMaterial.SetTexture(heightTexPropertyName, heightTex);
                 tilemapMaterial.SetFloat("_PixelsPerTile", pixelsPerTile);
                 tilemapMaterial.SetVector("_TileCount", new Vector4(size.x, size.y, 0, 0));
+                
+                if (entityMaterial != null)
+                {
+                    entityMaterial.SetTexture(heightTexPropertyName, heightTex);
+                    entityMaterial.SetFloat("_PixelsPerTile", pixelsPerTile);
+                    entityMaterial.SetVector("_TileCount", new Vector4(size.x, size.y, 0, 0));
+                    
+                    //Copy all values
+                    entityMaterial.SetVector("_ShadowsOffset", tilemapMaterial.GetVector("_ShadowsOffset"));
+                    entityMaterial.SetVector("_LightDir", tilemapMaterial.GetVector("_LightDir"));
+                    entityMaterial.SetFloat("_ShadowStrength", tilemapMaterial.GetFloat("_ShadowStrength"));
+                    entityMaterial.SetFloat("_MaxShadowOpacity", tilemapMaterial.GetFloat("_MaxShadowOpacity"));
+                    entityMaterial.SetFloat("_MinLightMarchStepSize", tilemapMaterial.GetFloat("_MinLightMarchStepSize"));
+                    entityMaterial.SetFloat("_MaxLightMarchStepSize", tilemapMaterial.GetFloat("_MaxLightMarchStepSize"));
+                    entityMaterial.SetFloat("_TileHeightPerLevelHeight", tilemapMaterial.GetFloat("_TileHeightPerLevelHeight"));
+                }
             }
         }
     }

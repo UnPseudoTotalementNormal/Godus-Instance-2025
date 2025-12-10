@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using Utils.TimerSystem;
 
 namespace Utils
 {
@@ -74,6 +75,16 @@ namespace Utils
                 textComponent.text = newText;
                 onComplete?.Invoke();
             });
+        }
+
+        public static TimerSystem.TimerSystem StartTimerText(TMP_Text _waveText, TimerSystem.TimerSystem _timer, string _label = "Timer", string _format = "0.00", System.Action _onComplete = null)
+        {
+            ChangeText(_waveText, $"{_label}: {_timer.GetFormattedTime(_format)}", 1f, () =>
+                _timer.onTimerTick += () =>
+                {
+                    _waveText.text = $"{_label}: {_timer.GetFormattedTime(_format)}";
+                });
+            return _timer;
         }
     }
 }
