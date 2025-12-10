@@ -45,7 +45,7 @@ public class VillageManager : MonoBehaviour
     {
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
-            wood -=wood*((wood / maxWood));
+            villageData.Add(ResourceType.Wood,villageData.wood / villageData.maxWood);
             _target = null;
             return TaskType.Building;
         }
@@ -103,24 +103,7 @@ public class VillageManager : MonoBehaviour
 
     public void AddResource(ResourceType _resource, int _amount)
     {
-        switch (_resource)
-        {
-            case ResourceType.Wood:
-                wood += _amount;
-                break;
-            case ResourceType.Stone:
-                stone += _amount;
-                break;
-            case ResourceType.Iron:
-                iron += _amount;
-                break;
-            case ResourceType.Glorp:
-                glorp += _amount;
-                break;
-            case ResourceType.Meat:
-                meat += _amount;
-                break;
-        }
+        villageData.Add(_resource, _amount);
     }
 
     public int GetResourceAmount(ResourceType _resource)
@@ -128,15 +111,15 @@ public class VillageManager : MonoBehaviour
         switch (_resource)
         {
             case ResourceType.Wood:
-                return wood;
+                return villageData.wood;
             case ResourceType.Stone:
-                return stone;
+                return villageData.stone;
             case ResourceType.Iron:
-                return iron;
+                return villageData.iron;
             case ResourceType.Glorp:
-                return glorp;
+                return villageData.glorp;
             case ResourceType.Meat:
-                return meat;
+                return villageData.meat;
             default:
                 return -1;
         }
