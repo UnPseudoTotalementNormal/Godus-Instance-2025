@@ -1,4 +1,4 @@
-using Mono.Cecil;
+using AI;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -9,24 +9,31 @@ public class VillageManager : MonoBehaviour
 
     bool villageUnderAttack;
     
-    //Resources
-    int wood;
-    int maxWood = 50;
-    int stone;
-    int maxStone = 50;
-    int iron;
-    int maxIron = 50;
-    int glorp;
-    int maxGlorp = 50;
-    int meat;
-    int maxMeat = 50;
+    private VillageData villageData;
 
     void Awake()
     {
+        villageData = new VillageData();
+        
         villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
         villageBlackboard.SetVariableValue("VillageManager", this);
     }
     
+    private void Start()
+    {
+        villageData.Add(ResourceType.Meat,0);
+        villageData.Add(ResourceType.Wood,0);
+        villageData.Add(ResourceType.Stone,0);
+        villageData.Add(ResourceType.Iron,0);
+        villageData.Add(ResourceType.Glorp,0);
+        
+        villageData.AddMax(ResourceType.Meat,0);
+        villageData.AddMax(ResourceType.Wood,0);
+        villageData.AddMax(ResourceType.Stone,0);
+        villageData.AddMax(ResourceType.Iron,0);
+        villageData.AddMax(ResourceType.Glorp,0);
+    }
+
     [ContextMenu("Roll call")]
     void RollCall()
     {
@@ -36,41 +43,41 @@ public class VillageManager : MonoBehaviour
 
     public TaskType GetNewTask(Transform _caller, out GameObject _target)
     {
-        if ((100 * (wood / maxWood)) >= 95)
+        if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
             _target = null;
             return TaskType.Building;
         }
         
-        if ((100 * (meat / maxMeat)) <= 80)
+        if ((100 * (villageData.meat / villageData.maxMeat)) <= 80)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Meat);
             if (_target != null)
                 return TaskType.Hunting;
         }
 
-        if ((100 * (wood / maxWood)) <= 80)
+        if ((100 * (villageData.wood / villageData.maxWood)) <= 80)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Wood);
             if (_target != null)
                 return TaskType.Gathering;
         }
 
-        if ((100 * (stone / maxStone)) <= 50)
+        if ((100 * (villageData.stone / villageData.maxStone)) <= 50)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Stone);
             if (_target != null)
                 return TaskType.Gathering;
         }
 
-        if ((100 * (iron / maxIron)) <= 50)
+        if ((100 * (villageData.iron / villageData.maxIron)) <= 50)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Iron);
             if (_target != null)
                 return TaskType.Gathering;
         }
 
-        if ((100 * (glorp / maxGlorp)) <= 50)
+        if ((100 * (villageData.glorp / villageData.maxGlorp)) <= 50)
         {
             _target = DetectResourceInRange(_caller, ResourceType.Glorp);
             if (_target != null)
@@ -82,10 +89,11 @@ public class VillageManager : MonoBehaviour
 
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
     {
-
         foreach (Collider _resource in Physics.OverlapSphere(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
-            if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
+            if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent))
+                continue;
+            
             _resource.GetComponent<Collider>().enabled = false;
             return _resource.gameObject;
         }
