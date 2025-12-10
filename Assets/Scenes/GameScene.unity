@@ -2139,6 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileSystemSpace.Tilemap.HeightMapGenerator
   tilemapMaterial: {fileID: 2100000, guid: c24c2de1e6a724870a57b902fa12e836, type: 2}
+  entityMaterial: {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
   heightTexPropertyName: _HeightTex
   pixelsPerTile: 32
 --- !u!114 &1494854487

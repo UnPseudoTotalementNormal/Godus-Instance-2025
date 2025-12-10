@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 254037262560530914}
   - component: {fileID: 941523108122581766}
   - component: {fileID: 1714333393580343305}
+  - component: {fileID: 1086337542115328957}
+  - component: {fileID: 3483990015831709205}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -61,6 +63,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   maxHealth: 100
+--- !u!114 &1086337542115328957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db445adf11ca4b8894fc49732a0325d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI.EntityHeightComponent
+  updateInterval: 1
+--- !u!114 &3483990015831709205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa75d2f6c4e4ba5900c29ca5b8c301f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Feedback.EntityTileMapShadow
+  spriteRenderer: {fileID: 580390576103589226}
+  heightComponent: {fileID: 1086337542115328957}
 --- !u!1 &1647814771126434785
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +148,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
