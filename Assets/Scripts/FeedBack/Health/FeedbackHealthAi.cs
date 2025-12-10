@@ -47,11 +47,21 @@ namespace Feedback.Health
         
         [Header("Reference")]
         private HealthComponent healthComponent;
-        
+
+        private bool isInit = false;
         
 
-        private void Awake()
+        private void Start()
         {
+            if (!isInit)
+            {
+                Init();
+            }
+        }
+
+        private void Init()
+        {
+            isInit = true;
             healthComponent = GetComponent<HealthComponent>();
             Assert.IsNotNull(healthComponent, $"<b>[FeedbackHealthAi]</b> HealthComponent is missing on {gameObject.name}.");
             Assert.IsNotNull(spriteRenderer, $"<b>[FeedbackHealthAi]</b> SpriteRenderer is missing on {gameObject.name}.");
@@ -61,6 +71,10 @@ namespace Feedback.Health
 
         private void OnEnable()
         {
+            if (!isInit)
+            {
+                Init();
+            }
             healthComponent.onHealed += HandleHealed;
             healthComponent.onDamaged += HandleDamaged;
         }
@@ -157,7 +171,7 @@ namespace Feedback.Health
         #region ShaderProperties
         private void InitializeShaderProperties()
         {
-            material = spriteRenderer.material;
+            material = spriteRenderer.sharedMaterial;
             hitTimeID = Shader.PropertyToID("_HitTime");
             flashDurationID = Shader.PropertyToID("_FlashDuration");
             flashColorID = Shader.PropertyToID("_FlashColor");

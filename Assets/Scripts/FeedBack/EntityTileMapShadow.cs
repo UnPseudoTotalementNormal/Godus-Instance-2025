@@ -18,7 +18,7 @@ namespace Feedback
                 spriteRenderer = GetComponent<SpriteRenderer>();
             }
 
-            _materialInstance = spriteRenderer.material;
+            _materialInstance = spriteRenderer.sharedMaterial;
         }
 
         private void Update()

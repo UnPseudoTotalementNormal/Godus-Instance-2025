@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[DefaultExecutionOrder(-99999)]
+[DefaultExecutionOrder(-100)]
 public class MaterialInstancer : MonoBehaviour
 {
     [SerializeField] private Renderer[] rendererToInstance;
