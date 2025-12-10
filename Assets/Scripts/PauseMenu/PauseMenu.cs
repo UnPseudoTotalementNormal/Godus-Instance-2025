@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        GameEvents.onGameOver += OnGameOver;
         InputManager.instance.onEscapeButtonPressStarted += EscapePressed;
     }
 
@@ -23,6 +24,12 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+    }
+
+    void OnGameOver()
+    {
+        InputManager.instance.onEscapeButtonPressStarted -= EscapePressed;
+        GameEvents.onGameOver -= OnGameOver;
     }
 
     public void Resume()
