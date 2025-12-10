@@ -104,3 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireSystem.Fire
   <damagePerSecond>k__BackingField: 40
+  <spreadChancePerSecond>k__BackingField: 0
+  <minLifetime>k__BackingField: 5
+  <maxLifetime>k__BackingField: 8

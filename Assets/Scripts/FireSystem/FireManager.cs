@@ -33,8 +33,34 @@ namespace FireSystem
             Fire _newFire = Instantiate(firePrefab, 
                 new Vector2(_tilePosition.x, _tilePosition.y), 
                 Quaternion.identity);
+
+            _newFire.onFireExtinguished += () =>
+            {
+                OnFireExtinguished(_tilePosition);
+            };
             
             activeFires.Add(_tilePosition, _newFire);
+        }
+        
+        public void ExtinguishFireAtTile(Vector2Int _tilePosition)
+        {
+            if (!activeFires.ContainsKey(_tilePosition))
+            {
+                return;
+            }
+
+            Fire _fire = activeFires[_tilePosition];
+            _fire.ExtinguishFire();
+        }
+
+        private void OnFireExtinguished(Vector2Int _tilePosition)
+        {
+            if (!activeFires.ContainsKey(_tilePosition))
+            {
+                return;
+            }
+            
+            activeFires.Remove(_tilePosition);
         }
         
         public bool IsTileOnFire(Vector2Int _tilePosition)
