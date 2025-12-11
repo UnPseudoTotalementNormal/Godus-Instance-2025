@@ -22,6 +22,11 @@ namespace TileSystemSpace.Tilemap
             {
                 return true;
             }
+
+            if (!TileSystem.instance)
+            {
+                return false;
+            }
             
             int _currentHeightLevel = TileSystem.instance.GetTile(_position).level;
             int _otherHeightLevel = TileSystem.instance.GetTile(_position + _otherPos).level;
