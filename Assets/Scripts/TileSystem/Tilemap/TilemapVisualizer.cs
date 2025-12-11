@@ -12,7 +12,6 @@ namespace TileSystemSpace.Tilemap
         private UnityEngine.Tilemaps.Tilemap tilemap;
 
         private TileSystem tileSystem;
-        private Dictionary<RuleTile, Dictionary<int, CustomRuleTile>> ruleTiles;
         [SerializeField] private SerializedDictionary<TileType, CustomRuleTile> tileTypeToRuleTileMap;
         
         
@@ -20,30 +19,6 @@ namespace TileSystemSpace.Tilemap
         {
             tilemap = GetComponent<UnityEngine.Tilemaps.Tilemap>();
             Assert.IsNotNull(tilemap, "Tilemap is null");
-            
-            SetupRuleTiles();
-        }
-
-        private void SetupRuleTiles()
-        {
-            ruleTiles = new Dictionary<RuleTile, Dictionary<int, CustomRuleTile>>();
-            
-            foreach (TileType tileType in tileTypeToRuleTileMap.Keys)
-            {
-                CustomRuleTile _customRuleTile = tileTypeToRuleTileMap[tileType];
-                
-                for (int i = 0; i <= GameValues.MAX_TILE_HEIGHT; i++)
-                {
-                    if (!ruleTiles.ContainsKey(_customRuleTile))
-                    {
-                        ruleTiles[_customRuleTile] = new Dictionary<int, CustomRuleTile>();
-                    }
-                    
-                    CustomRuleTile _tileVariant = Instantiate(_customRuleTile);
-                    _tileVariant.heightLevel = i;
-                    ruleTiles[_customRuleTile][i] = _tileVariant;
-                }
-            }
         }
 
         private void Start()
