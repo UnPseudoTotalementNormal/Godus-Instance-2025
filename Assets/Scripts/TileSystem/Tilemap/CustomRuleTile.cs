@@ -12,41 +12,54 @@ namespace TileSystemSpace.Tilemap
 
         [SerializeField] private TileType tileType;
         
-        public override bool RuleMatch(int neighbor, TileBase other)
+        private Vector2Int offsetPosition;
+        
+        public override bool RuleMatch(Vector2Int _position, Vector2Int _otherPos, int _neighbor, TileBase _other)
         {
-            CustomRuleTile _otherTile = other as CustomRuleTile;
+            CustomRuleTile _otherTile = _other as CustomRuleTile;
 
             if (!_otherTile)
             {
                 return true;
             }
             
+            int _currentHeightLevel = TileSystem.instance.GetTile(_position).level;
+            int _otherHeightLevel = TileSystem.instance.GetTile(_position + _otherPos).level;
             
-            if (heightLevel == _otherTile.heightLevel)
+            if (_currentHeightLevel == _otherHeightLevel)
             {
                 if (excludeNeighbourTiles.Contains(_otherTile.tileType))
                 {
-                    switch (neighbor)
+                    switch (_neighbor)
                     {
-                        case TilingRuleOutput.Neighbor.This: return other == this;
-                        case TilingRuleOutput.Neighbor.NotThis: return other != this;
+                        case TilingRuleOutput.Neighbor.This: return _other == this;
+                        case TilingRuleOutput.Neighbor.NotThis: return _other != this;
                         default: return true;
                     }
                 }
             }
             
-            
-            if (heightLevel > _otherTile.heightLevel)
+            if (_currentHeightLevel > _otherHeightLevel)
             {
-                switch (neighbor)
+                switch (_neighbor)
                 {
-                    case TilingRuleOutput.Neighbor.This: return other == this;
-                    case TilingRuleOutput.Neighbor.NotThis: return other != this;
+                    case TilingRuleOutput.Neighbor.This: return false;
+                    case TilingRuleOutput.Neighbor.NotThis: return true;
+                    default: return true;
+                }
+            }
+            
+            if (_currentHeightLevel < _otherHeightLevel)
+            {
+                switch (_neighbor)
+                {
+                    case TilingRuleOutput.Neighbor.This: return true;
+                    case TilingRuleOutput.Neighbor.NotThis: return false;
                     default: return true;
                 }
             }
 
-            return true;
+            return true; //WILL NEVER REACH THIS
         }
     }
 }

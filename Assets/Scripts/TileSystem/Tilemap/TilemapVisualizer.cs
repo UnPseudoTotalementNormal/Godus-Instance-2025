@@ -63,7 +63,17 @@ namespace TileSystemSpace.Tilemap
         private void AnyTileChanged(Tile _tile, Vector2Int _newPosition)
         {
             Vector3Int _targetPos = new Vector3Int(_newPosition.x, _newPosition.y, 0);
-            tilemap.SetTile(_targetPos, ruleTiles[tileTypeToRuleTileMap[_tile.tileType]][_tile.level]);
+            tilemap.SetTile(_targetPos, tileTypeToRuleTileMap[_tile.tileType]);
+            
+            tilemap.RefreshTile(new Vector3Int(_newPosition.x, _newPosition.y));
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    tilemap.RefreshTile(new Vector3Int(_newPosition.x, _newPosition.y) + new Vector3Int(x, y, 0));
+                }
+            }
+            
         }
     }
 }
