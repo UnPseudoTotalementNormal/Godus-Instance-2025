@@ -28,18 +28,10 @@ namespace Camera
             Assert.IsNotNull(cinemachineCamera, "No Cinemachine Camera found.");
 
             targetOrthographicSize = cinemachineCamera.Lens.OrthographicSize;
-        }
-
-        private void OnEnable()
-        {
+            
             InputManager.instance.onMiddleMousseScroll += Zoom;
         }
         
-        private void OnDisable()
-        {
-            InputManager.instance.onMiddleMousseScroll -= Zoom;
-        }
-
         private void Update()
         {
             UpdateZoom();
@@ -48,7 +40,7 @@ namespace Camera
         
         public void Zoom(float _zoomDelta)
         {
-            //Debug.Log("Zoom Delta: " + _zoomDelta);
+            // Debug.Log("Zoom Delta: " + _zoomDelta);
             targetOrthographicSize -= _zoomDelta * zoomSpeed;
             targetOrthographicSize = Mathf.Clamp(targetOrthographicSize, minZoom, maxZoom);
         }
