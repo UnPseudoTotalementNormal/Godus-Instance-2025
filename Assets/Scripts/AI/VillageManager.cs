@@ -85,6 +85,24 @@ public class VillageManager : MonoBehaviour
                 return TaskType.Gathering;
         }
         _target = null;
+        
+        //Random chance to select a random task
+        if (Random.value <= 0.2f)
+        {
+            Debug.Log("Selecting a random task for " + _caller.name);
+            ResourceType _randTaskType = DetectAllResourceInRange(_caller, out GameObject _newRes);
+            if (_newRes == null)
+                return TaskType.Wandering;
+            switch (_randTaskType)
+            {
+                case ResourceType.Wood: case ResourceType.Stone: case ResourceType.Iron: case ResourceType.Glorp:
+                    _target = _newRes;
+                    return TaskType.Gathering;
+                case ResourceType.Meat:
+                    _target = _newRes;
+                    return TaskType.Hunting;
+            }
+        }
         return TaskType.Wandering;
     }
 
@@ -99,6 +117,18 @@ public class VillageManager : MonoBehaviour
             return _resource.gameObject;
         }
         return null;
+    }
+
+    ResourceType DetectAllResourceInRange(Transform _origin, out GameObject _givenResource)
+    {
+        Collider2D[] _collider2Ds = Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource"));
+        _givenResource = null;
+        if (_collider2Ds.Length == 0)
+            return ResourceType.Wood;
+        int _randomIndex = Random.Range(0, _collider2Ds.Length);
+        _givenResource = _collider2Ds[_randomIndex].gameObject;
+        _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;
+        return _collider2Ds[_randomIndex].GetComponent<ResourceComponent>().resourceType;
     }
 
     public void AddResource(ResourceType _resource, int _amount)
