@@ -16,23 +16,27 @@ public partial class LookAroundForTargetAction : Action
 
     protected override Status OnStart()
     {
-        RaycastHit2D[] _around = Physics2D.CircleCastAll(self.Value.transform.position, 20f, Vector2.zero);
-        foreach (RaycastHit2D _hit in _around)
+        Collider2D[] _around = Physics2D.OverlapCircleAll(self.Value.transform.position, 20f);
+        float closest = Int32.MaxValue;
+        GameObject newTarget = null;
+        foreach (Collider2D _hit in _around)
         {
-            if (_hit.collider.TryGetComponent(out BehaviorGraphAgent _agent))
+            if (_hit.TryGetComponent(out BehaviorGraphAgent _agent))
             {
                 if (_agent.GetVariable("Faction", out BlackboardVariable _faction) == false)
                     continue;
-                if (_faction.ValueEquals(faction))
+                if (_faction.ValueEquals(faction) && Vector3.Distance(self.Value.transform.position, _agent.transform.position) <=closest)
                 {
-                    Debug.Log("Target found !!!");
-                    target.Value = _hit.collider.gameObject;
+                    //Debug.Log("Target found !!!");
+                    closest = Vector3.Distance(self.Value.transform.position, _agent.transform.position);
+                    newTarget = _agent.gameObject;
+                    target.Value = _agent.gameObject;
                     aiState.Value = AiState.Attacking;
-                    return Status.Success;
                 }
             }
         }
-        aiState.Value = AiState.Free;
+        if (newTarget == null)
+            aiState.Value = AiState.Free;
         return Status.Success;
     }
 
