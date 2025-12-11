@@ -116,7 +116,7 @@ public class VillageManager : MonoBehaviour
         foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
             if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
-            if (_resourceComponent.resourceType != _resourceType) continue;
+            if (_resourceComponent.resourceType != _resourceType || _resourceComponent.collectible == false) continue;
             _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
@@ -130,6 +130,8 @@ public class VillageManager : MonoBehaviour
         if (_collider2Ds.Length == 0)
             return ResourceType.Wood;
         int _randomIndex = Random.Range(0, _collider2Ds.Length);
+        if (_collider2Ds[_randomIndex].GetComponent<ResourceComponent>().collectible == false)
+            return ResourceType.Wood;
         _givenResource = _collider2Ds[_randomIndex].gameObject;
         _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;
         return _collider2Ds[_randomIndex].GetComponent<ResourceComponent>().resourceType;

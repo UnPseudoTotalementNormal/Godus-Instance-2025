@@ -7,7 +7,7 @@ public abstract class ResourceComponent : MonoBehaviour
     public float collectionDelay;
     public int collectionQuantity;
     [SerializeField] protected int collectionsLeft;
-
+    public bool collectible;
     public Action callback;
     
     public void OnCollect()
