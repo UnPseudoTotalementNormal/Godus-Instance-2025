@@ -1,11 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using AI;
 using Unity.Behavior;
+using Unity.Collections;
 using UnityEngine;
 
 public class VillageManager : MonoBehaviour
 {
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] Vector2Int villageCenter;
+    [SerializeField] GameObject buildingPrefab;
 
     bool villageUnderAttack;
     
@@ -45,8 +49,8 @@ public class VillageManager : MonoBehaviour
     {
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
-            villageData.Add(ResourceType.Wood,villageData.wood / villageData.maxWood);
-            _target = null;
+            villageData.Add(ResourceType.Wood,-(villageData.wood / villageData.maxWood));
+            _target = buildingPrefab;
             return TaskType.Building;
         }
         
@@ -153,6 +157,12 @@ public class VillageManager : MonoBehaviour
             default:
                 return -1;
         }
+    }
+
+    public bool BuildAtLocation(Transform _position, GameObject _prefab)
+    {
+        GameObject _newBuild = Instantiate(_prefab, _position);
+        return true;
     }
 }
 
