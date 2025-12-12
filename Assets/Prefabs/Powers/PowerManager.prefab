@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1394417839096400497}
-  - component: {fileID: 3059140216847769146}
+  - component: {fileID: 273924167230926781}
+  - component: {fileID: 4825564648578641269}
+  - component: {fileID: 8499782935646260943}
   m_Layer: 0
   m_Name: "Cr\xE9er un sol de pierre"
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148415593687727117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3059140216847769146
+--- !u!114 &273924167230926781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +43,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 86431528417241083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd0d8d1e3aa62120901489919c44ec0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.DropTilesPower
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
-  radiusMode: 1
+  radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+  tileTypeToDrop: 10
+  maxTilesToDrop: 30
+--- !u!114 &4825564648578641269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86431528417241083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8499782935646260943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86431528417241083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &605641559555294793
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +90,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8939251425870616153}
   - component: {fileID: 703355328027704938}
+  - component: {fileID: 8831373890044676628}
+  - component: {fileID: 2426386831840706275}
   m_Layer: 0
   m_Name: "Cr\xE9er un hotel de ville"
   m_TagString: Untagged
@@ -100,9 +133,36 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 2
   minToSpawn: 1
   maxToSpawn: 1
-  prefabToSpawn: {fileID: 0}
+  prefabToSpawn: {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+--- !u!114 &8831373890044676628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605641559555294793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &2426386831840706275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605641559555294793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d398ab23f294f6ea8d2a26a36462a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCanBuildTownHallCheck
 --- !u!1 &690860878360739873
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +172,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8225845533999597270}
-  - component: {fileID: 7070088974084324837}
+  - component: {fileID: 8823008752508802080}
+  - component: {fileID: 4493141019834843958}
+  - component: {fileID: 6522537378320578644}
   m_Layer: 0
   m_Name: "Cr\xE9er des arbres"
   m_TagString: Untagged
@@ -135,7 +197,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7070088974084324837
+--- !u!114 &8823008752508802080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,14 +206,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 690860878360739873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 10
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 45
+  <categoryCooldownDuration>k__BackingField: 10
+  minToSpawn: 5
+  maxToSpawn: 10
+  prefabToSpawn: {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  allowedTileTypes: 0a000000
+  prohibitedTileTypes: 0000000014000000
+--- !u!114 &4493141019834843958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690860878360739873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &6522537378320578644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690860878360739873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &1657155739780777473
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +305,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1108124269164928802}
   - component: {fileID: 8817782302019362313}
+  - component: {fileID: 133333643258086047}
+  - component: {fileID: 3679105681391948945}
   m_Layer: 0
   m_Name: Sort de rage
   m_TagString: Untagged
@@ -250,6 +346,33 @@ MonoBehaviour:
   radiusMode: 1
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+--- !u!114 &133333643258086047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832100028179106572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &3679105681391948945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832100028179106572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &2750874842964857837
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +382,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4834749233745342667}
-  - component: {fileID: 4550407518726394526}
+  - component: {fileID: 5540110940836154057}
+  - component: {fileID: 7268488156280559129}
+  - component: {fileID: 1075533201447748009}
   m_Layer: 0
   m_Name: "Moyenne M\xE9t\xE9orite"
   m_TagString: Untagged
@@ -282,7 +407,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4550407518726394526
+--- !u!114 &5540110940836154057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,14 +416,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 2750874842964857837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1619723bb8f561f5db570377d024d3be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.MeteoritePower
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 5
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 20
+  <categoryCooldownDuration>k__BackingField: 30
+  meteoritePrefab: {fileID: 1649230141344992189, guid: 7d2efbf52001aaedaaf12bfeab850c1d, type: 3}
+  maxMeteorites: 1
+  damageAmount: 400
+  minTileDigLevel: 1
+  maxTileDigLevel: 3
+  screenShakeForce: 4
+  screenShakeDuration: 0.4
+--- !u!114 &7268488156280559129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750874842964857837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1075533201447748009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750874842964857837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &3134971587976476508
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b48c2e06be7e9e08184c0ba48ba5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerManager
+  hasTownHallSpawned: 0
+  isTownHallSpawned: 0
 --- !u!1 &3569314833829841097
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +518,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3006998527158255918}
-  - component: {fileID: 8138358515186607595}
+  - component: {fileID: 178443799603722168}
+  - component: {fileID: 5887970566047131230}
+  - component: {fileID: 8694288404388758631}
   m_Layer: 0
   m_Name: "Grande M\xE9t\xE9orite"
   m_TagString: Untagged
@@ -380,7 +543,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8138358515186607595
+--- !u!114 &178443799603722168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,14 +552,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 3569314833829841097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1619723bb8f561f5db570377d024d3be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.MeteoritePower
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 9
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 40
+  <categoryCooldownDuration>k__BackingField: 30
+  meteoritePrefab: {fileID: 1649230141344992189, guid: 7d2efbf52001aaedaaf12bfeab850c1d, type: 3}
+  maxMeteorites: 1
+  damageAmount: 1000
+  minTileDigLevel: 2
+  maxTileDigLevel: 5
+  screenShakeForce: 8
+  screenShakeDuration: 0.4
+--- !u!114 &5887970566047131230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3569314833829841097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8694288404388758631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3569314833829841097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &3610807610792269683
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +603,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1985112720350817323}
-  - component: {fileID: 8441658385432167723}
+  - component: {fileID: 3175674539744300373}
+  - component: {fileID: 1768945123918319047}
+  - component: {fileID: 8393166808664368065}
   m_Layer: 0
   m_Name: "Cr\xE9er des minerai de Glorp"
   m_TagString: Untagged
@@ -429,7 +628,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8441658385432167723
+--- !u!114 &3175674539744300373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,14 +637,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 3610807610792269683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 10
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 120
+  <categoryCooldownDuration>k__BackingField: 20
+  minToSpawn: 5
+  maxToSpawn: 10
+  prefabToSpawn: {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+--- !u!114 &1768945123918319047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3610807610792269683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8393166808664368065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3610807610792269683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &3783839208736725786
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +686,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 922635859904218667}
-  - component: {fileID: 1912432518732739034}
+  - component: {fileID: 2812537141985256242}
+  - component: {fileID: 3594025107760312541}
+  - component: {fileID: 4832444774142896008}
   m_Layer: 0
   m_Name: Sort d'engrais
   m_TagString: Untagged
@@ -478,7 +711,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1912432518732739034
+--- !u!114 &2812537141985256242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,14 +720,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 3783839208736725786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: cc8f2730d1a51c34abd0e3bc24188755, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::TreeFertilizer
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 9
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 90
+  <categoryCooldownDuration>k__BackingField: 5
+  growthSpeedMultiplier: 4
+--- !u!114 &3594025107760312541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783839208736725786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4832444774142896008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783839208736725786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &3963866588075503766
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +816,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7294688052602914818}
-  - component: {fileID: 3519854754981135915}
+  - component: {fileID: 3238570035600245943}
+  - component: {fileID: 226641129870904496}
+  - component: {fileID: 292863346747277664}
   m_Layer: 0
   m_Name: "Cr\xE9er des minerai de fer"
   m_TagString: Untagged
@@ -578,7 +841,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3519854754981135915
+--- !u!114 &3238570035600245943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -587,14 +850,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 4161371456233932988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 10
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 60
+  <categoryCooldownDuration>k__BackingField: 10
+  minToSpawn: 5
+  maxToSpawn: 10
+  prefabToSpawn: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+--- !u!114 &226641129870904496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4161371456233932988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &292863346747277664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4161371456233932988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &4383354476088119107
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +946,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4048129603286651101}
-  - component: {fileID: 342643992886052299}
+  - component: {fileID: 1943732590525708388}
+  - component: {fileID: 7324024015278490770}
+  - component: {fileID: 5406126297347808101}
   m_Layer: 0
   m_Name: "Cr\xE9er des animaux"
   m_TagString: Untagged
@@ -674,7 +971,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &342643992886052299
+--- !u!114 &1943732590525708388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -683,14 +980,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 4407967528452708840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 10
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 45
+  <categoryCooldownDuration>k__BackingField: 10
+  minToSpawn: 5
+  maxToSpawn: 10
+  prefabToSpawn: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+--- !u!114 &7324024015278490770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407967528452708840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &5406126297347808101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407967528452708840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &4913164743679277192
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +1029,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3099757612564270458}
-  - component: {fileID: 3027616465563898612}
+  - component: {fileID: 4105270236130686046}
+  - component: {fileID: 840562027786125270}
+  - component: {fileID: 798672099876281971}
   m_Layer: 0
   m_Name: "Petite M\xE9t\xE9orite"
   m_TagString: Untagged
@@ -723,7 +1054,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3027616465563898612
+--- !u!114 &4105270236130686046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -732,14 +1063,207 @@ MonoBehaviour:
   m_GameObject: {fileID: 4913164743679277192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1619723bb8f561f5db570377d024d3be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.MeteoritePower
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 2
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 10
+  <categoryCooldownDuration>k__BackingField: 5
+  meteoritePrefab: {fileID: 1649230141344992189, guid: 7d2efbf52001aaedaaf12bfeab850c1d, type: 3}
+  maxMeteorites: 1
+  damageAmount: 200
+  minTileDigLevel: 1
+  maxTileDigLevel: 2
+  screenShakeForce: 2
+  screenShakeDuration: 0.4
+--- !u!114 &840562027786125270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913164743679277192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &798672099876281971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913164743679277192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!1 &4930258961013561292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6908597364035162833}
+  - component: {fileID: 1843922997828223739}
+  - component: {fileID: 3720419984117074044}
+  - component: {fileID: 4528795084981104728}
+  m_Layer: 0
+  m_Name: Vider l'eau
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6908597364035162833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930258961013561292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8148415593687727117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843922997828223739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930258961013561292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd4c33da75d24d6998a518c5b3374b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.DrainWaterPower
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 5
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 10
+  <categoryCooldownDuration>k__BackingField: 0
+  maxWaterLayersToDrain: 300
+--- !u!114 &3720419984117074044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930258961013561292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4528795084981104728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930258961013561292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!1 &5410566490416740964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3861961730565360242}
+  - component: {fileID: 315426165533277279}
+  - component: {fileID: 6024343929442654009}
+  - component: {fileID: 3433615677520588139}
+  m_Layer: 0
+  m_Name: "Cr\xE9er de l'eau"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3861961730565360242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410566490416740964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8148415593687727117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &315426165533277279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410566490416740964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd0d8d1e3aa62120901489919c44ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.DropTilesPower
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
-  radiusMode: 1
+  radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+  tileTypeToDrop: 0
+  maxTilesToDrop: 1
+--- !u!114 &6024343929442654009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410566490416740964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &3433615677520588139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410566490416740964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &6210347989287798240
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +1274,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6103205462572621446}
   - component: {fileID: 5742826549444197425}
+  - component: {fileID: 355265544325434059}
+  - component: {fileID: 4264483567855412140}
   m_Layer: 0
   m_Name: "Poss\xE9der une entit\xE9"
   m_TagString: Untagged
@@ -789,6 +1315,33 @@ MonoBehaviour:
   radiusMode: 1
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+--- !u!114 &355265544325434059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210347989287798240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4264483567855412140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210347989287798240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &7416759798192138084
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +1351,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9159178517064249669}
-  - component: {fileID: 656483249937758248}
+  - component: {fileID: 3449592209633899677}
+  - component: {fileID: 6654172217814288914}
+  - component: {fileID: 2404162156441619988}
   m_Layer: 0
   m_Name: "Cr\xE9er une plaine"
   m_TagString: Untagged
@@ -821,7 +1376,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148415593687727117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &656483249937758248
+--- !u!114 &3449592209633899677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -830,14 +1385,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 7416759798192138084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd0d8d1e3aa62120901489919c44ec0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.DropTilesPower
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
+  tileRadius: 2
+  radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+  tileTypeToDrop: 10
+  maxTilesToDrop: 30
+--- !u!114 &6654172217814288914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416759798192138084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &2404162156441619988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416759798192138084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &8018553049544447527
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +1454,8 @@ Transform:
   m_Children:
   - {fileID: 1394417839096400497}
   - {fileID: 9159178517064249669}
+  - {fileID: 3861961730565360242}
+  - {fileID: 6908597364035162833}
   - {fileID: 7964352769323851497}
   m_Father: {fileID: 6628211762310620858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -895,7 +1481,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7964352769323851497}
-  - component: {fileID: 3065140996200823130}
+  - component: {fileID: 2556353604755309044}
+  - component: {fileID: 4722187155909667819}
+  - component: {fileID: 1913320381752388987}
   m_Layer: 0
   m_Name: "Cr\xE9er un trou"
   m_TagString: Untagged
@@ -918,7 +1506,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148415593687727117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3065140996200823130
+--- !u!114 &2556353604755309044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -927,14 +1515,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 8222052912637855855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f5240d0374c4f668619897dc7cf7b9d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.DigTilesPower
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 1
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+  maxTilesToDig: 30
+--- !u!114 &4722187155909667819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222052912637855855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1913320381752388987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222052912637855855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &8283944714982217277
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +1561,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1905199433282660239}
   - component: {fileID: 2359525952084278070}
+  - component: {fileID: 5709888807729131271}
+  - component: {fileID: 597919356501860464}
   m_Layer: 0
   m_Name: "Cr\xE9er une caserne"
   m_TagString: Untagged
@@ -984,6 +1602,33 @@ MonoBehaviour:
   radiusMode: 1
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+--- !u!114 &5709888807729131271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283944714982217277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &597919356501860464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283944714982217277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &8943074761570259926
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,7 +1638,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 786844984210711130}
-  - component: {fileID: 7858253655948308429}
+  - component: {fileID: 3244365955169471821}
+  - component: {fileID: 3288972630378708481}
+  - component: {fileID: 7079798765711266647}
   m_Layer: 0
   m_Name: Enflammer
   m_TagString: Untagged
@@ -1016,7 +1663,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1786680968829167254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7858253655948308429
+--- !u!114 &3244365955169471821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1025,14 +1672,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 8943074761570259926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: d32a1d19bcbd583fca686b46d2263c04, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::PowerIgniteFire
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 2
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 50
+  <categoryCooldownDuration>k__BackingField: 10
+  maxTilesToIgnite: 21
+--- !u!114 &3288972630378708481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8943074761570259926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &7079798765711266647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8943074761570259926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &8947771796620502910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,7 +1764,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8378489304267884233}
-  - component: {fileID: 6978264012573552844}
+  - component: {fileID: 7317455801721260924}
+  - component: {fileID: 5072623692129797919}
+  - component: {fileID: 4878817663123195313}
   m_Layer: 0
   m_Name: "Cr\xE9er des pierres"
   m_TagString: Untagged
@@ -1112,7 +1789,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6454656501684699950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6978264012573552844
+--- !u!114 &7317455801721260924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1121,11 +1798,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 9050392945308179188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
+  tileRadius: 10
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 45
+  <categoryCooldownDuration>k__BackingField: 10
+  minToSpawn: 5
+  maxToSpawn: 10
+  prefabToSpawn: {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+--- !u!114 &5072623692129797919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050392945308179188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4878817663123195313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050392945308179188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
