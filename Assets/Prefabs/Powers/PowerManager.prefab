@@ -45,6 +45,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
+--- !u!1 &605641559555294793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8939251425870616153}
+  - component: {fileID: 703355328027704938}
+  m_Layer: 0
+  m_Name: "Cr\xE9er un hotel de ville"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8939251425870616153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605641559555294793}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8821052185204664721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &703355328027704938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605641559555294793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
+  minToSpawn: 1
+  maxToSpawn: 1
+  prefabToSpawn: {fileID: 0}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
 --- !u!1 &690860878360739873
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &1657155739780777473
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &2750874842964857837
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +295,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &3134971587976476508
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,9 +329,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8821052185204664721}
   - {fileID: 8148415593687727117}
   - {fileID: 6454656501684699950}
-  - {fileID: 8821052185204664721}
   - {fileID: 1786680968829167254}
   - {fileID: 6240284082935981684}
   m_Father: {fileID: 0}
@@ -323,6 +393,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &3610807610792269683
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +442,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &3783839208736725786
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +491,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &3963866588075503766
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +591,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &4383354476088119107
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +687,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &4913164743679277192
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +736,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &6210347989287798240
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +785,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &7416759798192138084
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +834,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &8018553049544447527
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +931,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &8283944714982217277
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +980,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &8943074761570259926
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +1029,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2
 --- !u!1 &8947771796620502910
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1063,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8939251425870616153}
   - {fileID: 1905199433282660239}
   m_Father: {fileID: 6628211762310620858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1010,3 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
   <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 0
+  radiusMode: 1
+  <powerCooldownDuration>k__BackingField: 5
+  <categoryCooldownDuration>k__BackingField: 2

@@ -63,6 +63,10 @@ namespace UI.Power
         
         public void OnClicked()
         {
+            if (!PowerManager.instance.hasTownHallSpawned)
+            {
+                return;
+            }
             onClicked?.Invoke(this);
         }
         
