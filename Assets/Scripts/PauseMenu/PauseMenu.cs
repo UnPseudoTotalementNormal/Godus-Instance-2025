@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject settingsMenuUI;
 
     void Start()
     {
@@ -16,14 +17,18 @@ public class PauseMenu : MonoBehaviour
 
     void EscapePressed()
     {
-            if (gameIsPaused)
+        if (gameIsPaused)
+        {
+            if (settingsMenuUI.activeSelf)
             {
-                Resume();
+                settingsMenuUI.SetActive(false);
             }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
     }
 
     void OnGameOver()
@@ -49,7 +54,13 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("tittle");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Settings()
+    {
+        pauseMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(true);
     }
 
     public void QuitGame()
