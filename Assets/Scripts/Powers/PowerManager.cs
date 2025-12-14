@@ -11,6 +11,8 @@ namespace Powers
         public readonly List<Power> availablePowers = new();
         
         private Power currentPower;
+        public bool hasTownHallSpawned = false;
+        public bool isTownHallSpawned = false;
         
         public event Action<Power> onPowerUnSelected;
         public event Action<Power> onPowerSelected;
@@ -27,6 +29,11 @@ namespace Powers
             }
             
             RetrieveAndSetPowers();
+        }
+        
+        private void Start()
+        {
+            GameEvents.onTownHallCreated += () => hasTownHallSpawned = true;
         }
 
         private void RetrieveAndSetPowers()
@@ -85,7 +92,8 @@ namespace Powers
             {
                 return false;
             }
-            return !_power.isOnCooldown && !_power.powerCategory.isOnCooldown;
+
+            return !_power.isOnCooldown && !_power.powerCategory.isOnCooldown && _power.CanUsePower();
         }
     }
 }

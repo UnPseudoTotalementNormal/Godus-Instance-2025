@@ -7,6 +7,9 @@ public static class GameEvents
     public static Action onWaveEnded;
     public static Action onGameOver;
     
+    public static Action onTownHallCreated;
+    public static Action onTownHallDestroy;
+    
     public static Action onEnemyDeath;
     public static Action<WaveInfo> onWaveInfo;
   

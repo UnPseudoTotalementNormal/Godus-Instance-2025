@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TileSystemSpace;
 using UnityEngine;
 
@@ -26,6 +28,12 @@ namespace Powers
         public event Action onCooldownEnded;
         
         public bool isPowerActive { get; protected set; } = false;
+        private List<PowerUseConditionComponent> useConditions = new();
+
+        private void Awake()
+        {
+            useConditions = GetComponents<PowerUseConditionComponent>().ToList();
+        }
 
         public virtual void Update()
         {
@@ -74,6 +82,20 @@ namespace Powers
         {
             currentCooldownTime = _cooldownDuration;
             onCooldownStarted?.Invoke();
+        }
+
+        public virtual bool CanUsePower()
+        {
+            foreach (PowerUseConditionComponent _powerUseConditionComponent in useConditions)
+            {
+                var _result = _powerUseConditionComponent.CanUsePower();
+                if (!_result)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

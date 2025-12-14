@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AI;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -11,7 +12,7 @@ using Unity.Properties;
 public partial class AnimalMoveToAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<List<Vector2Int>> Path;
+    [SerializeReference] public BlackboardVariable<PathHolder> Path;
     [SerializeReference] public BlackboardVariable<float> Speed;
     [SerializeReference] public BlackboardVariable<bool> Attacked;
     bool arrived = false;
@@ -27,10 +28,10 @@ public partial class AnimalMoveToAction : Action
         if (Attacked.Value)
             return Status.Success;
        
-        if (Path.Value.Count == 0)
+        if (Path.Value.waypoints.Count == 0)
             return Status.Running;
         
-        if (Vector2.Distance(Self.Value.gameObject.transform.position, Path.Value.Last()) <= 0.5f)
+        if (Vector2.Distance(Self.Value.gameObject.transform.position, Path.Value.waypoints.Last()) <= 0.5f)
         {
             return Status.Success;
         }
@@ -47,7 +48,7 @@ public partial class AnimalMoveToAction : Action
 
     async Awaitable FollowPath()
     {
-        foreach (Vector2Int _p in Path.Value)
+        foreach (Vector2Int _p in Path.Value.waypoints)
         {
             Vector3 _startPos = Self.Value.transform.position;
             float _elapsedTime = 0f;

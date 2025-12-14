@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AI;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -13,58 +11,73 @@ using Unity.Properties;
 public partial class MoveToAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<List<Vector2Int>> Path;
+    [SerializeReference] public BlackboardVariable<PathHolder> Path;
     [SerializeReference] public BlackboardVariable<float> Speed;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<bool> CheckForTarget;
-    bool arrived = false;
+    
+    private int currentPathIndex = 0;
     
     protected override Status OnStart()
     {
-        FollowPath();
+        currentPathIndex = 0;
+        
+        if (Path.Value == null || Path.Value.waypoints.Count == 0)
+            return Status.Failure;
+            
+        Path.Value.onPathChanged += OnPathChanged;
         return Status.Running;
     }
-    
+
+    private void OnPathChanged()
+    {
+        if (Path.Value != null && Path.Value.waypoints.Count > 1)
+        {
+            currentPathIndex = 1;
+        }
+        else
+        {
+            currentPathIndex = 0;
+        }
+    }
+
     protected override Status OnUpdate()
     {
         if (Target.Value == null && CheckForTarget.Value)
             return Status.Success;
-        if (Path.Value.Count == 0)
-            return Status.Running;
+            
+        if (Path.Value == null || Path.Value.waypoints.Count == 0)
+            return Status.Failure;
         
-        if (Vector2.Distance(Self.Value.gameObject.transform.position, Path.Value.Last()) <= 0.5f)
-        {
+        if (currentPathIndex >= Path.Value.waypoints.Count)
             return Status.Success;
-        }
-        else
+        
+        Vector2Int _currentTarget = Path.Value.waypoints[currentPathIndex];
+        Vector3 _targetPos = new Vector3(_currentTarget.x, _currentTarget.y, -2);
+        
+        Self.Value.transform.position = Vector3.MoveTowards(Self.Value.transform.position, _targetPos, Speed.Value * Time.deltaTime);
+        
+        if (Vector3.Distance(Self.Value.transform.position, _targetPos) < 0.01f)
         {
-            return Status.Running;
+            Self.Value.transform.position = _targetPos;
+            currentPathIndex++;
+            
+            if (currentPathIndex >= Path.Value.waypoints.Count)
+            {
+                return Status.Success;
+            }
         }
+        
+        return Status.Running;
     }
 
     protected override void OnEnd()
     {
-        
-    }
-
-    async Awaitable FollowPath()
-    {
-        foreach (Vector2Int _p in Path.Value)
+        currentPathIndex = 0;
+        if (Path.Value != null)
         {
-            Vector3 _startPos = Self.Value.transform.position;
-            float elapsedTime = 0f;
-            while (elapsedTime < Speed.Value)
-            {
-                Self.Value.transform.position = Vector3.Lerp(_startPos, new Vector3(_p.x,_p.y,-2), elapsedTime / (Speed.Value));
-                elapsedTime += Time.deltaTime;
-                if (Target.Value == null && CheckForTarget.Value)
-                    return;
-                await Awaitable.NextFrameAsync();
-            }
+            Path.Value.onPathChanged -= OnPathChanged;
         }
-
-        arrived = true;
-        return;
     }
 }
 
