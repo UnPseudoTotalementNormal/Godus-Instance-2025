@@ -1,11 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using AI;
 using Unity.Behavior;
+using Unity.Collections;
 using UnityEngine;
 
 public class VillageManager : MonoBehaviour
 {
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] Vector2Int villageCenter;
+    [SerializeField] GameObject buildingPrefab;
 
     bool villageUnderAttack;
     
@@ -45,8 +49,8 @@ public class VillageManager : MonoBehaviour
     {
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
-            villageData.Add(ResourceType.Wood,villageData.wood / villageData.maxWood);
-            _target = null;
+            villageData.Add(ResourceType.Wood,-(villageData.wood / villageData.maxWood));
+            _target = buildingPrefab;
             return TaskType.Building;
         }
         
@@ -85,6 +89,24 @@ public class VillageManager : MonoBehaviour
                 return TaskType.Gathering;
         }
         _target = null;
+        
+        //Random chance to select a random task
+        if (Random.value <= 0.2f)
+        {
+            Debug.Log("Selecting a random task for " + _caller.name);
+            ResourceType _randTaskType = DetectAllResourceInRange(_caller, out GameObject _newRes);
+            if (_newRes == null)
+                return TaskType.Wandering;
+            switch (_randTaskType)
+            {
+                case ResourceType.Wood: case ResourceType.Stone: case ResourceType.Iron: case ResourceType.Glorp:
+                    _target = _newRes;
+                    return TaskType.Gathering;
+                case ResourceType.Meat:
+                    _target = _newRes;
+                    return TaskType.Hunting;
+            }
+        }
         return TaskType.Wandering;
     }
 
@@ -94,11 +116,25 @@ public class VillageManager : MonoBehaviour
         foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
             if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
-            if (_resourceComponent.resourceType != _resourceType) continue;
+            if (_resourceComponent.resourceType != _resourceType || _resourceComponent.collectible == false) continue;
             _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
         return null;
+    }
+
+    ResourceType DetectAllResourceInRange(Transform _origin, out GameObject _givenResource)
+    {
+        Collider2D[] _collider2Ds = Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource"));
+        _givenResource = null;
+        if (_collider2Ds.Length == 0)
+            return ResourceType.Wood;
+        int _randomIndex = Random.Range(0, _collider2Ds.Length);
+        if (_collider2Ds[_randomIndex].GetComponent<ResourceComponent>().collectible == false)
+            return ResourceType.Wood;
+        _givenResource = _collider2Ds[_randomIndex].gameObject;
+        _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;
+        return _collider2Ds[_randomIndex].GetComponent<ResourceComponent>().resourceType;
     }
 
     public void AddResource(ResourceType _resource, int _amount)
@@ -123,6 +159,12 @@ public class VillageManager : MonoBehaviour
             default:
                 return -1;
         }
+    }
+
+    public bool BuildAtLocation(Transform _position, GameObject _prefab)
+    {
+        GameObject _newBuild = Instantiate(_prefab, _position);
+        return true;
     }
 }
 

@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 8524013325825989998}
   - component: {fileID: 5408201598718775354}
   - component: {fileID: 5133879628338348893}
-  m_Layer: 0
+  - component: {fileID: -6434776991896736719}
+  m_Layer: 6
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,6 +189,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
   rendererToInstance:
   - {fileID: 580390576103589226}
+--- !u!114 &-6434776991896736719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f21f5e52b11e54e8c1b5d011f02ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TreeResource
+  resourceType: 0
+  collectionDelay: 1
+  collectionQuantity: 10
+  collectionsLeft: 1
+  collectible: 0
 --- !u!1 &1647814771126434785
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +217,7 @@ GameObject:
   - component: {fileID: 4944673843548724261}
   - component: {fileID: 580390576103589226}
   - component: {fileID: 2412579138353928722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

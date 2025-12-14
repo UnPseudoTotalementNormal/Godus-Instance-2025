@@ -102,7 +102,8 @@ public class Pathfinding
             }
          }
       }
-      Debug.LogWarning(_endPos + " is not a valid target");
+      Debug.LogWarning("Could not find valid path for" + _endPos);
+      PathConstructor(_currentCell); //Uncomment if you still want the AI to find a path, however note that it will probably bring them to the other side of the map
    }
 
    void PathConstructor(Cell _current) //This can be safely removed as it's legacy code from the old versions, just call directly ReconstructPath
@@ -146,9 +147,9 @@ public class Pathfinding
             Tile _neighboringTile = TileSystem.instance.GetTile(_pos+(new Vector2Int(_x, _y)));
             if (_neighboringTile != null)
             {
-               if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > _step)
+               // Use this whole nested statement to implement rules, an example is the line right below, which checks if the agent can step on the tile, but also if the tile is not water
+               if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > _step || _neighboringTile.tileType == TileType.Water)
                   continue;
-               
                _neighbours.Add(grid[_pos.x + _x, _pos.y + _y]);
             }
          }
