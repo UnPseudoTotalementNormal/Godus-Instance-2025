@@ -36,7 +36,7 @@ namespace GameOver
 
         public void LoadMenu()
         {
-            SceneManager.LoadScene("tittle");
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void QuitGame()
