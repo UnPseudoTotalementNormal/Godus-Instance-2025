@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using AI;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -11,7 +13,7 @@ public partial class MoveToLocationAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<Vector2Int> Location;
-    [SerializeReference] public BlackboardVariable<List<Vector2Int>> Path;
+    [SerializeReference] public BlackboardVariable<PathHolder> Path;
 
     Pathfinding pathfinder;
     bool pathFound = false;
@@ -38,12 +40,8 @@ public partial class MoveToLocationAction : Action
 
     void PathfindingCallback(List<Cell> _path)
     {
-        Path.Value = new();
         pathFound = true;
-        foreach (Cell _cell in _path)
-        {
-            Path.Value.Add(_cell.position);
-        }
+        Path.Value.SetPath(_path.Select(_c => _c.position).ToList());
     }
 }
 
