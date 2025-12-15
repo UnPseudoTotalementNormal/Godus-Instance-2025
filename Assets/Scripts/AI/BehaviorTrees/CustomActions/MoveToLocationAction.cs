@@ -20,8 +20,11 @@ public partial class MoveToLocationAction : Action
     
     protected override Status OnStart()
     {
-        pathfinder = new Pathfinding();
-        pathfinder.callback += PathfindingCallback;
+        if (pathfinder == null)
+        {
+            pathfinder = new Pathfinding();
+            pathfinder.callback += PathfindingCallback;
+        }
         pathfinder.FindPath(new Vector2Int((int)Self.Value.transform.position.x, (int)Self.Value.transform.position.y), Location.Value);
         return Status.Running;
     }

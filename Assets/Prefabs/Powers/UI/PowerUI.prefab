@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddbee11f0f7494b8eed445ff2e992a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.Power.PowerUiObject
+  button: {fileID: 2191404170970201699}
   nameText: {fileID: 602875887924913085}
   iconImage: {fileID: 9204201017654292485}
   imageCooldown: {fileID: 6426025199678128140}

@@ -10,6 +10,7 @@ namespace UI.Power
     {
         public Powers.Power power { get; private set; }
         
+        [SerializeField] private Button button;
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private Image iconImage;
         [SerializeField] private Image imageCooldown;
@@ -31,6 +32,10 @@ namespace UI.Power
             imageCooldown.fillAmount = power && power.isOnCooldown
                 ? power.currentCooldownTime / power.powerCooldownDuration
                 : 0f;
+            if (button)
+            {
+                button.interactable = power && power.CanUsePower() && !power.isOnCooldown;
+            }
         }
 
         public void SetPower(Powers.Power _power)

@@ -18,11 +18,19 @@ public class VillageManager : MonoBehaviour
     void Awake()
     {
         villageData = new VillageData();
-        
+
         villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
         villageBlackboard.SetVariableValue("VillageManager", this);
+        
+        GameEvents.onTownHallCreated += NewVillageCenter;
     }
-    
+
+    private void NewVillageCenter(GameObject _newTownHall)
+    {
+        villageCenter = Vector2Int.FloorToInt(_newTownHall.transform.position);
+        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
+    }
+
     private void Start()
     {
         villageData.Add(ResourceType.Meat,0);

@@ -10,6 +10,7 @@ namespace UI.Power
     {
         private PowersUI powersUI;
         
+        [SerializeField] private Button button;
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private Image imageCooldown;
@@ -34,6 +35,10 @@ namespace UI.Power
             imageCooldown.fillAmount = powerCategory && powerCategory.isOnCooldown
                 ? powerCategory.currentCooldownTime / currentCooldownDuration
                 : 0f;
+            if (button)
+            {
+                button.interactable = CanSelect();
+            }
         }
 
         public void SetPowerCategory(PowerCategory _powerCategory, CanvasGroup _canvasGroup, PowersUI _powersUi)
@@ -63,11 +68,16 @@ namespace UI.Power
         
         public void OnClicked()
         {
-            if (!PowerManager.instance.hasTownHallSpawned)
+            if (!CanSelect())
             {
                 return;
             }
             onClicked?.Invoke(this);
+        }
+        
+        public bool CanSelect()
+        {
+            return PowerManager.instance.hasTownHallSpawned;
         }
         
         private void OnPowerCategoryChanged(PowerCategory _setCategory)

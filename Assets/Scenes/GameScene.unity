@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 42406503}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 50, y: 50, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1575,10 +1575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebb648334f07ac45a8964d3bc90b352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileSystem
-  xSize: 100
-  ySize: 100
-  yCenter: 25
-  xCenter: 25
+  xSize: 150
+  ySize: 150
+  yCenter: 75
+  xCenter: 75
   radius: 20
 --- !u!4 &921564920
 Transform:
@@ -2022,7 +2022,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f2be282b20ba94183a3d83298c6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileSystemSpace.TileHeigthVisualizer
+  heightShow: 0
   transformParentToInstantiate: {fileID: 512036830}
+  cameraBoundsMargin: 2
+  defaultPoolCapacity: 50
+  maxPoolSize: 1000
+  tickTime: 0.25
 --- !u!1 &1489083203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2058,7 @@ Transform:
   m_GameObject: {fileID: 1489083203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 50, y: 50, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2522,6 +2527,8 @@ MonoBehaviour:
     _serializedList:
     - Key: 10
       Value: {fileID: 11400000, guid: b025fb16128f599ba9291ab4a2cb6a11, type: 2}
+    - Key: 20
+      Value: {fileID: 2139598557872527227, guid: a126db15320ce07d48f9ea44952d89e8, type: 2}
     - Key: 0
       Value: {fileID: 2139598557872527227, guid: 873ef6dc47770dbd6a48e7898dcbe39f, type: 2}
   waterDistanceRuleTiles:
@@ -4139,6 +4146,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: tileTypeToDrop
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 703355328027704938, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
       value: 1
@@ -4175,6 +4186,10 @@ PrefabInstance:
       propertyPath: 'prefabsToSpawn.Array.data[0]'
       value: 
       objectReference: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
+    - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: tileRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
