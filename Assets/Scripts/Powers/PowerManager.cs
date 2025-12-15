@@ -33,7 +33,7 @@ namespace Powers
         
         private void Start()
         {
-            GameEvents.onTownHallCreated += () => hasTownHallSpawned = true;
+            GameEvents.onTownHallCreated += (_) => hasTownHallSpawned = true;
         }
 
         private void RetrieveAndSetPowers()
