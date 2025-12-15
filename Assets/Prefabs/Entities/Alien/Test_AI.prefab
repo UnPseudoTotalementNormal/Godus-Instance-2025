@@ -404,13 +404,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8723312840805860400, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2292131188634683696}
   m_SourcePrefab: {fileID: 100100000, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
+--- !u!95 &4495611231650898837 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1978860581713812995, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
+  m_PrefabInstance: {fileID: 2672268102730644886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6191796021679661182 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8140361893651504616, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
   m_PrefabInstance: {fileID: 2672268102730644886}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6636796641565981094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8723312840805860400, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
+  m_PrefabInstance: {fileID: 2672268102730644886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2292131188634683696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636796641565981094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b129c48e6417b7091beffe677c14c2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI.AliveEntityAnimator
+  animator: {fileID: 4495611231650898837}
+  spriteRenderer: {fileID: 6191796021679661182}
+  attackComponent: {fileID: 3478938870306090116}
+  healthComponent: {fileID: 4937787137406368100}
 --- !u!4 &7775378598233304076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5688745678659064218, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
