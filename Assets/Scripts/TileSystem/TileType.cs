@@ -5,5 +5,6 @@ namespace TileSystemSpace
         Water = 0,
         Grass = 10,
         Rock = 20,
+        DamagedDirt = 30,
     }
 }
