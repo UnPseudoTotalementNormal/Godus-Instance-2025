@@ -12,9 +12,8 @@ public class Pathfinding
    public bool debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
    
    Cell[,] grid;
-   HashSet<Cell> openSet;
+   MinHeap openSet; // Priority Queue O(log n)
    HashSet<Cell> closedSet;
-   List<Cell> openSetList; 
    Cell[] neighboursBuffer;
 
    public Action<List<Cell>> callback; // I found this for now, but there may be a better way to send the path back to the caller
@@ -31,9 +30,8 @@ public class Pathfinding
          }
       }
       
-      openSet = new HashSet<Cell>();
+      openSet = new MinHeap(256); 
       closedSet = new HashSet<Cell>();
-      openSetList = new List<Cell>();
       neighboursBuffer = new Cell[8]; // 8 neighbor maximum in a grid (including diagonals)
    }
    public void FindPath(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
@@ -55,32 +53,18 @@ public class Pathfinding
       
       openSet.Clear();
       closedSet.Clear();
-      openSetList.Clear();
       
       Cell _startCell = grid[_startPos.x, _startPos.y];
       _startCell.CalcHeuristic(_endPos);
       openSet.Add(_startCell);
-      openSetList.Add(_startCell);
       CellIterator(_startPos, _endPos, _step);
    }
 
    void CellIterator(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
-      Cell _currentCell = null;
       while (openSet.Count != 0)
       {
-         int _lowestCost = int.MaxValue;
-         int _lowestIndex = 0;
-         for (int i = 0; i < openSetList.Count; i++)
-         {
-            Cell _cell = openSetList[i];
-            if (_cell.fCost < _lowestCost || (_cell.fCost == _lowestCost && _cell.hCost < openSetList[_lowestIndex].hCost))
-            {
-               _lowestCost = _cell.fCost;
-               _lowestIndex = i;
-            }
-         }
-         _currentCell = openSetList[_lowestIndex];
+         Cell _currentCell = openSet.ExtractMin();
          
          if (_currentCell.position == _endPos)
          {
@@ -89,8 +73,6 @@ public class Pathfinding
             return;
          }
          
-         openSet.Remove(_currentCell);
-         openSetList.RemoveAt(_lowestIndex);
          closedSet.Add(_currentCell);
 
          int _neighbourCount = GetNeighbours(_currentCell.position, _step);
@@ -102,24 +84,27 @@ public class Pathfinding
                continue;
 
             int _tentativeGCost = _currentCell.gCost + 1;
+            bool isInOpenSet = openSet.Contains(_neighbor);
             
-            if (!openSet.Contains(_neighbor) || _tentativeGCost < _neighbor.gCost)
+            if (!isInOpenSet || _tentativeGCost < _neighbor.gCost)
             {
                _neighbor.cameFrom = _currentCell;
                _neighbor.gCost = _tentativeGCost;
                _neighbor.CalcHeuristic(_endPos);
 
-               if (!openSet.Contains(_neighbor))
+               if (!isInOpenSet)
                {
                   openSet.Add(_neighbor);
-                  openSetList.Add(_neighbor);
+               }
+               else
+               {
+                  openSet.UpdatePriority(_neighbor);
                }
             }
          }
       }
       Debug.LogWarning("Could not find valid path for" + _endPos);
       callback?.Invoke(new List<Cell> {});
-      //PathConstructor(_currentCell); //Uncomment if you still want the AI to find a path, however note that it will probably bring them to the other side of the map
    }
 
    void PathConstructor(Cell _current) //This can be safely removed as it's legacy code from the old versions, just call directly ReconstructPath
@@ -218,5 +203,118 @@ public class Cell
          return position.Equals(other.position);
       }
       return false;
+   }
+}
+
+public class MinHeap
+{
+   private List<Cell> heap;
+   private Dictionary<Cell, int> indices;
+
+   public int Count => heap.Count;
+
+   public MinHeap(int capacity = 128)
+   {
+      heap = new List<Cell>(capacity);
+      indices = new Dictionary<Cell, int>(capacity);
+   }
+
+   public void Clear()
+   {
+      heap.Clear();
+      indices.Clear();
+   }
+
+   public void Add(Cell cell)
+   {
+      heap.Add(cell);
+      indices[cell] = heap.Count - 1;
+      HeapifyUp(heap.Count - 1);
+   }
+
+   public Cell ExtractMin()
+   {
+      if (heap.Count == 0)
+         return null;
+
+      Cell min = heap[0];
+      indices.Remove(min);
+
+      if (heap.Count > 1)
+      {
+         heap[0] = heap[^1];
+         indices[heap[0]] = 0;
+      }
+      heap.RemoveAt(heap.Count - 1);
+
+      if (heap.Count > 0)
+         HeapifyDown(0);
+
+      return min;
+   }
+
+   public bool Contains(Cell cell)
+   {
+      return indices.ContainsKey(cell);
+   }
+
+   public void UpdatePriority(Cell cell)
+   {
+      if (indices.TryGetValue(cell, out int index))
+      {
+         HeapifyUp(index);
+         HeapifyDown(index);
+      }
+   }
+
+   private void HeapifyUp(int index)
+   {
+      while (index > 0)
+      {
+         int parentIndex = (index - 1) / 2;
+         if (Compare(heap[index], heap[parentIndex]) >= 0)
+            break;
+
+         Swap(index, parentIndex);
+         index = parentIndex;
+      }
+   }
+
+   private void HeapifyDown(int index)
+   {
+      while (true)
+      {
+         int smallest = index;
+         int leftChild = 2 * index + 1;
+         int rightChild = 2 * index + 2;
+
+         if (leftChild < heap.Count && Compare(heap[leftChild], heap[smallest]) < 0)
+            smallest = leftChild;
+
+         if (rightChild < heap.Count && Compare(heap[rightChild], heap[smallest]) < 0)
+            smallest = rightChild;
+
+         if (smallest == index)
+            break;
+
+         Swap(index, smallest);
+         index = smallest;
+      }
+   }
+
+   private void Swap(int i, int j)
+   {
+      (heap[i], heap[j]) = (heap[j], heap[i]);
+
+      indices[heap[i]] = i;
+      indices[heap[j]] = j;
+   }
+
+   private int Compare(Cell a, Cell b)
+   {
+      int fCostCompare = a.fCost.CompareTo(b.fCost);
+      if (fCostCompare != 0)
+         return fCostCompare;
+      return a.hCost.CompareTo(b.hCost);
    }
 }
