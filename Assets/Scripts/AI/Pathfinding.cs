@@ -12,8 +12,10 @@ public class Pathfinding
    public bool debug= false; //Probably replace this with some global debug variable, because the visualizer is pretty neat
    
    Cell[,] grid;
-   List<Cell> openSet;
-   List<Cell> closedSet;
+   HashSet<Cell> openSet;
+   HashSet<Cell> closedSet;
+   List<Cell> openSetList; 
+   Cell[] neighboursBuffer;
 
    public Action<List<Cell>> callback; // I found this for now, but there may be a better way to send the path back to the caller
 
@@ -28,6 +30,11 @@ public class Pathfinding
             grid[_x, _y] = new Cell(new Vector2Int(_x, _y));
          }
       }
+      
+      openSet = new HashSet<Cell>();
+      closedSet = new HashSet<Cell>();
+      openSetList = new List<Cell>();
+      neighboursBuffer = new Cell[8]; // 8 neighbor maximum in a grid (including diagonals)
    }
    public void FindPath(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
@@ -45,33 +52,35 @@ public class Pathfinding
       
       _endPos = new Vector2Int(Mathf.Clamp(_endPos.x,0,grid.GetLength(0)-1),Mathf.Clamp(_endPos.y,0,grid.GetLength(1)-1));
       //Debug.Log("has requested to find path");
-      openSet = new List<Cell>();
-      closedSet = new List<Cell>();
+      
+      openSet.Clear();
+      closedSet.Clear();
+      openSetList.Clear();
+      
       Cell _startCell = grid[_startPos.x, _startPos.y];
       _startCell.CalcHeuristic(_endPos);
       openSet.Add(_startCell);
+      openSetList.Add(_startCell);
       CellIterator(_startPos, _endPos, _step);
    }
 
    void CellIterator(Vector2Int _startPos, Vector2Int _endPos, int _step = 1)
    {
-      Cell _currentCell = openSet[0];
+      Cell _currentCell = null;
       while (openSet.Count != 0)
       {
          int _lowestCost = int.MaxValue;
-         foreach (Cell _cell in openSet)
+         int _lowestIndex = 0;
+         for (int i = 0; i < openSetList.Count; i++)
          {
-            if (_cell.fCost <= _lowestCost)
+            Cell _cell = openSetList[i];
+            if (_cell.fCost < _lowestCost || (_cell.fCost == _lowestCost && _cell.hCost < openSetList[_lowestIndex].hCost))
             {
-               if (_cell.fCost == _lowestCost && _cell.hCost < _currentCell.hCost){
-                  _currentCell = _cell;
-                  _lowestCost = _cell.fCost;
-                  continue;
-               }
-               _currentCell = _cell;
                _lowestCost = _cell.fCost;
+               _lowestIndex = i;
             }
          }
+         _currentCell = openSetList[_lowestIndex];
          
          if (_currentCell.position == _endPos)
          {
@@ -79,11 +88,16 @@ public class Pathfinding
             PathConstructor(_currentCell);
             return;
          }
+         
          openSet.Remove(_currentCell);
+         openSetList.RemoveAt(_lowestIndex);
          closedSet.Add(_currentCell);
 
-         foreach (Cell _neighbor in GetNeighbours(_currentCell.position, _step))
+         int _neighbourCount = GetNeighbours(_currentCell.position, _step);
+         for (int i = 0; i < _neighbourCount; i++)
          {
+            Cell _neighbor = neighboursBuffer[i];
+            
             if (closedSet.Contains(_neighbor))
                continue;
 
@@ -98,6 +112,7 @@ public class Pathfinding
                if (!openSet.Contains(_neighbor))
                {
                   openSet.Add(_neighbor);
+                  openSetList.Add(_neighbor);
                }
             }
          }
@@ -126,10 +141,11 @@ public class Pathfinding
       callback.Invoke(_path);
    }
 
-   List<Cell> GetNeighbours(Vector2Int _pos, int _step)
+   int GetNeighbours(Vector2Int _pos, int _step)
    {
       Tile _currentTile = TileSystem.instance.GetTile(_pos);
-      List<Cell> _neighbours = new List<Cell>();
+      int _count = 0;
+      
       for (int _x = -1; _x <= 1; _x++)
       {
          for (int _y = -1; _y <= 1; _y++)
@@ -151,12 +167,13 @@ public class Pathfinding
                // Use this whole nested statement to implement rules, an example is the line right below, which checks if the agent can step on the tile, but also if the tile is not water
                if (Mathf.Abs(_neighboringTile.level - _currentTile.level) > _step || _neighboringTile.tileType == TileType.Water)
                   continue;
-               _neighbours.Add(grid[_pos.x + _x, _pos.y + _y]);
+               neighboursBuffer[_count] = grid[_pos.x + _x, _pos.y + _y];
+               _count++;
             }
          }
       }
 
-      return _neighbours;
+      return _count;
    }
 }
 
@@ -186,5 +203,20 @@ public class Cell
       hCost = 14 * Mathf.Min(_dx, _dy) + 10 * Mathf.Abs(_dx - _dy);
       
       fCost = gCost + hCost;
+   }
+   
+   // Optimisation HashSet : override GetHashCode et Equals
+   public override int GetHashCode()
+   {
+      return position.GetHashCode();
+   }
+   
+   public override bool Equals(object obj)
+   {
+      if (obj is Cell other)
+      {
+         return position.Equals(other.position);
+      }
+      return false;
    }
 }
