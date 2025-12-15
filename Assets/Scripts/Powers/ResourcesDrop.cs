@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using AudioSystem;
 using Extensions;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Powers;
@@ -16,6 +18,9 @@ public class ResourcesDrop : Power
     [Header("Tile Restriction")]
     [SerializeField] private List<TileType> allowedTileTypes;
     [SerializeField] private List<TileType> prohibitedTileTypes;
+    
+    [Header("Sound Settings")]
+    [SerializeField] private EventReference sfx;
 
     private UnityEngine.Camera mainCamera;
     private Vector2 mousePos;
@@ -45,6 +50,7 @@ public class ResourcesDrop : Power
         var _tiles = TileSystem.instance.GetAllTilesAtPointWithRadius(_gridPos, tileRadius, radiusMode);
         List<Vector2Int> _validTiles = new();
 
+        
         foreach (var _entry in _tiles)
         {
             Tile _tile = _entry.Key;
@@ -80,6 +86,7 @@ public class ResourcesDrop : Power
             Instantiate(prefabsToSpawn.PickRandom(), (Vector2)_pos, Quaternion.identity);
         }
 
+        GameAudioManager.instance.PlayOneShot(sfx);
         Deactivate();
     }
 
