@@ -10,6 +10,8 @@ public static class GameEvents
     public static Action onTownHallCreated;
     public static Action onTownHallDestroy;
     
+    
+    public static Action onAlienDeath;
     public static Action onEnemyDeath;
     public static Action<WaveInfo> onWaveInfo;
   
