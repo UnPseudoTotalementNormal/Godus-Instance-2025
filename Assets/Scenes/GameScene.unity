@@ -2522,6 +2522,8 @@ MonoBehaviour:
     _serializedList:
     - Key: 10
       Value: {fileID: 11400000, guid: b025fb16128f599ba9291ab4a2cb6a11, type: 2}
+    - Key: 20
+      Value: {fileID: 2139598557872527227, guid: a126db15320ce07d48f9ea44952d89e8, type: 2}
     - Key: 0
       Value: {fileID: 2139598557872527227, guid: 873ef6dc47770dbd6a48e7898dcbe39f, type: 2}
   waterDistanceRuleTiles:
@@ -4139,6 +4141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: tileTypeToDrop
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 703355328027704938, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
       value: 1
@@ -4175,6 +4181,10 @@ PrefabInstance:
       propertyPath: 'prefabsToSpawn.Array.data[0]'
       value: 
       objectReference: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
+    - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: tileRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
