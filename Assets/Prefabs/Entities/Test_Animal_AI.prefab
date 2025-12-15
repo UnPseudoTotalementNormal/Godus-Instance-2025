@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7186844394019533953}
   - component: {fileID: 266058335925253812}
-  - component: {fileID: 2235195974029382456}
+  - component: {fileID: -5108169299975802103}
   - component: {fileID: 6451951702007647472}
   - component: {fileID: 3243057356670508976}
   - component: {fileID: 5513999666830414164}
@@ -38,6 +38,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1502092681971011986}
   - {fileID: 9182707171858564177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,64 +80,19 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 4108519509097955096}
---- !u!212 &2235195974029382456
-SpriteRenderer:
+--- !u!114 &-5108169299975802103
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4108519509097955096}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 656de7d3a84ed464dbffef930d408444, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.04, y: 1.92}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb9a8ca69430168f8f9a116d56feb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
+  <team>k__BackingField: 2
 --- !u!114 &6451951702007647472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa75d2f6c4e4ba5900c29ca5b8c301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Feedback.EntityTileMapShadow
-  spriteRenderer: {fileID: 2235195974029382456}
+  spriteRenderer: {fileID: 986228282374741320}
   heightComponent: {fileID: 8067350670684593984}
 --- !u!114 &8067350670684593984
 MonoBehaviour:
@@ -253,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
   rendererToInstance:
-  - {fileID: 2235195974029382456}
+  - {fileID: 986228282374741320}
 --- !u!114 &9062814336265669196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +225,7 @@ MonoBehaviour:
   flashDuration: 1
   damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
   healFlashColor: {r: 0, g: 1, b: 0, a: 1}
-  spriteRenderer: {fileID: 2235195974029382456}
+  spriteRenderer: {fileID: 986228282374741320}
   damageTextDuration: 2
   healTextDuration: 2
   textFontSize: 12
@@ -282,6 +238,27 @@ MonoBehaviour:
   damagePunchScaleStrength: 1.2
   damagePunchScaleVibrato: 5
   damagePunchScaleElasticity: 1
+  healSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  damageSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  deathSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &5519504404178020645
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,3 +303,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9130a034b98437a9c380b82c668345c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AI.PathHolder
+--- !u!1001 &2074529516789385944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7186844394019533953}
+    m_Modifications:
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253686245220456336, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
+    - target: {fileID: 7441168077658439452, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+      propertyPath: m_Name
+      value: Sanglier
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+--- !u!212 &986228282374741320 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1253686245220456336, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+  m_PrefabInstance: {fileID: 2074529516789385944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1502092681971011986 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 581726104458615626, guid: 3806bbe7c07856744bd52e5c63fbc399, type: 3}
+  m_PrefabInstance: {fileID: 2074529516789385944}
+  m_PrefabAsset: {fileID: 0}

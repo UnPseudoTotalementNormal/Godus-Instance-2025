@@ -255,12 +255,14 @@ public class WavesManager : MonoBehaviour
         _new.transform.SetParent(transform);
         currentEnemyAlive.Add(_new);
 
-        TestEnemy _comp = _new.GetComponent<TestEnemy>();
+        Entity _comp = _new.GetComponent<Entity>();
 
         if (!_comp)
         {
-            _comp = _new.AddComponent<TestEnemy>();
+            _comp = _new.AddComponent<Entity>();
         }
+
+        _comp.SetTeam(EntityTeam.Human);
         
         _comp.onDeath += () =>
         {

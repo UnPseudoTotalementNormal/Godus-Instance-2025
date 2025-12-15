@@ -9,6 +9,11 @@ public class Entity : MonoBehaviour, ITeamComponent
     public event Action onDeath;
     
     private HealthComponent healthComponent;
+    
+    public void SetTeam(EntityTeam _team)
+    {
+        team = _team;
+    }
 
     private void Start()
     {
