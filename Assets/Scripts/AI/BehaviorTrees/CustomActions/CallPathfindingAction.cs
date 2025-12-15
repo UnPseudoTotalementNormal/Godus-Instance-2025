@@ -41,7 +41,7 @@ public partial class CallPathfindingAction : Action
     void PathfindingCallback(List<Cell> _path)
     {
         pathFound = true;
-        Debug.Log("Path found for " + Agent.Value.name + " to " + Target.Value.name);
+        //Debug.Log("Path found for " + Agent.Value.name + " to " + Target.Value.name);
         Path.Value.SetPath(_path.Select(_c => _c.position).ToList());
     }
 }

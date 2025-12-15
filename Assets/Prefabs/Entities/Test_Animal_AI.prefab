@@ -153,6 +153,7 @@ MonoBehaviour:
   collectionDelay: 5
   collectionQuantity: 1
   collectionsLeft: 1
+  collectible: 1
 --- !u!61 &3243057356670508976
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -47,6 +47,11 @@ public class VillageManager : MonoBehaviour
 
     public TaskType GetNewTask(Transform _caller, out GameObject _target)
     {
+        if (villageData == null)
+        {
+            _target = null;
+            return TaskType.Wandering;
+        }
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
             villageData.Add(ResourceType.Wood,-(villageData.wood / villageData.maxWood));
@@ -120,6 +125,7 @@ public class VillageManager : MonoBehaviour
             _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
+        Debug.Log("No resource found");
         return null;
     }
 
@@ -130,7 +136,7 @@ public class VillageManager : MonoBehaviour
         if (_collider2Ds.Length == 0)
             return ResourceType.Wood;
         int _randomIndex = Random.Range(0, _collider2Ds.Length);
-        if (_collider2Ds[_randomIndex].GetComponent<ResourceComponent>().collectible == false)
+        if (_collider2Ds[_randomIndex]?.GetComponent<ResourceComponent>().collectible == false)
             return ResourceType.Wood;
         _givenResource = _collider2Ds[_randomIndex].gameObject;
         _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;

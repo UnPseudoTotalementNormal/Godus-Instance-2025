@@ -11,9 +11,12 @@ public class TreeGrowth : MonoBehaviour
     public float growthSpeedMultiplier = 1f;
     public bool canBeCollected => growthTimer >= growthDuration;
 
+    ResourceComponent resComponent;
+
     void Start()
     {
         initialScale = transform.localScale;
+        resComponent = GetComponent<ResourceComponent>();
     }
 
     void Update()
@@ -25,6 +28,11 @@ public class TreeGrowth : MonoBehaviour
             float _t = growthTimer / growthDuration;
 
             transform.localScale = Vector2.Lerp(initialScale, finalScale, _t);
+        }
+
+        if (canBeCollected)
+        {
+            resComponent.collectible = true;
         }
     }
     

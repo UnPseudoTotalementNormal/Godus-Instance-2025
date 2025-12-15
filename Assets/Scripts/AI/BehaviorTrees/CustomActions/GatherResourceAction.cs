@@ -34,6 +34,7 @@ public partial class GatherResourceAction : Action
         if (resourceExhausted)
             return Status.Success;
         gatheringTimer += Time.deltaTime;
+        Debug.Log("gathering");
         return Status.Running;
     }
 
