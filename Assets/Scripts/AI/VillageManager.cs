@@ -122,7 +122,7 @@ public class VillageManager : MonoBehaviour
             }
         }
 
-        if (Random.value <= 0.6f)
+        if (Random.value <= 0.6f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10))
         {
             Debug.Log(_caller.name + "wants to go shop !");
             //Make the AI go back to the village centre to upgrade
