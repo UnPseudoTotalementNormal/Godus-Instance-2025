@@ -10,6 +10,8 @@ public class Entity : MonoBehaviour, ITeamComponent
     
     private HealthComponent healthComponent;
     
+    private bool isDead = false;
+    
     public void SetTeam(EntityTeam _team)
     {
         team = _team;
@@ -22,13 +24,23 @@ public class Entity : MonoBehaviour, ITeamComponent
         {
             healthComponent.onDeath += Die;
         }
+        GameEvents.onNewEntitySpawned?.Invoke(this);
     }
 
     [ContextMenu("DIE")]
     public void Die()
     {
+        isDead = true;
         onDeath?.Invoke();
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (!isDead)
+        {
+            onDeath?.Invoke();
+        }
     }
 }
 

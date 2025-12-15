@@ -12,8 +12,10 @@ public static class GameEvents
     public static Action onTownHallDestroy;
     
     
-    public static Action onAlienDeath;
-    public static Action onEnemyDeath;
+    public static Action<Entity> onNewEntitySpawned;
+    public static Action<Entity> onAlienDeath;
+    public static Action<Entity> onEnemyDeath;
+    public static Action<Entity> onEntityDeath;
     public static Action<WaveInfo> onWaveInfo;
   
     public static Action<TimerSystem> onStartTimerBetweenWave;

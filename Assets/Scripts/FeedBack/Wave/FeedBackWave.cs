@@ -129,7 +129,7 @@ namespace Feedback.Wave
             currentTimer = TextAnimationUtils.StartTimerText(waveText, _timer, "Timer", "0.00");
         }
         
-        private void OnEnemyDeath()
+        private void OnEnemyDeath(Entity _entity)
         {
             if (remainingEnemy <= 0)
                 return;

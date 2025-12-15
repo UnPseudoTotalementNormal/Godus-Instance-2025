@@ -273,7 +273,7 @@ public class WavesManager : MonoBehaviour
     private void HandleEnemyDeath(GameObject _enemy)
     {
         currentEnemyAlive.Remove(_enemy);
-        GameEvents.onEnemyDeath?.Invoke();
+        GameEvents.onEnemyDeath?.Invoke(_enemy.GetComponent<Entity>());
 
         if (currentEnemyAlive.Count > 0)
             return;

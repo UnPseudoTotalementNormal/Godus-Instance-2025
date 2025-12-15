@@ -4,17 +4,17 @@ public class GameOverCondition : MonoBehaviour
 
     private void Awake()
     {
-        GameEvents.onAlienDeath += GameOver;
+        GameEvents.onAlienDeath += OnAlienDeath;
     }
 
     private void OnDestroy()
     {
-        GameEvents.onAlienDeath -= GameOver;
+        GameEvents.onAlienDeath -= OnAlienDeath;
     }
 
-    private void GameOver()
+    private void OnAlienDeath(Entity _entity)
     {
-        if (UnitManager.instance.alienUnit.Count == 0)
+        if (UnitManager.instance.alienUnits.Count == 0)
         {
             GameEvents.onGameOver?.Invoke();
         }
