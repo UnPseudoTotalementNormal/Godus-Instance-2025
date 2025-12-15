@@ -57,7 +57,7 @@ public partial class MoveToAction : Action
         
         Self.Value.transform.position = Vector3.MoveTowards(Self.Value.transform.position, _targetPos, Speed.Value * Time.deltaTime);
         
-        if (Vector3.Distance(Self.Value.transform.position, _targetPos) < 0.01f)
+        if (Vector3.Distance(Self.Value.transform.position, _targetPos) < 0.1f)
         {
             Self.Value.transform.position = _targetPos;
             currentPathIndex++;
