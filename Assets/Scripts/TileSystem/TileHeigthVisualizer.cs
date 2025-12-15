@@ -1,17 +1,16 @@
-using System;
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 namespace TileSystemSpace
-
 {
     public class TileHeigthVisualizer : MonoBehaviour
     {
-        private bool heightShow = false;
-        Dictionary<Vector2Int, TextMeshPro> tileHeightVisualizersDictionary = new();
+        private bool heightShow;
+        private Dictionary<Vector2Int, TextMeshPro> tileHeightVisualizersDictionary = new();
         [SerializeField] private Transform transformParentToInstantiate;
+
+        private Vector2 tempPosition;
 
 
         private void Start()
@@ -22,44 +21,53 @@ namespace TileSystemSpace
             ToggleShowTileHeight();
         }
 
-        private void OnAnyTileChanged(Tile arg1, Vector2Int arg2)
+        private void OnAnyTileChanged(Tile tile, Vector2Int position)
         {
-            tileHeightVisualizersDictionary[arg2].text = TileSystem.instance.GetTile(arg2).level.ToString();
+            if (tileHeightVisualizersDictionary.TryGetValue(position, out TextMeshPro textMesh))
+            {
+                textMesh.text = tile.level.ToString();
+            }
         }
         private void GetTileHeight()
         {
-            TileSystem.instance.GetSize();
-            for (int x = 0; x < TileSystem.instance.GetSize().x; x++)
+            Vector2Int gridSize = TileSystem.instance.GetSize();
+            
+            for (int x = 0; x < gridSize.x; x++)
             {
-                for (int y = 0; y < TileSystem.instance.GetSize().y; y++)
+                for (int y = 0; y < gridSize.y; y++)
                 {
-                    TileSystem.instance.GetTile(x,y);
-                    GameObject go = new GameObject("LevelText");
+                    Tile tile = TileSystem.instance.GetTile(x, y);
+                    GameObject go = new GameObject($"LevelText_{x}_{y}");
                     TextMeshPro tileLevelText = go.AddComponent<TextMeshPro>();
-                    go.transform.SetParent(transformParentToInstantiate);
-                    tileLevelText.transform.position = new Vector2(x+9.9f, y-2.2f);
+                    go.transform.SetParent(transformParentToInstantiate, false);
+                    tempPosition.x = x + 9.9f;
+                    tempPosition.y = y - 2.2f;
+                    tileLevelText.transform.position = tempPosition;
                     tileLevelText.fontSize = 6;
-                    tileLevelText.text = TileSystem.instance.GetTile(x,y).level.ToString();
+                    tileLevelText.text = tile.level.ToString();
                     tileHeightVisualizersDictionary[new Vector2Int(x, y)] = tileLevelText;
 
                 }
             }
         }
-        void ToggleShowTileHeight()
+        private void ToggleShowTileHeight()
         {
-            if (heightShow == false)
+            heightShow = !heightShow;
+            transformParentToInstantiate.position = heightShow
+                ? new Vector3(-100000, -100000)
+                : Vector3.zero;
+        }
+
+        private void OnDestroy()
+        {
+            if (InputManager.instance != null)
             {
-                transformParentToInstantiate.position = new Vector3(-100000, -100000);
-                //transformParentToInstantiate.gameObject.SetActive(true);
-                heightShow = true;
+                InputManager.instance.onShowCoordinatePressStarted -= ToggleShowTileHeight;
             }
-            else if (heightShow == true)
+            if (TileSystem.instance != null)
             {
-                transformParentToInstantiate.position = new Vector3(0, 0);
-                //transformParentToInstantiate.gameObject.SetActive(false);
-                heightShow = false;
+                TileSystem.instance.onAnyTileChanged -= OnAnyTileChanged;
             }
         }
-        
     }
 }
