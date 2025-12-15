@@ -121,6 +121,13 @@ public class VillageManager : MonoBehaviour
                     return TaskType.Hunting;
             }
         }
+
+        if (Random.value <= 0.6f)
+        {
+            Debug.Log(_caller.name + "wants to go shop !");
+            //Make the AI go back to the village centre to upgrade
+            return TaskType.Upgrading;
+        }
         Debug.Log("Wandering");
         return TaskType.Wandering;
     }
@@ -200,6 +207,7 @@ public enum TaskType
     Building,
     Hunting,
     Wandering,
+    Upgrading,
 }
 
 [BlackboardEnum]
