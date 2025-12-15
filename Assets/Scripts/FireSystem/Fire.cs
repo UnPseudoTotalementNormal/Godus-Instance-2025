@@ -1,11 +1,13 @@
 using System;
 using TileSystemSpace;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace FireSystem
 {
     public class Fire : MonoBehaviour
     {
+        [SerializeField] private Animator animator;
         [field:SerializeField] public float damagePerSecond { get; private set; }
         [field: SerializeField] public float spreadChancePerSecond { get; private set; } = 0;
         [field:SerializeField] public float minLifetime { get; private set; } = 5f;
@@ -26,6 +28,12 @@ namespace FireSystem
             lastDamageTime = Time.time;
             lifeTime = UnityEngine.Random.Range(minLifetime, maxLifetime);
             tile = TileSystem.instance.GetTile(new Vector2Int((int)transform.position.x, (int)transform.position.y));
+        }
+
+        private void Start()
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            animator.Play(stateInfo.fullPathHash, 0, Random.Range(0f, 1f));
         }
 
         private void Update()
