@@ -54,7 +54,8 @@ public class VillageManager : MonoBehaviour
         }
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
-            villageData.Add(ResourceType.Wood,-(villageData.wood / villageData.maxWood));
+            Debug.Log((int)-(0.95f*villageData.maxWood));
+            villageData.Add(ResourceType.Wood,(int)-(0.95f*villageData.maxWood));
             _target = buildingPrefab;
             return TaskType.Building;
         }
@@ -112,12 +113,12 @@ public class VillageManager : MonoBehaviour
                     return TaskType.Hunting;
             }
         }
+        Debug.Log("Wandering");
         return TaskType.Wandering;
     }
 
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
     {
-
         foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
             if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
@@ -125,7 +126,7 @@ public class VillageManager : MonoBehaviour
             _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
-        Debug.Log("No resource found");
+        //Debug.Log("No resource found");
         return null;
     }
 
@@ -135,9 +136,18 @@ public class VillageManager : MonoBehaviour
         _givenResource = null;
         if (_collider2Ds.Length == 0)
             return ResourceType.Wood;
-        int _randomIndex = Random.Range(0, _collider2Ds.Length);
-        if (_collider2Ds[_randomIndex]?.GetComponent<ResourceComponent>().collectible == false)
+        int _randomIndex = Random.Range(0, _collider2Ds.Length-1);
+        if (_collider2Ds[_randomIndex].TryGetComponent<ResourceComponent>(out ResourceComponent _resourceComponent))
+        {
+            if (_resourceComponent.collectible == false)
+            {
+                return ResourceType.Wood;
+            }
+        }
+        else
+        {
             return ResourceType.Wood;
+        }
         _givenResource = _collider2Ds[_randomIndex].gameObject;
         _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;
         return _collider2Ds[_randomIndex].GetComponent<ResourceComponent>().resourceType;
@@ -167,9 +177,10 @@ public class VillageManager : MonoBehaviour
         }
     }
 
-    public bool BuildAtLocation(Transform _position, GameObject _prefab)
+    public bool BuildAtLocation(Transform _position)
     {
-        GameObject _newBuild = Instantiate(_prefab, _position);
+        GameObject _newBuild = Instantiate(buildingPrefab);
+        _newBuild.transform.position = _position.position;
         return true;
     }
 }

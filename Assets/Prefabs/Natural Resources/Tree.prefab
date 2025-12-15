@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   resourceType: 0
-  collectionDelay: 1
-  collectionQuantity: 1
-  collectionsLeft: 10
+  collectionDelay: 10
+  collectionQuantity: 10
+  collectionsLeft: 1
   collectible: 0
 --- !u!1 &1647814771126434785
 GameObject:

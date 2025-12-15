@@ -14,20 +14,20 @@ public partial class AskForTaskAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     protected override Status OnStart()
     {
+        Target.Value = null;
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
         Task.Value = VillageManager.Value.GetNewTask(Self.Value.transform, out GameObject _target);
-        if (_target == null)
-            return Status.Failure;
         Target.Value = _target;
         return Status.Success;
     }
 
     protected override void OnEnd()
     {
+        Debug.Log(Self.Value.name + " assigned with task of type" + Task.Value + " to " + Target.Value?.name);
     }
 }
 

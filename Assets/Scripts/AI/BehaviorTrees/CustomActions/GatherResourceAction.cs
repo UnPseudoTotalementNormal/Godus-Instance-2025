@@ -18,6 +18,8 @@ public partial class GatherResourceAction : Action
     
     protected override Status OnStart()
     {
+        resourceExhausted = false;
+        gatheringTimer = 0f;
         targetRC = PathTarget.Value.GetComponent<ResourceComponent>();
         targetRC.callback += CallbackReceiver;
         return Status.Running;
@@ -30,22 +32,23 @@ public partial class GatherResourceAction : Action
             targetRC.OnCollect();
             gatheringTimer = 0f;
         }
-
         if (resourceExhausted)
             return Status.Success;
         gatheringTimer += Time.deltaTime;
-        Debug.Log("gathering");
+        //Debug.Log("gathering");
         return Status.Running;
     }
 
     protected override void OnEnd()
     {
-        villageManager.Value.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
     }
 
     void CallbackReceiver()
     {
         resourceExhausted = true;
+        Debug.Log("GatherResourceAction: End");
+        villageManager.Value.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
+        PathTarget.Value = null;
     }
 }
 

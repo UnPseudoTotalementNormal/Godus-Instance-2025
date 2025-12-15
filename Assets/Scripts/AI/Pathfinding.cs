@@ -103,6 +103,7 @@ public class Pathfinding
          }
       }
       Debug.LogWarning("Could not find valid path for" + _endPos);
+      callback?.Invoke(new List<Cell> {});
       //PathConstructor(_currentCell); //Uncomment if you still want the AI to find a path, however note that it will probably bring them to the other side of the map
    }
 
