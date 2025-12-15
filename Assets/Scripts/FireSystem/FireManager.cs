@@ -31,6 +31,12 @@ namespace FireSystem
             {
                 return;
             }
+
+            var _tile = TileSystem.instance.GetTile(_tilePosition);
+            if (_tile == null || _tile.tileType == TileType.Water)
+            {
+                return;
+            }
             
             Fire _newFire = Instantiate(firePrefab, 
                 new Vector2(_tilePosition.x, _tilePosition.y), 

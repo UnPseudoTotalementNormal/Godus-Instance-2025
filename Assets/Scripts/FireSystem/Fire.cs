@@ -26,7 +26,7 @@ namespace FireSystem
         private void Awake()
         {
             lastDamageTime = Time.time;
-            lifeTime = UnityEngine.Random.Range(minLifetime, maxLifetime);
+            lifeTime = Random.Range(minLifetime, maxLifetime);
             tile = TileSystem.instance.GetTile(new Vector2Int((int)transform.position.x, (int)transform.position.y));
         }
 
@@ -34,6 +34,26 @@ namespace FireSystem
         {
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             animator.Play(stateInfo.fullPathHash, 0, Random.Range(0f, 1f));
+            TileSystem.instance.onAnyTileChanged += OnAnyTileChanged;
+        }
+
+        private void OnDestroy()
+        {
+            TileSystem.instance.onAnyTileChanged -= OnAnyTileChanged;
+        }
+
+        private void OnAnyTileChanged(Tile _tile, Vector2Int _tilePos)
+        {
+            Vector2Int _fireTilePosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+            if (_tilePos != _fireTilePosition)
+            {
+                return;
+            }
+            
+            if (_tile.tileType == TileType.Water)
+            {
+                ExtinguishFire();
+            }
         }
 
         private void Update()
