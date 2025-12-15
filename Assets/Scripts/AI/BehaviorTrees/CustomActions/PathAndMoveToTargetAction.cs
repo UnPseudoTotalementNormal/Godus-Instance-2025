@@ -23,8 +23,11 @@ public partial class PathAndMoveToTargetAction : Action
     protected override Status OnStart()
     {
         targetPosition = new Vector2Int((int)PathTarget.Value.transform.position.x, (int)PathTarget.Value.transform.position.y);
-        pathfinder = new Pathfinding();
-        pathfinder.callback += SetNewPath;
+        if (pathfinder == null)
+        {
+            pathfinder = new Pathfinding();
+            pathfinder.callback += SetNewPath;
+        }
         
         GetNewPath();
         

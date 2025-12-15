@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Utils.TimerSystem;
 
 public static class GameEvents
@@ -7,7 +8,7 @@ public static class GameEvents
     public static Action onWaveEnded;
     public static Action onGameOver;
     
-    public static Action onTownHallCreated;
+    public static Action<GameObject> onTownHallCreated;
     public static Action onTownHallDestroy;
     
     public static Action onEnemyDeath;

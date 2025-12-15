@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TileSystemSpace;
 using UnityEngine;
 
 namespace FireSystem
@@ -65,7 +67,7 @@ namespace FireSystem
         
         public bool IsTileOnFire(Vector2Int _tilePosition)
         {
-            TileSystemSpace.Tile _tile = TileSystemSpace.TileSystem.instance.GetTile(_tilePosition);
+            Tile _tile = TileSystem.instance.GetTile(_tilePosition);
             return _tile != null && activeFires.ContainsKey(_tilePosition);
         }
     }

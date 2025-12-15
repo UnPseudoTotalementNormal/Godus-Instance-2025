@@ -8,7 +8,7 @@ public class TownHallSpawn : MonoBehaviour
     {
         PowerManager.instance.hasTownHallSpawned = true;
         PowerManager.instance.isTownHallSpawned = true;
-        GameEvents.onTownHallCreated?.Invoke();
+        GameEvents.onTownHallCreated?.Invoke(gameObject);
     }
 
     private void OnDestroy()

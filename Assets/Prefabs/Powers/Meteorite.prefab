@@ -112,7 +112,11 @@ MonoBehaviour:
   damageAmount: 50
   minTileDigLevel: 1
   maxTileDigLevel: 2
+  chanceToIgniteFire: 0.2
+  chanceToDamageTile: 1
   impulseSource: {fileID: 6500611594033588588}
+  impulseForce: 2
+  impulseDuration: 2
 --- !u!114 &6500611594033588588
 MonoBehaviour:
   m_ObjectHideFlags: 0

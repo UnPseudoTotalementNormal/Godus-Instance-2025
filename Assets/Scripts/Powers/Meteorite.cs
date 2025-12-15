@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FireSystem;
 using TileSystemSpace;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -24,6 +25,9 @@ namespace Powers
 
         public int minTileDigLevel = 1;
         public int maxTileDigLevel = 2;
+        
+        public float chanceToIgniteFire = 0.2f;
+        public float chanceToDamageTile = 0.5f;
         
         private UnityEngine.Camera mainCamera;
         
@@ -93,6 +97,18 @@ namespace Powers
                 }
                 _tile.Key.level = 
                     Mathf.Clamp(_tile.Key.level - UnityEngine.Random.Range(minTileDigLevel, maxTileDigLevel + 1), 0, GameValues.MAX_TILE_HEIGHT - 1);
+                
+                float _rand = UnityEngine.Random.Range(0f, 1f);
+                if (_tile.Key.tileType != TileType.Water && _rand <= chanceToIgniteFire)
+                {
+                    FireManager.instance.IgniteTile(_tile.Value);
+                }
+                
+                _rand = UnityEngine.Random.Range(0f, 1f);
+                if (_tile.Key.tileType != TileType.Water && _rand <= chanceToDamageTile)
+                {
+                    _tile.Key.tileType = TileType.DamagedDirt;
+                }
             }
             
             Collider2D[] _hitColliders = Physics2D.OverlapCircleAll(targetPosition, explosionRadius);
