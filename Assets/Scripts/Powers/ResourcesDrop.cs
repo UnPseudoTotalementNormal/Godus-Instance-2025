@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Extensions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Powers;
@@ -10,7 +11,7 @@ public class ResourcesDrop : Power
     [Header("Spawn Settings")]
     [SerializeField] private int minToSpawn = 5;
     [SerializeField] private int maxToSpawn = 10;
-    [SerializeField] private GameObject prefabToSpawn;
+    [SerializeField] private List<GameObject> prefabsToSpawn;
 
     [Header("Tile Restriction")]
     [SerializeField] private List<TileType> allowedTileTypes;
@@ -76,7 +77,7 @@ public class ResourcesDrop : Power
             Vector2Int _pos = _validTiles[_idx];
             _validTiles.RemoveAt(_idx);
 
-            Instantiate(prefabToSpawn, (Vector2)_pos, Quaternion.identity);
+            Instantiate(prefabsToSpawn.PickRandom(), (Vector2)_pos, Quaternion.identity);
         }
 
         Deactivate();

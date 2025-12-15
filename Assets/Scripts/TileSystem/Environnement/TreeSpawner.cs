@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Extensions;
 using UnityEngine;
 
 namespace TileSystemSpace.Environnement
 {
     public class TreeSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject treePrefab;
+        [SerializeField] private List<GameObject> treePrefabs;
 
         [SerializeField] [Range(0, 100)] private float tileTreeSpawnChancePerTick;
         [SerializeField] private float tickTimeInterval = 1;
@@ -55,7 +56,7 @@ namespace TileSystemSpace.Environnement
                 Tile _selectedTile = _tileList[_randomIndex];
                 Vector2Int _tilePosition = grassTiles[_selectedTile];
                 
-                Instantiate(treePrefab, 
+                Instantiate(treePrefabs.PickRandom(), 
                     new Vector3(_tilePosition.x, _tilePosition.y), 
                     Quaternion.identity);
         

@@ -1555,6 +1555,7 @@ GameObject:
   - component: {fileID: 921564920}
   - component: {fileID: 921564919}
   - component: {fileID: 921564921}
+  - component: {fileID: 921564922}
   m_Layer: 0
   m_Name: TileSystem
   m_TagString: Untagged
@@ -1607,6 +1608,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterTileSystem
   tickTimeInterval: 0.5
+--- !u!114 &921564922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921564918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f213eeff7a4274b33ae27f31068402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileSystemSpace.Environnement.TreeSpawner
+  treePrefabs:
+  - {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  - {fileID: 6547254313187587562, guid: 56aef227bc9060e2dba3fcbe3b639b74, type: 3}
+  tileTreeSpawnChancePerTick: 0.1
+  tickTimeInterval: 10
 --- !u!4 &969642593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7044316040094896457, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
@@ -2197,7 +2215,6 @@ GameObject:
   - component: {fileID: 1494854485}
   - component: {fileID: 1494854484}
   - component: {fileID: 1494854486}
-  - component: {fileID: 1494854487}
   m_Layer: 0
   m_Name: Tilemap Visualizer
   m_TagString: Untagged
@@ -2541,21 +2558,6 @@ MonoBehaviour:
   entityMaterial: {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
   heightTexPropertyName: _HeightTex
   pixelsPerTile: 32
---- !u!114 &1494854487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494854479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f213eeff7a4274b33ae27f31068402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TileSystemSpace.Environnement.TreeSpawner
-  treePrefab: {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
-  tileTreeSpawnChancePerTick: 0.1
-  tickTimeInterval: 10
 --- !u!1 &1543116465
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,10 +4139,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 703355328027704938, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: prefabsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 703355328027704938, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
+    - target: {fileID: 1943732590525708388, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: prefabsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943732590525708388, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
     - target: {fileID: 3134971587976476508, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_Name
       value: PowerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3175674539744300373, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: prefabsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175674539744300373, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
+    - target: {fileID: 3238570035600245943, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: prefabsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238570035600245943, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4181,6 +4215,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7317455801721260924, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: prefabsToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317455801721260924, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
+    - target: {fileID: 8823008752508802080, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: prefabsToSpawn.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823008752508802080, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+    - target: {fileID: 8823008752508802080, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6547254313187587562, guid: 56aef227bc9060e2dba3fcbe3b639b74, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
