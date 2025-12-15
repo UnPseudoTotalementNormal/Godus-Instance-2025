@@ -76,7 +76,20 @@ public class WavesManager : MonoBehaviour
     private void Start()
     {
         timeBetweenWaves = firstTimeBetweenWaves;
-        StartWave();
+        GameEvents.onTownHallCreated += OnTownHallCreated;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.onTownHallCreated -= OnTownHallCreated;
+    }
+
+    private void OnTownHallCreated(GameObject _obj)
+    {
+        GameEvents.onTownHallCreated -= OnTownHallCreated;
+        waveTimer = TimerSystem.NewTimer(timeBetweenWaves);
+        waveTimer.onTimerComplete += StartWave;
+        GameEvents.onStartTimerBetweenWave?.Invoke(waveTimer);
     }
 
     private void StartWave()

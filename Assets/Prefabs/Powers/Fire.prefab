@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8787796256580761351}
   - component: {fileID: 1418869395807237665}
   - component: {fileID: 3027985356045490231}
+  - component: {fileID: 2239381246302074336}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8773585, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +104,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf99d69569a4b759c8d2c5132cab3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireSystem.Fire
+  animator: {fileID: 2239381246302074336}
   <damagePerSecond>k__BackingField: 30
   <spreadChancePerSecond>k__BackingField: 0
   <minLifetime>k__BackingField: 5
   <maxLifetime>k__BackingField: 8
+  <chanceToDamageTile>k__BackingField: 0.4
+--- !u!95 &2239381246302074336
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222566324088290712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1bc99b3a9286b5b4cb5776a3c75e5b46, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -51,8 +51,15 @@ MonoBehaviour:
   radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
-  tileTypeToDrop: 10
+  tileTypeToDrop: 20
   maxTilesToDrop: 30
+  tileTypeToDropSFX:
+    Guid:
+      Data1: -1046737031
+      Data2: 1234834010
+      Data3: -1437531996
+      Data4: 1649280658
+    Path: event:/World/Build/Place_Rock
 --- !u!114 &4825564648578641269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,9 +140,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 2
   minToSpawn: 1
   maxToSpawn: 1
-  prefabToSpawn: {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 67393759
+      Data2: 1249090843
+      Data3: 1035142784
+      Data4: 923922397
+    Path: event:/World/Build/Place_Casern
 --- !u!114 &8831373890044676628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,9 +231,18 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  - {fileID: 6547254313187587562, guid: 56aef227bc9060e2dba3fcbe3b639b74, type: 3}
   allowedTileTypes: 0a000000
   prohibitedTileTypes: 0000000014000000
+  sfx:
+    Guid:
+      Data1: 1483058074
+      Data2: 1084749297
+      Data3: 2099936678
+      Data4: -1279498247
+    Path: event:/World/Build/Place_Tree
 --- !u!114 &4493141019834843958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,9 +671,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 20
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: -1451874974
+      Data2: 1163762843
+      Data3: 751287991
+      Data4: 1694580826
+    Path: event:/World/Build/Place_IronGlorp
 --- !u!114 &1768945123918319047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,9 +892,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: -732813284
+      Data2: 1250681469
+      Data3: -1652296771
+      Data4: -1386541792
+    Path: event:/World/Build/Place_Iron
 --- !u!114 &226641129870904496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,9 +1030,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
+  prefabsToSpawn:
+  - {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &7324024015278490770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,6 +1285,13 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 2
   tileTypeToDrop: 0
   maxTilesToDrop: 1
+  tileTypeToDropSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6024343929442654009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,12 +1444,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.DropTilesPower
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 2
+  tileRadius: 0
   radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
   tileTypeToDrop: 10
   maxTilesToDrop: 30
+  tileTypeToDropSFX:
+    Guid:
+      Data1: -1439712783
+      Data2: 1075892746
+      Data3: 254216860
+      Data4: 34362620
+    Path: event:/World/Build/Place_Ground
 --- !u!114 &6654172217814288914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1808,9 +1870,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: -1046737031
+      Data2: 1234834010
+      Data3: -1437531996
+      Data4: 1649280658
+    Path: event:/World/Build/Place_Rock
 --- !u!114 &5072623692129797919
 MonoBehaviour:
   m_ObjectHideFlags: 0

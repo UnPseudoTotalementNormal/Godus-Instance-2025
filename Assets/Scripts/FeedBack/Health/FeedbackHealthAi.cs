@@ -1,5 +1,7 @@
+using AudioSystem;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 using TMPro;
 using UnityEngine.Assertions;
 
@@ -45,6 +47,11 @@ namespace Feedback.Health
         [SerializeField] private int damagePunchScaleVibrato = 5;
         [SerializeField] private float damagePunchScaleElasticity = 1f;
         
+        [Header("    SFX Settings")]
+        [SerializeField] private EventReference healSfx;
+        [SerializeField] private EventReference damageSfx;
+        [SerializeField] private EventReference deathSfx;
+        
         [Header("Reference")]
         private HealthComponent healthComponent;
 
@@ -77,12 +84,14 @@ namespace Feedback.Health
             }
             healthComponent.onHealed += HandleHealed;
             healthComponent.onDamaged += HandleDamaged;
+            healthComponent.onDeath += HandleDeath;
         }
 
         private void OnDisable()
         {
             healthComponent.onHealed -= HandleHealed;
             healthComponent.onDamaged -= HandleDamaged;
+            healthComponent.onDeath -= HandleDeath;
         }
 
         #region EventHandlers
@@ -91,17 +100,19 @@ namespace Feedback.Health
             PlayDamageFlash();
             PlayDamageScaleAnimation();
             PlayTakeDamageTextAnimation(_damage);
+            GameAudioManager.instance.PlayOneShot(damageSfx);
         }
 
         private void HandleHealed(float _healAmount)
         {
             PlayHealFlash();
             PlayHealTextAnimation(_healAmount);
+            GameAudioManager.instance.PlayOneShot(healSfx);
         }
 
         private void HandleDeath()
         {
-            
+            GameAudioManager.instance.PlayOneShot(deathSfx);
         }
         #endregion
         
