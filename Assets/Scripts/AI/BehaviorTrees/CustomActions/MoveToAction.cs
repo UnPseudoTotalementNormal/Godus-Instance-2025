@@ -22,7 +22,7 @@ public partial class MoveToAction : Action
     {
         currentPathIndex = 0;
         
-        if (Path.Value == null || Path.Value.waypoints.Count == 0)
+        if (Path.Value == null)
             return Status.Failure;
             
         Path.Value.onPathChanged += OnPathChanged;
@@ -46,7 +46,7 @@ public partial class MoveToAction : Action
         if (Target.Value == null && CheckForTarget.Value)
             return Status.Success;
             
-        if (Path.Value == null || Path.Value.waypoints.Count == 0)
+        if (Path.Value == null)
             return Status.Failure;
         
         if (currentPathIndex >= Path.Value.waypoints.Count)

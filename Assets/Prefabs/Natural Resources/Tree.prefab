@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   resourceType: 0
-  collectionDelay: 1
+  collectionDelay: 10
   collectionQuantity: 10
   collectionsLeft: 1
   collectible: 0
@@ -335,7 +335,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1183577, y: 1.7128906}
+    oldSize: {x: 1.2395418, y: 1.0022857}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

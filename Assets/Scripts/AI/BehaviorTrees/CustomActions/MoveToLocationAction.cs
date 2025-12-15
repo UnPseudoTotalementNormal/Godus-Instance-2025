@@ -14,7 +14,6 @@ public partial class MoveToLocationAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<Vector2Int> Location;
     [SerializeReference] public BlackboardVariable<PathHolder> Path;
-
     Pathfinding pathfinder;
     bool pathFound = false;
     
