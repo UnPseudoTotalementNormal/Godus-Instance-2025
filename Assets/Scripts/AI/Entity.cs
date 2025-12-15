@@ -8,6 +8,17 @@ public class Entity : MonoBehaviour, ITeamComponent
 
     public event Action onDeath;
     
+    private HealthComponent healthComponent;
+
+    private void Start()
+    {
+        healthComponent = GetComponent<HealthComponent>();
+        if (healthComponent)
+        {
+            healthComponent.onDeath += Die;
+        }
+    }
+
     [ContextMenu("DIE")]
     public void Die()
     {
