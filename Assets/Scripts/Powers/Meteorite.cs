@@ -11,6 +11,8 @@ namespace Powers
     public class Meteorite : MonoBehaviour
     {
         private Vector2Int targetPosition;
+        
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
         [SerializeField] private float minTargetDistanceAtSpawn;
         public float fallAcceleration = 10f;
@@ -59,6 +61,12 @@ namespace Powers
             {
                 Vector2 _direction = (_spawnVector - targetPosition).normalized;
                 _spawnVector += _direction * minTargetDistanceAtSpawn;
+            }
+            
+            if (spriteRenderer)
+            {
+                Vector2 _toTargetDir = (targetPosition - _spawnVector).normalized;
+                spriteRenderer.flipX = _toTargetDir.x > 0f;
             }
             
             transform.position = _spawnVector;
