@@ -100,19 +100,19 @@ namespace Feedback.Health
             PlayDamageFlash();
             PlayDamageScaleAnimation();
             PlayTakeDamageTextAnimation(_damage);
-            GameAudioManager.instance.PlayOneShot(damageSfx);
+            GameAudioManager.instance.PlayOneShot(damageSfx, transform.position);
         }
 
         private void HandleHealed(float _healAmount)
         {
             PlayHealFlash();
             PlayHealTextAnimation(_healAmount);
-            GameAudioManager.instance.PlayOneShot(healSfx);
+            GameAudioManager.instance.PlayOneShot(healSfx, transform.position);
         }
 
         private void HandleDeath()
         {
-            GameAudioManager.instance.PlayOneShot(deathSfx);
+            GameAudioManager.instance.PlayOneShot(deathSfx, transform.position);
         }
         #endregion
         

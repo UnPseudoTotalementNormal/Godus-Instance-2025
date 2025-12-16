@@ -9,7 +9,7 @@ using UnityEngine;
 public class VillageManager : MonoBehaviour
 {
     [SerializeField] BehaviorGraphAgent villageBlackboard;
-    [SerializeField] Vector2Int villageCenter;
+    [SerializeField] public Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
     
     [SerializeField] private SerializedDictionary<ResourceType, int> upgradeCosts = new();
@@ -32,10 +32,15 @@ public class VillageManager : MonoBehaviour
     {
         villageCenter = Vector2Int.FloorToInt(_newTownHall.transform.position);
         villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
+        Debug.Log("New Village Center is" + villageBlackboard.GetVariable("VillageCenter", out BlackboardVariable _d));
+        Debug.Log(_d.ObjectValue);
     }
 
     private void Start()
     {
+        Debug.Log(villageBlackboard.SetVariableValue("VillageCenter", villageCenter));
+        villageBlackboard.SetVariableValue("VillageManager", this);
+        
         villageData.Add(ResourceType.Meat,0);
         villageData.Add(ResourceType.Wood,0);
         villageData.Add(ResourceType.Stone,0);
@@ -67,7 +72,7 @@ public class VillageManager : MonoBehaviour
         {
             Debug.Log((int)-(0.95f*villageData.maxWood));
             villageData.Add(ResourceType.Wood,(int)-(0.95f*villageData.maxWood));
-            _target = buildingPrefab;
+            _target = null;
             return TaskType.Building;
         }
         
@@ -131,7 +136,7 @@ public class VillageManager : MonoBehaviour
             //Make the AI go back to the village centre to upgrade
             return TaskType.Upgrading;
         }
-        Debug.Log("Wandering");
+        //Debug.Log("Wandering");
         return TaskType.Wandering;
     }
 

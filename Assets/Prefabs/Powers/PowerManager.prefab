@@ -1678,7 +1678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905199433282660239}
-  - component: {fileID: 2359525952084278070}
+  - component: {fileID: 8632208308324164650}
   - component: {fileID: 5709888807729131271}
   - component: {fileID: 597919356501860464}
   m_Layer: 0
@@ -1703,7 +1703,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8821052185204664721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2359525952084278070
+--- !u!114 &8632208308324164650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1712,14 +1712,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8283944714982217277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 1
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+  minToSpawn: 1
+  maxToSpawn: 1
+  prefabsToSpawn:
+  - {fileID: 0}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &5709888807729131271
 MonoBehaviour:
   m_ObjectHideFlags: 0
