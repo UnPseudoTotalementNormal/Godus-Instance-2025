@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 273924167230926781}
   - component: {fileID: 4825564648578641269}
   - component: {fileID: 8499782935646260943}
+  - component: {fileID: 2268792910494030445}
   m_Layer: 0
   m_Name: "Cr\xE9er un sol de pierre"
   m_TagString: Untagged
@@ -51,8 +52,15 @@ MonoBehaviour:
   radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
-  tileTypeToDrop: 10
+  tileTypeToDrop: 20
   maxTilesToDrop: 30
+  tileTypeToDropSFX:
+    Guid:
+      Data1: -1046737031
+      Data2: 1234834010
+      Data3: -1437531996
+      Data4: 1649280658
+    Path: event:/World/Build/Place_Rock
 --- !u!114 &4825564648578641269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +88,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!114 &2268792910494030445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86431528417241083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0a3d66a5dcfde499570a807deb906d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
+  power: {fileID: 273924167230926781}
 --- !u!1 &605641559555294793
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,9 +154,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 2
   minToSpawn: 1
   maxToSpawn: 1
-  prefabToSpawn: {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 67393759
+      Data2: 1249090843
+      Data3: 1035142784
+      Data4: 923922397
+    Path: event:/World/Build/Place_Casern
 --- !u!114 &8831373890044676628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,9 +245,18 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: 2b02f17f2933a1d4bb59d2c76e5e5b82, type: 3}
+  - {fileID: 6547254313187587562, guid: 56aef227bc9060e2dba3fcbe3b639b74, type: 3}
   allowedTileTypes: 0a000000
   prohibitedTileTypes: 0000000014000000
+  sfx:
+    Guid:
+      Data1: 1483058074
+      Data2: 1084749297
+      Data3: 2099936678
+      Data4: -1279498247
+    Path: event:/World/Build/Place_Tree
 --- !u!114 &4493141019834843958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,9 +685,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 20
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: -1451874974
+      Data2: 1163762843
+      Data3: 751287991
+      Data4: 1694580826
+    Path: event:/World/Build/Place_IronGlorp
 --- !u!114 &1768945123918319047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,9 +906,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: -732813284
+      Data2: 1250681469
+      Data3: -1652296771
+      Data4: -1386541792
+    Path: event:/World/Build/Place_Iron
 --- !u!114 &226641129870904496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,9 +1044,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
+  prefabsToSpawn:
+  - {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &7324024015278490770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,6 +1179,7 @@ GameObject:
   - component: {fileID: 1843922997828223739}
   - component: {fileID: 3720419984117074044}
   - component: {fileID: 4528795084981104728}
+  - component: {fileID: 5900947875093915845}
   m_Layer: 0
   m_Name: Vider l'eau
   m_TagString: Untagged
@@ -1184,6 +1247,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!114 &5900947875093915845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930258961013561292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0a3d66a5dcfde499570a807deb906d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
+  power: {fileID: 1843922997828223739}
 --- !u!1 &5410566490416740964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1313,13 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 2
   tileTypeToDrop: 0
   maxTilesToDrop: 1
+  tileTypeToDropSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6024343929442654009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,6 +1437,7 @@ GameObject:
   - component: {fileID: 3449592209633899677}
   - component: {fileID: 6654172217814288914}
   - component: {fileID: 2404162156441619988}
+  - component: {fileID: 6942026510923344876}
   m_Layer: 0
   m_Name: "Cr\xE9er une plaine"
   m_TagString: Untagged
@@ -1389,12 +1473,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.DropTilesPower
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 2
+  tileRadius: 0
   radiusMode: 2
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
   tileTypeToDrop: 10
   maxTilesToDrop: 30
+  tileTypeToDropSFX:
+    Guid:
+      Data1: -1439712783
+      Data2: 1075892746
+      Data3: 254216860
+      Data4: 34362620
+    Path: event:/World/Build/Place_Ground
 --- !u!114 &6654172217814288914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,6 +1513,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!114 &6942026510923344876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416759798192138084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0a3d66a5dcfde499570a807deb906d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
+  power: {fileID: 3449592209633899677}
 --- !u!1 &8018553049544447527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,6 +1588,7 @@ GameObject:
   - component: {fileID: 2556353604755309044}
   - component: {fileID: 4722187155909667819}
   - component: {fileID: 1913320381752388987}
+  - component: {fileID: 3917572858914140927}
   m_Layer: 0
   m_Name: "Cr\xE9er un trou"
   m_TagString: Untagged
@@ -1551,6 +1656,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!114 &3917572858914140927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8222052912637855855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0a3d66a5dcfde499570a807deb906d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
+  power: {fileID: 2556353604755309044}
 --- !u!1 &8283944714982217277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905199433282660239}
-  - component: {fileID: 2359525952084278070}
+  - component: {fileID: 8632208308324164650}
   - component: {fileID: 5709888807729131271}
   - component: {fileID: 597919356501860464}
   m_Layer: 0
@@ -1585,7 +1703,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8821052185204664721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2359525952084278070
+--- !u!114 &8632208308324164650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1594,14 +1712,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8283944714982217277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 1
   <powerCooldownDuration>k__BackingField: 5
   <categoryCooldownDuration>k__BackingField: 2
+  minToSpawn: 1
+  maxToSpawn: 1
+  prefabsToSpawn:
+  - {fileID: 0}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &5709888807729131271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1808,9 +1939,17 @@ MonoBehaviour:
   <categoryCooldownDuration>k__BackingField: 10
   minToSpawn: 5
   maxToSpawn: 10
-  prefabToSpawn: {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
+  prefabsToSpawn:
+  - {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: -1046737031
+      Data2: 1234834010
+      Data3: -1437531996
+      Data4: 1649280658
+    Path: event:/World/Build/Place_Rock
 --- !u!114 &5072623692129797919
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,8 +20,11 @@ public partial class CallPathfindingAction : Action
     
     protected override Status OnStart()
     {
-        pathfinder = new Pathfinding();
-        pathfinder.callback += PathfindingCallback;
+        if (pathfinder == null)
+        {
+            pathfinder = new Pathfinding();
+            pathfinder.callback += PathfindingCallback;
+        }
         pathfinder.FindPath(new Vector2Int((int)Agent.Value.transform.position.x, (int)Agent.Value.transform.position.y), new Vector2Int((int)Target.Value.transform.position.x, (int)Target.Value.transform.position.y));
         return Status.Running;
     }
@@ -41,7 +44,7 @@ public partial class CallPathfindingAction : Action
     void PathfindingCallback(List<Cell> _path)
     {
         pathFound = true;
-        Debug.Log("Path found for " + Agent.Value.name + " to " + Target.Value.name);
+        //Debug.Log("Path found for " + Agent.Value.name + " to " + Target.Value.name);
         Path.Value.SetPath(_path.Select(_c => _c.position).ToList());
     }
 }

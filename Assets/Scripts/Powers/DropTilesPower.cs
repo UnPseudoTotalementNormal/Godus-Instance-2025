@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using AudioSystem;
+using AYellowpaper.SerializedCollections;
+using FMODUnity;
 using TileSystemSpace;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,6 +23,9 @@ namespace Powers
         
         private int tilesLeftToDrop = 0;
         [SerializeField] private int maxTilesToDrop = 30;
+        
+        [Header("Sound Settings")]
+        [SerializeField] private EventReference tileTypeToDropSFX; 
         
         private void Start()
         {
@@ -72,7 +78,7 @@ namespace Powers
 
         private void TryStartDroppingTiles()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIUtils.IsMouseOverUI())
             {
                 return;
             }
@@ -123,6 +129,7 @@ namespace Powers
                 if (_currentHeight < GameValues.MAX_TILE_HEIGHT)
                 {
                     _tile.AddTileOnTop(tileTypeToDrop);
+                    GameAudioManager.instance.PlayOneShot(tileTypeToDropSFX);
                     _tilesDroppedCount++;
                 }
                 

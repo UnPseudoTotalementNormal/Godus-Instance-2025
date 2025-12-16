@@ -14,6 +14,7 @@ public partial class AskForTaskAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     protected override Status OnStart()
     {
+        Target.Value = null;
         return Status.Running;
     }
 
@@ -26,6 +27,7 @@ public partial class AskForTaskAction : Action
 
     protected override void OnEnd()
     {
+        Debug.Log(Self.Value.name + " assigned with task of type" + Task.Value + " to " + Target.Value?.name);
     }
 }
 

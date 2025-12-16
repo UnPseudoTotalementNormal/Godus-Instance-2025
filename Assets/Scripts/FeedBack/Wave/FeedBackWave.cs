@@ -92,42 +92,19 @@ namespace Feedback.Wave
         { 
             waveInfo.currentWave = _currentWave;
             
-            //StartFX();
             EnabledSlideBarRemainingEnemy(true);
             StartText($"Wave {waveInfo.currentWave}");
+            
+            GameAudioManager.instance.PlayOneShot(feedBackData.startSFX);
         }
         
         private void EndWave()
         {
             // Mettre le timer.
+            GameAudioManager.instance.PlayOneShot(feedBackData.endSFX);
             EnabledSlideBarRemainingEnemy(false);
         }
         
-        #endregion
-                 
-        #region Interface IFX
-        public void StartFX()
-        {
-            StartVFX();
-            StartSFX();
-            StartShaderEffect();
-        }
-
-        public void StartVFX()
-        {
-            
-        }
-        
-        public void StartSFX()
-        {
-            GameAudioManager.instance.PlayOneShot(feedBackData.startSFX);
-        }
-        
-        
-        public void StartShaderEffect()
-        {
-            
-        }
         #endregion
 
         
@@ -152,7 +129,7 @@ namespace Feedback.Wave
             currentTimer = TextAnimationUtils.StartTimerText(waveText, _timer, "Timer", "0.00");
         }
         
-        private void OnEnemyDeath()
+        private void OnEnemyDeath(Entity _entity)
         {
             if (remainingEnemy <= 0)
                 return;

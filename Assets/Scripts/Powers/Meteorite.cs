@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AudioSystem;
+using FireSystem;
+using FMOD.Studio;
+using FMODUnity;
 using TileSystemSpace;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -10,8 +14,16 @@ namespace Powers
     public class Meteorite : MonoBehaviour
     {
         private Vector2Int targetPosition;
+        
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
         [SerializeField] private float minTargetDistanceAtSpawn;
+        
+        [Header("    Sfx Settings")]
+        [SerializeField] private EventReference fallSfx;
+        [SerializeField] private EventReference impactSfx;
+        
+        [Header("    Meteorite Settings")]
         public float fallAcceleration = 10f;
         private float currentFallSpeed;
         
@@ -24,6 +36,9 @@ namespace Powers
 
         public int minTileDigLevel = 1;
         public int maxTileDigLevel = 2;
+        
+        public float chanceToIgniteFire = 0.2f;
+        public float chanceToDamageTile = 0.5f;
         
         private UnityEngine.Camera mainCamera;
         
@@ -57,7 +72,14 @@ namespace Powers
                 _spawnVector += _direction * minTargetDistanceAtSpawn;
             }
             
+            if (spriteRenderer)
+            {
+                Vector2 _toTargetDir = (targetPosition - _spawnVector).normalized;
+                spriteRenderer.flipX = _toTargetDir.x > 0f;
+            }
+            
             transform.position = _spawnVector;
+            GameAudioManager.instance.PlayEventInstance(fallSfx, "MeteoriteFall");
         }
 
         private void Update()
@@ -65,7 +87,9 @@ namespace Powers
             currentFallSpeed += fallAcceleration * Time.deltaTime;
             
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, currentFallSpeed * Time.deltaTime);
-
+            
+            GameAudioManager.instance.UpdateEventInstancePosition("MeteoriteFall", transform.position);
+            
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
             {
                 OnExplode();
@@ -83,6 +107,9 @@ namespace Powers
 
         private void OnExplode()
         {
+            GameAudioManager.instance.StopEventInstance("MeteoriteFall");
+            GameAudioManager.instance.PlayOneShot(impactSfx, (Vector3)(Vector2)targetPosition);
+            
             Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(targetPosition, explosionRadius, radiusMode);
 
             foreach (KeyValuePair<Tile, Vector2Int> _tile in _tilesInRadius)
@@ -93,6 +120,18 @@ namespace Powers
                 }
                 _tile.Key.level = 
                     Mathf.Clamp(_tile.Key.level - UnityEngine.Random.Range(minTileDigLevel, maxTileDigLevel + 1), 0, GameValues.MAX_TILE_HEIGHT - 1);
+                
+                float _rand = UnityEngine.Random.Range(0f, 1f);
+                if (_tile.Key.tileType != TileType.Water && _rand <= chanceToIgniteFire)
+                {
+                    FireManager.instance.IgniteTile(_tile.Value);
+                }
+                
+                _rand = UnityEngine.Random.Range(0f, 1f);
+                if (_tile.Key.tileType != TileType.Water && _rand <= chanceToDamageTile)
+                {
+                    _tile.Key.tileType = TileType.DamagedDirt;
+                }
             }
             
             Collider2D[] _hitColliders = Physics2D.OverlapCircleAll(targetPosition, explosionRadius);

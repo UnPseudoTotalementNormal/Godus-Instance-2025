@@ -22,11 +22,11 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(float _damage)
     {
         currentHealth -= _damage;
+        onDamaged?.Invoke(_damage);
         if (currentHealth <= 0)
         {
             Die();
         }
-        onDamaged?.Invoke(_damage);
     }
     
     public void Heal(float _healAmount)

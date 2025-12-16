@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6529983301276433674}
   - component: {fileID: 6896827595621206739}
   - component: {fileID: 2729478711957490451}
-  - component: {fileID: -417058457631280500}
-  m_Layer: 0
+  - component: {fileID: 5031954044509617565}
+  m_Layer: 7
   m_Name: TownHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 1000000
+  maxHealth: 1100
 --- !u!114 &6570573365832356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +119,27 @@ MonoBehaviour:
   damagePunchScaleStrength: 1.2
   damagePunchScaleVibrato: 5
   damagePunchScaleElasticity: 1
+  healSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  damageSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  deathSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &2729478711957490451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,19 +154,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
   rendererToInstance:
   - {fileID: 4729591589661340624}
---- !u!114 &-417058457631280500
-MonoBehaviour:
+--- !u!61 &5031954044509617565
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869538399920670689}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
-  updateInterval: 0.15
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.111809015}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.73316264, y: 0.77638197}
+  m_EdgeRadius: 0
 --- !u!1 &3196828302372488357
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,8 +227,8 @@ Transform:
   m_GameObject: {fileID: 3196828302372488357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.537, z: 0}
+  m_LocalScale: {x: 2.5190504, y: 2.5190504, z: 2.5190504}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3893197750886374298}
@@ -226,7 +280,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82259e393d258166d91b43d87e8bcf65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -274,8 +328,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.70703125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

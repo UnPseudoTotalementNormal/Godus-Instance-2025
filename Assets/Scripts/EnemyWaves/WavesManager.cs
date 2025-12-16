@@ -76,7 +76,20 @@ public class WavesManager : MonoBehaviour
     private void Start()
     {
         timeBetweenWaves = firstTimeBetweenWaves;
-        StartWave();
+        GameEvents.onTownHallCreated += OnTownHallCreated;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.onTownHallCreated -= OnTownHallCreated;
+    }
+
+    private void OnTownHallCreated(GameObject _obj)
+    {
+        GameEvents.onTownHallCreated -= OnTownHallCreated;
+        waveTimer = TimerSystem.NewTimer(timeBetweenWaves);
+        waveTimer.onTimerComplete += StartWave;
+        GameEvents.onStartTimerBetweenWave?.Invoke(waveTimer);
     }
 
     private void StartWave()
@@ -242,12 +255,14 @@ public class WavesManager : MonoBehaviour
         _new.transform.SetParent(transform);
         currentEnemyAlive.Add(_new);
 
-        TestEnemy _comp = _new.GetComponent<TestEnemy>();
+        Entity _comp = _new.GetComponent<Entity>();
 
         if (!_comp)
         {
-            _comp = _new.AddComponent<TestEnemy>();
+            _comp = _new.AddComponent<Entity>();
         }
+
+        _comp.SetTeam(EntityTeam.Human);
         
         _comp.onDeath += () =>
         {
@@ -258,7 +273,7 @@ public class WavesManager : MonoBehaviour
     private void HandleEnemyDeath(GameObject _enemy)
     {
         currentEnemyAlive.Remove(_enemy);
-        GameEvents.onEnemyDeath?.Invoke();
+        GameEvents.onEnemyDeath?.Invoke(_enemy.GetComponent<Entity>());
 
         if (currentEnemyAlive.Count > 0)
             return;

@@ -1,6 +1,7 @@
 using Powers;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 public class TreeFertilizer : Power
 {
@@ -25,7 +26,7 @@ public class TreeFertilizer : Power
 
     private void ApplyFertilizer()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (UIUtils.IsMouseOverUI())
             return;
 
         Vector2 _mouseWorld = mainCamera.ScreenToWorldPoint(mouseScreenPosition);

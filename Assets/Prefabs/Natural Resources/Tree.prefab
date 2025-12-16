@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   resourceType: 0
-  collectionDelay: 1
+  collectionDelay: 10
   collectionQuantity: 10
   collectionsLeft: 1
   collectible: 0

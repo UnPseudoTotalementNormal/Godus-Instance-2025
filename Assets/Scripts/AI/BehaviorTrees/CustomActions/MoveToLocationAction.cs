@@ -14,14 +14,22 @@ public partial class MoveToLocationAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<Vector2Int> Location;
     [SerializeReference] public BlackboardVariable<PathHolder> Path;
-
+    [SerializeReference] public BlackboardVariable<VillageManager> vManager;
     Pathfinding pathfinder;
     bool pathFound = false;
     
     protected override Status OnStart()
     {
-        pathfinder = new Pathfinding();
-        pathfinder.callback += PathfindingCallback;
+        if (vManager?.Value?.villageCenter == Location.Value)
+        {
+            Debug.LogError(vManager.Value.villageCenter + ", " + Location.Value);
+        }
+        
+        if (pathfinder == null)
+        {
+            pathfinder = new Pathfinding();
+            pathfinder.callback += PathfindingCallback;
+        }
         pathfinder.FindPath(new Vector2Int((int)Self.Value.transform.position.x, (int)Self.Value.transform.position.y), Location.Value);
         return Status.Running;
     }

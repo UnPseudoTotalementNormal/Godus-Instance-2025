@@ -68,7 +68,7 @@ namespace Powers
 
         private void TryStartDrainingWater()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIUtils.IsMouseOverUI())
             {
                 return;
             }

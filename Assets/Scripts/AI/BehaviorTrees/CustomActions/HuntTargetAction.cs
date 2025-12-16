@@ -10,6 +10,7 @@ public partial class HuntTargetAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<GameObject> PathTarget;
+    [SerializeReference] public BlackboardVariable<VillageManager> VillageManager;
     
     ResourceComponent targetRC;
     float gatheringTimer;
@@ -17,6 +18,8 @@ public partial class HuntTargetAction : Action
     
     protected override Status OnStart()
     {
+        resourceExhausted = false;
+        gatheringTimer = 0f;
         targetRC = PathTarget.Value.GetComponent<ResourceComponent>();
         targetRC.callback += CallbackReceiver;
         PathTarget.Value.GetComponent<BehaviorGraphAgent>().SetVariableValue("attacked", true);
@@ -44,6 +47,9 @@ public partial class HuntTargetAction : Action
     void CallbackReceiver()
     {
         resourceExhausted = true;
+        Debug.Log("huntResourceAction: End");
+        VillageManager.Value.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
+        PathTarget.Value = null;
     }
 }
 

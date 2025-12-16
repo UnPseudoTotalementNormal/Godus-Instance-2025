@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -15,6 +16,7 @@ namespace GameOver
         private void Start()
         {
             GameEvents.onGameOver +=  GameOver;
+            gameOverCanva.SetActive(false);
         }
 
         private void OnDestroy()
@@ -32,11 +34,13 @@ namespace GameOver
         public void Retry()
         {
             SceneManager.LoadScene("GameScene");
+            Time.timeScale = 1;
         }
 
         public void LoadMenu()
         {
             SceneManager.LoadScene("MainMenu");
+            Time.timeScale = 1;
         }
 
         public void QuitGame()

@@ -16,14 +16,16 @@ public partial class BuildAtLocationAction : Action
     
     protected override Status OnStart()
     {
+        //WaitForDelay();
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
+        buildingFinished = true;
         if (buildingFinished)
         {
-            VillageManager.Value.BuildAtLocation(Self.Value.transform, Building.Value);
+            VillageManager.Value.BuildAtLocation(Self.Value.transform);
             return Status.Success;
         }
         return Status.Running;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AI;
+using AYellowpaper.SerializedCollections;
 using Unity.Behavior;
 using Unity.Collections;
 using UnityEngine;
@@ -8,8 +9,10 @@ using UnityEngine;
 public class VillageManager : MonoBehaviour
 {
     [SerializeField] BehaviorGraphAgent villageBlackboard;
-    [SerializeField] Vector2Int villageCenter;
+    [SerializeField] public Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
+    
+    [SerializeField] private SerializedDictionary<ResourceType, int> upgradeCosts = new();
 
     bool villageUnderAttack;
     
@@ -18,13 +21,26 @@ public class VillageManager : MonoBehaviour
     void Awake()
     {
         villageData = new VillageData();
-        
+
         villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
         villageBlackboard.SetVariableValue("VillageManager", this);
+        
+        GameEvents.onTownHallCreated += NewVillageCenter;
     }
-    
+
+    private void NewVillageCenter(GameObject _newTownHall)
+    {
+        villageCenter = Vector2Int.FloorToInt(_newTownHall.transform.position);
+        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
+        Debug.Log("New Village Center is" + villageBlackboard.GetVariable("VillageCenter", out BlackboardVariable _d));
+        Debug.Log(_d.ObjectValue);
+    }
+
     private void Start()
     {
+        Debug.Log(villageBlackboard.SetVariableValue("VillageCenter", villageCenter));
+        villageBlackboard.SetVariableValue("VillageManager", this);
+        
         villageData.Add(ResourceType.Meat,0);
         villageData.Add(ResourceType.Wood,0);
         villageData.Add(ResourceType.Stone,0);
@@ -47,10 +63,16 @@ public class VillageManager : MonoBehaviour
 
     public TaskType GetNewTask(Transform _caller, out GameObject _target)
     {
+        if (villageData == null)
+        {
+            _target = null;
+            return TaskType.Wandering;
+        }
         if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
         {
-            villageData.Add(ResourceType.Wood,-(villageData.wood / villageData.maxWood));
-            _target = buildingPrefab;
+            Debug.Log((int)-(0.95f*villageData.maxWood));
+            villageData.Add(ResourceType.Wood,(int)-(0.95f*villageData.maxWood));
+            _target = null;
             return TaskType.Building;
         }
         
@@ -107,12 +129,19 @@ public class VillageManager : MonoBehaviour
                     return TaskType.Hunting;
             }
         }
+
+        if (Random.value <= 0.6f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10))
+        {
+            Debug.Log(_caller.name + "wants to go shop !");
+            //Make the AI go back to the village centre to upgrade
+            return TaskType.Upgrading;
+        }
+        //Debug.Log("Wandering");
         return TaskType.Wandering;
     }
 
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
     {
-
         foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
             if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
@@ -120,6 +149,7 @@ public class VillageManager : MonoBehaviour
             _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
         }
+        //Debug.Log("No resource found");
         return null;
     }
 
@@ -129,9 +159,18 @@ public class VillageManager : MonoBehaviour
         _givenResource = null;
         if (_collider2Ds.Length == 0)
             return ResourceType.Wood;
-        int _randomIndex = Random.Range(0, _collider2Ds.Length);
-        if (_collider2Ds[_randomIndex].GetComponent<ResourceComponent>().collectible == false)
+        int _randomIndex = Random.Range(0, _collider2Ds.Length-1);
+        if (_collider2Ds[_randomIndex].TryGetComponent<ResourceComponent>(out ResourceComponent _resourceComponent))
+        {
+            if (_resourceComponent.collectible == false)
+            {
+                return ResourceType.Wood;
+            }
+        }
+        else
+        {
             return ResourceType.Wood;
+        }
         _givenResource = _collider2Ds[_randomIndex].gameObject;
         _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;
         return _collider2Ds[_randomIndex].GetComponent<ResourceComponent>().resourceType;
@@ -161,10 +200,53 @@ public class VillageManager : MonoBehaviour
         }
     }
 
-    public bool BuildAtLocation(Transform _position, GameObject _prefab)
+    public bool BuildAtLocation(Transform _position)
     {
-        GameObject _newBuild = Instantiate(_prefab, _position);
+        GameObject _newBuild = Instantiate(buildingPrefab);
+        _newBuild.transform.position = _position.position;
         return true;
+    }
+
+    public bool CanUpgradeUnit(Entity _entity)
+    {
+        if (!_entity.TryGetComponent(out UpgradeStatsComponent _upgradeStats))
+        {
+            return false;
+        }
+
+        ResourceType _nextUpgrade = _upgradeStats.GetNextUpgrade();
+        if (_nextUpgrade == ResourceType.None)
+        {
+            return false;
+        }
+        
+        int _upgradeCost = upgradeCosts[_nextUpgrade];
+        
+        if (GetResourceAmount(_nextUpgrade) < _upgradeCost)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
+    public void UpgradeEntity(Entity _entity)
+    {
+        if (!CanUpgradeUnit(_entity))
+        {
+            return;
+        }
+
+        if (!_entity.TryGetComponent(out UpgradeStatsComponent _upgradeStats))
+        {
+            return;
+        }
+
+        ResourceType _nextUpgrade = _upgradeStats.GetNextUpgrade();
+        int _upgradeCost = upgradeCosts[_nextUpgrade];
+
+        AddResource(_nextUpgrade, -_upgradeCost);
+        _upgradeStats.ApplyUpgrade();
     }
 }
 
@@ -175,6 +257,7 @@ public enum TaskType
     Building,
     Hunting,
     Wandering,
+    Upgrading,
 }
 
 [BlackboardEnum]
@@ -198,4 +281,5 @@ public enum ResourceType
     Iron,
     Glorp,
     Meat,
+    None,
 }

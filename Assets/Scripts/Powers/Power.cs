@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AudioSystem;
 using TileSystemSpace;
 using UnityEngine;
 
@@ -86,6 +87,11 @@ namespace Powers
 
         public virtual bool CanUsePower()
         {
+            if (isOnCooldown || powerCategory.isOnCooldown)
+            {
+                return false;
+            }
+            
             foreach (PowerUseConditionComponent _powerUseConditionComponent in useConditions)
             {
                 var _result = _powerUseConditionComponent.CanUsePower();

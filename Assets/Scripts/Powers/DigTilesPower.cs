@@ -69,7 +69,7 @@ namespace Powers
 
         private void TryStartDiggingTiles()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIUtils.IsMouseOverUI())
             {
                 return;
             }
