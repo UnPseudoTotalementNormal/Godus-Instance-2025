@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: -3223795438292083593}
   - component: {fileID: 8230878774037799041}
   - component: {fileID: 8510207441515698327}
+  - component: {fileID: 3185303574221421215}
+  - component: {fileID: -2892591346636913645}
   m_Layer: 0
   m_Name: Stockage
   m_TagString: Untagged
@@ -200,6 +202,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.45, y: 0.45}
   m_EdgeRadius: 0
+--- !u!114 &3185303574221421215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326733211086410403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
+  updateInterval: 0.15
+  healthComponent: {fileID: -2892591346636913645}
+--- !u!114 &-2892591346636913645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326733211086410403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
+  maxHealth: 100
 --- !u!1 &4594386629509887848
 GameObject:
   m_ObjectHideFlags: 0

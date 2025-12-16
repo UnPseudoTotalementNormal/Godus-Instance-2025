@@ -2,14 +2,17 @@ using System;
 using TileSystemSpace;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthComponent))]
 public class DeadlyWaterComponent : MonoBehaviour
 {
     private float timeSinceLastUpdate = 0f;
     [SerializeField] private float updateInterval = 0.15f;
     private Vector2Int _tilePos;
-    public event Action onDeath;
 
+    [SerializeField] private HealthComponent healthComponent;
+        
     private TileSystem tileSystem;
+
     private void Start()
     {
         tileSystem = TileSystem.instance;
@@ -26,19 +29,16 @@ public class DeadlyWaterComponent : MonoBehaviour
         _tilePos.x = Mathf.FloorToInt(transform.position.x + GameValues.GRID_OFFSET.x);
         _tilePos.y = Mathf.FloorToInt(transform.position.y + GameValues.GRID_OFFSET.y);
         var _tile = tileSystem.GetTile(_tilePos);
-        TouchWater(_tile);
+        CheckWater(_tile);
 
     }
 
 
-    public void TouchWater(Tile _tile)
+    public void CheckWater(Tile _tile)
     {
-        if (_tile.tileType == TileType.Water) Die();
-    }
-
-    private void Die()
-    {
-        onDeath?.Invoke();
-        Destroy(gameObject);
+        if (_tile.tileType == TileType.Water)
+        {
+            healthComponent.TakeDamage(1000);
+        }
     }
 }

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3942252904173965602}
   - component: {fileID: 1305076000725758242}
   - component: {fileID: 1234994620869953720}
+  - component: {fileID: 2380677674115614482}
   m_Layer: 0
   m_Name: FakeEnemy
   m_TagString: Untagged
@@ -268,6 +269,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
   rendererToInstance:
   - {fileID: 457733403197854842}
+--- !u!114 &2380677674115614482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521770036756855779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
+  updateInterval: 0.25
+  healthComponent: {fileID: 140205133377994421}
 --- !u!1 &4511787767177654578
 GameObject:
   m_ObjectHideFlags: 0

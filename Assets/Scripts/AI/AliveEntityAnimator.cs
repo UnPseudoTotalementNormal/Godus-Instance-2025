@@ -37,7 +37,7 @@ namespace AI
                 return;
             }
             
-            if (_movementDelta.x > 0.01f)
+            if (Math.Sign(_movementDelta.x) > 0)
             {
                 spriteRenderer.flipX = true;
             }
