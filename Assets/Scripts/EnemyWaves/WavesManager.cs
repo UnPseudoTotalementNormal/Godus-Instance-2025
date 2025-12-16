@@ -61,9 +61,11 @@ public class WavesManager : MonoBehaviour
     public int GetCurrentWave => waveInfo.currentWave;
 
     [Header("For Endless Waves")]
-    [SerializeField] private int wavePowerLevel = 10;
-    [SerializeField] private float wavePowerLevelMultiplier = 1.1f;
+    [SerializeField] private int wavePowerLevel = 5;
+    [SerializeField] private float wavePowerLevelMultiplier = 0.04f;
+    [SerializeField] private int wavePowerAdder = 4;
     private int actualWavePowerLevel = 0;
+    private float wavePowerActualMultiplier = 1;
     
     [Header("Random Spawn Balancing")]
     [SerializeField] private float highPowerChanceMultiplier = 1.2f;
@@ -189,8 +191,6 @@ public class WavesManager : MonoBehaviour
 
         foreach (var _group in _generatedGroups)
             StartCoroutine(SpawnGroupCoroutine(_group));
-
-        wavePowerLevel = Mathf.RoundToInt(wavePowerLevel * wavePowerLevelMultiplier);
     }
 
     private int WeightedRandom(List<EnemyGroup> _groups)
@@ -285,6 +285,8 @@ public class WavesManager : MonoBehaviour
     {
         waveIsRunning = false;
         StopAllCoroutines();
+        wavePowerActualMultiplier *= wavePowerLevelMultiplier;
+        wavePowerLevel = Mathf.RoundToInt(wavePowerLevel + wavePowerAdder * wavePowerActualMultiplier);
         waveTimer = TimerSystem.NewTimer(timeBetweenWaves);
         waveTimer.onTimerComplete += StartWave;
         
