@@ -14,6 +14,7 @@ namespace AI
         private float lastAttackTime = -Mathf.Infinity;
         
         public event Action onAttack;
+        [SerializeField] private OnAttacked onAttackBehaviorEvent;
         
         public virtual bool IsInAttackRange(Vector2 _target)
         {
@@ -54,6 +55,7 @@ namespace AI
             _targetHealth.TakeDamage(attackDamage);
             lastAttackTime = Time.time;
             onAttack?.Invoke();
+            onAttackBehaviorEvent?.SendEventMessage(gameObject, _targetHealth.gameObject);
         }
 
         public void IncreaseAttackDamage(float _damageIncrease)

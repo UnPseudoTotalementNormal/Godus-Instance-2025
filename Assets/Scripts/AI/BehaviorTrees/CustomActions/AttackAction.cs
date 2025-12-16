@@ -24,6 +24,10 @@ public partial class AttackAction : Action
     {
         if (PathTarget.Value == null)
             return Status.Success;
+        if (!AttackC.Value.IsInAttackRange(enemyHealthC))
+        {
+            return Status.Failure;
+        }
         AttackC.Value.TryAttack(enemyHealthC);
         return Status.Running;
     }

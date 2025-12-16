@@ -13,6 +13,7 @@ public class VillageManager : MonoBehaviour
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] public Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
+    [SerializeField] private int buildingWoodCost = 40;
     
     [SerializeField] private SerializedDictionary<ResourceType, int> upgradeCosts = new();
     
@@ -89,10 +90,9 @@ public class VillageManager : MonoBehaviour
             _target = null;
             return TaskType.Wandering;
         }
-        if ((100 * (villageData.wood / villageData.maxWood)) >= 95)
+        if ((100 * (villageData.wood / villageData.maxWood)) >= 90)
         {
-            Debug.Log((int)-(0.95f*villageData.maxWood));
-            villageData.Add(ResourceType.Wood,(int)-(0.95f*villageData.maxWood));
+            villageData.Add(ResourceType.Wood,-buildingWoodCost);
             _target = null;
             return TaskType.Building;
         }
@@ -159,6 +159,43 @@ public class VillageManager : MonoBehaviour
         }
         //Debug.Log("Wandering");
         return TaskType.Wandering;
+    }
+    
+    public void AbortTask(Transform _caller, TaskType _taskType)
+    {
+        BehaviorGraphAgent _behaviourGraphAgent = _caller.GetComponent<BehaviorGraphAgent>();
+        if (_behaviourGraphAgent == null)
+        {
+            return;
+        }
+
+        if (_taskType == TaskType.None)
+        {
+            return;
+        }
+        
+        _behaviourGraphAgent.SetVariableValue("CurrentTask", TaskType.None);
+        if (_behaviourGraphAgent.GetVariable("PathTarget", out BlackboardVariable _pathTargetVariable))
+        {
+            GameObject _pathTarget = _pathTargetVariable.ObjectValue as GameObject;
+            if (_pathTarget != null)
+            {
+                switch (_taskType)
+                {
+                    case TaskType.Gathering:
+                    case TaskType.Hunting:
+                        ResourceComponent _resourceComponent = _pathTarget.GetComponentInParent<ResourceComponent>();
+                        if (_resourceComponent != null)
+                        {
+                            _resourceComponent.collectible = true;
+                        }
+                        break;
+                    case TaskType.Building: //refund building cost 
+                        villageData.Add(ResourceType.Wood, buildingWoodCost);
+                        break;
+                }
+            }
+        }
     }
 
     GameObject DetectResourceInRange(Transform _origin, ResourceType _resourceType)
@@ -281,6 +318,7 @@ public enum TaskType
     Hunting,
     Wandering,
     Upgrading,
+    None
 }
 
 [BlackboardEnum]

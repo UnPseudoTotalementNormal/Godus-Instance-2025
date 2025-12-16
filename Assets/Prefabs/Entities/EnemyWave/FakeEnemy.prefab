@@ -118,6 +118,7 @@ MonoBehaviour:
   attackDamage: 5
   attackCooldown: 1
   attackKnockbackForce: 1
+  onAttackBehaviorEvent: {fileID: 11400000, guid: b4f2d7f4ec2616910b82753168860b00, type: 2}
 --- !u!61 &7104788089444488751
 BoxCollider2D:
   m_ObjectHideFlags: 0

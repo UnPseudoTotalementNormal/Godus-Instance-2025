@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Action = System.Action;
@@ -14,6 +15,22 @@ namespace AI
         {
             waypoints = new List<Vector2Int>(_waypoints);
             onPathChanged?.Invoke();
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            for (int i = 0; i < waypoints.Count; i++)
+            {
+                Vector3 _waypointPos = new Vector3(waypoints[i].x, waypoints[i].y, 0);
+                Gizmos.DrawSphere(_waypointPos, 0.1f);
+                
+                if (i > 0)
+                {
+                    Vector3 _previousWaypointPos = new Vector3(waypoints[i - 1].x, waypoints[i - 1].y, 0);
+                    Gizmos.DrawLine(_previousWaypointPos, _waypointPos);
+                }
+            }
         }
     }
 }

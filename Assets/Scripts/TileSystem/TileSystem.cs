@@ -153,6 +153,7 @@ namespace TileSystemSpace
             return new Vector2Int(xSize, ySize);
         }
 
+        /*
         void OnDrawGizmos() // Full debug to see what the generated map looks like even without any assets
         {
             for (int _i = 0; _i < tiles.Count; _i++)
@@ -170,6 +171,7 @@ namespace TileSystemSpace
                 Gizmos.DrawCube(new Vector3(_tilePos.x, _tilePos.y), Vector3.one);
             }  
         }
+        */
 
         public Tile GetTile(int x, int y)
         {
