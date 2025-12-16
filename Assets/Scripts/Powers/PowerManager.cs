@@ -33,6 +33,7 @@ namespace Powers
         
         private void Start()
         {
+            InputManager.instance.onRightMouseButtonPressStarted += RmbIsPressed;
             GameEvents.onTownHallCreated += (_) => hasTownHallSpawned = true;
         }
 
@@ -94,6 +95,11 @@ namespace Powers
             }
 
             return !_power.isOnCooldown && !_power.powerCategory.isOnCooldown && _power.CanUsePower();
+        }
+        
+        private void RmbIsPressed()
+        {
+            UnequipCurrentPower();
         }
     }
 }
