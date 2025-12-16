@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3483990015831709205}
   - component: {fileID: 5408201598718775354}
   - component: {fileID: 5133879628338348893}
+  - component: {fileID: 7799714650636909740}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -140,6 +141,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
   rendererToInstance:
   - {fileID: 580390576103589226}
+--- !u!114 &7799714650636909740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
+  updateInterval: 0.15
 --- !u!1 &1647814771126434785
 GameObject:
   m_ObjectHideFlags: 0

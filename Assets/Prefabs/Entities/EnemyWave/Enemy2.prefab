@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7753145299341032642}
   - component: {fileID: 7441013826760832938}
   - component: {fileID: 986310318396605116}
+  - component: {fileID: 6457299566083702143}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -179,4 +180,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestEnemy
   <team>k__BackingField: 0
-  isGonnaDie: 0
+--- !u!114 &6457299566083702143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943104481354564431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
+  updateInterval: 0.15
