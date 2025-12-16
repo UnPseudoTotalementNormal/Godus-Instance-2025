@@ -231,4 +231,5 @@ public enum ResourceType
     Iron,
     Glorp,
     Meat,
+    None,
 }
