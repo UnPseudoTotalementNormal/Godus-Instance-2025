@@ -7,7 +7,7 @@ public class UpgradeStatsComponent : MonoBehaviour
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private AttackComponent attackComponent;
     
-    public ResourceType[] upgradeOrder = 
+    [HideInInspector] public ResourceType[] upgradeOrder = 
     {
         ResourceType.None,
         ResourceType.Wood,
