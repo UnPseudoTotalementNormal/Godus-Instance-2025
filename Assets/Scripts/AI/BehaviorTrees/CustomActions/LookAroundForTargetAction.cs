@@ -14,9 +14,11 @@ public partial class LookAroundForTargetAction : Action
     [FormerlySerializedAs("Target")] [SerializeReference] public BlackboardVariable<GameObject> target;
     [SerializeReference] public BlackboardVariable<AiState> aiState;
 
+    [SerializeReference] public BlackboardVariable<float> radius;
+    
     protected override Status OnStart()
     {
-        Collider2D[] _around = Physics2D.OverlapCircleAll(self.Value.transform.position, 20f);
+        Collider2D[] _around = Physics2D.OverlapCircleAll(self.Value.transform.position, radius.Value);
         float closest = Int32.MaxValue;
         GameObject newTarget = null;
         foreach (Collider2D _hit in _around)

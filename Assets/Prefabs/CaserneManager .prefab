@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3377196204147510965}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7113933810148144594}
+        m_TargetAssemblyTypeName: CaserneUi, Assembly-CSharp
+        m_MethodName: CreateUnit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1197520193449397629
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,14 +710,14 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282204083
-  m_fontColor: {r: 0.70199996, g: 0.24874015, b: 0.23768504, a: 1}
+    rgba: 4281349370
+  m_fontColor: {r: 0.9811321, g: 0.20316052, b: 0.18974723, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1648,6 +1660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54001f02ffbc6ab4088c7b5a72763a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CaserneUi
+  villageManager: {fileID: 0}
   caserneUiPanel: {fileID: 9195274990863508719}
   textInfoName: {fileID: 993051856619830965}
   textInfoStats: {fileID: 6608393288680082017}
@@ -1657,8 +1670,6 @@ MonoBehaviour:
   buttonPrefab: {fileID: 4114237027395260620, guid: eb1c9a20a7e671241916821b916b31b3, type: 3}
   unitInfos:
   - {fileID: 11400000, guid: b38af426a476ff4488b2c7c6c407a33e, type: 2}
-  - {fileID: 11400000, guid: 0ce5c3f610caa2d4bba800365b768b9f, type: 2}
-  - {fileID: 11400000, guid: 0ce5c3f610caa2d4bba800365b768b9f, type: 2}
   - {fileID: 11400000, guid: 0ce5c3f610caa2d4bba800365b768b9f, type: 2}
 --- !u!1 &8810708736878644463
 GameObject:
