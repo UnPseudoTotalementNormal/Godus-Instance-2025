@@ -10,7 +10,6 @@ namespace Camera
     {
         [Header("Settings")]
         [SerializeField] private float dragSpeed = 0.00273f;
-        [SerializeField] private float momentumMultiplier = 20f;
         [SerializeField] [Range(0.8f, 1f)] private float decelerationRate = 0.86f;
         [SerializeField] private float minimumVelocity = 0.001f;
         
@@ -69,7 +68,6 @@ namespace Camera
             {
                 EndDragCamera();
             }
-            OutOfBounds();
         }
 
         private void RetrieveMouseDelta(Vector2 _delta)
@@ -106,7 +104,7 @@ namespace Camera
         private void DragCamera()
         {
             move = new Vector3(-mouseDelta.x, -mouseDelta.y, 0) * (dragSpeed * (cinemachineCamera.Lens.OrthographicSize/2));
-            cinemachineCamera.transform.Translate(move, Space.World);
+            cinemachineCamera.Follow.Translate(move, Space.World);
             recentVelocities.Enqueue(move.magnitude);
             lastDirection = move.normalized;
         }
@@ -119,7 +117,7 @@ namespace Camera
         {
             velocitySmoothDamp *= Mathf.Pow(decelerationRate, Time.deltaTime * 60f);
             
-            cinemachineCamera.transform.Translate(velocitySmoothDamp * lastDirection, Space.World);
+            cinemachineCamera.Follow.Translate(velocitySmoothDamp * lastDirection, Space.World);
             
             if (velocitySmoothDamp < minimumVelocity)
             {
@@ -129,33 +127,5 @@ namespace Camera
         }
 
         #endregion
-
-        private void OutOfBounds()
-        {
-            if (transform.position.x < 38)
-            {
-                var _vector3 = transform.position;
-                _vector3.x = 39;
-                transform.position = _vector3;
-            }
-            if (transform.position.y < 38)
-            {
-                var _vector3 = transform.position;
-                _vector3.y = 39;
-                transform.position = _vector3;
-            }
-            if (transform.position.x > TileSystem.instance.GetSize().x -38)
-            {
-                var _vector3 = transform.position;
-                _vector3.x = TileSystem.instance.GetSize().x - 39;
-                transform.position = _vector3;
-            }
-            if (transform.position.x > TileSystem.instance.GetSize().x -38)
-            {
-                var _vector3 = transform.position;
-                _vector3.x = TileSystem.instance.GetSize().y -39;
-                transform.position = _vector3;
-            }
-        } 
     }
 }
