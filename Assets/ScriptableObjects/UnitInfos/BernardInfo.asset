@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8bdf472f4cb114387d20f7dc566cf2, type: 3}
+  m_Name: BernardInfo
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
+  unitName: Bernard
+  unitHp: 165
+  unitAtk: 60
+  unitSprite: {fileID: 21300000, guid: 4d8fcf1063f9c2e41b26f730b9b53904, type: 3}
+  cost:
+  - resourceType: 0
+    cost: 30
+  - resourceType: 1
+    cost: 0
+  - resourceType: 2
+    cost: 5
+  - resourceType: 3
+    cost: 0
+  - resourceType: 4
+    cost: 0
+  unitPrefab: {fileID: 0}
