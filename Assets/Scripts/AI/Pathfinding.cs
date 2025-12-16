@@ -48,7 +48,7 @@ public class Pathfinding
          _cell.cameFrom = null;
       }
       
-      _endPos = new Vector2Int(Mathf.Clamp(_endPos.x,0,grid.GetLength(0)-1),Mathf.Clamp(_endPos.y,0,grid.GetLength(1)-1));
+      //_endPos = new Vector2Int(Mathf.Clamp(_endPos.x,0,grid.GetLength(0)-1),Mathf.Clamp(_endPos.y,0,grid.GetLength(1)-1));
       //Debug.Log("has requested to find path");
       
       openSet.Clear();
