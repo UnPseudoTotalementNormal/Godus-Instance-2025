@@ -2,6 +2,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Utils;
+using TileSystemSpace;
 
 namespace Camera
 {
@@ -68,6 +69,7 @@ namespace Camera
             {
                 EndDragCamera();
             }
+            OutOfBounds();
         }
 
         private void RetrieveMouseDelta(Vector2 _delta)
@@ -127,5 +129,33 @@ namespace Camera
         }
 
         #endregion
+
+        private void OutOfBounds()
+        {
+            if (transform.position.x < 38)
+            {
+                var _vector3 = transform.position;
+                _vector3.x = 39;
+                transform.position = _vector3;
+            }
+            if (transform.position.y < 38)
+            {
+                var _vector3 = transform.position;
+                _vector3.y = 39;
+                transform.position = _vector3;
+            }
+            if (transform.position.x > TileSystem.instance.GetSize().x -38)
+            {
+                var _vector3 = transform.position;
+                _vector3.x = TileSystem.instance.GetSize().x - 39;
+                transform.position = _vector3;
+            }
+            if (transform.position.x > TileSystem.instance.GetSize().x -38)
+            {
+                var _vector3 = transform.position;
+                _vector3.x = TileSystem.instance.GetSize().y -39;
+                transform.position = _vector3;
+            }
+        } 
     }
 }
