@@ -1,4 +1,6 @@
 using System;
+using AudioSystem;
+using FMODUnity;
 using TileSystemSpace;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,6 +24,10 @@ namespace FireSystem
         private Tile tile;
         
         public event Action onFireExtinguished; 
+        
+        [SerializeField] private EventReference fireSfx;
+        private FMOD.Studio.EventInstance fireSfxInstance;
+        
 
         private void Awake()
         {
@@ -35,10 +41,17 @@ namespace FireSystem
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             animator.Play(stateInfo.fullPathHash, 0, Random.Range(0f, 1f));
             TileSystem.instance.onAnyTileChanged += OnAnyTileChanged;
+            
+            fireSfxInstance = RuntimeManager.CreateInstance(fireSfx);
+            fireSfxInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+            fireSfxInstance.start();
         }
 
         private void OnDestroy()
         {
+            fireSfxInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            fireSfxInstance.release();
+            
             TileSystem.instance.onAnyTileChanged -= OnAnyTileChanged;
         }
 

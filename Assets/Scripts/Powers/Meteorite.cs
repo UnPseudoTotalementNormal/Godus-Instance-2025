@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AudioSystem;
 using FireSystem;
+using FMODUnity;
 using TileSystemSpace;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -15,6 +17,12 @@ namespace Powers
         [SerializeField] private SpriteRenderer spriteRenderer;
 
         [SerializeField] private float minTargetDistanceAtSpawn;
+        
+        [Header("    Sfx Settings")]
+        [SerializeField] private EventReference fallSfx;
+        [SerializeField] private EventReference impactSfx;
+        
+        [Header("    Meteorite Settings")]
         public float fallAcceleration = 10f;
         private float currentFallSpeed;
         
@@ -70,6 +78,7 @@ namespace Powers
             }
             
             transform.position = _spawnVector;
+            GameAudioManager.instance.PlayEventInstance(fallSfx, "MeteoriteFall");
         }
 
         private void Update()
@@ -95,6 +104,9 @@ namespace Powers
 
         private void OnExplode()
         {
+            GameAudioManager.instance.StopEventInstance("MeteoriteFall");
+            GameAudioManager.instance.PlayOneShot(impactSfx);
+            
             Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(targetPosition, explosionRadius, radiusMode);
 
             foreach (KeyValuePair<Tile, Vector2Int> _tile in _tilesInRadius)
