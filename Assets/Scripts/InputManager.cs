@@ -21,6 +21,12 @@ public class InputManager : MonoBehaviour
     public event Action onEscapeButtonPressStarted;
     
     public event Action onShowCoordinatePressStarted;
+    
+    public event Action onBrushIncreasedPressStarted;
+    
+    public event Action onBrushDecreasedPressStarted;
+    
+    public event Action onBrushShapeChangedPressStarted;
 
     public event Action<Vector2> onMouseDelta;
     
@@ -93,6 +99,30 @@ public class InputManager : MonoBehaviour
         if (_context.started)
         {
             onShowCoordinatePressStarted?.Invoke();
+        }
+    }
+    
+    public void OnBrushIncreased(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            onBrushIncreasedPressStarted?.Invoke();
+        }
+    }
+
+    public void OnBrushDecreased(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            onBrushDecreasedPressStarted?.Invoke();
+        }
+    }
+
+    public void OnBrushShapeChanged(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            onBrushShapeChangedPressStarted?.Invoke();
         }
     }
     
