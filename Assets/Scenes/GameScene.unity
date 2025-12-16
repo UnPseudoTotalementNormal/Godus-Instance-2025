@@ -1379,6 +1379,16 @@ MonoBehaviour:
   villageBlackboard: {fileID: 575030501}
   villageCenter: {x: 25, y: 25}
   buildingPrefab: {fileID: 0}
+  upgradeCosts:
+    _serializedList:
+    - Key: 0
+      Value: 3
+    - Key: 1
+      Value: 3
+    - Key: 2
+      Value: 3
+    - Key: 3
+      Value: 3
 --- !u!4 &575030503
 Transform:
   m_ObjectHideFlags: 0

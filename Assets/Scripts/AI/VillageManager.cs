@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AI;
+using AYellowpaper.SerializedCollections;
 using Unity.Behavior;
 using Unity.Collections;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class VillageManager : MonoBehaviour
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
+    
+    [SerializeField] private SerializedDictionary<ResourceType, int> upgradeCosts = new();
 
     bool villageUnderAttack;
     
@@ -198,6 +201,48 @@ public class VillageManager : MonoBehaviour
         _newBuild.transform.position = _position.position;
         return true;
     }
+
+    public bool CanUpgradeUnit(Entity _entity)
+    {
+        if (!_entity.TryGetComponent(out UpgradeStatsComponent _upgradeStats))
+        {
+            return false;
+        }
+
+        ResourceType _nextUpgrade = _upgradeStats.GetNextUpgrade();
+        if (_nextUpgrade == ResourceType.None)
+        {
+            return false;
+        }
+        
+        int _upgradeCost = upgradeCosts[_nextUpgrade];
+        
+        if (GetResourceAmount(_nextUpgrade) < _upgradeCost)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
+    public void UpgradeEntity(Entity _entity)
+    {
+        if (!CanUpgradeUnit(_entity))
+        {
+            return;
+        }
+
+        if (!_entity.TryGetComponent(out UpgradeStatsComponent _upgradeStats))
+        {
+            return;
+        }
+
+        ResourceType _nextUpgrade = _upgradeStats.GetNextUpgrade();
+        int _upgradeCost = upgradeCosts[_nextUpgrade];
+
+        AddResource(_nextUpgrade, -_upgradeCost);
+        _upgradeStats.ApplyUpgrade();
+    }
 }
 
 [BlackboardEnum]
@@ -231,4 +276,5 @@ public enum ResourceType
     Iron,
     Glorp,
     Meat,
+    None,
 }

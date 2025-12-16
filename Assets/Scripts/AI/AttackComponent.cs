@@ -55,5 +55,15 @@ namespace AI
             lastAttackTime = Time.time;
             onAttack?.Invoke();
         }
+
+        public void IncreaseAttackDamage(float _damageIncrease)
+        {
+            attackDamage += _damageIncrease;
+        }
+
+        public void IncreaseAttackSpeed(float _speedIncrease)
+        {
+            attackCooldown = Mathf.Max(0.1f, attackCooldown / _speedIncrease);
+        }
     }
 }
