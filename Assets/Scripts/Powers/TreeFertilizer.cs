@@ -27,7 +27,12 @@ public class TreeFertilizer : Power
     private void ApplyFertilizer()
     {
         if (UIUtils.IsMouseOverUI())
+        {
+            isCasting = false;
             return;
+        }
+        
+        isCasting = true;
 
         Vector2 _mouseWorld = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
         Collider2D[] _hits = Physics2D.OverlapCircleAll(_mouseWorld, tileRadius);
@@ -57,6 +62,6 @@ public class TreeFertilizer : Power
     
     public override bool ShouldStartCooldownOnDeactivate()
     {
-        return true;
+        return isCasting;
     }
 }
