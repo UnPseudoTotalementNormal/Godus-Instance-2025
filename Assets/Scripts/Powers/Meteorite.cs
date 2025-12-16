@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AudioSystem;
 using FireSystem;
+using FMOD.Studio;
 using FMODUnity;
 using TileSystemSpace;
 using Unity.Cinemachine;
@@ -86,7 +87,9 @@ namespace Powers
             currentFallSpeed += fallAcceleration * Time.deltaTime;
             
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, currentFallSpeed * Time.deltaTime);
-
+            
+            GameAudioManager.instance.UpdateEventInstancePosition("MeteoriteFall", transform.position);
+            
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
             {
                 OnExplode();
@@ -105,7 +108,7 @@ namespace Powers
         private void OnExplode()
         {
             GameAudioManager.instance.StopEventInstance("MeteoriteFall");
-            GameAudioManager.instance.PlayOneShot(impactSfx);
+            GameAudioManager.instance.PlayOneShot(impactSfx, (Vector3)(Vector2)targetPosition);
             
             Dictionary<Tile, Vector2Int> _tilesInRadius = TileSystem.instance.GetAllTilesAtPointWithRadius(targetPosition, explosionRadius, radiusMode);
 

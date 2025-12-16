@@ -72,35 +72,43 @@ namespace AudioSystem
             activeMusicInstances.Add(_newMusicInstance);
         }
 
-        public void PlayOneShot(EventReference _eventReference)
+        public void PlayOneShot(EventReference _eventReference, Vector3 _position = default)
         {
-            PlayOneShot(_eventReference.GetPath());
+            PlayOneShot(_eventReference.GetPath(), _position);
         }
-        public void PlayOneShot(string _eventPath)
+        
+        public void PlayOneShot(string _eventPath, Vector3 _position = default)
         {
             if (string.IsNullOrEmpty(_eventPath))
             {
                 return;
             }
             
-            EventReference _eventReference = RuntimeManager.PathToEventReference(_eventPath);
-            _eventReference.TryPlayOneShot();
+            RuntimeManager.PlayOneShot(_eventPath, _position);
         }
         
-        public void PlayEventInstance(EventReference _eventReference, string _instanceKey)
+        public EventInstance? PlayEventInstance(EventReference _eventReference, string _instanceKey, Vector3 _position = default)
         {
-            PlayEventInstance(_eventReference.GetPath(), _instanceKey);
+            return PlayEventInstance(_eventReference.GetPath(), _instanceKey, _position);
         }
         
-        public void PlayEventInstance(string _eventPath, string _instanceKey)
+        public EventInstance? PlayEventInstance(string _eventPath, string _instanceKey, Vector3 _position = default)
         {
             if (string.IsNullOrEmpty(_eventPath))
             {
-                return;
+                return null;
             }
             
             EventReference _eventReference = RuntimeManager.PathToEventReference(_eventPath);
             EventInstance _instance = RuntimeManager.CreateInstance(_eventReference);
+            
+            _instance.getDescription(out EventDescription _desc);
+            _desc.is3D(out bool _is3D);
+            if (_is3D)
+            {
+                _instance.set3DAttributes(_position.To3DAttributes());
+            }
+            
             _instance.start();
 
             if (eventInstances.ContainsKey(_instanceKey))
@@ -109,6 +117,23 @@ namespace AudioSystem
             }
                 
             eventInstances.Add(_instanceKey, _instance);
+            return _instance;
+        }
+        
+        public void UpdateEventInstancePosition(string _instanceKey, Vector3 _position)
+        {
+            if (string.IsNullOrEmpty(_instanceKey))
+            {
+                return;
+            }
+            
+            if (eventInstances.TryGetValue(_instanceKey, out EventInstance _instance))
+            {
+                if (_instance.isValid())
+                {
+                    _instance.set3DAttributes(RuntimeUtils.To3DAttributes(_position));
+                }
+            }
         }
         
 

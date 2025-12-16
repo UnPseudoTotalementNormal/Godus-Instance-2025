@@ -23,7 +23,19 @@ namespace Powers
             InputManager.instance.onBrushDecreasedPressStarted -= onBrushDecreasedPressStarted;
             InputManager.instance.onBrushShapeChangedPressStarted -= onBrushShapeChanged;
         }
-        
+
+        private void OnGUI()
+        {
+            if (power.isPowerActive)
+            {
+                GUIStyle style = new GUIStyle(GUI.skin.label);
+                style.fontSize = 16;
+                style.normal.textColor = Color.white;
+                string shape = power.radiusMode == TileSystem.RadiusMode.Circle ? "Circle" : "Diamond";
+                GUI.Label(new Rect(10, 10, 300, 20), "Power Brush Size: " + power.tileRadius.ToString() + " Shape: " + shape, style);
+            }
+        }
+
 
         private void onDeactivated()
         {
