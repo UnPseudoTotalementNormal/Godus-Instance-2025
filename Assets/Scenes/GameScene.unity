@@ -1378,7 +1378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VillageManager
   villageBlackboard: {fileID: 575030501}
   villageCenter: {x: 25, y: 25}
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
   upgradeCosts:
     _serializedList:
     - Key: 0
