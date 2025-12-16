@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 4031448229498663344}
   - component: {fileID: 95538046796974845}
   - component: {fileID: 8342904571639990128}
+  - component: {fileID: 8411321352572118402}
   m_Layer: 0
   m_Name: Test_AI
   m_TagString: Untagged
@@ -352,3 +353,16 @@ MonoBehaviour:
   damagePunchScaleStrength: 1.2
   damagePunchScaleVibrato: 5
   damagePunchScaleElasticity: 1
+--- !u!114 &8411321352572118402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842261373013836629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
+  updateInterval: 0.15

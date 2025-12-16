@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6529983301276433674}
   - component: {fileID: 6896827595621206739}
   - component: {fileID: 2729478711957490451}
+  - component: {fileID: -417058457631280500}
   m_Layer: 0
   m_Name: TownHall
   m_TagString: Untagged
@@ -132,6 +133,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaterialInstancer
   rendererToInstance:
   - {fileID: 4729591589661340624}
+--- !u!114 &-417058457631280500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869538399920670689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad33b2212ca7ac47884091f26b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
+  updateInterval: 0.15
 --- !u!1 &3196828302372488357
 GameObject:
   m_ObjectHideFlags: 0
