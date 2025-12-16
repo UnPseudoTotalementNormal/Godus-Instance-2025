@@ -318,11 +318,11 @@ MonoBehaviour:
     Path: 
   damageSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2052007783
+      Data2: 1147416187
+      Data3: 1019853992
+      Data4: -951042793
+    Path: event:/Character/Damage/Alien
   deathSfx:
     Guid:
       Data1: 0
