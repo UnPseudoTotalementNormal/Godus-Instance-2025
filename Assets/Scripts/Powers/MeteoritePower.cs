@@ -63,7 +63,7 @@ namespace Powers
 
         private void TryDropMeteorite()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIUtils.IsMouseOverUI())
             {
                 return;
             }

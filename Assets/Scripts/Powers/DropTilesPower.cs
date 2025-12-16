@@ -78,7 +78,7 @@ namespace Powers
 
         private void TryStartDroppingTiles()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIUtils.IsMouseOverUI())
             {
                 return;
             }

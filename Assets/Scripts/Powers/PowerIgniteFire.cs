@@ -68,7 +68,7 @@ public class PowerIgniteFire : Power
 
         private void TryStartIgnitingTiles()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIUtils.IsMouseOverUI())
             {
                 return;
             }

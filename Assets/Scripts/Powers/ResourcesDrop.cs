@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using Powers;
 using TileSystemSpace;
 using UnityEngine.Serialization;
+using Utils;
 
 public class ResourcesDrop : Power
 {
@@ -41,7 +42,7 @@ public class ResourcesDrop : Power
 
     private void TrySpawn()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (UIUtils.IsMouseOverUI())
             return;
 
         Vector2 _worldPos = mainCamera.ScreenToWorldPoint(mousePos);

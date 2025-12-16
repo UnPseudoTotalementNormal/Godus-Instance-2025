@@ -355,7 +355,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1685776400456231552, guid: a5217c41046f021ada1a0437509bc31e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1351371203}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2751557562815620287, guid: a5217c41046f021ada1a0437509bc31e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 780225446}
   m_SourcePrefab: {fileID: 100100000, guid: a5217c41046f021ada1a0437509bc31e, type: 3}
 --- !u!4 &161498382 stripped
 Transform:
@@ -1369,6 +1372,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7186844394019533953, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
   m_PrefabInstance: {fileID: 2089248526}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &780225441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2751557562815620287, guid: a5217c41046f021ada1a0437509bc31e, type: 3}
+  m_PrefabInstance: {fileID: 161498381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &780225446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780225441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.Physics2DRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &783044103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,6 +3431,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7113933810148144594, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: villageManager
+      value: 
+      objectReference: {fileID: 575030502}
+    - target: {fileID: 7113933810148144594, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: unitInfos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7672620832535840657, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
       propertyPath: m_Name
       value: 'CaserneManager '
@@ -4559,6 +4591,30 @@ PrefabInstance:
       propertyPath: 'prefabsToSpawn.Array.data[0]'
       value: 
       objectReference: {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
+    - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: sfx.Path
+      value: event:/World/Build/Place_Casern
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: sfx.Guid.Data1
+      value: 67393759
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: sfx.Guid.Data2
+      value: 1249090843
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: sfx.Guid.Data3
+      value: 1035142784
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: sfx.Guid.Data4
+      value: 923922397
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: 'prefabsToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3326733211086410403, guid: 98ddb6fc7acadeb468724121cd554aa0, type: 3}
     - target: {fileID: 8823008752508802080, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
       value: 2
