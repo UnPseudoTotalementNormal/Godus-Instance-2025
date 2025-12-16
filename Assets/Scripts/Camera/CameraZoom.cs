@@ -27,7 +27,7 @@ namespace Camera
             cinemachineCamera = cameraManager.GetCinemachine;
             Assert.IsNotNull(cinemachineCamera, "No Cinemachine Camera found.");
 
-            targetOrthographicSize = cinemachineCamera.Lens.OrthographicSize;
+            targetOrthographicSize = minZoom;
             
             InputManager.instance.onMiddleMousseScroll += Zoom;
         }
