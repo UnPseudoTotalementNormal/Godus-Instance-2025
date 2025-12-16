@@ -27,7 +27,7 @@ public partial class AskForTaskAction : Action
 
     protected override void OnEnd()
     {
-        Debug.Log(Self.Value.name + " assigned with task of type" + Task.Value + " to " + Target.Value?.name);
+        //Debug.Log(Self.Value.name + " assigned with task of type" + Task.Value + " to " + Target.Value?.name);
     }
 }
 

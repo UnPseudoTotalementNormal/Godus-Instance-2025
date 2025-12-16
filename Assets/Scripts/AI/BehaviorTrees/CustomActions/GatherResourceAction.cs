@@ -20,13 +20,18 @@ public partial class GatherResourceAction : Action
     {
         resourceExhausted = false;
         gatheringTimer = 0f;
-        targetRC = PathTarget.Value.GetComponent<ResourceComponent>();
+        targetRC = PathTarget.Value.GetComponentInParent<ResourceComponent>();
         targetRC.callback += CallbackReceiver;
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
+        if (targetRC == null)
+        {
+            PathTarget.Value = null;
+            return Status.Failure;
+        }
         if (gatheringTimer >= targetRC.collectionDelay)
         {
             targetRC.OnCollect();

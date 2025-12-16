@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AI;
@@ -5,6 +6,7 @@ using AYellowpaper.SerializedCollections;
 using Unity.Behavior;
 using Unity.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class VillageManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class VillageManager : MonoBehaviour
     [SerializeField] GameObject buildingPrefab;
     
     [SerializeField] private SerializedDictionary<ResourceType, int> upgradeCosts = new();
+    
+    [SerializeField] private int storageIncreasePerBuilding = 50;
 
     bool villageUnderAttack;
     
@@ -26,6 +30,23 @@ public class VillageManager : MonoBehaviour
         villageBlackboard.SetVariableValue("VillageManager", this);
         
         GameEvents.onTownHallCreated += NewVillageCenter;
+        GameEvents.onStorageBuildingCreated += OnNewStorageBuilding;
+    }
+
+    private void OnNewStorageBuilding()
+    {
+        //Increase max capacity for each resource by X
+        villageData.AddMax(ResourceType.Meat,storageIncreasePerBuilding);
+        villageData.AddMax(ResourceType.Wood,storageIncreasePerBuilding);
+        villageData.AddMax(ResourceType.Stone,storageIncreasePerBuilding);
+        villageData.AddMax(ResourceType.Iron,storageIncreasePerBuilding);
+        villageData.AddMax(ResourceType.Glorp,storageIncreasePerBuilding);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.onTownHallCreated -= NewVillageCenter;
+        GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
     }
 
     private void NewVillageCenter(GameObject _newTownHall)
@@ -144,7 +165,8 @@ public class VillageManager : MonoBehaviour
     {
         foreach (Collider2D _resource in Physics2D.OverlapCircleAll(_origin.position, 20, LayerMask.GetMask("Resource")))
         {
-            if (!_resource.gameObject.TryGetComponent(out ResourceComponent _resourceComponent)) continue;
+            ResourceComponent _resourceComponent = _resource.gameObject.GetComponentInParent<ResourceComponent>();
+            if (!_resourceComponent) continue;
             if (_resourceComponent.resourceType != _resourceType || _resourceComponent.collectible == false) continue;
             _resource.GetComponent<Collider2D>().enabled = false;
             return _resource.gameObject;
@@ -160,7 +182,8 @@ public class VillageManager : MonoBehaviour
         if (_collider2Ds.Length == 0)
             return ResourceType.Wood;
         int _randomIndex = Random.Range(0, _collider2Ds.Length-1);
-        if (_collider2Ds[_randomIndex].TryGetComponent<ResourceComponent>(out ResourceComponent _resourceComponent))
+        ResourceComponent _resourceComponent = _collider2Ds[_randomIndex].GetComponentInParent<ResourceComponent>();
+        if (_resourceComponent)
         {
             if (_resourceComponent.collectible == false)
             {
@@ -173,7 +196,7 @@ public class VillageManager : MonoBehaviour
         }
         _givenResource = _collider2Ds[_randomIndex].gameObject;
         _givenResource.gameObject.GetComponent<Collider2D>().enabled = false;
-        return _collider2Ds[_randomIndex].GetComponent<ResourceComponent>().resourceType;
+        return _collider2Ds[_randomIndex].GetComponentInParent<ResourceComponent>().resourceType;
     }
 
     public void AddResource(ResourceType _resource, int _amount)

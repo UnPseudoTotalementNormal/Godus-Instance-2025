@@ -1227,9 +1227,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VillageManager
   villageBlackboard: {fileID: 575030501}
   villageCenter: {x: 25, y: 25}
-  buildingPrefab: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
+  buildingPrefab: {fileID: 3326733211086410403, guid: 773a52af7fcc0f2809dce34fe4fcaf5c, type: 3}
   upgradeCosts:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: 1
+    - Key: 1
+      Value: 1
+    - Key: 2
+      Value: 1
+    - Key: 3
+      Value: 1
+  storageIncreasePerBuilding: 50
 --- !u!4 &575030503
 Transform:
   m_ObjectHideFlags: 0
@@ -3562,6 +3571,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1813223060}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CreateUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CaserneUi, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656193362541626429, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6714358704612994559, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3796,6 +3833,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d33e05a116d27369a3bb4e5aeffb20, type: 3}
+--- !u!114 &1813223060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7113933810148144594, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+  m_PrefabInstance: {fileID: 1729487797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54001f02ffbc6ab4088c7b5a72763a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CaserneUi
 --- !u!1 &1895303867
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,6 +4185,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 539001011}
     m_Modifications:
+    - target: {fileID: 44737103095245996, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1072500552, guid: 3e251a68662ce27c981501a4dadaf618, type: 3}
+    - target: {fileID: 44737103095245996, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 661914587305214747, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4389,6 +4445,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4097884269533213921, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 995954275, guid: 7d307d71d7ba2c72faf2a689bcb81fbd, type: 3}
+    - target: {fileID: 4097884269533213921, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4235735365024536874, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4404,6 +4468,14 @@ PrefabInstance:
     - target: {fileID: 4235735365024536874, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354125166328999648, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1191130873, guid: e95a6531f16be74b2b8a2f817297d702, type: 3}
+    - target: {fileID: 4354125166328999648, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4431384909115880675, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4596,6 +4668,22 @@ PrefabInstance:
     - target: {fileID: 8012059012687022174, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142950673240858126, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1064771887, guid: 921c5dd070f095cbc9d9d0475f453f88, type: 3}
+    - target: {fileID: 8142950673240858126, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8255163669784235308, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 581182857, guid: 9d2e79475763c364a8874ef8e651c18d, type: 3}
+    - target: {fileID: 8255163669784235308, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8499704748037568177, guid: 5274425dabfac5b41b71f93f6dacd024, type: 3}
       propertyPath: m_AnchorMax.y

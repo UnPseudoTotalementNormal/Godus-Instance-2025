@@ -11,6 +11,8 @@ public static class GameEvents
     public static Action<GameObject> onTownHallCreated;
     public static Action onTownHallDestroy;
     
+    public static Action onStorageBuildingCreated;
+    public static Action onStorageBuildingDestroyed;
     
     public static Action<Entity> onNewEntitySpawned;
     public static Action<Entity> onAlienDeath;

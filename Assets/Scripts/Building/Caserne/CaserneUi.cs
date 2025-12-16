@@ -29,6 +29,7 @@ public class CaserneUi : MonoBehaviour
         InputManager.instance.onMousePosition += GetMousePos;
         Caserne.onCaserneClick += OncaserneClick;
         InitButtons();
+        OpenUnitInfo(0);
     }
 
     void OnDestroy()
@@ -110,7 +111,8 @@ public class CaserneUi : MonoBehaviour
 
         foreach (UnitCost _cost in _unitCost)
         {
-            if (_cost.cost > villageManager.GetResourceAmount(_cost.resourceType))
+            var _resourceAmount = villageManager.GetResourceAmount(_cost.resourceType);
+            if (_cost.cost > _resourceAmount)
             {
                 Debug.Log("Not enough" + _cost.resourceType);
                 _canMake = false;

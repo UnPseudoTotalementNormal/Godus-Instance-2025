@@ -80,7 +80,7 @@ MonoBehaviour:
           m_Value0: 1094386303605213445
           m_Value1: 15628591369797470386
         Name: WalkSpeed
-        m_Value: 2
+        m_Value: 1.75
     - rid: 7988512962909831288
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 50
+  maxHealth: 35
 --- !u!114 &5885889135748904507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AI.AttackComponent
   attackRange: 1.5
-  attackDamage: 20
+  attackDamage: 5
   attackCooldown: 1
   attackKnockbackForce: 1
 --- !u!61 &7104788089444488751

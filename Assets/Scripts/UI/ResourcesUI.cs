@@ -63,6 +63,7 @@ public class ResourcesUI : MonoBehaviour
 
     private void OnResourceMaxValueRefreshed(ResourceType _type, int _maxValue)
     {
+        Debug.Log("Updating max value for " + _type + " to " + _maxValue);
         switch (_type)
         {
             case ResourceType.Meat:

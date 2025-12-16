@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7900205096423673474}
-  - component: {fileID: 6931665054764906443}
+  - component: {fileID: 1659867640320690676}
   - component: {fileID: 1392861261651908506}
   - component: {fileID: 2084627704628966277}
   - component: {fileID: -2557213107965387021}
@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8230878774037799041}
   - component: {fileID: 8510207441515698327}
   m_Layer: 0
-  m_Name: Caserne
+  m_Name: Stockage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ Transform:
   - {fileID: 6141603960211883840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6931665054764906443
+--- !u!114 &1659867640320690676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3326733211086410403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede19c107b1340f44a24b5b4fb3f844e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f14c0a53144e11738182ed994d8c88b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Caserne
+  m_EditorClassIdentifier: Assembly-CSharp::StorageBuilding
 --- !u!114 &1392861261651908506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 1000
+  maxHealth: 500
 --- !u!114 &2084627704628966277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +279,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 208dd5f80fd877b2a9d63e301c6db60b, type: 3}
+  m_Sprite: {fileID: -927198057, guid: d4d46e904917871428d7d9e98dd8bb6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

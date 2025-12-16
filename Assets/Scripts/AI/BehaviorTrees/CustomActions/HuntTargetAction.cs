@@ -20,9 +20,9 @@ public partial class HuntTargetAction : Action
     {
         resourceExhausted = false;
         gatheringTimer = 0f;
-        targetRC = PathTarget.Value.GetComponent<ResourceComponent>();
+        targetRC = PathTarget.Value.GetComponentInParent<ResourceComponent>();
         targetRC.callback += CallbackReceiver;
-        PathTarget.Value.GetComponent<BehaviorGraphAgent>().SetVariableValue("attacked", true);
+        PathTarget.Value.GetComponentInParent<BehaviorGraphAgent>().SetVariableValue("attacked", true);
         return Status.Running;
     }
 
