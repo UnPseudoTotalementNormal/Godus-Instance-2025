@@ -106,6 +106,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Powers.Meteorite
   spriteRenderer: {fileID: 5220401080739486708}
   minTargetDistanceAtSpawn: 30
+  fallSfx:
+    Guid:
+      Data1: 849469552
+      Data2: 1093911802
+      Data3: 414446464
+      Data4: 332989303
+    Path: event:/Environment/Meteor/Meteor Rumble
+  impactSfx:
+    Guid:
+      Data1: -1837916073
+      Data2: 1129396743
+      Data3: 483934105
+      Data4: -2074949149
+    Path: event:/Environment/Meteor/Meteor Impact
   fallAcceleration: 30
   objectSize: 1
   explosionRadius: 3

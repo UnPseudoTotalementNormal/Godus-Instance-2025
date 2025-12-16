@@ -110,6 +110,13 @@ MonoBehaviour:
   <minLifetime>k__BackingField: 5
   <maxLifetime>k__BackingField: 8
   <chanceToDamageTile>k__BackingField: 0.4
+  fireSfx:
+    Guid:
+      Data1: -49490863
+      Data2: 1267672820
+      Data3: 1748473517
+      Data4: 1572254914
+    Path: event:/Environment/Fire
 --- !u!95 &2239381246302074336
 Animator:
   serializedVersion: 7

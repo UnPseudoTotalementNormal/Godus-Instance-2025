@@ -87,6 +87,11 @@ namespace Powers
 
         public virtual bool CanUsePower()
         {
+            if (isOnCooldown || powerCategory.isOnCooldown)
+            {
+                return false;
+            }
+            
             foreach (PowerUseConditionComponent _powerUseConditionComponent in useConditions)
             {
                 var _result = _powerUseConditionComponent.CanUsePower();
