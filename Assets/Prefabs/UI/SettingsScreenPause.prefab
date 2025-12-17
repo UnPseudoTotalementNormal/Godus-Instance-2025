@@ -533,6 +533,7 @@ GameObject:
   - component: {fileID: 377664321928921893}
   - component: {fileID: 758443755140012234}
   - component: {fileID: 5166489405172960709}
+  - component: {fileID: 656386515609966271}
   m_Layer: 0
   m_Name: SettingsScreenPause
   m_TagString: Untagged
@@ -628,6 +629,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &656386515609966271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699168984121889120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f32d197c5a65042a3ab2bb9c042064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsPauseMenu
+  masterVolumeSlider: {fileID: 3046397980008805938}
+  musicVolumeSlider: {fileID: 2516902423269962218}
+  sfxVolumeSlider: {fileID: 4277236849196105400}
 --- !u!1 &1957347805258670431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,13 +1135,13 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 656386515609966271}
+        m_TargetAssemblyTypeName: SettingsPauseMenu, Assembly-CSharp
+        m_MethodName: ToggleFullScreenMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

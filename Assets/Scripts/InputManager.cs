@@ -20,6 +20,8 @@ public class InputManager : MonoBehaviour
     
     public event Action onEscapeButtonPressStarted;
     
+    public event Action onAnyKeyPressStarted;
+    
     public event Action onShowCoordinatePressStarted;
     
     public event Action onBrushIncreasedPressStarted;
@@ -91,6 +93,14 @@ public class InputManager : MonoBehaviour
         if (_context.started)
         {
             onEscapeButtonPressStarted?.Invoke();
+        }
+    }
+    
+    public void OnAnyKeyPressed(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            onAnyKeyPressStarted?.Invoke();
         }
     }
     

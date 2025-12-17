@@ -274,6 +274,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e5e7b8c7-545b-4f7c-8b0c-e840c2a84da8
     m_ActionName: 'Player/F[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4537015942968288749}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnAnyKeyPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 98976817-504f-42b6-9101-a4e455ec704a
+    m_ActionName: 'Player/PressAnyKey[/Keyboard/anyKey,/Mouse/press]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
