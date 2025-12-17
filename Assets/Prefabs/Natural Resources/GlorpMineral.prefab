@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5918137562134733362}
   - component: {fileID: 7491119752823708196}
   - component: {fileID: 7323359296200015024}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GlorpMineral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
