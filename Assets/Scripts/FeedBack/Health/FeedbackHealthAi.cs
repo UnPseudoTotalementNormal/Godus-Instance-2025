@@ -103,6 +103,13 @@ namespace Feedback.Health
             GameAudioManager.instance.PlayOneShot(damageSfx, transform.position);
         }
 
+        public void CosmeticDamage()
+        {
+            PlayDamageFlash();
+            PlayDamageScaleAnimation();
+            PlayTakeDamageTextAnimation(1);
+        }
+
         private void HandleHealed(float _healAmount)
         {
             PlayHealFlash();

@@ -20,11 +20,6 @@ public partial class MoveToLocationAction : Action
     
     protected override Status OnStart()
     {
-        if (vManager?.Value?.villageCenter == Location.Value)
-        {
-            Debug.LogError(vManager.Value.villageCenter + ", " + Location.Value);
-        }
-        
         if (pathfinder == null)
         {
             pathfinder = new Pathfinding();
