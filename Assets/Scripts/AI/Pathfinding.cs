@@ -104,6 +104,7 @@ public class Pathfinding
          }
       }
       Debug.LogWarning("Could not find valid path for" + _endPos);
+      searchingForPath = false;
       callback?.Invoke(new List<Cell> {});
    }
 
