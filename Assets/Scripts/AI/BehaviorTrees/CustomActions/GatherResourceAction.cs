@@ -52,7 +52,7 @@ public partial class GatherResourceAction : Action
     {
         resourceExhausted = true;
         Debug.Log("GatherResourceAction: End");
-        villageManager.Value.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
+        VillageManager.instance.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
         PathTarget.Value = null;
     }
 }

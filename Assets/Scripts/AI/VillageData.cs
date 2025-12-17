@@ -17,29 +17,6 @@ namespace AI
         public int meat = 0;
         public int maxMeat = 50;
         
-        public void Init()
-        {
-            GameEvents.onResourceValueRefreshed += OnResourceValueRefreshed;
-            GameEvents.onResourceMaxValueRefreshed += OnResourceMaxValueRefreshed;
-        }
-
-
-        public void OnDestroy()
-        {
-            GameEvents.onResourceValueRefreshed -= OnResourceValueRefreshed;
-            GameEvents.onResourceMaxValueRefreshed -= OnResourceMaxValueRefreshed;
-        }
-        
-        private void OnResourceValueRefreshed(ResourceType _type, int _value)
-        {
-            GetValueRef(_type) = _value;
-        }
-        
-        private void OnResourceMaxValueRefreshed(ResourceType _type, int _value)
-        {
-            GetMaxRef(_type) = _value;
-        }
-        
         public void Add(ResourceType _type, int _amount)
         {
             ref int _value = ref GetValueRef(_type);

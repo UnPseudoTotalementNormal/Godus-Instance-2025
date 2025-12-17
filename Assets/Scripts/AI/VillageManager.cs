@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class VillageManager : MonoBehaviour
 {
+    public static VillageManager instance { get; private set; }
+    
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] public Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
@@ -22,6 +24,13 @@ public class VillageManager : MonoBehaviour
 
     void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+        
         GameEvents.onTownHallCreated -= NewVillageCenter;
         GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
         
@@ -29,17 +38,15 @@ public class VillageManager : MonoBehaviour
         GameEvents.onStorageBuildingCreated += OnNewStorageBuilding;
         
         villageData = new VillageData();
-        
-        villageData.Init();
 
         villageData.Add(ResourceType.Meat, 0);
         villageData.Add(ResourceType.Wood, 0);
         villageData.Add(ResourceType.Stone, 0);
         villageData.Add(ResourceType.Iron, 0);
         villageData.Add(ResourceType.Glorp, 0);
-
-        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
-        villageBlackboard.SetVariableValue("VillageManager", this);
+        
+        villageBlackboard.BlackboardReference.SetVariableValue("VillageCenter", villageCenter);
+        villageBlackboard.BlackboardReference.SetVariableValue("VillageManager", this);
     }
 
     private void Start()
@@ -71,7 +78,6 @@ public class VillageManager : MonoBehaviour
     {
         GameEvents.onTownHallCreated -= NewVillageCenter;
         GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
-        villageData.OnDestroy();
     }
 
     private void NewVillageCenter(GameObject _newTownHall)
@@ -241,12 +247,14 @@ public class VillageManager : MonoBehaviour
 
     public void AddResource(ResourceType _resource, int _amount)
     {
+        Debug.Log($"{gameObject.name}");
         Debug.Log("Added resource " + _resource + " with number of " + _amount);
         villageData.Add(_resource, _amount);
     }
 
     public int GetResourceAmount(ResourceType _resource)
     {
+        Debug.Log($"{gameObject.name}");
         return villageData.GetResourceValue(_resource);
     }
 
