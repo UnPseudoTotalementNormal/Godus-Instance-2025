@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
   power: {fileID: 273924167230926781}
+  maxBrushIncrease: 2
 --- !u!1 &605641559555294793
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +114,7 @@ GameObject:
   - component: {fileID: 703355328027704938}
   - component: {fileID: 8831373890044676628}
   - component: {fileID: 2426386831840706275}
+  - component: {fileID: 6254633514319783338}
   m_Layer: 0
   m_Name: Build a town hall
   m_TagString: Untagged
@@ -192,6 +194,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d398ab23f294f6ea8d2a26a36462a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCanBuildTownHallCheck
+--- !u!114 &6254633514319783338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605641559555294793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ac132c3a821d9df848e1413dcac72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstVillagerSpawnPowerComponent
+  villagerPrefab: {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
+  numberOfVillagersToSpawn: 3
 --- !u!1 &690860878360739873
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,84 +349,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerCategory
   <categoryIcon>k__BackingField: {fileID: 0}
---- !u!1 &1832100028179106572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1108124269164928802}
-  - component: {fileID: 8817782302019362313}
-  - component: {fileID: 133333643258086047}
-  - component: {fileID: 3679105681391948945}
-  m_Layer: 0
-  m_Name: Fury spell
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1108124269164928802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832100028179106572}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6240284082935981684}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8817782302019362313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832100028179106572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
-  <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
---- !u!114 &133333643258086047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832100028179106572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
-  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  lineWidth: 0.05
-  lineColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &3679105681391948945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832100028179106572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
 --- !u!1 &2750874842964857837
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +776,7 @@ Transform:
   - {fileID: 1985112720350817323}
   - {fileID: 922635859904218667}
   - {fileID: 4048129603286651101}
+  - {fileID: 1975228036798015581}
   m_Father: {fileID: 6628211762310620858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9146517234059782333
@@ -973,9 +912,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6103205462572621446}
-  - {fileID: 1108124269164928802}
+  m_Children: []
   m_Father: {fileID: 6628211762310620858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &454689737775842741
@@ -1077,6 +1014,97 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4407967528452708840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
+--- !u!1 &4692614668419886727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1975228036798015581}
+  - component: {fileID: 1639099068459707373}
+  - component: {fileID: 5752444137062674128}
+  - component: {fileID: 7802777863589527239}
+  m_Layer: 0
+  m_Name: Summon a Glorp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1975228036798015581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692614668419886727}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6454656501684699950}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1639099068459707373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692614668419886727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
+  <powerIcon>k__BackingField: {fileID: 0}
+  tileRadius: 5
+  radiusMode: 2
+  <powerCooldownDuration>k__BackingField: 120
+  <categoryCooldownDuration>k__BackingField: 30
+  minToSpawn: 1
+  maxToSpawn: 2
+  prefabsToSpawn:
+  - {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
+  allowedTileTypes: 0a00000014000000
+  prohibitedTileTypes: 00000000
+  sfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &5752444137062674128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692614668419886727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.05
+  lineColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &7802777863589527239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692614668419886727}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
@@ -1260,6 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
   power: {fileID: 1843922997828223739}
+  maxBrushIncrease: 3
 --- !u!1 &5410566490416740964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,84 +1371,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5410566490416740964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
---- !u!1 &6210347989287798240
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6103205462572621446}
-  - component: {fileID: 5742826549444197425}
-  - component: {fileID: 355265544325434059}
-  - component: {fileID: 4264483567855412140}
-  m_Layer: 0
-  m_Name: Own an entity
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6103205462572621446
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6210347989287798240}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6240284082935981684}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5742826549444197425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6210347989287798240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f31d9e0db47529d76b64c24e9076c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test.TestPower
-  <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 0
-  radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
-  <categoryCooldownDuration>k__BackingField: 2
---- !u!114 &355265544325434059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6210347989287798240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
-  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  lineWidth: 0.05
-  lineColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &4264483567855412140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6210347989287798240}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
@@ -1526,6 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
   power: {fileID: 3449592209633899677}
+  maxBrushIncrease: 2
 --- !u!1 &8018553049544447527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerSizeAndShapeModifier
   power: {fileID: 2556353604755309044}
+  maxBrushIncrease: 2
 --- !u!1 &8283944714982217277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,21 +1671,21 @@ MonoBehaviour:
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 1
-  <powerCooldownDuration>k__BackingField: 5
+  <powerCooldownDuration>k__BackingField: 80
   <categoryCooldownDuration>k__BackingField: 2
   minToSpawn: 1
   maxToSpawn: 1
   prefabsToSpawn:
-  - {fileID: 0}
+  - {fileID: 3326733211086410403, guid: 98ddb6fc7acadeb468724121cd554aa0, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
   sfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 67393759
+      Data2: 1249090843
+      Data3: 1035142784
+      Data4: 923922397
+    Path: event:/World/Build/Place_Casern
 --- !u!114 &5709888807729131271
 MonoBehaviour:
   m_ObjectHideFlags: 0
