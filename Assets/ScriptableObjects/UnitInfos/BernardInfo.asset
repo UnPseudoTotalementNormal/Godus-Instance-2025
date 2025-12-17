@@ -27,4 +27,4 @@ MonoBehaviour:
     cost: 0
   - resourceType: 4
     cost: 0
-  unitPrefab: {fileID: 0}
+  unitPrefab: {fileID: 7842261373013836629, guid: a39913bcac8b6cbee8f8b561f8d57311, type: 3}
