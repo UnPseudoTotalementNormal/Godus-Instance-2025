@@ -1,3 +1,4 @@
+using System;
 using AI;
 using AYellowpaper.SerializedCollections;
 using Unity.Behavior;
@@ -21,13 +22,37 @@ public class VillageManager : MonoBehaviour
 
     void Awake()
     {
-        villageData = new VillageData();
-
-        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
-        villageBlackboard.SetVariableValue("VillageManager", this);
+        GameEvents.onTownHallCreated -= NewVillageCenter;
+        GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
         
         GameEvents.onTownHallCreated += NewVillageCenter;
         GameEvents.onStorageBuildingCreated += OnNewStorageBuilding;
+        
+        villageData = new VillageData();
+
+        villageData.Add(ResourceType.Meat, 0);
+        villageData.Add(ResourceType.Wood, 0);
+        villageData.Add(ResourceType.Stone, 0);
+        villageData.Add(ResourceType.Iron, 0);
+        villageData.Add(ResourceType.Glorp, 0);
+
+        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
+        villageBlackboard.SetVariableValue("VillageManager", this);
+    }
+
+    private void Start()
+    {
+        villageData.Add(ResourceType.Meat, 0);
+        villageData.Add(ResourceType.Wood, 0);
+        villageData.Add(ResourceType.Stone, 0);
+        villageData.Add(ResourceType.Iron, 0);
+        villageData.Add(ResourceType.Glorp, 0);
+        
+        villageData.AddMax(ResourceType.Meat, 0);
+        villageData.AddMax(ResourceType.Wood, 0);
+        villageData.AddMax(ResourceType.Stone, 0);
+        villageData.AddMax(ResourceType.Iron, 0);
+        villageData.AddMax(ResourceType.Glorp, 0);
     }
 
     private void OnNewStorageBuilding()
@@ -52,24 +77,6 @@ public class VillageManager : MonoBehaviour
         villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
         Debug.Log("New Village Center is" + villageBlackboard.GetVariable("VillageCenter", out BlackboardVariable _d));
         Debug.Log(_d.ObjectValue);
-    }
-
-    private void Start()
-    {
-        Debug.Log(villageBlackboard.SetVariableValue("VillageCenter", villageCenter));
-        villageBlackboard.SetVariableValue("VillageManager", this);
-        villageData = new();
-        villageData.Add(ResourceType.Meat,0);
-        villageData.Add(ResourceType.Wood,0);
-        villageData.Add(ResourceType.Stone,0);
-        villageData.Add(ResourceType.Iron,0);
-        villageData.Add(ResourceType.Glorp,0);
-        
-        villageData.AddMax(ResourceType.Meat,0);
-        villageData.AddMax(ResourceType.Wood,0);
-        villageData.AddMax(ResourceType.Stone,0);
-        villageData.AddMax(ResourceType.Iron,0);
-        villageData.AddMax(ResourceType.Glorp,0);
     }
 
     [ContextMenu("Roll call")]
