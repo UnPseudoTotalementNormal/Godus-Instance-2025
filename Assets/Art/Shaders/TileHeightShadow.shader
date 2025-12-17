@@ -16,6 +16,13 @@ Shader "Unlit/TileHeightShadow"
         _MinLightMarchStepSize("Min Light March Step Size", Float) = 0.01
         _MaxLightMarchStepSize("Max Light March Step Size", Float) = 0.05
         _TileHeightPerLevelHeight ("Shadow Distance Per Height Level", Range(0,50)) = 1.0
+        
+        [Header(Height Gradient)]
+        [Toggle] _UseHeightGradient ("Use Height Gradient", Float) = 0
+        _HeightGradientStart ("Height Gradient Start", Float) = 0
+        _HeightGradientEnd ("Height Gradient End", Float) = 10
+        _HeightGradientStartColor ("Height Gradient Start Color", Color) = (0,0,1,1)
+        _HeightGradientEndColor ("Height Gradient End Color", Color) = (1,0,0,1)
     }
 
     SubShader
@@ -54,6 +61,12 @@ Shader "Unlit/TileHeightShadow"
             float  _ShadowStrength;
             float  _MaxShadowOpacity;
             float  _TileHeightPerLevelHeight;
+            
+            float _UseHeightGradient;
+            float _HeightGradientStart;
+            float _HeightGradientEnd;
+            float4 _HeightGradientStartColor;
+            float4 _HeightGradientEndColor;
 
             struct appdata
             {
@@ -164,6 +177,16 @@ Shader "Unlit/TileHeightShadow"
                 shadowFactor = min(shadowFactor, _MaxShadowOpacity);
                 
                 col.rgb *= (1.0 - shadowFactor);
+                
+                // Application du gradient de couleur basé sur la hauteur
+                if (_UseHeightGradient > 0.5)
+                {
+                    float gradientRange = _HeightGradientEnd - _HeightGradientStart;
+                    float t = saturate((hCurrent - _HeightGradientStart) / gradientRange);
+                    float4 gradientColor = lerp(_HeightGradientStartColor, _HeightGradientEndColor, t);
+                    col.rgb *= gradientColor.rgb;
+                }
+                
                 return col;
             }
             ENDCG
