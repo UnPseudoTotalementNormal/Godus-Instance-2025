@@ -11,6 +11,8 @@ public class DeadlyWaterComponent : MonoBehaviour
 
     [SerializeField] private HealthComponent healthComponent;
         
+    private bool isOnWater = false;
+    
     private TileSystem tileSystem;
 
     private void Start()
@@ -20,6 +22,11 @@ public class DeadlyWaterComponent : MonoBehaviour
 
     private void Update()
     {
+        if (isOnWater)
+        {
+            healthComponent.TakeDamage(100f * Time.deltaTime);
+        }
+        
         if (timeSinceLastUpdate < updateInterval)
         {
             timeSinceLastUpdate += Time.deltaTime;
@@ -36,9 +43,6 @@ public class DeadlyWaterComponent : MonoBehaviour
 
     public void CheckWater(Tile _tile)
     {
-        if (_tile.tileType == TileType.Water)
-        {
-            healthComponent.TakeDamage(1000);
-        }
+        isOnWater = _tile.tileType == TileType.Water;
     }
 }
