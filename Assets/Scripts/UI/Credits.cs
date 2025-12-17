@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -33,38 +34,71 @@ public class Credits : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     [SerializeField] private TextMeshProUGUI roleText;
     [SerializeField] private Image avatarImage;
     
+    [Header("Animation Settings")]
+    [SerializeField] private float fadeDuration = 0.3f;
+    
+    private CanvasGroup overPanelCanvasGroup;
+    private Tween fadeTween;
+    
     private void Start()
     {
         nameText.text = personName;
-        roleText.text = role.ToString().Replace("_", " ");
+        roleText.text = FormatRoleText(role.ToString());
         avatarImage.sprite = avatar;
+        avatarImage.preserveAspect = true;
+        
+        // Get or add CanvasGroup component
+        overPanelCanvasGroup = overPanel.GetComponent<CanvasGroup>();
+        if (!overPanelCanvasGroup)
+            overPanelCanvasGroup = overPanel.AddComponent<CanvasGroup>();
+        
+        overPanelCanvasGroup.alpha = 0;
         overPanel.SetActive(false);
     }
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        fadeTween?.Kill();
+        
         overPanel.SetActive(true);
+        overPanelCanvasGroup.alpha = 0;
         
-        CanvasGroup canvasGroup = overPanel.GetComponent<CanvasGroup>();
-        if (!canvasGroup)
-            canvasGroup = overPanel.AddComponent<CanvasGroup>();
-        
-        // TODO : feedback avec dotween fade in du canvasGroup de `overPanel`
-        // TODO : Mettre le preserveAspect à true sur l'Image avatarImage
+        fadeTween = overPanelCanvasGroup.DOFade(1, fadeDuration).SetEase(Ease.OutQuad).SetAutoKill(true);
     }
     
     public void OnPointerExit(PointerEventData eventData)
     {
-        CanvasGroup canvasGroup = overPanel.GetComponent<CanvasGroup>();
-        if (!canvasGroup)
-            canvasGroup = overPanel.AddComponent<CanvasGroup>();
+        fadeTween?.Kill();
         
-        // TODO : feedback avec dotween fade out du canvasGroup de `overPanel` 
-        overPanel.SetActive(false);
+        fadeTween = overPanelCanvasGroup.DOFade(0, fadeDuration)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() => overPanel.SetActive(false));
     }
     
     public void OnPointerClick(PointerEventData eventData)
     {
         Application.OpenURL(link);
+    }
+    
+    private void OnDestroy()
+    {
+        fadeTween?.Kill();
+    }
+    
+    private string FormatRoleText(string roleText)
+    {
+        roleText = roleText.Replace("_", " ");
+        
+        string result = "";
+        for (int i = 0; i < roleText.Length; i++)
+        {
+            if (i > 0 && char.IsUpper(roleText[i]) && !char.IsWhiteSpace(roleText[i - 1]))
+            {
+                result += " ";
+            }
+            result += roleText[i];
+        }
+        
+        return result;
     }
 }

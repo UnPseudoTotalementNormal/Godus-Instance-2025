@@ -62,7 +62,7 @@ namespace UI.Menu
             
             textOfObj = textPressAnyKeyObj.GetComponent<TextMeshProUGUI>();
             Assert.IsNotNull(textOfObj, $"<b>[MenuManager]</b> Text");
-            
+
             Assert.IsNotNull(navigationHandler, $"<b>[MenuManager]</b> MenuNavigationHandler reference is not assigned in the inspector.");
             Assert.IsNotNull(panelCanvasGroup, $"<b>[MenuManager]</b> Panel CanvasGroup reference is not assigned in the inspector.");
             Assert.IsNotNull(textPressAnyKeyObj, $"<b>[MenuManager]</b> Text 'Press Any Key' GameObject reference is not assigned in the inspector.");
@@ -196,7 +196,7 @@ namespace UI.Menu
                 
                 InputManager.instance.onAnyKeyPressStarted += ShowMainMenu;
                 
-                InitializePressAnyKeyText();
+                StartTextScaleAnimation();
             });
             
             hideSequence.Play();
