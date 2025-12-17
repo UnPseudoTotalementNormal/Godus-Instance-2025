@@ -25,7 +25,7 @@ public partial class CallPathfindingAction : Action
             pathfinder = new Pathfinding();
             pathfinder.callback += PathfindingCallback;
         }
-        pathfinder.FindPath(new Vector2Int((int)Agent.Value.transform.position.x, (int)Agent.Value.transform.position.y), new Vector2Int((int)Target.Value.transform.position.x, (int)Target.Value.transform.position.y));
+        pathfinder.FindPath(Vector2Int.RoundToInt(Agent.Value.transform.position), new Vector2Int((int)Target.Value.transform.position.x, (int)Target.Value.transform.position.y));
         return Status.Running;
     }
 

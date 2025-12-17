@@ -62,7 +62,7 @@ public partial class PathAndMoveToTargetAction : Action
 
     void GetNewPath()
     {
-        Vector2Int newPosition = new Vector2Int((int)Self.Value.transform.position.x, (int)Self.Value.transform.position.y);
+        Vector2Int newPosition = Vector2Int.RoundToInt(Self.Value.transform.position);
         pathfinder.FindPath(newPosition, targetPosition);
     }
     

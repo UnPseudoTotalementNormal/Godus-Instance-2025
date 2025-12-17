@@ -21,7 +21,7 @@ public partial class ChoosePointAroundAction : Action
     {
         pathfinder = new Pathfinding();
         pathfinder.callback += PathfindingCallback;
-        Vector2Int _selfLocation = new Vector2Int((int)Self.Value.transform.position.x, (int)Self.Value.transform.position.y);
+        Vector2Int _selfLocation = Vector2Int.RoundToInt(Self.Value.transform.position);
         PathTargetLocation.Value = new Vector2Int((int)Random.Range(_selfLocation.x-Radius.Value,_selfLocation.x+Radius.Value), (int)Random.Range(_selfLocation.y-Radius.Value,_selfLocation.y+Radius.Value));
         pathfinder.FindPath(_selfLocation, PathTargetLocation.Value);
         return Status.Running;

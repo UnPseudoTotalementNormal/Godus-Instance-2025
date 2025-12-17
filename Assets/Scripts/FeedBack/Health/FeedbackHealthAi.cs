@@ -128,7 +128,7 @@ namespace Feedback.Health
         private void PlayDamageScaleAnimation()
         {
             spriteRenderer.transform.DOKill(true);
-            Debug.Log("Playing damage animation");
+            //Debug.Log("Playing damage animation");
             spriteRenderer.transform.DOPunchScale(Vector3.one * damagePunchScaleStrength, damagePunchScaleDuration, damagePunchScaleVibrato, damagePunchScaleElasticity);
         }
         
