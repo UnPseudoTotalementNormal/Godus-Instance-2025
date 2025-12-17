@@ -17,6 +17,7 @@ public class VillageManager : MonoBehaviour
     [SerializeField] private int storageIncreasePerBuilding = 50;
 
     bool villageUnderAttack;
+    [SerializeField]bool buildingBeingMade;
     
     private VillageData villageData;
 
@@ -95,9 +96,10 @@ public class VillageManager : MonoBehaviour
             _target = null;
             return TaskType.Wandering;
         }
-        if ((100 * (villageData.wood / villageData.maxWood)) >= 90)
+        if ((100 * (villageData.wood / villageData.maxWood)) >= 90 && !buildingBeingMade)
         {
             villageData.Add(ResourceType.Wood,-buildingWoodCost);
+            buildingBeingMade = true;
             _target = null;
             return TaskType.Building;
         }
@@ -156,11 +158,13 @@ public class VillageManager : MonoBehaviour
             }
         }
 
-        if (Random.value <= 0.4f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10 || villageData.wood >= 10))
+        if (Random.value <= 0.2f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10 || villageData.wood >= 10))
         {
-            Debug.Log(_caller.name + "wants to go shop !");
-            //Make the AI go back to the village centre to upgrade
-            return TaskType.Upgrading;
+            if (CanUpgradeUnit(_caller.gameObject.GetComponent<Entity>()))
+            {
+                Debug.Log(_caller.name + "wants to go shop !");
+                return TaskType.Upgrading;
+            }
         }
         //Debug.Log("Wandering");
         return TaskType.Wandering;
@@ -245,7 +249,7 @@ public class VillageManager : MonoBehaviour
 
     public void AddResource(ResourceType _resource, int _amount)
     {
-        Debug.Log("Added resource " + _resource + " with number of " + _amount);
+        //Debug.Log("Added resource " + _resource + " with number of " + _amount);
         villageData.Add(_resource, _amount);
     }
 
@@ -272,6 +276,8 @@ public class VillageManager : MonoBehaviour
     {
         GameObject _newBuild = Instantiate(buildingPrefab);
         _newBuild.transform.position = _position.position;
+        buildingWoodCost += storageIncreasePerBuilding;
+        buildingBeingMade = false;
         return true;
     }
 
@@ -302,17 +308,19 @@ public class VillageManager : MonoBehaviour
     {
         if (!CanUpgradeUnit(_entity))
         {
+            Debug.LogWarning("Can't upgrade entity");
             return;
         }
 
         if (!_entity.TryGetComponent(out UpgradeStatsComponent _upgradeStats))
         {
+            Debug.LogWarning("No upgrade stats found");
             return;
         }
 
         ResourceType _nextUpgrade = _upgradeStats.GetNextUpgrade();
         int _upgradeCost = upgradeCosts[_nextUpgrade];
-
+        Debug.Log("Bro got upgraded");
         AddResource(_nextUpgrade, -_upgradeCost);
         _upgradeStats.ApplyUpgrade();
     }

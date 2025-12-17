@@ -114,7 +114,7 @@ public class CaserneUi : MonoBehaviour
             var _resourceAmount = villageManager.GetResourceAmount(_cost.resourceType);
             if (_cost.cost > _resourceAmount)
             {
-                Debug.Log("Not enough" + _cost.resourceType);
+                Debug.Log("Not enough" + _cost.resourceType + " : " + _cost.cost + " needed but you got " + _resourceAmount);
                 _canMake = false;
             }
         }
@@ -125,7 +125,8 @@ public class CaserneUi : MonoBehaviour
     {
         foreach (UnitCost _cost in _unitCost)
         {
-            villageManager.AddResource(_cost.resourceType, -_cost.cost);
+            if (_cost.cost != 0)
+                villageManager.AddResource(_cost.resourceType, -_cost.cost);
         }
     }
 }

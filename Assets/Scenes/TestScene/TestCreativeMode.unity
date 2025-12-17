@@ -1003,8 +1003,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1552961771}
   - {fileID: 901038113}
+  - {fileID: 1552961771}
   - {fileID: 1895303868}
   - {fileID: 1219823780}
   - {fileID: 1218179956}
@@ -1181,6 +1181,7 @@ MonoBehaviour:
     - Key: 3
       Value: 1
   storageIncreasePerBuilding: 50
+  buildingBeingMade: 0
 --- !u!4 &575030503
 Transform:
   m_ObjectHideFlags: 0
@@ -2206,12 +2207,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 5
+  tileRadius: 0
   radiusMode: 2
   <powerCooldownDuration>k__BackingField: 1
   <categoryCooldownDuration>k__BackingField: 1
   minToSpawn: 1
-  maxToSpawn: 2
+  maxToSpawn: 1
   prefabsToSpawn:
   - {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
   allowedTileTypes: 0a00000014000000
@@ -2623,12 +2624,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
   <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 1
+  tileRadius: 0
   radiusMode: 2
   <powerCooldownDuration>k__BackingField: 1
   <categoryCooldownDuration>k__BackingField: 1
   minToSpawn: 1
-  maxToSpawn: 5
+  maxToSpawn: 1
   prefabsToSpawn:
   - {fileID: 1521770036756855779, guid: cf00753484ec8e2169d2ee39d8dbc069, type: 3}
   allowedTileTypes: 0a00000014000000
@@ -4442,6 +4443,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxTilesToDrop
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: tileTypeToDrop
       value: 20
       objectReference: {fileID: 0}
@@ -4488,6 +4493,34 @@ PrefabInstance:
     - target: {fileID: 2268792910494030445, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: maxBrushIncrease
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556353604755309044, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxTilesToDig
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556353604755309044, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: <powerCooldownDuration>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556353604755309044, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: <categoryCooldownDuration>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: tileRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: growthSpeedMultiplier
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: <powerCooldownDuration>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: <categoryCooldownDuration>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3134971587976476508, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_Name
@@ -4536,6 +4569,10 @@ PrefabInstance:
     - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: tileRadius
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxTilesToDrop
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
