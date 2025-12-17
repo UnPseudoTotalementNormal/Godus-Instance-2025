@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _DEBUGMODE_NONE
+  - _USEHEIGHTGRADIENT_ON
   - _ZWRITE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -51,6 +52,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EntityHeightTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -118,10 +123,13 @@ Material:
     - _DstBlendAlpha: 0
     - _EnableExternalAlpha: 0
     - _EnvironmentReflections: 1
+    - _GlobalBrightness: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HeightFalloff: 0
+    - _HeightGradientEnd: 0.72
+    - _HeightGradientStart: 0
     - _LightMarchStepSize: 0.015
     - _MaxLightMarchStepSize: 2.35
     - _MaxShadowDarkness: 1
@@ -144,6 +152,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TileHeightPerLevelHeight: 5.6
+    - _UseHeightGradient: 1
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -151,6 +160,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HeightGradientEndColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HeightGradientStartColor: {r: 0.43867922, g: 0.6049965, b: 1, a: 1}
     - _LightDir: {r: 0.6, g: -1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowsOffset: {r: 0.5, g: 0.5, b: 0, a: 0}

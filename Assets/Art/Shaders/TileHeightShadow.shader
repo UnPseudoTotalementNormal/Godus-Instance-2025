@@ -23,6 +23,9 @@ Shader "Unlit/TileHeightShadow"
         _HeightGradientEnd ("Height Gradient End", Float) = 10
         _HeightGradientStartColor ("Height Gradient Start Color", Color) = (0,0,1,1)
         _HeightGradientEndColor ("Height Gradient End Color", Color) = (1,0,0,1)
+        
+        [Header(Global Lighting)]
+        _GlobalBrightness ("Global Brightness", Range(0,2)) = 1.0
     }
 
     SubShader
@@ -67,6 +70,8 @@ Shader "Unlit/TileHeightShadow"
             float _HeightGradientEnd;
             float4 _HeightGradientStartColor;
             float4 _HeightGradientEndColor;
+            
+            float _GlobalBrightness;
 
             struct appdata
             {
@@ -186,6 +191,9 @@ Shader "Unlit/TileHeightShadow"
                     float4 gradientColor = lerp(_HeightGradientStartColor, _HeightGradientEndColor, t);
                     col.rgb *= gradientColor.rgb;
                 }
+                
+                // Application de la luminosité globale
+                col.rgb *= _GlobalBrightness;
                 
                 return col;
             }
