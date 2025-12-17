@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace AI
 {
@@ -15,6 +16,29 @@ namespace AI
         public int maxGlorp = 50;
         public int meat = 0;
         public int maxMeat = 50;
+        
+        public void Init()
+        {
+            GameEvents.onResourceValueRefreshed += OnResourceValueRefreshed;
+            GameEvents.onResourceMaxValueRefreshed += OnResourceMaxValueRefreshed;
+        }
+
+
+        public void OnDestroy()
+        {
+            GameEvents.onResourceValueRefreshed -= OnResourceValueRefreshed;
+            GameEvents.onResourceMaxValueRefreshed -= OnResourceMaxValueRefreshed;
+        }
+        
+        private void OnResourceValueRefreshed(ResourceType _type, int _value)
+        {
+            GetValueRef(_type) = _value;
+        }
+        
+        private void OnResourceMaxValueRefreshed(ResourceType _type, int _value)
+        {
+            GetMaxRef(_type) = _value;
+        }
         
         public void Add(ResourceType _type, int _amount)
         {
@@ -84,7 +108,7 @@ namespace AI
             }
         }
 
-        private int GetMaxValue(ResourceType _type)
+        public int GetMaxValue(ResourceType _type)
         {
             switch (_type)
             {
@@ -93,6 +117,20 @@ namespace AI
                 case ResourceType.Iron:  return maxIron;
                 case ResourceType.Glorp: return maxGlorp;
                 case ResourceType.Meat:  return maxMeat;
+                default: throw new System.ArgumentOutOfRangeException(nameof(_type), _type, null);
+            }
+        }
+        
+        public int GetResourceValue(ResourceType _type)
+        {
+            Debug.Log("Getting resource value for " + _type + " currently at " + GetValueRef(_type));
+            switch (_type)
+            {
+                case ResourceType.Wood:  return wood;
+                case ResourceType.Stone: return stone;
+                case ResourceType.Iron:  return iron;
+                case ResourceType.Glorp: return glorp;
+                case ResourceType.Meat:  return meat;
                 default: throw new System.ArgumentOutOfRangeException(nameof(_type), _type, null);
             }
         }
