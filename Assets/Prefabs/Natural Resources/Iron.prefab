@@ -170,9 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IronResource
   resourceType: 2
-  collectionDelay: 10
+  collectionDelay: 1
   collectionQuantity: 10
-  collectionsLeft: 1
+  collectionsLeft: 10
   collectible: 1
 --- !u!60 &396831322286133275
 PolygonCollider2D:

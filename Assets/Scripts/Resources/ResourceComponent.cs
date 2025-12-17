@@ -1,4 +1,5 @@
 using System;
+using Feedback.Health;
 using UnityEngine;
 
 public abstract class ResourceComponent : MonoBehaviour
@@ -9,10 +10,17 @@ public abstract class ResourceComponent : MonoBehaviour
     [SerializeField] protected int collectionsLeft;
     public bool collectible;
     public Action callback;
-    
+
+    FeedbackHealthAi dmgFeedback;
+
+    void Start()
+    {
+        dmgFeedback = GetComponent<FeedbackHealthAi>();
+    }
     public void OnCollect()
     {
         OnCollectFeedback();
+        dmgFeedback.CosmeticDamage(); // Temp implementation of feedback
         collectionsLeft--;
         if (collectionsLeft == 0)
             OnExhausted();
