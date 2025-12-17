@@ -21,6 +21,8 @@ public static class GameEvents
     public static Action<WaveInfo> onWaveInfo;
   
     public static Action<TimerSystem> onStartTimerBetweenWave;
+
+    public static Action onNecessaryPathMade;
     
     public static Action<ResourceType, int> onResourceValueRefreshed;
     public static Action<ResourceType, int> onResourceMaxValueRefreshed;

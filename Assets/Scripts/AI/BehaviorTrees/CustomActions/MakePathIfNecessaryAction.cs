@@ -86,6 +86,8 @@ public partial class MakePathIfNecessaryAction : Action
                 _tile.Key.tileType = _setTileType;
             }
         }
+
+        GameEvents.onNecessaryPathMade?.Invoke();
         
         pathfinder.FindPath(_currentLocation, _destination);
         
