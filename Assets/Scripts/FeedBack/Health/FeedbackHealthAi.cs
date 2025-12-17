@@ -105,9 +105,7 @@ namespace Feedback.Health
 
         public void CosmeticDamage()
         {
-            PlayDamageFlash();
-            PlayDamageScaleAnimation();
-            PlayTakeDamageTextAnimation(1);
+            HandleDamaged(1);
         }
 
         private void HandleHealed(float _healAmount)
