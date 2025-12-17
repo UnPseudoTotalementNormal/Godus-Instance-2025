@@ -4914,7 +4914,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI.Menu.MenuManager
   playGameSceneName: GameScene
   playButton: {fileID: 511098879}
+  textScaleStrength: 1.1
+  textScaleDuration: 0.8
   showMenuDuration: 0.5
+  inactivityTimeout: 90
   mainMenu: {fileID: 1828382445}
   settingsMenu: {fileID: 1581641860}
   creditsMenu: {fileID: 769420062}
@@ -4922,7 +4925,7 @@ MonoBehaviour:
   textPressAnyKeyObj: {fileID: 1101047428}
   panelCanvasGroup: {fileID: 265316446}
   navigationHandler: {fileID: 1828382448}
-  isMainMenuShown: 0
+  isMenuShown: 0
 --- !u!1001 &1581641858
 PrefabInstance:
   m_ObjectHideFlags: 0
