@@ -55,7 +55,7 @@ namespace AI
             _targetHealth.TakeDamage(attackDamage);
             lastAttackTime = Time.time;
             onAttack?.Invoke();
-            onAttackBehaviorEvent?.SendEventMessage(gameObject, _targetHealth.gameObject);
+            onAttackBehaviorEvent?.SendEventMessage(_targetHealth.gameObject, gameObject);
         }
 
         public void IncreaseAttackDamage(float _damageIncrease)
