@@ -27,6 +27,8 @@ public partial class GatherResourceAction : Action
 
     protected override Status OnUpdate()
     {
+        if (resourceExhausted)
+            return Status.Success;
         if (targetRC == null)
         {
             PathTarget.Value = null;
@@ -37,8 +39,6 @@ public partial class GatherResourceAction : Action
             targetRC.OnCollect();
             gatheringTimer = 0f;
         }
-        if (resourceExhausted)
-            return Status.Success;
         gatheringTimer += Time.deltaTime;
         //Debug.Log("gathering");
         return Status.Running;

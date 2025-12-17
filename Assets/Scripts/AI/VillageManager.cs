@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using AI;
 using AYellowpaper.SerializedCollections;
 using Unity.Behavior;
-using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -62,7 +58,7 @@ public class VillageManager : MonoBehaviour
     {
         Debug.Log(villageBlackboard.SetVariableValue("VillageCenter", villageCenter));
         villageBlackboard.SetVariableValue("VillageManager", this);
-        
+        villageData = new();
         villageData.Add(ResourceType.Meat,0);
         villageData.Add(ResourceType.Wood,0);
         villageData.Add(ResourceType.Stone,0);
@@ -87,6 +83,8 @@ public class VillageManager : MonoBehaviour
     {
         if (villageData == null)
         {
+            Debug.LogWarning("No village data available");
+            villageData = new();
             _target = null;
             return TaskType.Wandering;
         }
@@ -188,6 +186,7 @@ public class VillageManager : MonoBehaviour
                         if (_resourceComponent != null)
                         {
                             _resourceComponent.collectible = true;
+                            _resourceComponent.GetComponent<Collider2D>().enabled = true;
                         }
                         break;
                     case TaskType.Building: //refund building cost 
@@ -238,6 +237,7 @@ public class VillageManager : MonoBehaviour
 
     public void AddResource(ResourceType _resource, int _amount)
     {
+        Debug.Log("Added resource " + _resource + " with number of " + _amount);
         villageData.Add(_resource, _amount);
     }
 
