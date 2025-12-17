@@ -337,31 +337,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 15141311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1581641860}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
-      - m_Target: {fileID: 1828382445}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &15141311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,31 +669,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 64804385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1828382445}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
-      - m_Target: {fileID: 769420062}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &64804385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,6 +719,7 @@ GameObject:
   - component: {fileID: 70847754}
   - component: {fileID: 70847757}
   - component: {fileID: 70847756}
+  - component: {fileID: 70847758}
   - component: {fileID: 70847755}
   m_Layer: 0
   m_Name: MalenaB
@@ -839,19 +792,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 70847756}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Malena
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &70847756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,6 +831,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70847753}
   m_CullTransparentMesh: 1
+--- !u!114 &70847758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70847753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &165206264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +980,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165206264}
   m_CullTransparentMesh: 1
+--- !u!114 &192886646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8231839117783456500, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
+  m_PrefabInstance: {fileID: 1581641858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &265316442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,13 +1002,14 @@ GameObject:
   - component: {fileID: 265316443}
   - component: {fileID: 265316445}
   - component: {fileID: 265316444}
+  - component: {fileID: 265316446}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &265316443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1076,7 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5254902}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1101,6 +1067,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265316442}
   m_CullTransparentMesh: 1
+--- !u!225 &265316446
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265316442}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &298863688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,9 +1091,8 @@ GameObject:
   - component: {fileID: 298863692}
   - component: {fileID: 298863691}
   - component: {fileID: 298863690}
-  - component: {fileID: 298863693}
   m_Layer: 0
-  m_Name: MainMenu
+  m_Name: Canvas Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1134,10 +1111,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1151148474}
-  - {fileID: 1328585583}
   - {fileID: 1101047429}
-  - {fileID: 1505245690}
   - {fileID: 265316443}
+  - {fileID: 1505245690}
   - {fileID: 1828382446}
   - {fileID: 1581641859}
   - {fileID: 769420063}
@@ -1211,20 +1187,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &298863693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298863688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd0c090c6e17844b9260d8915fc28b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StartMainMenu
-  mainMenu: {fileID: 1828382445}
-  textAnyKey: {fileID: 1101047428}
 --- !u!1 &302906316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1704,7 @@ GameObject:
   - component: {fileID: 449834073}
   - component: {fileID: 449834076}
   - component: {fileID: 449834075}
+  - component: {fileID: 449834077}
   - component: {fileID: 449834074}
   m_Layer: 0
   m_Name: BreynannB
@@ -1814,19 +1777,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 449834075}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Breynann
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &449834075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,6 +1816,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449834072}
   m_CullTransparentMesh: 1
+--- !u!114 &449834077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449834072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &475271019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,7 +1915,6 @@ GameObject:
   - component: {fileID: 511098878}
   - component: {fileID: 511098881}
   - component: {fileID: 511098880}
-  - component: {fileID: 511098882}
   - component: {fileID: 511098879}
   m_Layer: 0
   m_Name: PlayB
@@ -2023,19 +1986,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 511098880}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuConfig, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &511098880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2074,18 +2025,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511098877}
   m_CullTransparentMesh: 1
---- !u!114 &511098882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511098877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69fe2702df1bb0345b05fb2563ec64da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuConfig
 --- !u!1 &532983809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2036,7 @@ GameObject:
   - component: {fileID: 532983810}
   - component: {fileID: 532983813}
   - component: {fileID: 532983812}
+  - component: {fileID: 532983814}
   - component: {fileID: 532983811}
   m_Layer: 0
   m_Name: NathanB
@@ -2169,19 +2109,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 532983812}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Nathan
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &532983812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,6 +2148,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532983809}
   m_CullTransparentMesh: 1
+--- !u!114 &532983814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532983809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &562592572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,7 +2195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2.1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &562592574
@@ -2440,19 +2381,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 607716275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1828382447}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: Exit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &607716275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2774,6 +2703,7 @@ GameObject:
   - component: {fileID: 724349225}
   - component: {fileID: 724349228}
   - component: {fileID: 724349227}
+  - component: {fileID: 724349229}
   - component: {fileID: 724349226}
   m_Layer: 0
   m_Name: KarlB
@@ -2846,19 +2776,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 724349227}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Karl
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &724349227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2897,6 +2815,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724349224}
   m_CullTransparentMesh: 1
+--- !u!114 &724349229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724349224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &769420062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,6 +3001,7 @@ GameObject:
   - component: {fileID: 1000188162}
   - component: {fileID: 1000188165}
   - component: {fileID: 1000188164}
+  - component: {fileID: 1000188166}
   - component: {fileID: 1000188163}
   m_Layer: 0
   m_Name: JosselynB
@@ -3142,19 +3074,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1000188164}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Josselyn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1000188164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,6 +3113,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000188161}
   m_CullTransparentMesh: 1
+--- !u!114 &1000188166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000188161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &1001671342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +3137,7 @@ GameObject:
   - component: {fileID: 1001671343}
   - component: {fileID: 1001671346}
   - component: {fileID: 1001671345}
+  - component: {fileID: 1001671347}
   - component: {fileID: 1001671344}
   m_Layer: 0
   m_Name: GabrielB
@@ -3276,19 +3210,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001671345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Gabriel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1001671345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3327,6 +3249,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001671342}
   m_CullTransparentMesh: 1
+--- !u!114 &1001671347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001671342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &1044178992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3703,7 +3638,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1328585583}
   m_Father: {fileID: 298863689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3971,6 +3907,7 @@ GameObject:
   - component: {fileID: 1324845055}
   - component: {fileID: 1324845058}
   - component: {fileID: 1324845057}
+  - component: {fileID: 1324845059}
   - component: {fileID: 1324845056}
   m_Layer: 0
   m_Name: GlorpyB(Mascot)
@@ -4043,19 +3980,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1324845057}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Glorpy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1324845057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4094,6 +4019,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324845054}
   m_CullTransparentMesh: 1
+--- !u!114 &1324845059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324845054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &1326324193
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,31 +4114,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1326324196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 769420062}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
-      - m_Target: {fileID: 1828382445}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &1326324196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4270,11 +4184,11 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 298863689}
+  m_Father: {fileID: 1151148474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.3569336, y: -3.8378906}
+  m_AnchoredPosition: {x: 1.3569336, y: -3.8377686}
   m_SizeDelta: {x: -959.171, y: -532.5156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1328585584
@@ -4555,6 +4469,7 @@ GameObject:
   - component: {fileID: 1455974837}
   - component: {fileID: 1455974840}
   - component: {fileID: 1455974839}
+  - component: {fileID: 1455974841}
   - component: {fileID: 1455974838}
   m_Layer: 0
   m_Name: LucasB
@@ -4627,19 +4542,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1455974839}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Lucas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1455974839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4678,6 +4581,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455974836}
   m_CullTransparentMesh: 1
+--- !u!114 &1455974841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455974836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &1505245689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4850,7 +4766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546632226
@@ -4952,6 +4868,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546632224}
   m_CullTransparentMesh: 1
+--- !u!1 &1577457354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577457355}
+  - component: {fileID: 1577457356}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577457355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577457354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1577457356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577457354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51adad6823524729819743e4463a8d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Menu.MenuManager
+  playGameSceneName: GameScene
+  playButton: {fileID: 511098879}
+  showMenuDuration: 0.5
+  mainMenu: {fileID: 1828382445}
+  settingsMenu: {fileID: 1581641860}
+  creditsMenu: {fileID: 769420062}
+  panel: {fileID: 265316442}
+  textPressAnyKeyObj: {fileID: 1101047428}
+  panelCanvasGroup: {fileID: 265316446}
+  navigationHandler: {fileID: 1828382448}
+  isMainMenuShown: 0
 --- !u!1001 &1581641858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4962,10 +4933,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1699168984121889120, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
       propertyPath: m_Name
-      value: SettingsScreenPause
+      value: SettingsScreen
       objectReference: {fileID: 0}
     - target: {fileID: 1699168984121889120, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516902423269962218, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2598770107256023979, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
@@ -4978,6 +4953,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598770107256023979, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046397980008805938, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3408595739035541054, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
@@ -5100,6 +5079,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4277236849196105400, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5275534217660342064, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5112,12 +5095,20 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6895971058389541478, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7132718053483830698, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7132718053483830698, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231839117783456500, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8231839117783456500, guid: 14a0a672cca0c0f4b9649fc98c4bd317, type: 3}
@@ -5847,6 +5838,7 @@ GameObject:
   - component: {fileID: 1796056759}
   - component: {fileID: 1796056762}
   - component: {fileID: 1796056761}
+  - component: {fileID: 1796056763}
   - component: {fileID: 1796056760}
   m_Layer: 0
   m_Name: AxelB
@@ -5919,19 +5911,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1796056761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Axel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1796056761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5970,6 +5950,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796056758}
   m_CullTransparentMesh: 1
+--- !u!114 &1796056763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796056758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &1823449882
 GameObject:
   m_ObjectHideFlags: 0
@@ -6004,7 +5997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1.6}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1823449884
@@ -6117,14 +6110,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1828382446}
-  - component: {fileID: 1828382447}
+  - component: {fileID: 1828382448}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1828382446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6148,7 +6141,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1828382447
+--- !u!114 &1828382448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6157,9 +6150,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1828382445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69fe2702df1bb0345b05fb2563ec64da, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c3f4b5a6e7d8c9b0a1f2e3d4c5b6a7e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuConfig
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Menu.MenuNavigationHandler
+  menuManager: {fileID: 1577457356}
+  fadeDuration: 0.3
+  playButton: {fileID: 0}
+  settingsButton: {fileID: 15141310}
+  creditsButton: {fileID: 1326324195}
+  quitButton: {fileID: 607716274}
+  backToMainFromSettings: {fileID: 192886646}
+  backToMainFromCredits: {fileID: 64804384}
+  mainMenu: {fileID: 1828382445}
+  settingsMenu: {fileID: 1581641860}
+  creditsMenu: {fileID: 769420062}
 --- !u!1 &1928683587
 GameObject:
   m_ObjectHideFlags: 0
@@ -6480,7 +6484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2.1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2026596653
@@ -6595,6 +6599,7 @@ GameObject:
   - component: {fileID: 2031911229}
   - component: {fileID: 2031911232}
   - component: {fileID: 2031911231}
+  - component: {fileID: 2031911233}
   - component: {fileID: 2031911230}
   m_Layer: 0
   m_Name: MaxenceB
@@ -6667,19 +6672,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2031911231}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Maxence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2031911231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6718,6 +6711,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031911228}
   m_CullTransparentMesh: 1
+--- !u!114 &2031911233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031911228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1 &2059425234
 GameObject:
   m_ObjectHideFlags: 0
@@ -6808,6 +6814,7 @@ GameObject:
   - component: {fileID: 2146403412}
   - component: {fileID: 2146403415}
   - component: {fileID: 2146403414}
+  - component: {fileID: 2146403416}
   - component: {fileID: 2146403413}
   m_Layer: 0
   m_Name: DorianB
@@ -6880,19 +6887,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2146403414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 302906320}
-        m_TargetAssemblyTypeName: CreditsScript, Assembly-CSharp
-        m_MethodName: Dorian
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2146403414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6931,6 +6926,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146403411}
   m_CullTransparentMesh: 1
+--- !u!114 &2146403416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146403411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f968393e87eee174aa2a5a3b2ac82366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsScript
+  link: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6939,5 +6947,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 2059425237}
-  - {fileID: 298863689}
   - {fileID: 1435772514}
+  - {fileID: 298863689}
+  - {fileID: 1577457355}
