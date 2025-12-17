@@ -2209,8 +2209,8 @@ MonoBehaviour:
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 2
-  <powerCooldownDuration>k__BackingField: 1
-  <categoryCooldownDuration>k__BackingField: 1
+  <powerCooldownDuration>k__BackingField: 0
+  <categoryCooldownDuration>k__BackingField: 0
   minToSpawn: 1
   maxToSpawn: 1
   prefabsToSpawn:
@@ -2626,8 +2626,8 @@ MonoBehaviour:
   <powerIcon>k__BackingField: {fileID: 0}
   tileRadius: 0
   radiusMode: 2
-  <powerCooldownDuration>k__BackingField: 1
-  <categoryCooldownDuration>k__BackingField: 1
+  <powerCooldownDuration>k__BackingField: 0
+  <categoryCooldownDuration>k__BackingField: 0
   minToSpawn: 1
   maxToSpawn: 1
   prefabsToSpawn:
@@ -4436,11 +4436,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 178443799603722168, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 178443799603722168, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: maxTilesToDrop
@@ -4452,19 +4452,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 273924167230926781, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 315426165533277279, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 315426165533277279, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 703355328027704938, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
@@ -4474,6 +4474,10 @@ PrefabInstance:
       propertyPath: 'prefabsToSpawn.Array.data[0]'
       value: 
       objectReference: {fileID: 1869538399920670689, guid: 3394ac416dcd1fa4da6bdff759938229, type: 3}
+    - target: {fileID: 1843922997828223739, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: <powerCooldownDuration>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1943732590525708388, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
       value: 1
@@ -4484,11 +4488,11 @@ PrefabInstance:
       objectReference: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
     - target: {fileID: 1943732590525708388, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1943732590525708388, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2268792910494030445, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: maxBrushIncrease
@@ -4500,27 +4504,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2556353604755309044, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2556353604755309044, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: tileRadius
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
-      propertyPath: growthSpeedMultiplier
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: growthSpeedMultiplier
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2812537141985256242, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3134971587976476508, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_Name
@@ -4536,11 +4540,11 @@ PrefabInstance:
       objectReference: {fileID: 1017447972501795968, guid: 52072b25b368a494292afc9cb7f416b5, type: 3}
     - target: {fileID: 3175674539744300373, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3175674539744300373, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3238570035600245943, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
@@ -4552,19 +4556,19 @@ PrefabInstance:
       objectReference: {fileID: 1017447972501795968, guid: 0b72ff7e55ed9634397912e25ccc8941, type: 3}
     - target: {fileID: 3238570035600245943, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3238570035600245943, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3244365955169471821, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3244365955169471821, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: tileRadius
@@ -4576,11 +4580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917572858914140927, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: maxBrushIncrease
@@ -4588,19 +4592,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4105270236130686046, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4105270236130686046, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5540110940836154057, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5540110940836154057, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4656,11 +4660,11 @@ PrefabInstance:
       objectReference: {fileID: 1017447972501795968, guid: fe5d8e8de1e7b9e419ea454fa669a1ed, type: 3}
     - target: {fileID: 7317455801721260924, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7317455801721260924, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8632208308324164650, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: sfx.Path
@@ -4704,11 +4708,11 @@ PrefabInstance:
       objectReference: {fileID: 6547254313187587562, guid: 56aef227bc9060e2dba3fcbe3b639b74, type: 3}
     - target: {fileID: 8823008752508802080, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <powerCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8823008752508802080, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: <categoryCooldownDuration>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

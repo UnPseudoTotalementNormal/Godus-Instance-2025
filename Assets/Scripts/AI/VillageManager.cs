@@ -23,6 +23,10 @@ public class VillageManager : MonoBehaviour
 
     void Awake()
     {
+        if (villageData != null)
+        {
+            throw new Exception("Village Data already exists, what is ce bordel");
+        }
         GameEvents.onTownHallCreated -= NewVillageCenter;
         GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
         
@@ -92,7 +96,7 @@ public class VillageManager : MonoBehaviour
         if (villageData == null)
         {
             Debug.LogWarning("No village data available");
-            villageData = new();
+            //villageData = new();
             _target = null;
             return TaskType.Wandering;
         }
