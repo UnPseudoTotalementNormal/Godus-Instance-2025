@@ -3236,6 +3236,14 @@ PrefabInstance:
       propertyPath: villageManager
       value: 
       objectReference: {fileID: 575030502}
+    - target: {fileID: 7113933810148144594, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: unitInfos.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113933810148144594, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
+      propertyPath: 'unitInfos.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cd6e8411e7828aacc87ebcd16b42eb23, type: 2}
     - target: {fileID: 7672620832535840657, guid: 4f69946aae70d239cbea61607c26fa56, type: 3}
       propertyPath: m_Name
       value: 'CaserneManager '
