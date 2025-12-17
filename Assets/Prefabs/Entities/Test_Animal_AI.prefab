@@ -109,8 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalResource
   resourceType: 4
   collectionDelay: 5
-  collectionQuantity: 1
-  collectionsLeft: 1
+  collectionQuantity: 7
+  collectionsLeft: 7
   collectible: 1
 --- !u!61 &3243057356670508976
 BoxCollider2D:

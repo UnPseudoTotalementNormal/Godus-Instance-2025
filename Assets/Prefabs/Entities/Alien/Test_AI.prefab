@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 8342904571639990128}
   - component: {fileID: -2186639151624255768}
   - component: {fileID: 92569854020500885}
+  - component: {fileID: 7452432052973245976}
   m_Layer: 0
   m_Name: Test_AI
   m_TagString: Untagged
@@ -120,6 +121,7 @@ MonoBehaviour:
   - rid: 7988512802650719004
   - rid: 1292394873437029126
   - rid: 1292394873606112202
+  - rid: 1292394942129504721
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -142,6 +144,14 @@ MonoBehaviour:
           m_Value1: 3789113189753358439
         Name: Speed
         m_Value: 2
+    - rid: 1292394942129504721
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10604415620251266261
+          m_Value1: 16028992088668356855
+        Name: EatMeatAmount
+        m_Value: 3
     - rid: 7988512802650718435
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -391,6 +401,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
   updateInterval: 0.25
   healthComponent: {fileID: 4937787137406368100}
+--- !u!114 &7452432052973245976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842261373013836629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d102542627fa94c94077d7d8180d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HungerSystem
+  healthComponent: {fileID: 4937787137406368100}
+  maxHunger: 100
+  starvePerSecond: 1
+  damageTickTime: 1
+  damagePerTick: 5
 --- !u!1001 &2672268102730644886
 PrefabInstance:
   m_ObjectHideFlags: 0
