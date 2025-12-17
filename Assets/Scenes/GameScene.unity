@@ -1544,11 +1544,6 @@ MonoBehaviour:
   - {fileID: 6547254313187587562, guid: 56aef227bc9060e2dba3fcbe3b639b74, type: 3}
   tileTreeSpawnChancePerTick: 0.1
   tickTimeInterval: 10
---- !u!4 &1188350338 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6454656501684699950, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
-  m_PrefabInstance: {fileID: 7697605199212569333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1218179955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2132,97 +2127,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5573299112681688611, guid: d2847410d71d52344ae5e24df6cbefaf, type: 3}
   m_PrefabInstance: {fileID: 1351371202}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1379271710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1379271711}
-  - component: {fileID: 1379271714}
-  - component: {fileID: 1379271713}
-  - component: {fileID: 1379271712}
-  m_Layer: 0
-  m_Name: Summon a Glorp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1379271711
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379271710}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1188350338}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1379271712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379271710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b59ba3e7edc47a59b5e5c10750fa4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Powers.PowerUseTownHallCheck
---- !u!114 &1379271713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379271710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a78c6cb7587bca4384b727ce33ac6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PowerRangeFeedback
-  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  lineWidth: 0.05
-  lineColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &1379271714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379271710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7ea7be33a75e942b87f0b3decc3865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResourcesDrop
-  <powerIcon>k__BackingField: {fileID: 0}
-  tileRadius: 5
-  radiusMode: 2
-  <powerCooldownDuration>k__BackingField: 120
-  <categoryCooldownDuration>k__BackingField: 30
-  minToSpawn: 1
-  maxToSpawn: 2
-  prefabsToSpawn:
-  - {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
-  allowedTileTypes: 0a00000014000000
-  prohibitedTileTypes: 00000000
-  sfx:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &1384842867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,8 +2907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9310bf010d44efb9ee079eab0f4760b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AI.EntityHeightMapCalculator
-  worldPosPropertyName: _WorldPos
-  heightMapGenerator: {fileID: 1494854486}
 --- !u!1 &1543116465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,25 +3415,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!1 &1912596039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 605641559555294793, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
-  m_PrefabInstance: {fileID: 7697605199212569333}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1912596044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912596039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ac132c3a821d9df848e1413dcac72f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FirstVillagerSpawnPowerComponent
-  villagerPrefab: {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
-  numberOfVillagersToSpawn: 3
 --- !u!1 &1940662009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,6 +4279,10 @@ PrefabInstance:
       propertyPath: maxBrushIncrease
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5900947875093915845, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxBrushIncrease
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4492,14 +4379,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1832100028179106572, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
     - {fileID: 6210347989287798240, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6454656501684699950, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1379271711}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 605641559555294793, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1912596044}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

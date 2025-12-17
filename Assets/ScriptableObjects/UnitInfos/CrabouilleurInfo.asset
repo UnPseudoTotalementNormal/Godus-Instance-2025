@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f8bdf472f4cb114387d20f7dc566cf2, type: 3}
-  m_Name: BernardInfo
+  m_Name: CrabouilleurInfo
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  unitName: Bernard
+  unitName: Crabouilleur
   unitHp: 165
   unitAtk: 60
   unitSprite: {fileID: -478609110, guid: 45bb7249a252a522b8032cd2ec5fab3a, type: 3}
@@ -27,4 +27,4 @@ MonoBehaviour:
     cost: 0
   - resourceType: 4
     cost: 0
-  unitPrefab: {fileID: 7842261373013836629, guid: a39913bcac8b6cbee8f8b561f8d57311, type: 3}
+  unitPrefab: {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}

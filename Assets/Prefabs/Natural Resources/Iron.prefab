@@ -117,11 +117,11 @@ MonoBehaviour:
     Path: 
   damageSfx:
     Guid:
-      Data1: -1046737031
-      Data2: 1234834010
-      Data3: -1437531996
-      Data4: 1649280658
-    Path: event:/World/Build/Place_Rock
+      Data1: 855977217
+      Data2: 1145154809
+      Data3: 442024088
+      Data4: 103320668
+    Path: event:/Environment/RockMiningDamage
   deathSfx:
     Guid:
       Data1: 0

@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalResource
   resourceType: 4
-  collectionDelay: 5
+  collectionDelay: 2
   collectionQuantity: 7
   collectionsLeft: 7
   collectible: 1
@@ -250,11 +250,11 @@ MonoBehaviour:
     Path: 
   damageSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1220892309
+      Data2: 1118401584
+      Data3: -1190734687
+      Data4: 1484261654
+    Path: event:/Character/Damage/Boar
   deathSfx:
     Guid:
       Data1: 0
