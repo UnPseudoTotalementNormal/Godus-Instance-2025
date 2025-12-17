@@ -33,7 +33,8 @@ namespace Powers
         
         private void Start()
         {
-            InputManager.instance.onRightMouseButtonPressStarted += RmbIsPressed;
+            InputManager.instance.onRightMouseButtonPressStarted += UnequipCurrentPower;
+            InputManager.instance.onEscapeButtonPressStarted += UnequipCurrentPower;
             GameEvents.onTownHallCreated += OnTownHallCreated;
         }
 
@@ -106,14 +107,10 @@ namespace Powers
         {
             if (InputManager.instance != null)
             {
-                InputManager.instance.onRightMouseButtonPressStarted -= RmbIsPressed;
+                InputManager.instance.onRightMouseButtonPressStarted -= UnequipCurrentPower;
+                InputManager.instance.onEscapeButtonPressStarted -= UnequipCurrentPower;
             }
             GameEvents.onTownHallCreated -= OnTownHallCreated;
-        }
-
-        private void RmbIsPressed()
-        {
-            UnequipCurrentPower();
         }
     }
 }
