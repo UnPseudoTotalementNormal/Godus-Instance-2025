@@ -2643,6 +2643,7 @@ GameObject:
   - component: {fileID: 1494854485}
   - component: {fileID: 1494854484}
   - component: {fileID: 1494854486}
+  - component: {fileID: 1494854487}
   m_Layer: 0
   m_Name: Tilemap Visualizer
   m_TagString: Untagged
@@ -2990,6 +2991,20 @@ MonoBehaviour:
   entityMaterial: {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
   heightTexPropertyName: _HeightTex
   pixelsPerTile: 32
+--- !u!114 &1494854487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494854479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9310bf010d44efb9ee079eab0f4760b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI.EntityHeightMapCalculator
+  worldPosPropertyName: _WorldPos
+  heightMapGenerator: {fileID: 1494854486}
 --- !u!1 &1543116465
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,6 +4364,10 @@ PrefabInstance:
       propertyPath: 'prefabsToSpawn.Array.data[0]'
       value: 
       objectReference: {fileID: 4108519509097955096, guid: 3e8a1619fc203a029b2d06a1130d9005, type: 3}
+    - target: {fileID: 2268792910494030445, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxBrushIncrease
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3134971587976476508, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_Name
       value: PowerManager
@@ -4372,6 +4391,10 @@ PrefabInstance:
     - target: {fileID: 3449592209633899677, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: tileRadius
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917572858914140927, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxBrushIncrease
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4412,6 +4435,10 @@ PrefabInstance:
     - target: {fileID: 6628211762310620858, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942026510923344876, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: maxBrushIncrease
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7317455801721260924, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: prefabsToSpawn.Array.size
