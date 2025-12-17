@@ -1,4 +1,6 @@
+using AudioSystem;
 using DG.Tweening;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -20,8 +22,9 @@ namespace UI.Menu
         [SerializeField] private float textWriteDuration = 1.5f;
         [SerializeField] private float textScaleStrength = 1.1f;
         [SerializeField] private float textScaleDuration = 0.8f;
-                
-        [Header("Menu Settings")]
+
+        [Header("Menu Settings")] 
+        [SerializeField] private EventReference sfxClick;
         [SerializeField] private float showMenuDuration = 0.5f;
         [SerializeField] private float inactivityTimeout = 90f;
         
@@ -72,7 +75,11 @@ namespace UI.Menu
             if (!textPressAnyKeyCanvasGroup)
                 textPressAnyKeyCanvasGroup = textPressAnyKeyObj.AddComponent<CanvasGroup>();
             
-            playButton.onClick.AddListener(() => SceneManager.LoadScene(playGameSceneName));
+            playButton.onClick.AddListener(() =>
+            {
+                GameAudioManager.instance.PlayOneShot(sfxClick);
+                SceneManager.LoadScene(playGameSceneName);
+            });
             currentActiveMenu = mainMenu;
             
             InitializePressAnyKeyText();

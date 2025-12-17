@@ -1,5 +1,7 @@
 using System;
+using AudioSystem;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -9,6 +11,9 @@ namespace UI.Menu
     public class MenuNavigationHandler : MonoBehaviour
     {
         [SerializeField] private MenuManager menuManager;
+        
+        [Header("Audio")]
+        [SerializeField] private EventReference sfxClick;
         
         [Header("Animation Settings")]
         [SerializeField] private float fadeDuration = 0.3f;
@@ -79,20 +84,40 @@ namespace UI.Menu
         {
             // Main Menu buttons
             Assert.IsNotNull(settingsButton, $"<b>[MenuNavigationHandler]</b> Settings Button reference is not assigned in the inspector.");
-            settingsButton.onClick.AddListener(() => NavigateToMenu(mainMenuCanvasGroup, settingsMenuCanvasGroup));
+            settingsButton.onClick.AddListener(() =>
+            {
+                GameAudioManager.instance.PlayOneShot(sfxClick);
+                NavigateToMenu(mainMenuCanvasGroup, settingsMenuCanvasGroup);
+            });
             
             Assert.IsNotNull(creditsButton, $"<b>[MenuNavigationHandler]</b> Credits Button reference is not assigned in the inspector.");
-            creditsButton.onClick.AddListener(() => NavigateToMenu(mainMenuCanvasGroup, creditsMenuCanvasGroup));
+            creditsButton.onClick.AddListener(() =>
+            {
+                GameAudioManager.instance.PlayOneShot(sfxClick);
+                NavigateToMenu(mainMenuCanvasGroup, creditsMenuCanvasGroup);
+            });
             
             Assert.IsNotNull(quitButton, $"<b>[MenuNavigationHandler]</b> Quit Button reference is not assigned in the inspector.");
-            quitButton.onClick.AddListener(QuitGame);
+            quitButton.onClick.AddListener(() =>
+            {
+                GameAudioManager.instance.PlayOneShot(sfxClick);
+                QuitGame();
+            });
             
             // Back buttons
             Assert.IsNotNull(backToMainFromSettings, $"<b>[MenuNavigationHandler]</b> Back To Main From Settings Button reference is not assigned in the inspector.");
-            backToMainFromSettings.onClick.AddListener(() => NavigateToMenu(settingsMenuCanvasGroup, mainMenuCanvasGroup));
+            backToMainFromSettings.onClick.AddListener(() =>
+            {
+                GameAudioManager.instance.PlayOneShot(sfxClick);
+                NavigateToMenu(settingsMenuCanvasGroup, mainMenuCanvasGroup);
+            });
             
             Assert.IsNotNull(backToMainFromCredits, $"<b>[MenuNavigationHandler]</b> Back To Main From Credits Button reference is not assigned in the inspector.");
-            backToMainFromCredits.onClick.AddListener(() => NavigateToMenu(creditsMenuCanvasGroup, mainMenuCanvasGroup));
+            backToMainFromCredits.onClick.AddListener(() =>
+            {
+                GameAudioManager.instance.PlayOneShot(sfxClick);
+                NavigateToMenu(creditsMenuCanvasGroup, mainMenuCanvasGroup);
+            });
         }
 
         private void InitializeCanvasGroups()

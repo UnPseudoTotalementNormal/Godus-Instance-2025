@@ -3130,7 +3130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 203677504142896510, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: role
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 203677504142896510, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: avatar
@@ -3139,6 +3139,18 @@ PrefabInstance:
     - target: {fileID: 203677504142896510, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: personName
       value: DUMAS Breynann
+      objectReference: {fileID: 0}
+    - target: {fileID: 538746224756622369, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 538746224756622369, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 538746224756622369, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1860783883430181191, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3247,6 +3259,18 @@ PrefabInstance:
     - target: {fileID: 2800460351403533965, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: m_Name
       value: Crew - Breynann
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015104378663225222, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015104378663225222, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015104378663225222, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.4392157
       objectReference: {fileID: 0}
     - target: {fileID: 8876513642714224734, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3806,8 +3830,15 @@ MonoBehaviour:
   textWriteDuration: 1.5
   textScaleStrength: 1.1
   textScaleDuration: 0.8
+  sfxClick:
+    Guid:
+      Data1: -609421263
+      Data2: 1091411848
+      Data3: -86586439
+      Data4: 1147343103
+    Path: event:/UI/Click
   showMenuDuration: 0.5
-  inactivityTimeout: 10
+  inactivityTimeout: 90
   mainMenu: {fileID: 1828382445}
   settingsMenu: {fileID: 1581641860}
   creditsMenu: {fileID: 769420062}
@@ -4251,6 +4282,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.Menu.MenuNavigationHandler
   menuManager: {fileID: 1577457356}
+  sfxClick:
+    Guid:
+      Data1: -609421263
+      Data2: 1091411848
+      Data3: -86586439
+      Data4: 1147343103
+    Path: event:/UI/Click
   fadeDuration: 0.3
   playButton: {fileID: 511098879}
   settingsButton: {fileID: 15141310}
@@ -4261,6 +4299,50 @@ MonoBehaviour:
   mainMenu: {fileID: 1828382445}
   settingsMenu: {fileID: 1581641860}
   creditsMenu: {fileID: 769420062}
+--- !u!1 &1897590248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897590249}
+  - component: {fileID: 1897590250}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1897590249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897590248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1897590250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897590248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13021c108ba903d1f86869ae8fddb4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSystem.GameAudioManager
 --- !u!1 &2026596651
 GameObject:
   m_ObjectHideFlags: 0
@@ -4648,6 +4730,10 @@ PrefabInstance:
       propertyPath: personName
       value: "ANDRIEU Mal\xE9na"
       objectReference: {fileID: 0}
+    - target: {fileID: 923483695719565163, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1860783883430181191, guid: 3cd22061b17309de4bd67d31475eba58, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -4772,3 +4858,4 @@ SceneRoots:
   - {fileID: 1435772514}
   - {fileID: 298863689}
   - {fileID: 1577457355}
+  - {fileID: 1897590249}
