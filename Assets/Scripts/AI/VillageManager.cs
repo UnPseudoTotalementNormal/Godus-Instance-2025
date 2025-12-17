@@ -98,6 +98,7 @@ public class VillageManager : MonoBehaviour
             _target = null;
             return TaskType.Wandering;
         }
+        
         if ((100 * (villageData.wood / villageData.maxWood)) >= 90)
         {
             villageData.Add(ResourceType.Wood,-buildingWoodCost);
@@ -105,40 +106,32 @@ public class VillageManager : MonoBehaviour
             return TaskType.Building;
         }
         
-        if ((100 * (villageData.meat / villageData.maxMeat)) <= 80)
+        var _resourcePercentages = new System.Collections.Generic.List<(ResourceType type, float percentage, float threshold)>
         {
-            _target = DetectResourceInRange(_caller, ResourceType.Meat);
-            if (_target != null)
-                return TaskType.Hunting;
-        }
-
-        if ((100 * (villageData.wood / villageData.maxWood)) <= 80)
+            (ResourceType.Meat, 100f * ((float)villageData.meat / villageData.maxMeat), 80f),
+            (ResourceType.Wood, 100f * ((float)villageData.wood / villageData.maxWood), 80f),
+            (ResourceType.Stone, 100f * ((float)villageData.stone / villageData.maxStone), 50f),
+            (ResourceType.Iron, 100f * ((float)villageData.iron / villageData.maxIron), 50f),
+            (ResourceType.Glorp, 100f * ((float)villageData.glorp / villageData.maxGlorp), 50f)
+        };
+        
+        _resourcePercentages.Sort((_a, _b) => _a.percentage.CompareTo(_b.percentage));
+        
+        foreach (var (_type, _percentage, _threshold) in _resourcePercentages)
         {
-            _target = DetectResourceInRange(_caller, ResourceType.Wood);
-            if (_target != null)
-                return TaskType.Gathering;
+            if (_percentage <= _threshold)
+            {
+                _target = DetectResourceInRange(_caller, _type);
+                if (_target != null)
+                {
+                    if (_type == ResourceType.Meat)
+                        return TaskType.Hunting;
+                    else
+                        return TaskType.Gathering;
+                }
+            }
         }
-
-        if ((100 * (villageData.stone / villageData.maxStone)) <= 50)
-        {
-            _target = DetectResourceInRange(_caller, ResourceType.Stone);
-            if (_target != null)
-                return TaskType.Gathering;
-        }
-
-        if ((100 * (villageData.iron / villageData.maxIron)) <= 50)
-        {
-            _target = DetectResourceInRange(_caller, ResourceType.Iron);
-            if (_target != null)
-                return TaskType.Gathering;
-        }
-
-        if ((100 * (villageData.glorp / villageData.maxGlorp)) <= 50)
-        {
-            _target = DetectResourceInRange(_caller, ResourceType.Glorp);
-            if (_target != null)
-                return TaskType.Gathering;
-        }
+        
         _target = null;
         
         //Random chance to select a random task
