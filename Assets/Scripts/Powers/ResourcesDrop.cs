@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AudioSystem;
 using Extensions;
@@ -8,6 +9,7 @@ using Powers;
 using TileSystemSpace;
 using UnityEngine.Serialization;
 using Utils;
+using Random = UnityEngine.Random;
 
 public class ResourcesDrop : Power
 {
@@ -26,6 +28,8 @@ public class ResourcesDrop : Power
     private UnityEngine.Camera mainCamera;
     private Vector2 mousePos;
     private bool hasSpawnedAtLeastOne = false;
+    
+    public event Action<Vector2Int> onResourcesDropped;
 
     private void Start()
     {
@@ -85,6 +89,7 @@ public class ResourcesDrop : Power
             _validTiles.RemoveAt(_idx);
 
             Instantiate(prefabsToSpawn.PickRandom(), (Vector2)_pos, Quaternion.identity);
+            onResourcesDropped?.Invoke(_pos);
         }
 
         GameAudioManager.instance.PlayOneShot(sfx);

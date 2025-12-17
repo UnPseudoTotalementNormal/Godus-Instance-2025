@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 1000
+  maxHealth: 110
 --- !u!114 &1086337542115328957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +176,27 @@ MonoBehaviour:
   damagePunchScaleStrength: 1.2
   damagePunchScaleVibrato: 5
   damagePunchScaleElasticity: 1
+  healSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  damageSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  deathSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &5133879628338348893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
   updateInterval: 0.15
+  healthComponent: {fileID: 1714333393580343305}
 --- !u!1 &1647814771126434785
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5408201598718775354}
   - component: {fileID: 5133879628338348893}
   - component: {fileID: 801897002418901951}
+  - component: {fileID: 5447714425713293765}
   m_Layer: 0
   m_Name: Iron
   m_TagString: Untagged
@@ -154,6 +155,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeadlyWaterComponent
   updateInterval: 0.15
+  healthComponent: {fileID: 1714333393580343305}
+--- !u!114 &5447714425713293765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017447972501795968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5173c8bec54aa4ca90d539a46443cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IronResource
+  resourceType: 2
+  collectionDelay: 10
+  collectionQuantity: 10
+  collectionsLeft: 1
+  collectible: 1
 --- !u!1 &1647814771126434785
 GameObject:
   m_ObjectHideFlags: 0

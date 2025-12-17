@@ -34,7 +34,12 @@ namespace Powers
         private void Start()
         {
             InputManager.instance.onRightMouseButtonPressStarted += RmbIsPressed;
-            GameEvents.onTownHallCreated += (_) => hasTownHallSpawned = true;
+            GameEvents.onTownHallCreated += OnTownHallCreated;
+        }
+
+        private void OnTownHallCreated(GameObject _townHall)
+        {
+            hasTownHallSpawned = true;
         }
 
         private void RetrieveAndSetPowers()
@@ -97,6 +102,15 @@ namespace Powers
             return !_power.isOnCooldown && !_power.powerCategory.isOnCooldown && _power.CanUsePower();
         }
         
+        private void OnDestroy()
+        {
+            if (InputManager.instance != null)
+            {
+                InputManager.instance.onRightMouseButtonPressStarted -= RmbIsPressed;
+            }
+            GameEvents.onTownHallCreated -= OnTownHallCreated;
+        }
+
         private void RmbIsPressed()
         {
             UnequipCurrentPower();

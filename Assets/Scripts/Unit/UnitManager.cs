@@ -20,6 +20,11 @@ public class UnitManager : MonoBehaviour
         GameEvents.onNewEntitySpawned += RegisterUnit;
     }
 
+    private void OnDestroy()
+    {
+        GameEvents.onNewEntitySpawned -= RegisterUnit;
+    }
+
     public void RegisterUnit(Entity _entity)
     {
         entities.Add(_entity);

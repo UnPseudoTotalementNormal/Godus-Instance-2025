@@ -31,9 +31,21 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        if (InputManager.instance != null)
+        {
+            InputManager.instance.onEscapeButtonPressStarted -= EscapePressed;
+        }
+        GameEvents.onGameOver -= OnGameOver;
+    }
+
     void OnGameOver()
     {
-        InputManager.instance.onEscapeButtonPressStarted -= EscapePressed;
+        if (InputManager.instance != null)
+        {
+            InputManager.instance.onEscapeButtonPressStarted -= EscapePressed;
+        }
         GameEvents.onGameOver -= OnGameOver;
     }
 
