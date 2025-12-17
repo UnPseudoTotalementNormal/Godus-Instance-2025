@@ -205,6 +205,7 @@ public class VillageManager : MonoBehaviour
             if (!_resourceComponent) continue;
             if (_resourceComponent.resourceType != _resourceType || _resourceComponent.collectible == false) continue;
             _resource.GetComponent<Collider2D>().enabled = false;
+            _resourceComponent.collectible = false;
             return _resource.gameObject;
         }
         //Debug.Log("No resource found");
