@@ -1,8 +1,10 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI.Menu
 {
@@ -14,6 +16,8 @@ namespace UI.Menu
         [SerializeField] private Button playButton;
         
         [Header("Press Any Key Animation")]
+        [SerializeField] private string pressAnyKeyText = "Press Any Key";
+        [SerializeField] private float textWriteDuration = 1.5f;
         [SerializeField] private float textScaleStrength = 1.1f;
         [SerializeField] private float textScaleDuration = 0.8f;
                 
@@ -40,6 +44,7 @@ namespace UI.Menu
         private float inactivityTimer;
         private GameObject currentActiveMenu;
         private Tween textScaleTween;
+        private TextMeshProUGUI textOfObj;
         
         private void Awake()
         {
@@ -49,13 +54,14 @@ namespace UI.Menu
             
             panel.SetActive(false);
             textPressAnyKeyObj.SetActive(true);
-            
-            StartTextScaleAnimation();
         }
         
         private void Start()
         {
             InputManager.instance.onAnyKeyPressStarted += ShowMainMenu;
+            
+            textOfObj = textPressAnyKeyObj.GetComponent<TextMeshProUGUI>();
+            Assert.IsNotNull(textOfObj, $"<b>[MenuManager]</b> Text");
             
             Assert.IsNotNull(navigationHandler, $"<b>[MenuManager]</b> MenuNavigationHandler reference is not assigned in the inspector.");
             Assert.IsNotNull(panelCanvasGroup, $"<b>[MenuManager]</b> Panel CanvasGroup reference is not assigned in the inspector.");
@@ -68,6 +74,8 @@ namespace UI.Menu
             
             playButton.onClick.AddListener(() => SceneManager.LoadScene(playGameSceneName));
             currentActiveMenu = mainMenu;
+            
+            InitializePressAnyKeyText();
             
             navigationHandler.onNavigationStarted += DisableInputs;
             navigationHandler.onNavigationCompleted += EnableInputs;
@@ -188,7 +196,7 @@ namespace UI.Menu
                 
                 InputManager.instance.onAnyKeyPressStarted += ShowMainMenu;
                 
-                StartTextScaleAnimation();
+                InitializePressAnyKeyText();
             });
             
             hideSequence.Play();
@@ -227,6 +235,16 @@ namespace UI.Menu
                 .DOScale(textScaleStrength, textScaleDuration)
                 .SetEase(Ease.InOutSine)
                 .SetLoops(-1, LoopType.Yoyo);
+        }
+        
+        private void InitializePressAnyKeyText()
+        {
+            textOfObj.text = "";
+            
+            TextAnimationUtils.ChangeText(textOfObj, pressAnyKeyText, textWriteDuration, () =>
+            {
+                StartTextScaleAnimation();
+            });
         }
         
         private void OnDestroy()
