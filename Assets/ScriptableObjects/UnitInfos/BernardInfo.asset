@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: Bernard
   unitHp: 165
   unitAtk: 60
-  unitSprite: {fileID: 1016092290, guid: 45bb7249a252a522b8032cd2ec5fab3a, type: 3}
+  unitSprite: {fileID: -478609110, guid: 45bb7249a252a522b8032cd2ec5fab3a, type: 3}
   cost:
   - resourceType: 0
     cost: 30
