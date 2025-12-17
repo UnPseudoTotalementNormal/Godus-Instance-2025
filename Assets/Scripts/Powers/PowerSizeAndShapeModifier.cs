@@ -8,10 +8,12 @@ namespace Powers
     {
         public Power power;
         private int sizeIncreased = 0;
+        private bool isPowerActive = false;
 
         private void Start()
         {
             power.onPowerDeactivated += onDeactivated;
+            power.onPowerActivated += onActivated;
             InputManager.instance.onBrushIncreasedPressStarted += onBrushIncreasedPressStarted;
             InputManager.instance.onBrushDecreasedPressStarted += onBrushDecreasedPressStarted;
             InputManager.instance.onBrushShapeChangedPressStarted += onBrushShapeChanged;
@@ -39,25 +41,30 @@ namespace Powers
 
         private void onDeactivated()
         {
-            power.tileRadius -= sizeIncreased;
+            isPowerActive = false;
+        }
+
+        private void onActivated()
+        {
+            power.tileRadius = 0;
             power.radiusMode = TileSystem.RadiusMode.Circle;
+            Debug.Log(sizeIncreased);
+            isPowerActive = true;
         }
 
         private void onBrushIncreasedPressStarted()
         {
-            if (power.tileRadius < 5)
+            if (power.tileRadius < 5 && isPowerActive)
             {
                 power.tileRadius++;
-                sizeIncreased++;
             }
         }
 
         private void onBrushDecreasedPressStarted()
         {
-            if (power.tileRadius > 0)
+            if (power.tileRadius > 0 && isPowerActive)
             {
                 power.tileRadius--;
-                sizeIncreased--;
             }
         }
         
