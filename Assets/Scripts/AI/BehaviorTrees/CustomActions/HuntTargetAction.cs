@@ -28,14 +28,19 @@ public partial class HuntTargetAction : Action
 
     protected override Status OnUpdate()
     {
+        if (resourceExhausted)
+            return Status.Success;
+        if (targetRC == null)
+        {
+            PathTarget.Value = null;
+            return Status.Failure;
+        }
         if (gatheringTimer >= targetRC.collectionDelay)
         {
             targetRC.OnCollect();
             gatheringTimer = 0f;
         }
 
-        if (resourceExhausted)
-            return Status.Success;
         gatheringTimer += Time.deltaTime;
         return Status.Running;
     }
@@ -48,7 +53,7 @@ public partial class HuntTargetAction : Action
     {
         resourceExhausted = true;
         Debug.Log("huntResourceAction: End");
-        VillageManager.Value.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
+        global::VillageManager.instance.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
         PathTarget.Value = null;
     }
 }

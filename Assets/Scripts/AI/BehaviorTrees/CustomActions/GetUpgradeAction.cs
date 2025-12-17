@@ -5,17 +5,17 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Abort task", story: "[Self] ask [VillageManager] to abort [CurrentTask]", category: "Action", id: "aa5c467ec86e32c243d51a798e13301e")]
-public partial class AbortTaskAction : Action
+[NodeDescription(name: "GetUpgrade", story: "[Self] asks [VillageManager] for an upgrade", category: "Action", id: "1826f3a3c38a5265239250253de460b8")]
+public partial class GetUpgradeAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<VillageManager> VillageManager;
-    [SerializeReference] public BlackboardVariable<TaskType> CurrentTask;
 
     protected override Status OnStart()
     {
-        global::VillageManager.instance.AbortTask(Self.Value.transform, CurrentTask.Value);
-        return Status.Success;
+        Debug.Log("Get upgrade action for" + Self.Value.name);
+        global::VillageManager.instance.UpgradeEntity(Self.Value.GetComponent<Entity>());
+        return Status.Running;
     }
 
     protected override Status OnUpdate()

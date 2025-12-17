@@ -1,15 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using AI;
 using AYellowpaper.SerializedCollections;
 using Unity.Behavior;
-using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class VillageManager : MonoBehaviour
 {
+    public static VillageManager instance { get; private set; }
+    
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] public Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
@@ -21,17 +20,48 @@ public class VillageManager : MonoBehaviour
 
     bool villageUnderAttack;
     
-    private VillageData villageData;
+    private VillageData villageData; 
 
     void Awake()
     {
-        villageData = new VillageData();
-
-        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
-        villageBlackboard.SetVariableValue("VillageManager", this);
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+        
+        GameEvents.onTownHallCreated -= NewVillageCenter;
+        GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
         
         GameEvents.onTownHallCreated += NewVillageCenter;
         GameEvents.onStorageBuildingCreated += OnNewStorageBuilding;
+        
+        villageData = new VillageData();
+
+        villageData.Add(ResourceType.Meat, 0);
+        villageData.Add(ResourceType.Wood, 0);
+        villageData.Add(ResourceType.Stone, 0);
+        villageData.Add(ResourceType.Iron, 0);
+        villageData.Add(ResourceType.Glorp, 0);
+        
+        villageBlackboard.BlackboardReference.SetVariableValue("VillageCenter", villageCenter);
+        villageBlackboard.BlackboardReference.SetVariableValue("VillageManager", this);
+    }
+
+    private void Start()
+    {
+        villageData.Add(ResourceType.Meat, 0);
+        villageData.Add(ResourceType.Wood, 0);
+        villageData.Add(ResourceType.Stone, 0);
+        villageData.Add(ResourceType.Iron, 0);
+        villageData.Add(ResourceType.Glorp, 0);
+        
+        villageData.AddMax(ResourceType.Meat, 0);
+        villageData.AddMax(ResourceType.Wood, 0);
+        villageData.AddMax(ResourceType.Stone, 0);
+        villageData.AddMax(ResourceType.Iron, 0);
+        villageData.AddMax(ResourceType.Glorp, 0);
     }
 
     private void OnNewStorageBuilding()
@@ -58,24 +88,6 @@ public class VillageManager : MonoBehaviour
         Debug.Log(_d.ObjectValue);
     }
 
-    private void Start()
-    {
-        Debug.Log(villageBlackboard.SetVariableValue("VillageCenter", villageCenter));
-        villageBlackboard.SetVariableValue("VillageManager", this);
-        
-        villageData.Add(ResourceType.Meat,0);
-        villageData.Add(ResourceType.Wood,0);
-        villageData.Add(ResourceType.Stone,0);
-        villageData.Add(ResourceType.Iron,0);
-        villageData.Add(ResourceType.Glorp,0);
-        
-        villageData.AddMax(ResourceType.Meat,0);
-        villageData.AddMax(ResourceType.Wood,0);
-        villageData.AddMax(ResourceType.Stone,0);
-        villageData.AddMax(ResourceType.Iron,0);
-        villageData.AddMax(ResourceType.Glorp,0);
-    }
-
     [ContextMenu("Roll call")]
     void RollCall()
     {
@@ -87,9 +99,12 @@ public class VillageManager : MonoBehaviour
     {
         if (villageData == null)
         {
+            Debug.LogWarning("No village data available");
+            villageData = new();
             _target = null;
             return TaskType.Wandering;
         }
+        
         if ((100 * (villageData.wood / villageData.maxWood)) >= 90)
         {
             villageData.Add(ResourceType.Wood,-buildingWoodCost);
@@ -97,40 +112,32 @@ public class VillageManager : MonoBehaviour
             return TaskType.Building;
         }
         
-        if ((100 * (villageData.meat / villageData.maxMeat)) <= 80)
+        var _resourcePercentages = new System.Collections.Generic.List<(ResourceType type, float percentage, float threshold)>
         {
-            _target = DetectResourceInRange(_caller, ResourceType.Meat);
-            if (_target != null)
-                return TaskType.Hunting;
-        }
-
-        if ((100 * (villageData.wood / villageData.maxWood)) <= 80)
+            (ResourceType.Meat, 100f * ((float)villageData.meat / villageData.maxMeat), 80f),
+            (ResourceType.Wood, 100f * ((float)villageData.wood / villageData.maxWood), 80f),
+            (ResourceType.Stone, 100f * ((float)villageData.stone / villageData.maxStone), 50f),
+            (ResourceType.Iron, 100f * ((float)villageData.iron / villageData.maxIron), 50f),
+            (ResourceType.Glorp, 100f * ((float)villageData.glorp / villageData.maxGlorp), 50f)
+        };
+        
+        _resourcePercentages.Sort((_a, _b) => _a.percentage.CompareTo(_b.percentage));
+        
+        foreach (var (_type, _percentage, _threshold) in _resourcePercentages)
         {
-            _target = DetectResourceInRange(_caller, ResourceType.Wood);
-            if (_target != null)
-                return TaskType.Gathering;
+            if (_percentage <= _threshold)
+            {
+                _target = DetectResourceInRange(_caller, _type);
+                if (_target != null)
+                {
+                    if (_type == ResourceType.Meat)
+                        return TaskType.Hunting;
+                    else
+                        return TaskType.Gathering;
+                }
+            }
         }
-
-        if ((100 * (villageData.stone / villageData.maxStone)) <= 50)
-        {
-            _target = DetectResourceInRange(_caller, ResourceType.Stone);
-            if (_target != null)
-                return TaskType.Gathering;
-        }
-
-        if ((100 * (villageData.iron / villageData.maxIron)) <= 50)
-        {
-            _target = DetectResourceInRange(_caller, ResourceType.Iron);
-            if (_target != null)
-                return TaskType.Gathering;
-        }
-
-        if ((100 * (villageData.glorp / villageData.maxGlorp)) <= 50)
-        {
-            _target = DetectResourceInRange(_caller, ResourceType.Glorp);
-            if (_target != null)
-                return TaskType.Gathering;
-        }
+        
         _target = null;
         
         //Random chance to select a random task
@@ -151,7 +158,7 @@ public class VillageManager : MonoBehaviour
             }
         }
 
-        if (Random.value <= 0.6f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10))
+        if (Random.value <= 0.4f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10 || villageData.wood >= 10))
         {
             Debug.Log(_caller.name + "wants to go shop !");
             //Make the AI go back to the village centre to upgrade
@@ -188,6 +195,7 @@ public class VillageManager : MonoBehaviour
                         if (_resourceComponent != null)
                         {
                             _resourceComponent.collectible = true;
+                            _resourceComponent.GetComponent<Collider2D>().enabled = true;
                         }
                         break;
                     case TaskType.Building: //refund building cost 
@@ -206,6 +214,7 @@ public class VillageManager : MonoBehaviour
             if (!_resourceComponent) continue;
             if (_resourceComponent.resourceType != _resourceType || _resourceComponent.collectible == false) continue;
             _resource.GetComponent<Collider2D>().enabled = false;
+            _resourceComponent.collectible = false;
             return _resource.gameObject;
         }
         //Debug.Log("No resource found");
@@ -238,26 +247,15 @@ public class VillageManager : MonoBehaviour
 
     public void AddResource(ResourceType _resource, int _amount)
     {
+        Debug.Log($"{gameObject.name}");
+        Debug.Log("Added resource " + _resource + " with number of " + _amount);
         villageData.Add(_resource, _amount);
     }
 
     public int GetResourceAmount(ResourceType _resource)
     {
-        switch (_resource)
-        {
-            case ResourceType.Wood:
-                return villageData.wood;
-            case ResourceType.Stone:
-                return villageData.stone;
-            case ResourceType.Iron:
-                return villageData.iron;
-            case ResourceType.Glorp:
-                return villageData.glorp;
-            case ResourceType.Meat:
-                return villageData.meat;
-            default:
-                return -1;
-        }
+        Debug.Log($"{gameObject.name}");
+        return villageData.GetResourceValue(_resource);
     }
 
     public bool BuildAtLocation(Transform _position)

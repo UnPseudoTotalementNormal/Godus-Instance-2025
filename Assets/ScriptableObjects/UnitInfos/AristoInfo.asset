@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f8bdf472f4cb114387d20f7dc566cf2, type: 3}
-  m_Name: BernardInfo
+  m_Name: AristoInfo
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  unitName: Bernard
-  unitHp: 165
-  unitAtk: 60
-  unitSprite: {fileID: -478609110, guid: 45bb7249a252a522b8032cd2ec5fab3a, type: 3}
+  unitName: Aristo
+  unitHp: 25
+  unitAtk: 10
+  unitSprite: {fileID: 527947986, guid: 5024cbbedbfa6b30ca6e6a83b8e628d9, type: 3}
   cost:
   - resourceType: 0
-    cost: 30
+    cost: 10
   - resourceType: 1
     cost: 0
   - resourceType: 2
     cost: 5
   - resourceType: 3
-    cost: 0
+    cost: 1
   - resourceType: 4
     cost: 0
-  unitPrefab: {fileID: 7842261373013836629, guid: a39913bcac8b6cbee8f8b561f8d57311, type: 3}
+  unitPrefab: {fileID: 7842261373013836629, guid: 4df847d0ceafbfeb3b3d36047932f5fe, type: 3}

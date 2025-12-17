@@ -26,4 +26,35 @@ public static class GameEvents
     
     public static Action<ResourceType, int> onResourceValueRefreshed;
     public static Action<ResourceType, int> onResourceMaxValueRefreshed;
+
+#if UNITY_EDITOR
+    [UnityEditor.InitializeOnLoadMethod]
+    private static void ResetStaticEvents()
+    {
+        UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+    }
+
+    private static void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange _state)
+    {
+        if (_state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+        {
+            onWaveStarted = null;
+            onWaveEnded = null;
+            onGameOver = null;
+            onTownHallCreated = null;
+            onTownHallDestroy = null;
+            onStorageBuildingCreated = null;
+            onStorageBuildingDestroyed = null;
+            onNewEntitySpawned = null;
+            onAlienDeath = null;
+            onEnemyDeath = null;
+            onEntityDeath = null;
+            onWaveInfo = null;
+            onStartTimerBetweenWave = null;
+            onNecessaryPathMade = null;
+            onResourceValueRefreshed = null;
+            onResourceMaxValueRefreshed = null;
+        }
+    }
+#endif
 }

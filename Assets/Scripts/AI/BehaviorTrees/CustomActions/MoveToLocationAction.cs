@@ -20,17 +20,12 @@ public partial class MoveToLocationAction : Action
     
     protected override Status OnStart()
     {
-        if (vManager?.Value?.villageCenter == Location.Value)
-        {
-            Debug.LogError(vManager.Value.villageCenter + ", " + Location.Value);
-        }
-        
         if (pathfinder == null)
         {
             pathfinder = new Pathfinding();
             pathfinder.callback += PathfindingCallback;
         }
-        pathfinder.FindPath(new Vector2Int((int)Self.Value.transform.position.x, (int)Self.Value.transform.position.y), Location.Value);
+        pathfinder.FindPath(Vector2Int.RoundToInt(Self.Value.transform.position), Location.Value);
         return Status.Running;
     }
 

@@ -10,6 +10,8 @@ namespace Powers
         private int sizeIncreased = 0;
         private bool isPowerActive = false;
 
+        [SerializeField] private int maxBrushIncrease = 3;
+        
         private void Start()
         {
             power.onPowerDeactivated += onDeactivated;
@@ -54,7 +56,7 @@ namespace Powers
 
         private void onBrushIncreasedPressStarted()
         {
-            if (power.tileRadius < 5 && isPowerActive)
+            if (power.tileRadius < maxBrushIncrease && isPowerActive)
             {
                 power.tileRadius++;
             }

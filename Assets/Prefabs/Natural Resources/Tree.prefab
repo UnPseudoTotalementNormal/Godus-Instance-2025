@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5133879628338348893}
   - component: {fileID: -6434776991896736719}
   - component: {fileID: -5102854010605224587}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,11 +185,11 @@ MonoBehaviour:
     Path: 
   damageSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2102718759
+      Data2: 1225148252
+      Data3: 1613658044
+      Data4: 2091854771
+    Path: event:/Environment/TreeDamage
   deathSfx:
     Guid:
       Data1: 0
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   resourceType: 0
-  collectionDelay: 10
+  collectionDelay: 1
   collectionQuantity: 10
-  collectionsLeft: 1
+  collectionsLeft: 10
   collectible: 0
 --- !u!114 &-5102854010605224587
 MonoBehaviour:

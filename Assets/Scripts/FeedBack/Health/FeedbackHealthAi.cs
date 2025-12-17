@@ -103,6 +103,11 @@ namespace Feedback.Health
             GameAudioManager.instance.PlayOneShot(damageSfx, transform.position);
         }
 
+        public void CosmeticDamage()
+        {
+            HandleDamaged(1);
+        }
+
         private void HandleHealed(float _healAmount)
         {
             PlayHealFlash();
@@ -121,7 +126,7 @@ namespace Feedback.Health
         private void PlayDamageScaleAnimation()
         {
             spriteRenderer.transform.DOKill(true);
-            Debug.Log("Playing damage animation");
+            //Debug.Log("Playing damage animation");
             spriteRenderer.transform.DOPunchScale(Vector3.one * damagePunchScaleStrength, damagePunchScaleDuration, damagePunchScaleVibrato, damagePunchScaleElasticity);
         }
         
