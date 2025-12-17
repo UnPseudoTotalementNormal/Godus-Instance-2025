@@ -19,7 +19,7 @@ public class VillageManager : MonoBehaviour
     bool villageUnderAttack;
     [SerializeField]bool buildingBeingMade;
     
-    private VillageData villageData;
+    private VillageData villageData; 
 
     void Awake()
     {
@@ -34,6 +34,8 @@ public class VillageManager : MonoBehaviour
         GameEvents.onStorageBuildingCreated += OnNewStorageBuilding;
         
         villageData = new VillageData();
+        
+        villageData.Init();
 
         villageData.Add(ResourceType.Meat, 0);
         villageData.Add(ResourceType.Wood, 0);
@@ -74,6 +76,7 @@ public class VillageManager : MonoBehaviour
     {
         GameEvents.onTownHallCreated -= NewVillageCenter;
         GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
+        villageData.OnDestroy();
     }
 
     private void NewVillageCenter(GameObject _newTownHall)
@@ -259,21 +262,7 @@ public class VillageManager : MonoBehaviour
 
     public int GetResourceAmount(ResourceType _resource)
     {
-        switch (_resource)
-        {
-            case ResourceType.Wood:
-                return villageData.wood;
-            case ResourceType.Stone:
-                return villageData.stone;
-            case ResourceType.Iron:
-                return villageData.iron;
-            case ResourceType.Glorp:
-                return villageData.glorp;
-            case ResourceType.Meat:
-                return villageData.meat;
-            default:
-                return -1;
-        }
+        return villageData.GetResourceValue(_resource);
     }
 
     public bool BuildAtLocation(Transform _position)
