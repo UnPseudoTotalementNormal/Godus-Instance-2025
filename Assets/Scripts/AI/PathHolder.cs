@@ -26,6 +26,7 @@ namespace AI
         
         public void SetPath(List<Vector2Int> _waypoints)
         {
+            askForRecalculation = false;
             hasMapBeenChangedSinceLastPathCalculation = false;
             waypoints = new List<Vector2Int>(_waypoints);
             onPathChanged?.Invoke();

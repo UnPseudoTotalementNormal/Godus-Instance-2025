@@ -39,7 +39,8 @@ public partial class CallPathfindingAction : Action
             pathFound = true;
             return Status.Success;
         }
-        
+
+        _pathHolder.askForRecalculation = false;
         _pathHolder.targetObject = Target.Value;
         pathfinder.FindPath(Vector2Int.RoundToInt(Agent.Value.transform.position), new Vector2Int((int)Target.Value.transform.position.x, (int)Target.Value.transform.position.y));
         return Status.Running;

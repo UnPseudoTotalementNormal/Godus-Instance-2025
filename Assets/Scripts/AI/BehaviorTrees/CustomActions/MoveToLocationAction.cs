@@ -41,6 +41,7 @@ public partial class MoveToLocationAction : Action
         }
         
         _pathHolder.targetObject = null;
+        _pathHolder.askForRecalculation = false;
         pathfinder.FindPath(Vector2Int.RoundToInt(Self.Value.transform.position), Location.Value);
         return Status.Running;
     }
