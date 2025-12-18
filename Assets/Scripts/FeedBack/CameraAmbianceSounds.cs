@@ -93,8 +93,6 @@ public class CameraAmbianceSounds : MonoBehaviour
         float _waterPercentage = (_waterTileCount / (float)_tilesInView.Count);
         float _landPercentage = (_landTileCount / (float)_tilesInView.Count);
         
-        Debug.Log($"{_flowingWaterTileCount}");
-        
         ambianceEventInstance.setParameterByName(PARAM_WATER_PERCENTAGE, _waterPercentage);
         ambianceEventInstance.setParameterByName(PARAM_LAND_PERCENTAGE, _landPercentage);
         ambianceEventInstance.setParameterByName(PARAM_FLOWING_WATER_COUNT, _flowingWaterTileCount);
