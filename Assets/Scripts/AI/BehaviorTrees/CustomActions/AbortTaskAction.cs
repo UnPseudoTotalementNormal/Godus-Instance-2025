@@ -14,7 +14,7 @@ public partial class AbortTaskAction : Action
 
     protected override Status OnStart()
     {
-        VillageManager.Value.AbortTask(Self.Value.transform, CurrentTask.Value);
+        global::VillageManager.instance.AbortTask(Self.Value.transform, CurrentTask.Value);
         return Status.Success;
     }
 

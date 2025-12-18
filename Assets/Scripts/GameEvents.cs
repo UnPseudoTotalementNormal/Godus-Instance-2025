@@ -24,8 +24,7 @@ public static class GameEvents
 
     public static Action onNecessaryPathMade;
     
-    public static Action<ResourceType, int> onResourceValueRefreshed;
-    public static Action<ResourceType, int> onResourceMaxValueRefreshed;
+    public static Action<ResourceType, int, int> onResourceValueRefreshed;
 
 #if UNITY_EDITOR
     [UnityEditor.InitializeOnLoadMethod]
@@ -53,7 +52,6 @@ public static class GameEvents
             onStartTimerBetweenWave = null;
             onNecessaryPathMade = null;
             onResourceValueRefreshed = null;
-            onResourceMaxValueRefreshed = null;
         }
     }
 #endif

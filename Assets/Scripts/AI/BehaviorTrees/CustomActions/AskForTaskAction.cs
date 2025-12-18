@@ -20,7 +20,7 @@ public partial class AskForTaskAction : Action
 
     protected override Status OnUpdate()
     {
-        Task.Value = VillageManager.Value.GetNewTask(Self.Value.transform, out GameObject _target);
+        Task.Value = global::VillageManager.instance.GetNewTask(Self.Value.transform, out GameObject _target);
         Target.Value = _target;
         return Status.Success;
     }

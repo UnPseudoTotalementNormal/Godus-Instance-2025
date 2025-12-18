@@ -53,7 +53,7 @@ public partial class HuntTargetAction : Action
     {
         resourceExhausted = true;
         Debug.Log("huntResourceAction: End");
-        VillageManager.Value.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
+        global::VillageManager.instance.AddResource(targetRC.resourceType, targetRC.collectionQuantity);
         PathTarget.Value = null;
     }
 }

@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class VillageManager : MonoBehaviour
 {
+    public static VillageManager instance { get; private set; }
+    
     [SerializeField] BehaviorGraphAgent villageBlackboard;
     [SerializeField] public Vector2Int villageCenter;
     [SerializeField] GameObject buildingPrefab;
@@ -17,16 +19,18 @@ public class VillageManager : MonoBehaviour
     [SerializeField] private int storageIncreasePerBuilding = 50;
 
     bool villageUnderAttack;
-    [SerializeField]bool buildingBeingMade;
     
     private VillageData villageData; 
 
     void Awake()
     {
-        if (villageData != null)
+        if (instance != null && instance != this)
         {
-            throw new Exception("Village Data already exists, what is ce bordel");
+            Destroy(this.gameObject);
+            return;
         }
+        instance = this;
+        
         GameEvents.onTownHallCreated -= NewVillageCenter;
         GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
         
@@ -34,17 +38,15 @@ public class VillageManager : MonoBehaviour
         GameEvents.onStorageBuildingCreated += OnNewStorageBuilding;
         
         villageData = new VillageData();
-        
-        villageData.Init();
 
         villageData.Add(ResourceType.Meat, 0);
         villageData.Add(ResourceType.Wood, 0);
         villageData.Add(ResourceType.Stone, 0);
         villageData.Add(ResourceType.Iron, 0);
         villageData.Add(ResourceType.Glorp, 0);
-
-        villageBlackboard.SetVariableValue("VillageCenter", villageCenter);
-        villageBlackboard.SetVariableValue("VillageManager", this);
+        
+        villageBlackboard.BlackboardReference.SetVariableValue("VillageCenter", villageCenter);
+        villageBlackboard.BlackboardReference.SetVariableValue("VillageManager", this);
     }
 
     private void Start()
@@ -76,7 +78,6 @@ public class VillageManager : MonoBehaviour
     {
         GameEvents.onTownHallCreated -= NewVillageCenter;
         GameEvents.onStorageBuildingCreated -= OnNewStorageBuilding;
-        villageData.OnDestroy();
     }
 
     private void NewVillageCenter(GameObject _newTownHall)
@@ -99,15 +100,14 @@ public class VillageManager : MonoBehaviour
         if (villageData == null)
         {
             Debug.LogWarning("No village data available");
-            //villageData = new();
+            villageData = new();
             _target = null;
             return TaskType.Wandering;
         }
         
-        if ((100 * (villageData.wood / villageData.maxWood)) >= 90 && !buildingBeingMade)
+        if ((100 * (villageData.wood / villageData.maxWood)) >= 90)
         {
             villageData.Add(ResourceType.Wood,-buildingWoodCost);
-            buildingBeingMade = true;
             _target = null;
             return TaskType.Building;
         }
@@ -158,13 +158,11 @@ public class VillageManager : MonoBehaviour
             }
         }
 
-        if (Random.value <= 0.2f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10 || villageData.wood >= 10))
+        if (Random.value <= 0.4f && (villageData.glorp >= 10 || villageData.iron >= 10 || villageData.stone >= 10 || villageData.wood >= 10))
         {
-            if (CanUpgradeUnit(_caller.gameObject.GetComponent<Entity>()))
-            {
-                Debug.Log(_caller.name + "wants to go shop !");
-                return TaskType.Upgrading;
-            }
+            Debug.Log(_caller.name + "wants to go shop !");
+            //Make the AI go back to the village centre to upgrade
+            return TaskType.Upgrading;
         }
         //Debug.Log("Wandering");
         return TaskType.Wandering;
@@ -249,12 +247,14 @@ public class VillageManager : MonoBehaviour
 
     public void AddResource(ResourceType _resource, int _amount)
     {
-        //Debug.Log("Added resource " + _resource + " with number of " + _amount);
+        Debug.Log($"{gameObject.name}");
+        Debug.Log("Added resource " + _resource + " with number of " + _amount);
         villageData.Add(_resource, _amount);
     }
 
     public int GetResourceAmount(ResourceType _resource)
     {
+        Debug.Log($"{gameObject.name}");
         return villageData.GetResourceValue(_resource);
     }
 
@@ -262,8 +262,6 @@ public class VillageManager : MonoBehaviour
     {
         GameObject _newBuild = Instantiate(buildingPrefab);
         _newBuild.transform.position = _position.position;
-        buildingWoodCost += storageIncreasePerBuilding;
-        buildingBeingMade = false;
         return true;
     }
 
@@ -294,19 +292,17 @@ public class VillageManager : MonoBehaviour
     {
         if (!CanUpgradeUnit(_entity))
         {
-            Debug.LogWarning("Can't upgrade entity");
             return;
         }
 
         if (!_entity.TryGetComponent(out UpgradeStatsComponent _upgradeStats))
         {
-            Debug.LogWarning("No upgrade stats found");
             return;
         }
 
         ResourceType _nextUpgrade = _upgradeStats.GetNextUpgrade();
         int _upgradeCost = upgradeCosts[_nextUpgrade];
-        Debug.Log("Bro got upgraded");
+
         AddResource(_nextUpgrade, -_upgradeCost);
         _upgradeStats.ApplyUpgrade();
     }

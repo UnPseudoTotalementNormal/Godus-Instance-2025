@@ -25,7 +25,7 @@ public partial class BuildAtLocationAction : Action
         buildingFinished = true;
         if (buildingFinished)
         {
-            VillageManager.Value.BuildAtLocation(Self.Value.transform);
+            global::VillageManager.instance.BuildAtLocation(Self.Value.transform);
             return Status.Success;
         }
         return Status.Running;

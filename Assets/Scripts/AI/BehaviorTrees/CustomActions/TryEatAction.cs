@@ -17,10 +17,11 @@ public partial class TryEatAction : Action
     {
         if (Self.Value.TryGetComponent(out HungerSystem.HungerComponent _hungerComponent))
         {
-            int _meatCount = Village.Value.GetResourceAmount(ResourceType.Meat);
+            VillageManager _villageManager = VillageManager.instance;
+            int _meatCount = _villageManager.GetResourceAmount(ResourceType.Meat);
             if (_meatCount >= Amount.Value)
             {
-                Village.Value.AddResource(ResourceType.Meat, (int)-Amount.Value);
+                _villageManager.AddResource(ResourceType.Meat, (int)-Amount.Value);
                 _hungerComponent.EatFood(_hungerComponent.GetMaxHunger());
                 return Status.Success;
             }

@@ -25,6 +25,23 @@ public partial class MoveToLocationAction : Action
             pathfinder = new Pathfinding();
             pathfinder.callback += PathfindingCallback;
         }
+
+        pathFound = false;
+        PathHolder _pathHolder = Path.Value;
+        
+        if (!_pathHolder.askForRecalculation
+            && !_pathHolder.hasMapBeenChangedSinceLastPathCalculation 
+            && _pathHolder.targetObject == null
+            && _pathHolder.waypoints.Count > 0
+            && _pathHolder.waypoints[^1] == Location.Value)
+        {
+            // Path is still valid
+            pathFound = true;
+            return Status.Success;
+        }
+        
+        _pathHolder.targetObject = null;
+        _pathHolder.askForRecalculation = false;
         pathfinder.FindPath(Vector2Int.RoundToInt(Self.Value.transform.position), Location.Value);
         return Status.Running;
     }

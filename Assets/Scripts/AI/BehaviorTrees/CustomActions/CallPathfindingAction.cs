@@ -25,6 +25,23 @@ public partial class CallPathfindingAction : Action
             pathfinder = new Pathfinding();
             pathfinder.callback += PathfindingCallback;
         }
+
+        pathFound = false;
+        PathHolder _pathHolder = Path.Value;
+        
+        if (!_pathHolder.askForRecalculation
+            && !_pathHolder.hasMapBeenChangedSinceLastPathCalculation 
+            && _pathHolder.targetObject == Target.Value 
+            && _pathHolder.waypoints.Count > 0
+            && _pathHolder.waypoints[^1] == new Vector2Int((int)Target.Value.transform.position.x, (int)Target.Value.transform.position.y))
+        {
+            // Path is still valid
+            pathFound = true;
+            return Status.Success;
+        }
+
+        _pathHolder.askForRecalculation = false;
+        _pathHolder.targetObject = Target.Value;
         pathfinder.FindPath(Vector2Int.RoundToInt(Agent.Value.transform.position), new Vector2Int((int)Target.Value.transform.position.x, (int)Target.Value.transform.position.y));
         return Status.Running;
     }

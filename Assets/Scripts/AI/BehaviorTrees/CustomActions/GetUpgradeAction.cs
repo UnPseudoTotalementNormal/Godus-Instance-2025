@@ -14,7 +14,7 @@ public partial class GetUpgradeAction : Action
     protected override Status OnStart()
     {
         Debug.Log("Get upgrade action for" + Self.Value.name);
-        VillageManager.Value.UpgradeEntity(Self.Value.GetComponent<Entity>());
+        global::VillageManager.instance.UpgradeEntity(Self.Value.GetComponent<Entity>());
         return Status.Running;
     }
 

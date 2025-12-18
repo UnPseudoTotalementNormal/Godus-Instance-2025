@@ -15,6 +15,7 @@ public partial class MoveToAction : Action
     [SerializeReference] public BlackboardVariable<float> Speed;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<bool> CheckForTarget;
+    [SerializeReference] public BlackboardVariable<float> StoppingDistance = new(0.1f);
     
     private int currentPathIndex = 0;
     
@@ -54,8 +55,15 @@ public partial class MoveToAction : Action
         
         Vector2Int _currentTarget = Path.Value.waypoints[currentPathIndex];
         Vector3 _targetPos = new Vector3(_currentTarget.x, _currentTarget.y, -2);
+        Vector2Int _finalTarget = Path.Value.waypoints[^1];
         
         Self.Value.transform.position = Vector3.MoveTowards(Self.Value.transform.position, _targetPos, Speed.Value * Time.deltaTime);
+
+        if (Vector2.Distance(Self.Value.transform.position, _finalTarget) <= StoppingDistance.Value && CheckForTarget.Value)
+        {
+            Path.Value.askForRecalculation = true;
+            return Status.Success;
+        }
         
         if (Vector3.Distance(Self.Value.transform.position, _targetPos) < 0.1f)
         {
@@ -64,6 +72,7 @@ public partial class MoveToAction : Action
             
             if (currentPathIndex >= Path.Value.waypoints.Count)
             {
+                Path.Value.askForRecalculation = true;
                 return Status.Success;
             }
         }

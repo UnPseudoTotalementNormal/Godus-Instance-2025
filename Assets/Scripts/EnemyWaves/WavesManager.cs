@@ -214,6 +214,10 @@ public class WavesManager : MonoBehaviour
 
     private void SetWaveSpawnPoint()
     {
+        const int _maxTriesBeforeIgnoringEnemies = 1000;
+        int _tries = 0;
+        bool _valid;
+
         do
         {
             waveSpawnPoint = new Vector3(
@@ -227,8 +231,13 @@ public class WavesManager : MonoBehaviour
                 Mathf.RoundToInt(waveSpawnPoint.y)
             );
 
-        }
-        while (_tileForSpawn.tileType == TileType.Water || IsEnemyNextTo());
+            bool _isWater = _tileForSpawn.tileType == TileType.Water;
+            bool _enemyNearby = _tries < _maxTriesBeforeIgnoringEnemies && IsEnemyNextTo();
+
+            _valid = !_isWater && !_enemyNearby;
+            _tries++;
+
+        } while (!_valid);
     }
 
     private IEnumerator SpawnGroupCoroutine(EnemyGroup _group)
@@ -273,7 +282,6 @@ public class WavesManager : MonoBehaviour
     private void HandleEnemyDeath(GameObject _enemy)
     {
         currentEnemyAlive.Remove(_enemy);
-        GameEvents.onEnemyDeath?.Invoke(_enemy.GetComponent<Entity>());
 
         if (currentEnemyAlive.Count > 0)
             return;

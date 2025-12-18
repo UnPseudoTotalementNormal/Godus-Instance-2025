@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ac132c3a821d9df848e1413dcac72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstVillagerSpawnPowerComponent
-  villagerPrefab: {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
+  villagerPrefab: {fileID: 7842261373013836629, guid: a39913bcac8b6cbee8f8b561f8d57311, type: 3}
   numberOfVillagersToSpawn: 3
 --- !u!1 &690860878360739873
 GameObject:
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   minToSpawn: 1
   maxToSpawn: 2
   prefabsToSpawn:
-  - {fileID: 7842261373013836629, guid: 17d8e9f6f89ee985cb99d40778e8f8ca, type: 3}
+  - {fileID: 7842261373013836629, guid: a39913bcac8b6cbee8f8b561f8d57311, type: 3}
   allowedTileTypes: 0a00000014000000
   prohibitedTileTypes: 00000000
   sfx:

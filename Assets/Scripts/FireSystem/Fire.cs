@@ -28,6 +28,9 @@ namespace FireSystem
         [SerializeField] private EventReference fireSfx;
         private FMOD.Studio.EventInstance fireSfxInstance;
         
+        [SerializeField] private EventReference extinguishByWaterSfx;
+        
+        
 
         private void Awake()
         {
@@ -66,6 +69,7 @@ namespace FireSystem
             if (_tile.tileType == TileType.Water)
             {
                 ExtinguishFire();
+                RuntimeManager.PlayOneShot(extinguishByWaterSfx, transform.position);
             }
         }
 

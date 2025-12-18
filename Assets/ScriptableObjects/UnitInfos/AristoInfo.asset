@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8bdf472f4cb114387d20f7dc566cf2, type: 3}
+  m_Name: AristoInfo
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
+  unitName: Aristo
+  unitHp: 25
+  unitAtk: 10
+  unitSprite: {fileID: 527947986, guid: 5024cbbedbfa6b30ca6e6a83b8e628d9, type: 3}
+  cost:
+  - resourceType: 0
+    cost: 10
+  - resourceType: 1
+    cost: 0
+  - resourceType: 2
+    cost: 5
+  - resourceType: 3
+    cost: 1
+  - resourceType: 4
+    cost: 0
+  unitPrefab: {fileID: 7842261373013836629, guid: 4df847d0ceafbfeb3b3d36047932f5fe, type: 3}

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4559517692638254569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4048, z: 0}
+  m_LocalPosition: {x: 0, y: -0.21, z: 0}
   m_LocalScale: {x: 0.7512, y: 0.2671515, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 7842261373013836629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.39, y: 31.68, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -234,7 +234,7 @@ MonoBehaviour:
           m_Value0: 7155640789335562403
           m_Value1: 3789113189753358439
         Name: Speed
-        m_Value: 1.75
+        m_Value: 2
     - rid: 1292394942129504721
       type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AI.AttackComponent
   attackRange: 1.5
-  attackDamage: 60
-  attackCooldown: 2.86
+  attackDamage: 10
+  attackCooldown: 0.7
   attackKnockbackForce: 1
   onAttackBehaviorEvent: {fileID: 11400000, guid: b4f2d7f4ec2616910b82753168860b00, type: 2}
 --- !u!114 &4937787137406368100
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ddd0c202f2bfa928ac8f5da8eb2ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 1
+  maxHealth: 100
 --- !u!61 &6931106637473262797
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2055179275247855307, guid: 52a5f823bd6c64b4285898c19036dc29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.106
+      value: -0.201
       objectReference: {fileID: 0}
     - target: {fileID: 2055179275247855307, guid: 52a5f823bd6c64b4285898c19036dc29, type: 3}
       propertyPath: m_LocalPosition.z
@@ -577,6 +577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bernard
       objectReference: {fileID: 0}
+    - target: {fileID: 7810186281570626863, guid: 52a5f823bd6c64b4285898c19036dc29, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9764fe0e07ec27741a73eb5a0a0f8fbc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -611,6 +615,13 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3115366529875119524}
   attackComponent: {fileID: 3478938870306090116}
   healthComponent: {fileID: 4937787137406368100}
+  walkingSfx:
+    Guid:
+      Data1: -1155036854
+      Data2: 1304945757
+      Data3: -1518360137
+      Data4: 813684002
+    Path: event:/Character/Footsteps/Alien
 --- !u!212 &3115366529875119524 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7810186281570626863, guid: 52a5f823bd6c64b4285898c19036dc29, type: 3}
