@@ -30,12 +30,12 @@ namespace AI
             }
         }
 
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             Vector2 _currentPosition = new Vector2(transform.position.x, transform.position.y);
             Vector2 _movementDelta = _currentPosition - lastPosition;
             lastPosition = _currentPosition;
-            bool _isWalking = _movementDelta.magnitude > 0.01f;
+            bool _isWalking = _movementDelta.magnitude > 0.001f;
             animator.SetBool(isWalkingKey, _isWalking);
             
             if (!_isWalking)
