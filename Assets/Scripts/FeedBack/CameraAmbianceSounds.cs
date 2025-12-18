@@ -22,6 +22,7 @@ public class CameraAmbianceSounds : MonoBehaviour
     private const string PARAM_WATER_PERCENTAGE = "isSea";
     private const string PARAM_LAND_PERCENTAGE = "isGrass";
     private const string PARAM_ZOOMED_IN_PERCENTAGE = "isZoomedIn";
+    private const string PARAM_FLOWING_WATER_COUNT = "flowingWaterCount";
     
     private EventInstance ambianceEventInstance;
     
@@ -35,7 +36,8 @@ public class CameraAmbianceSounds : MonoBehaviour
         ambianceEventInstance = GameAudioManager.instance.PlayEventInstance(ambianceEvent, EVENT_INSTANCE_KEY).Value;
         ambianceEventInstance.setParameterByName(PARAM_WATER_PERCENTAGE, 0);
         ambianceEventInstance.setParameterByName(PARAM_LAND_PERCENTAGE, 0);
-        ambianceEventInstance.setParameterByName(PARAM_ZOOMED_IN_PERCENTAGE, 0);
+        RuntimeManager.StudioSystem.setParameterByName(PARAM_ZOOMED_IN_PERCENTAGE, 0);
+        ambianceEventInstance.setParameterByName(PARAM_FLOWING_WATER_COUNT, 0);
     }
 
     private void OnDestroy()
@@ -48,7 +50,7 @@ public class CameraAmbianceSounds : MonoBehaviour
         CheckTiles();
         
         float _zoomedInPercentage = cameraZoom ? cameraZoom.GetZoomedInPercentage() : 1f;
-        ambianceEventInstance.setParameterByName(PARAM_ZOOMED_IN_PERCENTAGE, _zoomedInPercentage);
+        RuntimeManager.StudioSystem.setParameterByName(PARAM_ZOOMED_IN_PERCENTAGE, _zoomedInPercentage);
     }
 
     private void CheckTiles()
@@ -70,12 +72,17 @@ public class CameraAmbianceSounds : MonoBehaviour
         
         int _waterTileCount = 0;
         int _landTileCount = 0;
+        int _flowingWaterTileCount = 0;
         
         foreach (KeyValuePair<Tile, Vector2Int> _tileInView in _tilesInView)
         {
             if (_tileInView.Key.tileType == TileType.Water)
             {
                 _waterTileCount++;
+                if (WaterTileSystem.instance.activeTiles.Contains(new WaterTileSystem.WaterTileInfo(_tileInView.Value, _tileInView.Key)))
+                {
+                    _flowingWaterTileCount++;
+                }
             }
             else
             {
@@ -86,8 +93,11 @@ public class CameraAmbianceSounds : MonoBehaviour
         float _waterPercentage = (_waterTileCount / (float)_tilesInView.Count);
         float _landPercentage = (_landTileCount / (float)_tilesInView.Count);
         
+        Debug.Log($"{_flowingWaterTileCount}");
+        
         ambianceEventInstance.setParameterByName(PARAM_WATER_PERCENTAGE, _waterPercentage);
         ambianceEventInstance.setParameterByName(PARAM_LAND_PERCENTAGE, _landPercentage);
+        ambianceEventInstance.setParameterByName(PARAM_FLOWING_WATER_COUNT, _flowingWaterTileCount);
     }
     
     /// <summary>

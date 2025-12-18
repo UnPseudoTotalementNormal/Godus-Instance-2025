@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class WaterTileSystem : MonoBehaviour
 {
+    public static WaterTileSystem instance { get; private set; }
+    
     private TileSystem tileSystem;
     
-    private HashSet<WaterTileInfo> activeTiles = new();
+    public HashSet<WaterTileInfo> activeTiles = new();
 
     private Vector2Int[] tileNeighborsOffset =
     {
@@ -20,6 +22,14 @@ public class WaterTileSystem : MonoBehaviour
     
     [SerializeField] private float tickTimeInterval = 1f;
     private float timeSinceLastTick = 0f;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -98,7 +108,7 @@ public class WaterTileSystem : MonoBehaviour
         Debug.Log(activeTiles.Count);
     }
     
-    private class WaterTileInfo : IEquatable<WaterTileInfo>
+    public class WaterTileInfo : IEquatable<WaterTileInfo>
     {
         public Vector2Int position;
         public Tile tile;
