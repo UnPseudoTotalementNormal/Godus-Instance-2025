@@ -24,7 +24,7 @@ namespace AI
 
             _value = Mathf.Clamp(_value + _amount, 0, _max);
 
-            GameEvents.onResourceValueRefreshed?.Invoke(_type, _value);
+            GameEvents.onResourceValueRefreshed?.Invoke(_type, _value, _max);
         }
         
         public void Set(ResourceType _type, int _newValue)
@@ -34,7 +34,7 @@ namespace AI
 
             _value = Mathf.Clamp(_newValue, 0, _max);
 
-            GameEvents.onResourceValueRefreshed?.Invoke(_type, _value);
+            GameEvents.onResourceValueRefreshed?.Invoke(_type, _value, _max);
         }
         
         public void AddMax(ResourceType _type, int _amount)
@@ -45,7 +45,7 @@ namespace AI
             ref int _value = ref GetValueRef(_type);
             _value = Mathf.Clamp(_value, 0, _max);
 
-            GameEvents.onResourceMaxValueRefreshed?.Invoke(_type, _max);
+            GameEvents.onResourceValueRefreshed?.Invoke(_type, _value, _max);
         }
 
         public void SetMax(ResourceType _type, int _newMax)
@@ -55,8 +55,8 @@ namespace AI
 
             ref int _value = ref GetValueRef(_type);
             _value = Mathf.Clamp(_value, 0, _max);
-
-            GameEvents.onResourceMaxValueRefreshed?.Invoke(_type, _max);
+            
+            GameEvents.onResourceValueRefreshed?.Invoke(_type, _value, _max);
         }
         
         private ref int GetValueRef(ResourceType _type)
