@@ -539,3 +539,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 986228282374741320}
   attackComponent: {fileID: 0}
   healthComponent: {fileID: 2313382901945478915}
+  walkingSfx:
+    Guid:
+      Data1: 958276594
+      Data2: 1241833767
+      Data3: -2113367653
+      Data4: 1318748759
+    Path: event:/Character/Footsteps/Human
