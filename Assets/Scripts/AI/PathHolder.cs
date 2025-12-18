@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TileSystemSpace;
 using UnityEngine;
 using Action = System.Action;
 
@@ -8,11 +9,24 @@ namespace AI
     public class PathHolder : MonoBehaviour
     {
         public List<Vector2Int> waypoints { get; private set; } = new();
+        public GameObject targetObject;
+
+        public bool askForRecalculation;
+        public bool hasMapBeenChangedSinceLastPathCalculation { get; private set; } = true;
         
         public event Action onPathChanged;
+
+        public PathHolder()
+        {
+            TileSystem.instance.onAnyTileChanged += (_, _) =>
+            {
+                hasMapBeenChangedSinceLastPathCalculation = true;
+            };
+        }
         
         public void SetPath(List<Vector2Int> _waypoints)
         {
+            hasMapBeenChangedSinceLastPathCalculation = false;
             waypoints = new List<Vector2Int>(_waypoints);
             onPathChanged?.Invoke();
         }
