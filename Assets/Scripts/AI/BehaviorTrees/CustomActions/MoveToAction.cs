@@ -61,6 +61,7 @@ public partial class MoveToAction : Action
 
         if (Vector2.Distance(Self.Value.transform.position, _finalTarget) <= StoppingDistance.Value && CheckForTarget.Value)
         {
+            Path.Value.askForRecalculation = true;
             return Status.Success;
         }
         
@@ -71,6 +72,7 @@ public partial class MoveToAction : Action
             
             if (currentPathIndex >= Path.Value.waypoints.Count)
             {
+                Path.Value.askForRecalculation = true;
                 return Status.Success;
             }
         }
@@ -83,7 +85,6 @@ public partial class MoveToAction : Action
         currentPathIndex = 0;
         if (Path.Value != null)
         {
-            Path.Value.askForRecalculation = true;
             Path.Value.onPathChanged -= OnPathChanged;
         }
     }
