@@ -18,7 +18,7 @@ MonoBehaviour:
   unitSprite: {fileID: -478609110, guid: 45bb7249a252a522b8032cd2ec5fab3a, type: 3}
   cost:
   - resourceType: 0
-    cost: 30
+    cost: 25
   - resourceType: 1
     cost: 0
   - resourceType: 2

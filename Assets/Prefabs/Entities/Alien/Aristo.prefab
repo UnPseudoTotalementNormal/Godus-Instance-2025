@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AI.AttackComponent
   attackRange: 7
   attackDamage: 10
-  attackCooldown: 0.35
+  attackCooldown: 0.25
   attackKnockbackForce: 1
   onAttackBehaviorEvent: {fileID: 11400000, guid: b4f2d7f4ec2616910b82753168860b00, type: 2}
 --- !u!114 &4937787137406368100

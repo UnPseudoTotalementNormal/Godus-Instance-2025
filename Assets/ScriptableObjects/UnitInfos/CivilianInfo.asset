@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8bdf472f4cb114387d20f7dc566cf2, type: 3}
   m_Name: CivilianInfo
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  unitName: Glorp
+  unitName: Bernard
   unitHp: 100
   unitAtk: 10
   unitSprite: {fileID: 154609599, guid: bad1c098ddaf43f458a4f71cdb6e4b20, type: 3}
   cost:
   - resourceType: 0
-    cost: 10
+    cost: 15
   - resourceType: 1
-    cost: 0
+    cost: 10
   - resourceType: 2
     cost: 0
   - resourceType: 3
