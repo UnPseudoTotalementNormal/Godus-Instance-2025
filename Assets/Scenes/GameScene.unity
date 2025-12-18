@@ -4445,6 +4445,10 @@ PrefabInstance:
       propertyPath: maxBrushIncrease
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4692614668419886727, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
+      propertyPath: m_Name
+      value: Summon a Bernard
+      objectReference: {fileID: 0}
     - target: {fileID: 5900947875093915845, guid: 53e768166084c15b0a8ff6d470c9f490, type: 3}
       propertyPath: maxBrushIncrease
       value: 5

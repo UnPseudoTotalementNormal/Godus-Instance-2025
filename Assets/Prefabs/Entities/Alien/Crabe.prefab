@@ -620,6 +620,13 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6191796021679661182}
   attackComponent: {fileID: 3478938870306090116}
   healthComponent: {fileID: 4937787137406368100}
+  walkingSfx:
+    Guid:
+      Data1: -1155036854
+      Data2: 1304945757
+      Data3: -1518360137
+      Data4: 813684002
+    Path: event:/Character/Footsteps/Alien
 --- !u!4 &7775378598233304076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5688745678659064218, guid: 2e6a2e91b54b92349a11db5f3228b00b, type: 3}
