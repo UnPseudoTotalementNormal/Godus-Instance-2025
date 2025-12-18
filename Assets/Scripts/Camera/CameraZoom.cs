@@ -92,6 +92,12 @@ namespace Camera
         public float CurrentZoom => cinemachineCamera  ? cinemachineCamera.Lens.OrthographicSize : 0f;
         
         #endregion
+
+        public float GetZoomedInPercentage()
+        {
+            float _zoomedInPercentage = (maxZoom - CurrentZoom) / (maxZoom - minZoom);
+            return _zoomedInPercentage;
+        }
     }
 }
 
